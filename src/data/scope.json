@@ -1,0 +1,23 @@
+{
+  "_doc": "Defines the 'Focused' exam-scope view. Edit when the coordinator changes the syllabus, then run: python build.py",
+  "focus": {
+    "label": "2026 exam",
+    "examiner": "Dr. Yair Weissman (course coordinator)",
+    "dated": "2026-06-09",
+    "note": "Shortened semester: chapters 7 (Deadlock), 11 (File-System Implementation) and 12 (Disk Structure / disk geometry) were dropped, plus slides 6.25–6.27 and 10.11→end. Verified against the course slide decks: the only app topic affected is disk geometry.",
+    "dropped": [
+      "Ch 12 — Disk Structure (disk geometry)",
+      "Ch 7 — Deadlock theory",
+      "Ch 11 — File-System Implementation",
+      "Slides 6.25–6.27 (binary-semaphore implementation)",
+      "Slides 10.11+ (free-space / journaling)"
+    ]
+  },
+  "offExam": {
+    "2019A-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
+    "2020A-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
+    "2022A-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
+    "2022B-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
+    "2023B-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
+  }
+}

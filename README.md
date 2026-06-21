@@ -16,6 +16,20 @@ generators** for the computational question types, built from every modern past 
 - **Mock Exam** (10 Q, scored), **Review Weak**, **Browse by Year**.
 - Hebrew/English/both toggle, dark/light, mobile-first. No build step needed to *use* it.
 
+## Focused mode (current-semester exam scope)
+Chapters get dropped in a shortened semester. The **🎯 Focus** toggle (top bar) — or the URL
+**`?focus=1`** — hides app content that's off the *current* exam while keeping the full course intact.
+
+- Per the 2026 coordinator note (`docs/exam-scope-2026.jpeg`, Dr. Yair Weissman): chapters
+  **7 (Deadlock), 11 (File-System Implementation), 12 (Disk Structure)** plus slides 6.25–6.27 and
+  10.11→end were dropped.
+- Verified against the actual course slide decks (os6–os12): the only app topic affected is
+  **disk geometry** (ch 12). Focus hides those 5 questions + the disk-geometry generator; everything
+  else stays on.
+- Scope is data-driven in `src/data/scope.json` — edit it and run `python build.py` to change it.
+
+Share the focused link with classmates: `https://<user>.github.io/os-exam-trainer/?focus=1`
+
 ## Project layout
 ```
 index.html          app shell (loads css + js)

@@ -11,6 +11,31 @@ const Q=DATA.questions, SEC=DATA.meta.sections;
 const byId={}; Q.forEach(q=>byId[q.id]=q);
 const bySec={}; SEC.forEach(s=>bySec[s.id]=[]); Q.forEach(q=>{(bySec[q.section]||(bySec[q.section]=[])).push(q);});
 
+/* ---------------- focus mode (current-semester exam scope) ---------------- */
+const FOCUS=DATA.meta.focus||{label:'Exam',dropped:[],note:''};
+(function(){const p=new URLSearchParams(location.search);
+  if(p.has('focus')) S.prefs.focus=(p.get('focus')!=='0');
+  S.prefs.focus=!!S.prefs.focus; save();})();
+const GEN_OFF_FOCUS={disk:1};                 // the disk generator is geometry — off in focus
+function focusOn(){return !!S.prefs.focus;}
+function inScope(q){return !focusOn() || !q.offExam;}
+function secList(sid){return (bySec[sid]||[]).filter(inScope);}
+function scopedQ(){return Q.filter(inScope);}
+function toggleFocus(){
+  S.prefs.focus=!S.prefs.focus; save();
+  const u=new URL(location.href);
+  if(S.prefs.focus) u.searchParams.set('focus','1'); else u.searchParams.delete('focus');
+  history.replaceState(null,'',u.toString());
+  render();
+}
+function focusBanner(){
+  if(!focusOn()) return '';
+  return '<div class="banner"><div class="brow"><b>🎯 Focused on the '+esc(FOCUS.label)+'</b>'+
+    '<span class="bx" onclick="toggleFocus()">show full course ✕</span></div>'+
+    '<div class="bnote">'+esc(FOCUS.note)+(FOCUS.examiner?' — '+esc(FOCUS.examiner):'')+'</div>'+
+    (FOCUS.dropped&&FOCUS.dropped.length?'<div class="bdrop"><b>Hidden:</b> '+FOCUS.dropped.map(esc).join(' · ')+'</div>':'')+'</div>';
+}
+
 /* ---------------- helpers ---------------- */
 function el(h){const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
@@ -38,11 +63,11 @@ function tagHTML(q){return '<span class="tag '+(q.type||'')+'">'+(q.type||'conce
 function updateCount(){
   const exam=new Date(DATA.meta.examDate+'T08:00:00');
   const days=Math.ceil((exam-new Date())/86400000);
-  const tot=Q.length; let seen=0,strong=0;
-  Object.values(S.cards).forEach(c=>{seen++;if((c.c/(c.c+c.w))>=0.6)strong++;});
+  const scoped=scopedQ(); const tot=scoped.length; let strong=0;
+  scoped.forEach(q=>{const c=S.cards[q.id]; if(c&&(c.c+c.w)>0&&(c.c/(c.c+c.w))>=0.6)strong++;});
   document.getElementById('count').innerHTML=
     'Exam '+DATA.meta.examDate+' · <b>'+(days>=0?days:0)+' days</b><br>'+
-    '<span class="pill">'+strong+'/'+tot+' cards strong · '+Q.length+' questions</span>';
+    '<span class="pill">'+strong+'/'+tot+' strong · '+tot+(focusOn()?' on your exam':' questions')+'</span>';
 }
 
 /* ---------------- router ---------------- */
@@ -54,7 +79,7 @@ function render(){
   const view=document.getElementById('view');
   if(v==='sec') return renderSection(arg,view);
   if(v==='mock') return renderMock(view);
-  if(v==='weak') return renderDeck(Q.filter(q=>isWeak(q.id)),'🔁 Review Weak','Cards you have missed or not seen.',view);
+  if(v==='weak') return renderDeck(scopedQ().filter(q=>isWeak(q.id)),'🔁 Review Weak','Cards you have missed or not seen.',view);
   if(v==='years') return renderYears(view);
   if(v==='year') return renderYear(arg,view);
   return renderHome(view);
@@ -63,19 +88,20 @@ window.addEventListener('hashchange',()=>{});
 
 /* ---------------- home ---------------- */
 function renderHome(view){
-  let h='<div class="card"><h2 class="sec">🎯 10-day plan · aim: 100%</h2>'+
+  let h=focusBanner();
+  h+='<div class="card"><h2 class="sec">🎯 10-day plan · aim: 100%</h2>'+
     '<p class="progresshint">7/10 questions are exact-term recall from a recurring bank; 3/10 are mechanical (fork / scheduling / disk) and worth guaranteed points. Drill the free points to reflex, memorize the bank, over-learn the traps.</p>'+
     '<div class="row" style="margin-top:8px">'+
     '<button class="btn" onclick="go(\'mock\')">📝 Take a Mock Exam</button>'+
     '<button class="btn ghost" onclick="go(\'weak\')">🔁 Review Weak Cards</button></div></div>';
   h+='<div class="grid">';
   SEC.forEach(s=>{
-    const list=bySec[s.id]||[];
+    const list=secList(s.id); const hidden=(bySec[s.id]||[]).length-list.length;
     const m=list.length?Math.round(100*list.filter(q=>mastery(q.id)>=0.6).length/list.length):0;
-    h+='<div class="tile" onclick="go(\'sec\',\''+s.id+'\')">'+
+    h+='<div class="tile'+(list.length?'':' off')+'" onclick="go(\'sec\',\''+s.id+'\')">'+
        '<h3>'+esc(s.title)+'</h3><div class="he" dir="rtl">'+esc(s.he)+'</div>'+
        '<div class="bar"><i style="width:'+m+'%"></i></div>'+
-       '<div class="meta"><span>'+list.length+' cards</span><span>'+m+'%</span></div></div>';
+       '<div class="meta"><span>'+list.length+' cards'+(hidden?' <span class="offtag">+'+hidden+' off</span>':'')+'</span><span>'+m+'%</span></div></div>';
   });
   h+='</div>';
   h+='<div class="card" style="margin-top:14px"><b>⚠️ The 3 traps that cost aces their last points</b>'+
@@ -90,13 +116,18 @@ function renderHome(view){
 /* ---------------- section ---------------- */
 function renderSection(sid,view){
   const sec=SEC.find(s=>s.id===sid); if(!sec)return go('home');
-  let h='<h2 class="sec">'+esc(sec.title)+' <span class="he" dir="rtl" style="color:var(--mut);font-size:15px">'+esc(sec.he)+'</span></h2>';
+  const list=secList(sid); const hidden=(bySec[sid]||[]).length-list.length;
+  const genOff=focusOn()&&GEN_OFF_FOCUS[sid];
+  let h=focusBanner();
+  h+='<h2 class="sec">'+esc(sec.title)+' <span class="he" dir="rtl" style="color:var(--mut);font-size:15px">'+esc(sec.he)+'</span></h2>';
   h+='<details class="lesson"><summary>Lesson — '+esc(sec.title)+'</summary><div class="lessonbody">'+(DATA.lessons[sid]||'')+'</div></details>';
-  const gen=['fork','scheduling','disk','memory'].includes(sid);
+  const gen=['fork','scheduling','disk','memory'].includes(sid) && !genOff;
   if(gen) h+='<div class="row" style="margin-bottom:12px"><button class="btn" onclick="go(\'sec\',\''+sid+'\');startGen(\''+sid+'\')">⚡ Practice Generator (infinite)</button> <span class="pill">fresh problems, verified answers</span></div>';
+  if(hidden) h+='<div class="offnote">🎯 '+hidden+' question'+(hidden>1?'s':'')+' hidden — off your '+esc(FOCUS.label)+(genOff?' (incl. the disk-geometry generator)':'')+'. <a onclick="toggleFocus()">show full course</a></div>';
   h+='<div id="gen"></div>';
   view.innerHTML=h;
-  deckInto(view.appendChild(el('<div class="card"></div>')), bySec[sid]||[], sec.title);
+  if(!list.length){ view.appendChild(el('<div class="card center"><p>🎉 Nothing here is on your '+esc(FOCUS.label)+'.</p></div>')); return; }
+  deckInto(view.appendChild(el('<div class="card"></div>')), list, sec.title);
 }
 
 /* ---------------- generic flashcard deck ---------------- */
@@ -207,9 +238,10 @@ function genPaging(){
 /* ---------------- mock exam ---------------- */
 function renderMock(view){
   // 1 fork + 1 disk/sched compute + 8 others, mirror the real spread
-  const fork=shuffle(bySec['fork']||[])[0];
-  const comp=shuffle((bySec['disk']||[]).concat(bySec['scheduling']||[]).filter(q=>q.type==='compute'))[0];
-  const rest=shuffle(Q.filter(q=>q!==fork&&q!==comp)).slice(0,8);
+  const pool=scopedQ();
+  const fork=shuffle(pool.filter(q=>q.section==='fork'))[0];
+  const comp=shuffle(pool.filter(q=>q.type==='compute'&&q.section!=='fork'))[0];
+  const rest=shuffle(pool.filter(q=>q!==fork&&q!==comp)).slice(0,8);
   const ex=shuffle([fork,comp].filter(Boolean).concat(rest)).slice(0,10);
   let i=0,score=0,answered=0;
   let h='<h2 class="sec">📝 Mock Exam <span class="tag">10 × 10 pts · ≤5 words</span></h2>'+
@@ -248,13 +280,17 @@ function renderYears(view){
 function renderYear(e,view){
   const list=Q.filter(q=>q.exam===e).sort((a,b)=>a.q-b.q);
   let h='<h2 class="sec">'+e+' <span class="tag">'+list.length+' Q</span></h2><div class="card examlist">';
-  list.forEach(q=>{h+='<div class="examq">'+qHTML(q)+ansHTML(q)+'</div>';});
+  list.forEach(q=>{h+='<div class="examq'+(q.offExam?' offexam':'')+'">'+
+    (q.offExam?'<div class="offbadge">⛔ off the '+esc(FOCUS.label)+' — '+esc(q.offReason||'')+'</div>':'')+
+    qHTML(q)+ansHTML(q)+'</div>';});
   view.innerHTML=h+'</div><button class="btn ghost" onclick="go(\'years\')">← All exams</button>';
 }
 
 /* ---------------- prefs ---------------- */
 function applyPrefs(){document.body.classList.toggle('light',S.prefs.theme==='light');
-  document.getElementById('langBtn').textContent=({both:'🌐 HE+EN',he:'🌐 עברית',en:'🌐 English'})[S.prefs.lang];}
+  document.body.classList.toggle('focusmode',focusOn());
+  document.getElementById('langBtn').textContent=({both:'🌐 HE+EN',he:'🌐 עברית',en:'🌐 English'})[S.prefs.lang];
+  const fb=document.getElementById('focusBtn'); if(fb){fb.classList.toggle('on',focusOn()); fb.textContent=focusOn()?'🎯 '+FOCUS.label:'🎯 Focus';}}
 function cycleLang(){S.prefs.lang=({both:'he',he:'en',en:'both'})[S.prefs.lang];save();render();}
 function toggleTheme(){S.prefs.theme=S.prefs.theme==='light'?'dark':'light';save();applyPrefs();}
 

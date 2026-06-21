@@ -73,8 +73,22 @@ def load_lessons():
         out[sid] = open(fp, encoding="utf-8").read() if os.path.exists(fp) else "<p><em>Lesson pending.</em></p>"
     return out
 
+def load_scope():
+    fp = os.path.join(DATA, "scope.json")
+    if not os.path.exists(fp):
+        return {"focus": None, "offExam": {}}
+    return json.load(open(fp, encoding="utf-8"))
+
 def main():
     questions = load_questions()
+    scope = load_scope()
+    off = scope.get("offExam", {})
+    n_off = 0
+    for q in questions:
+        if q["id"] in off:
+            q["offExam"] = True
+            q["offReason"] = off[q["id"]]
+            n_off += 1
     counts = {s: 0 for s in SECTION_IDS}
     for q in questions:
         counts[q["section"]] += 1
@@ -83,6 +97,7 @@ def main():
             "course": "HIT 61206 — Operating Systems",
             "examDate": "2026-07-01",
             "sections": [{"id": s[0], "title": s[1], "he": s[2], "n": counts[s[0]]} for s in SECTIONS],
+            "focus": scope.get("focus"),
         },
         "lessons": load_lessons(),
         "questions": questions,
@@ -94,6 +109,7 @@ def main():
         f.write(header + "window.DATA = " + payload + ";\n")
     print(f"Wrote {OUT}")
     print(f"  {len(questions)} questions across {len(SECTIONS)} sections: {counts}")
+    print(f"  focus: {n_off} question(s) marked off-exam ({scope.get('focus',{}).get('label','-') if scope.get('focus') else '-'})")
 
 if __name__ == "__main__":
     main()

@@ -78,3 +78,16 @@ button.good{background:var(--good)}button.bad{background:var(--bad)}
 .hide{display:none!important}
 .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--card);
   border:1px solid var(--acc);border-radius:12px;padding:10px 16px;font-size:14px;z-index:9}
+/* ---- focus mode ---- */
+#focusBtn.on{background:var(--good);border-color:var(--good);color:#06281c;font-weight:700}
+.banner{background:linear-gradient(135deg,rgba(62,207,142,.16),rgba(91,140,255,.12));border:1px solid var(--good);border-radius:var(--radius);padding:12px 14px;margin-bottom:14px}
+.banner .brow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px}
+.banner .bx{margin-inline-start:auto;font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:3px 10px;cursor:pointer;white-space:nowrap}
+.banner .bnote{font-size:12.5px;color:var(--mut);margin-top:6px;line-height:1.5}
+.banner .bdrop{font-size:12px;color:var(--mut);margin-top:6px}
+.offnote{background:rgba(255,207,91,.1);border:1px solid var(--warn);border-radius:12px;padding:8px 12px;margin-bottom:12px;font-size:13px}
+.offnote a{color:var(--acc);cursor:pointer;text-decoration:underline}
+.offtag{color:var(--warn);font-size:11px}
+.tile.off{opacity:.5}
+.offbadge{font-size:12px;color:var(--bad);font-weight:600;margin-bottom:6px}
+.examq.offexam{opacity:.6}

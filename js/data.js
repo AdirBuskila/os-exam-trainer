@@ -59,7 +59,20 @@ window.DATA = {
 "he": "מושגי מערכת",
 "n": 6
 }
+],
+"focus": {
+"label": "2026 exam",
+"examiner": "Dr. Yair Weissman (course coordinator)",
+"dated": "2026-06-09",
+"note": "Shortened semester: chapters 7 (Deadlock), 11 (File-System Implementation) and 12 (Disk Structure / disk geometry) were dropped, plus slides 6.25–6.27 and 10.11→end. Verified against the course slide decks: the only app topic affected is disk geometry.",
+"dropped": [
+"Ch 12 — Disk Structure (disk geometry)",
+"Ch 7 — Deadlock theory",
+"Ch 11 — File-System Implementation",
+"Slides 6.25–6.27 (binary-semaphore implementation)",
+"Slides 10.11+ (free-space / journaling)"
 ]
+}
 },
 "lessons": {
 "fork": "<h2>fork() &mdash; Counting Processes &amp; Prints</h2>\n\n<p><code>fork()</code> creates a child that resumes <em>after</em> the fork line, with copied memory and file descriptors. It returns the <strong>child PID to the parent</strong>, <strong>0 to the child</strong>, and <strong>-1 on failure</strong> (no child created). The child keeps running every later fork too &mdash; so <em>k</em> fork calls reached by all give <strong>2<sup>k</sup></strong> processes.</p>\n\n<table>\n  <thead>\n    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Create child process</td><td>fork()</td><td dir=\"rtl\">&#1508;&#1497;&#1510;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>Returns child-PID to parent, 0 to child, -1 on failure</td></tr>\n    <tr><td>Total processes after k forks</td><td>2<sup>k</sup> rule</td><td dir=\"rtl\">&#1502;&#1505;&#1508;&#1512; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501;</td><td>All forks reached by everyone &rArr; 2<sup>k</sup> processes</td></tr>\n    <tr><td>Child=0 in expression</td><td>fork() == 0 test</td><td dir=\"rtl\">&#1488;&#1489; / &#1489;&#1503;</td><td>Branch taken by the child only</td></tr>\n    <tr><td>Shared address space</td><td>Copy-on-Write (COW)</td><td dir=\"rtl\">&#1492;&#1506;&#1514;&#1511;&#1492; &#1489;&#1506;&#1514; &#1499;&#1514;&#1497;&#1489;&#1492;</td><td>Pages shared until one side writes</td></tr>\n    <tr><td>Duplicate print bug</td><td>printf buffer / flush</td><td dir=\"rtl\">&#1495;&#1500;&#1510;&#1497;&#1503; &#1492;&#1491;&#1508;&#1505;&#1492;</td><td>Un-flushed buffer copied &rArr; line prints twice</td></tr>\n    <tr><td>OR short-circuit</td><td>|| (lazy)</td><td dir=\"rtl\">&#1488;&#1493; &#1500;&#1493;&#1490;&#1497;</td><td>If left is non-zero, right fork is skipped</td></tr>\n    <tr><td>AND short-circuit</td><td>&amp;&amp; (lazy)</td><td dir=\"rtl\">&#1493;&#1490;&#1501; &#1500;&#1493;&#1490;&#1497;</td><td>If left is 0, right fork is skipped</td></tr>\n  </tbody>\n</table>\n\n<ol class=\"recipe\">\n  <li>Draw the <strong>process tree</strong>; mark what each fork returned at each node (parent = PID&gt;0, child = 0).</li>\n  <li>If forks are chained with <code>*</code>, <code>-</code>, <code>+</code>: every process runs <em>all</em> calls (no short-circuit). With <code>||</code>/<code>&amp;&amp;</code>: skip the second fork when the first short-circuits.</li>\n  <li>Total processes = <strong>2<sup>(number of forks reached by all)</sup></strong>.</li>\n  <li>For \"how many prints\": evaluate the <code>if</code> expression per process; count those where it is true (e.g. product == 0).</li>\n  <li>Count the parent itself too &mdash; it executes the line as well.</li>\n</ol>\n\n<pre>\nif (fork() * fork() * fork() == 0) printf(\"fork\\n\");\n  3 forks  -> 2^3 = 8 processes total.\n  Only the original root got 3 positive PIDs (product != 0) -> no print.\n  Every other process had >=1 fork return 0 (product == 0).\n  prints = 8 - 1 = 7   (VERIFIED by simulation; a \"4\" sometimes seen is wrong for this expression)\nSimpler: fork() - fork() == 0  -> \"fork\" prints 1 time.\n</pre>\n\n<div class=\"traps\">\n  <ul>\n    <li><strong>Return values:</strong> parent gets child PID (positive), child gets <strong>0</strong>, failure gives <strong>-1</strong> to parent only &mdash; never mix these up.</li>\n    <li><strong>Child continues after the fork line</strong> and executes every later fork too &mdash; it does not restart at main.</li>\n    <li><strong>printf without <code>\\n</code></strong> stays in the libc buffer; fork copies it, so it prints <em>twice</em> at exit. Fix: <code>fflush</code> or <code>\\n</code>.</li>\n    <li><strong><code>||</code> / <code>&amp;&amp;</code> short-circuit</strong> can skip a fork &mdash; fewer processes than the raw 2<sup>k</sup>. Plain <code>*</code>/<code>-</code>/<code>+</code> do not short-circuit (but C evaluation order is undefined).</li>\n    <li><strong>Memory is copied, not shared</strong> (COW): after fork, a parent's variable change is invisible to the child.</li>\n    <li><strong>Always include the parent</strong> in the count; a common slip is counting only children.</li>\n  </ul>\n</div>\n",
@@ -336,7 +349,9 @@ window.DATA = {
 "answer_en": "4000",
 "needs_answer": false,
 "exam": "2019A",
-"id": "2019A-2"
+"id": "2019A-2",
+"offExam": true,
+"offReason": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
 },
 {
 "q": 3,
@@ -576,7 +591,9 @@ window.DATA = {
 "answer_en": "400,000 sectors",
 "needs_answer": false,
 "exam": "2020A",
-"id": "2020A-2"
+"id": "2020A-2",
+"offExam": true,
+"offReason": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
 },
 {
 "q": 3,
@@ -1057,7 +1074,9 @@ window.DATA = {
 "answer_en": "32K cylinders.",
 "needs_answer": false,
 "exam": "2022A",
-"id": "2022A-2"
+"id": "2022A-2",
+"offExam": true,
+"offReason": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
 },
 {
 "q": 3,
@@ -1177,7 +1196,9 @@ window.DATA = {
 "answer_en": "4 platters",
 "needs_answer": false,
 "exam": "2022B",
-"id": "2022B-2"
+"id": "2022B-2",
+"offExam": true,
+"offReason": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
 },
 {
 "q": 3,
@@ -1418,7 +1439,9 @@ window.DATA = {
 "answer_en": "One platter",
 "needs_answer": false,
 "exam": "2023B",
-"id": "2023B-2"
+"id": "2023B-2",
+"offExam": true,
+"offReason": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
 },
 {
 "q": 3,
