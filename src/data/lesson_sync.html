@@ -1,0 +1,74 @@
+<section class="lesson" id="lesson-sync">
+  <h2>Sync: Semaphores, Shared Memory &amp; Critical Sections</h2>
+
+  <p>Synchronization stops a <strong>race condition</strong> where the result depends on execution order. The exam loves exact terms and System&nbsp;V call behavior: <code>sem_op=-1</code> is wait, <code>+1</code> is signal, and you must know the 3 critical-section conditions cold. Write the English term even if you explain in Hebrew.</p>
+
+  <table>
+    <thead>
+      <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Race condition</td><td>Race condition</td><td dir="rtl">מצב מירוץ</td><td>Result depends on execution order of shared access.</td></tr>
+      <tr><td>Critical section</td><td>Critical section</td><td dir="rtl">קטע קריטי</td><td>Code accessing a shared resource; only one in at a time.</td></tr>
+      <tr><td>Mutual exclusion</td><td>Mutual Exclusion</td><td dir="rtl">מניעה הדדית</td><td>Only one process in the critical section at any moment.</td></tr>
+      <tr><td>Progress</td><td>Progress</td><td dir="rtl">התקדמות</td><td>If section free, a candidate enters in finite time.</td></tr>
+      <tr><td>Bounded waiting</td><td>Bounded Waiting</td><td dir="rtl">המתנה חסומה</td><td>Limit on others entering before a requester gets in.</td></tr>
+      <tr><td>Semaphore</td><td>Semaphore</td><td dir="rtl">סמפור</td><td>Integer with atomic wait(P/down) and signal(V/up).</td></tr>
+      <tr><td>Binary semaphore</td><td>Binary semaphore / Mutex</td><td dir="rtl">סמפור בינארי</td><td>Values {0,1} only; acts as a lock.</td></tr>
+      <tr><td>Counting semaphore</td><td>Counting semaphore</td><td dir="rtl">סמפור מונה</td><td>Counts N available resources.</td></tr>
+      <tr><td>TestAndSet</td><td>TestAndSet</td><td dir="rtl">בדוק-וקבע</td><td>Atomic CPU instruction: read old value, set true.</td></tr>
+      <tr><td>Spinlock</td><td>Spinlock</td><td dir="rtl">נעילת סיבוב</td><td>Busy-waits in a loop; used in kernel (can't sleep).</td></tr>
+      <tr><td>Bakery algorithm</td><td>Bakery algorithm</td><td dir="rtl">אלגוריתם המאפייה</td><td>Smallest number enters first; software mutex for N.</td></tr>
+      <tr><td>Producer-Consumer</td><td>Bounded Buffer</td><td dir="rtl">יצרן-צרכן / חוצץ חסום</td><td>3 sems: mutex=1, full=0, empty=n.</td></tr>
+      <tr><td>Readers-Writers</td><td>Readers-Writers</td><td dir="rtl">קוראים-כותבים</td><td>Readers share; writer needs exclusive access.</td></tr>
+      <tr><td>Deadlock</td><td>Deadlock</td><td dir="rtl">קיפאון / נעילה הדדית</td><td>Each process waits for a resource another holds.</td></tr>
+      <tr><td>Shared memory</td><td>Shared Memory</td><td dir="rtl">זיכרון משותף</td><td>Fastest IPC; no built-in sync, pair with a semaphore.</td></tr>
+      <tr><td>Pipe</td><td>Pipe</td><td dir="rtl">צינור</td><td>One-way IPC; fd[0]=read, fd[1]=write.</td></tr>
+      <tr><td>Cleanup command</td><td>ipcrm</td><td dir="rtl">ipcrm</td><td>Shell command removing leftover IPC (sem/shm).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>System V call cheat-list</h3>
+  <table>
+    <thead><tr><th>Call</th><th>Does</th></tr></thead>
+    <tbody>
+      <tr><td><code>semget(IPC_PRIVATE,n,0600)</code></td><td>Create array of n semaphores → semid.</td></tr>
+      <tr><td><code>semctl(id,num,SETVAL/GETVAL/IPC_RMID,arg)</code></td><td>Init / read / delete the whole array.</td></tr>
+      <tr><td><code>semop(id,sops,nsops)</code></td><td>wait/signal; nsops&gt;1 = all-or-none (atomic).</td></tr>
+      <tr><td><code>shmget / shmat / shmdt / shmctl(IPC_RMID)</code></td><td>create / attach / detach / delete segment.</td></tr>
+      <tr><td><code>pipe(fd)</code></td><td>fd[0] read end, fd[1] write end.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Solving procedure — semop scenario</h3>
+  <ol class="recipe">
+    <li>Write each semaphore's initial value (after SETVAL).</li>
+    <li>For <code>sem_op=-1</code>: if value&gt;0 decrement; if value=0 the process <strong>blocks (sleep/WAITING)</strong>.</li>
+    <li>For <code>sem_op=+1</code>: increment and wake one waiter.</li>
+    <li>For <code>sem_op=0</code>: continue if value=0, else block until it reaches 0.</li>
+    <li>If <code>nsops&gt;1</code>: all ops succeed together or the whole call blocks (philosophers = 2 chopsticks at once).</li>
+  </ol>
+  <pre>Start: S=1
+wait(S)  : sem_op=-1 → S=0, RUNNING
+wait(S)  : sem_op=-1 → S=0, process SLEEPS (was 0)
+signal(S): sem_op=+1 → S=0, waiter woken → RUNNING</pre>
+
+  <div class="traps">
+    <strong>Close-but-precise traps:</strong>
+    <ul>
+      <li><strong>sem_op=-1 on a 0 semaphore → blocks/sleeps</strong> (not an error, not -1). 2024-B Q10 answer = <em>sleep</em>.</li>
+      <li><code>sem_op=-1</code> is <strong>wait/lock</strong>; <code>+1</code> is <strong>signal/unlock</strong> — never reversed.</li>
+      <li>Setting <code>sops.sem_op=-1</code> alone does <strong>nothing</strong> — it only acts when you call <code>semop()</code>.</li>
+      <li>After <code>IPC_RMID</code> the array is gone; a later <code>semop</code> returns <strong>-1</strong>.</li>
+      <li>The 3 conditions are <strong>Mutual Exclusion, Progress, Bounded Waiting</strong>. <strong>Starvation is a consequence, NOT a condition.</strong></li>
+      <li>Bakery without the <code>choosing[]</code> array breaks <strong>Mutual Exclusion</strong> (two pick same number, both enter).</li>
+      <li>Spinlock suffers from <strong>busy waiting + starvation</strong>; kernel uses it because it <strong>cannot sleep</strong>.</li>
+      <li>Producer-Consumer order matters: <code>wait(empty)</code> <strong>before</strong> <code>wait(mutex)</code>, else deadlock.</li>
+      <li><code>semctl</code> alone does SETVAL, GETVAL <strong>and</strong> IPC_RMID — same call, different <code>cmd</code>.</li>
+      <li>Shared memory has <strong>no built-in sync</strong> — always guard it with a semaphore. <code>shmget</code> size rounds up to 4K pages.</li>
+      <li>Coffman deadlock conditions (4): Mutual Exclusion, Hold-and-Wait, No Preemption, Circular Wait. Break one → no deadlock.</li>
+      <li><strong>TestAndSet</strong> is one atomic CPU instruction (read old + set true); don't confuse with two separate steps.</li>
+      <li>Forgetting <code>IPC_RMID</code> / <code>ipcrm</code> leaves IPC objects until reboot — counted as wrong in code answers.</li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "ב-Tightly coupled system יש רכיב שהוא משותף לכל המעבדים לעומת זאת, ב-Loosely coupled system אותו רכיב הוא נפרד לכל מעבד, כלומר יש לכל מעבד רכיב כזה. מהו הרכיב הזה?",
+    "en": "Asks which component is shared in tightly coupled systems but separate per CPU in loosely coupled systems.",
+    "answer_he": "יחידת הזכרון הראשי (RAM)",
+    "answer_en": "Main memory (RAM)",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "פקודת מכונה הפונה אל התקן קלט/פלט יכולה להתבצע רק כאשר ה-CPU נמצא במצב הנקרא: ______________",
+    "en": "Asks in which CPU mode a machine instruction accessing an I/O device may run.",
+    "answer_he": "kernel mode",
+    "answer_en": "Kernel mode",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מה מצבו (Status) של תהליך שרוצה לרוץ, אבל אין מעבד פנוי כרגע ולכן הוא ממתין כרגע להיתפנות מעבד כלשהו?",
+    "en": "Asks the status of a process that wants to run but is waiting for a free CPU.",
+    "answer_he": "ready",
+    "answer_en": "Ready",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "תהליך מסויים ביקש מה-kernel לבצע פעולת קלט/פלט. אחר-כך הוא ביצע כמה פעולות ללא שום קלט/פלט ואז הוא ביקש שוב מה-kernel לבצע פעולת קלט/פלט. כיצד נקרא הזמן בו ביצע התהליך את הפעולות ללא שום קלט/פלט? ____________",
+    "en": "Asks the name of the time a process spends executing without any I/O between two I/O requests.",
+    "answer_he": "CPU burst",
+    "answer_en": "CPU burst",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "Response time הוא הזמן החולף מאז שהורץ תהליך עד ש: ____________",
+    "en": "Asks to complete the definition of response time (time from process start until what event).",
+    "answer_he": "הוא מפיק את הפלט הראשון",
+    "answer_en": "It produces first output",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר תהליך מבקש לעשות wait על סמפור וה-kernel רואה שערך הסמפור שלילי, אז ה-kernel מוציא את התהליך מתור התהליכים שצריכים זמן CPU ובנוסף ה-kernel גם ________.",
+    "en": "Asks what the kernel additionally does when a wait makes a semaphore value negative.",
+    "answer_he": "מוסיף אותו לתור ההמתנה לסמפור",
+    "answer_en": "Adds it to semaphore wait queue",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "תרגום כתובות וירטואליות לפיסיות נעשה על ידי ה-MMU ולא על ידי מערכת ההפעלה כי ה-MMU ____________.",
+    "en": "Asks why virtual-to-physical address translation is done by the MMU rather than the OS.",
+    "answer_he": "היא חומרה שלא תלויה במעבד",
+    "answer_en": "It is CPU-independent hardware",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "replacement",
+    "type": "concept",
+    "he": "כיצד נקרא המצב בו כל תהליך שמקבל זמן ריצה מגלה שדפיו הוצאו מה-RAM לדיסק והוא צריך לבזבז זמן כדי להוציא דפים של אחרים מה-RAM ולהחזיר את הדפים שלו ל-RAM?",
+    "en": "Asks the name of the state where every scheduled process must evict others' pages to reload its own.",
+    "answer_he": "Thrashing",
+    "answer_en": "Thrashing",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "מה הפלט של הפקודה הזו?\nprintf(\"%d\",(int)(1/(fork()+100)));",
+    "en": "Asks for the output printed by a printf using integer division over fork()+100 across parent and child.",
+    "answer_he": "00",
+    "answer_en": "00",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "אם כתבתי ב-shell את הפקודה הזו: ipcrm -s 666 מה יקרה?",
+    "en": "Asks what the shell command ipcrm -s 666 does.",
+    "answer_he": "יימחק מערך הסמפורים שמספרו 666",
+    "answer_en": "Deletes semaphore set 666",
+    "needs_answer": false
+  }
+]

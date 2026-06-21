@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "איזה סוגי פסיקות (interrupts) מכונים trap?",
+    "en": "Which kind of interrupts are called a trap?",
+    "answer_he": "פסיקות תוכנה",
+    "answer_en": "Software interrupts",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "processes",
+    "type": "concept",
+    "he": "באיזה מבנה נתונים (לא סוג מבנה הנתונים, אלא שמו) שמורה הכתובת של טבלת דפים של תהליך בזמן שהוא לא רץ?",
+    "en": "In which named data structure is a process's page-table address stored while it is not running?",
+    "answer_he": "PCB – Process Control Block",
+    "answer_en": "PCB (Process Control Block)",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "systems",
+    "type": "concept",
+    "he": "המדד שבודק כמה תהליכי benchmark יכולים לסיים את ריצתם תוך פרק זמן קצוב נקרא:",
+    "en": "What is the name of the metric measuring how many benchmark processes finish within a fixed time?",
+    "answer_he": "תפוקה",
+    "answer_en": "Throughput",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "sync",
+    "type": "concept",
+    "he": "בפתרון לבעיית ה-Bounded Buffer שהוצג בכיתה, השתמשנו בשלושה סמפורים. מה מייצג ערך הסמפור שקראנו לו full כאשר ערך הסמפור שלילי?",
+    "en": "In the bounded-buffer solution, what does a negative value of the 'full' semaphore represent?",
+    "answer_he": "מספר הצרכנים שמחכים בתור",
+    "answer_en": "Number of consumers waiting",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "replacement",
+    "type": "concept",
+    "he": "אלגוריתם השעון משתמש בסיבית מיוחדת כדי לדלג על קורבנות פוטנציאליים (reference bit). במקרים מסוימים נכתב הערך 0 לסיבית זו. במקרים אלו מי כותב את הערך 0 לסיבית זו?",
+    "en": "In the clock algorithm, who writes 0 to the reference bit?",
+    "answer_he": "מערכת ההפעלה",
+    "answer_en": "The operating system",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "memory",
+    "type": "concept",
+    "he": "נתון כי התרחש page-fault (לגיטימי) בעת ביצוע פקודה והתהליך מושהה עד לסיום הטיפול ב-page fault. לאיזה פקודה יחזור התהליך כאשר הוא יחזור לריצה.",
+    "en": "After a legitimate page fault during an instruction, to which instruction does the process return?",
+    "answer_he": "לפקודה שגרמה ל-page fault",
+    "answer_en": "The instruction that faulted",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר מערכת ההפעלה משתמשת ב demand-paging, מה מכילה טבלת הדפים של תהליך חדש המתוזמן לריצה?",
+    "en": "Under demand paging, what does a newly scheduled process's page table contain?",
+    "answer_he": "טבלה ריקה",
+    "answer_en": "An empty table",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "replacement",
+    "type": "concept",
+    "he": "באיזה דף יבחר אלגוריתם החלפת דפים אופטימלי כדף הקורבן (victim)? (אפשר לענות עד 10 מילים בשאלה זו).",
+    "en": "Which page does the optimal page-replacement algorithm choose as victim?",
+    "answer_he": "",
+    "answer_en": "Page used farthest in the future",
+    "needs_answer": true
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "בהנחה שכל התהליכים נוצרו ולא נכשלו, כמה פעמים תודפס האות a?\n\nmain() { if (fork()==fork()) printf (\"a\\n\"); }",
+    "en": "Assuming all forks succeed, how many times is 'a' printed by the given fork code?",
+    "answer_he": "",
+    "answer_en": "Once",
+    "needs_answer": true
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "איזו קריאת מערכת ב-Linux משחררת סגמנט זיכרון משותף שהוקצה באמצעות shmget?",
+    "en": "Which Linux system call frees a shared-memory segment allocated with shmget?",
+    "answer_he": "",
+    "answer_en": "shmctl with IPC_RMID",
+    "needs_answer": true
+  }
+]

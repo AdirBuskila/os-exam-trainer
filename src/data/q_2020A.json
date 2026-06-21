@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "באיזה קריטריון צריך לעמוד רכיב חומרה כדי שבתכנון מערכת ההפעלה ניצור עבורו מנגנון spooling?",
+    "en": "What property must a hardware device have for the OS to use spooling for it?",
+    "answer_he": "רכיב חומרה איטי",
+    "answer_en": "A slow hardware device",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "compute",
+    "he": "אם בדיסק HDD מסוים יש 1000 צילינדרים ויש בו 4 צלחות (platters) (כלומר 8 משטחי מגנוט), כמו כן נתון שבכל מסילה יש 50 sectors כמה sectors יש בכל הדיסק הזה?",
+    "en": "Compute total sectors on an HDD with 1000 cylinders, 8 surfaces, 50 sectors per track.",
+    "answer_he": "8*1000*50=400,000",
+    "answer_en": "400,000 sectors",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "כאשר מתרחשת פסיקה, המעבד מתחיל להריץ פונקציה שכתובתה שמורה ב:",
+    "en": "When an interrupt occurs, the CPU runs a function whose address is stored in what?",
+    "answer_he": "interrupt vector",
+    "answer_en": "The interrupt vector",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "כיצד נקראים מתזמנים שמאפשרים מעבר של תהליך ממצב running למצב ready?",
+    "en": "What are schedulers that move a process from running to ready called?",
+    "answer_he": "Preemptive schedulers",
+    "answer_en": "Preemptive schedulers",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "processes",
+    "type": "concept",
+    "he": "כיצד נקראת הפעולה של הפסקת הרצת תהליך אחד על מעבד ובמקומו הרצת תהליך אחר?",
+    "en": "What is the operation of stopping one process on the CPU and running another called?",
+    "answer_he": "Context switch",
+    "answer_en": "Context switch",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים ופרצי זמן העיבוד שלהם: תהליך 1 – 7 מילי-שניות הגיע בזמן 0, תהליך 2 – 3 מילי-שניות הגיע בזמן 1, תהליך 3 – 22 מילי-שניות הגיע בזמן 4. בשיטת תזמון התהליכים FCFS מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Compute the average waiting time under FCFS for three given processes with arrival and burst times.",
+    "answer_he": "4",
+    "answer_en": "4 milliseconds",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "במתזמן של LINUX כיצד נקרא סבב אחד של כל התהליכים שמבקשים זמן CPU?",
+    "en": "In the Linux scheduler, what is one round over all processes requesting CPU time called?",
+    "answer_he": "epoch",
+    "answer_en": "An epoch",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "sync",
+    "type": "concept",
+    "he": "בהגדרת בעיית הקטע הקריטי שלושה תנאים. אחד מהם דורש שלפני תהליך מסויים יכנסו N תהליכים ולא יותר כאשר N הוא קבוע. כיצד נקרא תנאי זה?",
+    "en": "Name the critical-section condition that bounds how many processes enter before a given one.",
+    "answer_he": "Bounded waiting",
+    "answer_en": "Bounded waiting",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "memory",
+    "type": "concept",
+    "he": "כיצד נקרא ה-cache של טבלת הדפים?",
+    "en": "What is the cache of the page table called?",
+    "answer_he": "TLB",
+    "answer_en": "TLB (Translation Lookaside Buffer)",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר אנו מייצרים תהליך חדש, התהליך שנוצר לא מעתיק את כל הזכרון של אביו, אלא רק את טבלאות הדפים שלו. המנגנון של מערכת ההפעלה דואג לכך שרק כאשר הבן או האב מנסים לכתוב לדף כלשהו, הדף הזה בלבד יועתק לבן. כיצד נקרא מנגנון זה?",
+    "en": "Name the OS mechanism where a child shares the parent's pages until a write triggers copying.",
+    "answer_he": "Copy On Write",
+    "answer_en": "Copy-on-Write",
+    "needs_answer": false
+  }
+]

@@ -1,0 +1,60 @@
+<section class="lesson" id="lesson-replacement">
+  <h2>Page Replacement, Thrashing &amp; Working Set</h2>
+
+  <p>When RAM is full and a page fault hits a page not in memory, the OS evicts a <strong>victim page</strong>. The exam asks for exact terms, the bit owners, and complexity of finding a victim. Answer in one or two words, in English.</p>
+
+  <table>
+    <thead>
+      <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FIFO</td><td>FIFO</td><td dir="rtl">ראשון נכנס ראשון יוצא</td><td>Evict oldest by entry; ignores usage. O(N).</td></tr>
+      <tr><td>Belady's anomaly</td><td>Belady's anomaly</td><td dir="rtl">אנומליית בלאדי</td><td>More frames &rarr; more faults. Only in FIFO.</td></tr>
+      <tr><td>Optimal</td><td>Optimal (OPT / Belady)</td><td dir="rtl">אופטימלי</td><td>Evict page used furthest in future. Not implementable.</td></tr>
+      <tr><td>LRU</td><td>Least Recently Used</td><td dir="rtl">השתמש לאחרונה הכי מזמן</td><td>Evict page used longest ago. Close to OPT.</td></tr>
+      <tr><td>Clock</td><td>Clock / Second Chance</td><td dir="rtl">שעון / הזדמנות שנייה</td><td>R=1&rarr;reset 0, R=0&rarr;victim. Worst case O(n).</td></tr>
+      <tr><td>LFU</td><td>Least Frequently Used</td><td dir="rtl">השתמש הכי מעט פעמים</td><td>Evict lowest counter. Suffers "page stale".</td></tr>
+      <tr><td>Victim page</td><td>Victim page</td><td dir="rtl">דף קורבן</td><td>The page chosen to evict from RAM.</td></tr>
+      <tr><td>Reference bit</td><td>Reference / Accessed bit (R)</td><td dir="rtl">סיבית התייחסות</td><td>Set by CPU/MMU on every read or write.</td></tr>
+      <tr><td>Dirty bit</td><td>Dirty / Modify bit (M)</td><td dir="rtl">סיבית שינוי</td><td>Set by CPU/MMU on every write.</td></tr>
+      <tr><td>Thrashing</td><td>Thrashing</td><td dir="rtl">תזזית / שטיפה</td><td>OS wastes time on page transfers, not running.</td></tr>
+      <tr><td>Working set</td><td>Working Set</td><td dir="rtl">קבוצת עבודה</td><td>Pages used in window [t&minus;&Delta;, t].</td></tr>
+      <tr><td>Global replacement</td><td>Global Replacement</td><td dir="rtl">החלפה גלובלית</td><td>Victim from any process.</td></tr>
+      <tr><td>Local replacement</td><td>Local Replacement</td><td dir="rtl">החלפה מקומית</td><td>Victim only from requesting process.</td></tr>
+      <tr><td>Page fault</td><td>Page fault</td><td dir="rtl">פספוס דף</td><td>Access to a page not in memory.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Running a replacement algorithm on a reference string</h3>
+  <ol class="recipe">
+    <li>Draw a table: one row per access, one column per frame; start empty.</li>
+    <li>For each reference: if the page is already in a frame &rarr; <strong>hit</strong>.</li>
+    <li>If not &rarr; <strong>page fault</strong>; if a free frame exists, load it; else pick a victim by the rule.</li>
+    <li>Victim rule: FIFO = oldest entry; LRU = used longest ago; OPT = used furthest in future; Clock = first R=0 (reset R=1 to 0 as you sweep); LFU = lowest counter.</li>
+    <li>Count the page faults at the end.</li>
+  </ol>
+
+  <pre>Ref string: 1 2 3 4 1 2 5 1 2 3 4 5   |   3 frames   |   FIFO
+Ref:  1  2  3  4  1  2  5  1  2  3  4  5
+F1:   1  1  1  4  4  4  5  5  5  5  5  5
+F2:   .  2  2  2  1  1  1  1  1  3  3  3
+F3:   .  .  3  3  3  2  2  2  2  2  4  4
+Flt:  F  F  F  F  F  F  F  H  H  F  F  H   ->  9 page faults</pre>
+
+  <p><strong>Working set rule:</strong> no thrashing while &Sigma;|WS<sub>i</sub>| &le; total frames. If demand D &gt; memory &rarr; thrashing; a process without room for its working set is <strong>suspended</strong>. Note: paging moves one 4KB page; swap (roll out / roll in) moves an entire process.</p>
+
+  <div class="traps">
+    <h3>Close-but-precise traps</h3>
+    <ul>
+      <li><strong>Who sets which bit:</strong> the <strong>CPU/MMU</strong> sets the Reference and Dirty bits on access; the <strong>OS</strong> sets the Present bit and <strong>clears (resets) the Reference bit</strong> (e.g. in Clock). Reference/Dirty are never set by the OS.</li>
+      <li><strong>Belady's anomaly is FIFO only.</strong> LRU and OPT are stack algorithms &rarr; immune. Don't blame LRU.</li>
+      <li><strong>Clock complexity:</strong> worst case <strong>O(n)</strong> (all R=1 &rarr; full sweep), amortized O(1). The exam wants O(n).</li>
+      <li><strong>OPT is not implementable</strong> &mdash; needs the future; it is only a benchmark.</li>
+      <li><strong>LFU pitfall = "page stale"</strong>: a once-popular page never gets evicted. (LRU does not have this.)</li>
+      <li><strong>Reference vs LRU:</strong> Clock/second-chance <em>approximates</em> LRU cheaply; it is not exact LRU.</li>
+      <li><strong>Global vs Local:</strong> global = victim from <em>any</em> process; local = victim only from the faulting process.</li>
+      <li><strong>Thrashing</strong> spelling, and it means CPU is idle while disk thrashes &mdash; not "out of memory".</li>
+      <li><strong>FIFO by entry order, LRU by use</strong> &mdash; do not mix the two when tracing.</li>
+    </ul>
+  </div>
+</section>

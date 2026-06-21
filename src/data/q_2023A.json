@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "תן דוגמא אחת להתקן קלט/פלט שאין לו מנגנון spool.",
+    "en": "Asks for an example of an I/O device that has no spool mechanism.",
+    "answer_he": "מקלדת, מסך ויש עוד דוגמאות",
+    "answer_en": "Keyboard or monitor",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "במערכת ההפעלה Windows, אם התקבלה פסיקה חדשה תוך כדי טיפול בפסיקה קודמת, מתי תתבצע ה-ISR (Interrupt Service Routine) של הפסיקה החדשה?",
+    "en": "In Windows, when does the ISR of a new interrupt run if it arrives while handling a previous interrupt?",
+    "answer_he": "אחרי סיום הטיפול בפסיקה הקודמת",
+    "answer_en": "After the previous interrupt finishes",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, באיזה מצב נמצא תהליך שהוא כרגע ב-busy waiting?",
+    "en": "In Linux, which process state is a process in while busy-waiting?",
+    "answer_he": "R",
+    "answer_en": "R (running/runnable)",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "כיצד נקרא הזמן הממוצע שחולף מאז שתהליך נכנס ל-ready queue עד שהוא יוצא מה-ready queue?",
+    "en": "What is the name of the average time from entering until leaving the ready queue?",
+    "answer_he": "Waiting time",
+    "answer_en": "Waiting time",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "Windows היא מערכת הפעלה מוכוונת personal computing לכן עבור איזה תהליך (רק אחד), Windows נותנת פלח זמן ארוך פי שלוש מכל התהליכים האחרים?",
+    "en": "Which single process does Windows give a triple-length time slice as a personal-computing-oriented OS?",
+    "answer_he": "התהליך ב-focus window",
+    "answer_en": "The focus-window process",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "מהי הכמות המינימלית של סמפורים בינארים לאפשרות קיום מצב של DeadLock (קפאון)?",
+    "en": "What is the minimum number of binary semaphores that can cause a deadlock?",
+    "answer_he": "2",
+    "answer_en": "2",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר ה-MMU מנסה לתרגם כתובת וירטואלית לכתובת פיסית ורואה שסיבית ה-valid/invalid כבויה, מה הוא עושה?",
+    "en": "What does the MMU do when translating a virtual address and the valid/invalid bit is off?",
+    "answer_he": "קורא למערכת ההפעלה, page fault",
+    "answer_en": "Traps to OS, page fault",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "replacement",
+    "type": "concept",
+    "he": "מהו האלגוריתים להחלפת/פינוי דפים שלמדנו, שייתכן בו מקרה יוצא דופן, שהגדלת מספר המסגרות ב-RAM עשויה להביא ליותר Page Faults (תקלות דף)? ציין את שם האלגוריתם.",
+    "en": "Which page-replacement algorithm can suffer Belady's anomaly where more frames cause more page faults?",
+    "answer_he": "FIFO",
+    "answer_en": "FIFO",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "בתוכנית זו הנח כי כל הפקודות וקריאות המערכת אינן נכשלות. כמה פעמים תודפס המילה fork?\n#include <stdio.h>\n#include <unistd.h>\nint main() {\nif (fork()+fork()==0) { fork(); printf (\"fork\\n\"); }\n}",
+    "en": "How many times is the word 'fork' printed by the given fork() program?",
+    "answer_he": "2",
+    "answer_en": "2",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "נניח כי ביצעתי את הפעולה sops->sem_op = -1; אך לא קראתי אחר כך לקריאת המערכת semop. איזה פעולה תתבצע על הסמפור הזה?",
+    "en": "If you set sops->sem_op = -1 but never call semop(), what operation happens on the semaphore?",
+    "answer_he": "לא תתבצע שום פעולה",
+    "answer_en": "No operation occurs",
+    "needs_answer": false
+  }
+]

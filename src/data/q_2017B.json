@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "למסך של מחשב אין מנגנון spool כי ___________.",
+    "en": "Why does a computer screen have no spooling mechanism?",
+    "answer_he": "המסך הוא התקן פלט מהיר",
+    "answer_en": "Screen is a fast output device",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "concept",
+    "he": "Caching היא פעולה של הבאת נתונים מ _____________ אל ___________.",
+    "en": "Caching brings data from where to where?",
+    "answer_he": "אחסון איטי אל אחסון מהיר יותר",
+    "answer_en": "Slow storage to faster storage",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "לאיזה מצב יכנס תהליך שרוצה לשלוח מסר לתהליך אחר במנגנון pipe ב-Linux, (כלומר מנגנון שהוא Bounded capacity) וה-buffer של ה-pipe מלא? _________.",
+    "en": "What state does a process enter when writing to a full Linux pipe buffer?",
+    "answer_he": "S – interruptible sleep (Waiting)",
+    "answer_en": "S - interruptible sleep (waiting)",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "Waiting time הוא הזמן הממוצע שחולף מאז שתהליך נכנס ל-ready queue עד ש_______. (שים לב שיש יותר מסיבה אחת מדוע תהליך יוצא מה-Ready queue)",
+    "en": "Waiting time is the average time from entering the ready queue until what?",
+    "answer_he": "הוא נבחר לרוץ",
+    "answer_en": "It is selected to run",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "כיצד מתעדפת Windows תהליך שרץ ב-focus window?",
+    "en": "How does Windows prioritize a process running in the focus window?",
+    "answer_he": "מקבל quantum ארוך פי 3",
+    "answer_en": "Gets a 3x longer quantum",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "trick",
+    "he": "כאשר תהליך מבקש לעשות signal על סמפור וה-kernel רואה שערך הסמפור איננו חיובי, מה עושה ה-kernel לתור התהליכים שלו?",
+    "en": "On a semaphore signal when the value is not positive, what does the kernel do to its process queue?",
+    "answer_he": "Dequeue / מוציא תהליך מראש התור ל-Ready",
+    "answer_en": "Dequeues a process to ready",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "בתרגום כתובות וירטואליות לפיסיות נעדיף (כאשר ניתן) להשתמש בטבלה שנמצאת ב-TLB ולא בטבלת הדפים המלאה כי _________________.",
+    "en": "Why prefer using the TLB over the full page table for address translation?",
+    "answer_he": "TLB מהיר מגישה נוספת לזכרון",
+    "answer_en": "TLB avoids extra memory access",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "concept",
+    "he": "כיצד נקראת הסיבית שנמצאת בכל כניסה (entry) בטבלת הדפים ואומרת האם פנייה לכניסה גורמת ל-page fault או לא?",
+    "en": "What is the name of the page-table-entry bit indicating whether access causes a page fault?",
+    "answer_he": "Valid-invalid bit",
+    "answer_en": "Valid-invalid bit",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "בתוכנית זו, כמה פעמים יודפס התו a?\n\nmain()\n{ int i;\nfor (i=0; i<3; i++) fork();\nprintf (\"a\\n\"); }",
+    "en": "How many times is the character 'a' printed by this fork loop program?",
+    "answer_he": "8",
+    "answer_en": "8",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "מה קורה אם מבצעים shmdt על מצביע שאיננו מצביע על סגמנט של זכרון משותף?",
+    "en": "What happens if shmdt is called on a pointer not pointing to a shared memory segment?",
+    "answer_he": "",
+    "answer_en": "Returns -1 with EINVAL error",
+    "needs_answer": true
+  }
+]

@@ -1,0 +1,48 @@
+<p>Disk questions are almost always single-word fill-ins (Archetype 8): where spool sits, where DMA writes, what unit a file should share, where swap lives. Memorize the storage hierarchy and the exact terms; answers are 1-2 words.</p>
+
+<table>
+  <thead>
+    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Track</td><td>Track</td><td dir="rtl">מסילה</td><td>A single circle on one platter surface</td></tr>
+    <tr><td>Sector</td><td>Sector</td><td dir="rtl">סקטור</td><td>A radial slice of a track</td></tr>
+    <tr><td>Cylinder</td><td>Cylinder</td><td dir="rtl">צילינדר</td><td>Largest unit reachable without moving the read head; same-radius tracks across all platters</td></tr>
+    <tr><td>Block</td><td>Block</td><td dir="rtl">בלוק</td><td>Smallest unit the OS reads/writes</td></tr>
+    <tr><td>Platter / Surface</td><td>Platter / Surface</td><td dir="rtl">דיסקית / משטח</td><td>Physical disk plate; head per surface</td></tr>
+    <tr><td>Spool</td><td>Spool / Spooling</td><td dir="rtl">ספול</td><td>Print/job queue that sits on the hard disk until the resource is free</td></tr>
+    <tr><td>DMA</td><td>DMA</td><td dir="rtl">גישה ישירה לזיכרון</td><td>I/O device writes directly to RAM, bypassing CPU</td></tr>
+    <tr><td>FAT-32</td><td>FAT-32</td><td dir="rtl">טבלת FAT</td><td>Linear chain of block pointers → slow random access</td></tr>
+    <tr><td>UFS / i-node</td><td>UFS (i-node)</td><td dir="rtl">מערכת קבצים UFS</td><td>i-node with direct + indirect pointers → constant-access random reads</td></tr>
+    <tr><td>Swap partition</td><td>Swap partition</td><td dir="rtl">מחיצת החלפה</td><td>Linux disk partition holding rolled-out processes</td></tr>
+    <tr><td>Swap (roll out/in)</td><td>Roll out / Roll in</td><td dir="rtl">החלפה (פינוי תהליך)</td><td>Move an entire process RAM↔disk (whole process, not one page)</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Storage hierarchy</strong> (fast/expensive → slow/cheap): Registers → Cache → RAM → SSD → HDD → Tape. Cheapest = <strong>HDD</strong> (or tape); fastest I/O destination = RAM/SSD.</p>
+
+<ol class="recipe">
+  <li>Identify the keyword in the question (spool / DMA / cheapest / "without moving head" / swap / random access).</li>
+  <li>Spool sits on → <strong>hard disk (HDD)</strong>. DMA writes to → <strong>RAM</strong>. Cheapest → <strong>HDD</strong>.</li>
+  <li>"File on the same ___" / "without moving the read head" → <strong>Cylinder</strong>.</li>
+  <li>Linux stores evicted/rolled-out processes in → <strong>Swap partition</strong>.</li>
+  <li>FAT-32 slow vs UFS → FAT walks a <strong>linear pointer chain</strong>; UFS uses an <strong>i-node (direct + indirect)</strong>.</li>
+</ol>
+
+<pre>
+Q: "To modify the last byte of a 100MB file, why is FAT-32 much slower than UFS?"
+FAT-32: reach block n => walk n-1 pointers in a chain (linear)  -> slow
+UFS:    i-node direct/indirect/double-indirect => constant # of accesses -> fast
+A (<=5 words): FAT walks linear pointer chain
+</pre>
+
+<div class="traps">
+  <ul>
+    <li><strong>Spool = stable queue on the HARD DISK</strong>, not in cache/RAM. Cache is a temporary fast copy; spool persists on disk.</li>
+    <li><strong>DMA bypasses the CPU — it writes to RAM, NOT to the CPU.</strong> That is the whole point of DMA.</li>
+    <li><strong>Cylinder vs Track:</strong> a file should sit on the same <em>Cylinder</em> (no head movement), not the same track. Cylinder = tracks at one radius across all platters.</li>
+    <li><strong>Swap = whole process</strong> (roll out/in); <strong>Paging = single 4KB page</strong>. Do not mix them.</li>
+    <li><strong>Cheapest = HDD</strong> in this course's answer (tape is cheaper in theory, but exam answer is HDD).</li>
+    <li><strong>FAT-32 is slow because of the linear chain</strong>, not because blocks are far apart. UFS speed comes from the i-node's indirect pointers.</li>
+  </ul>
+</div>

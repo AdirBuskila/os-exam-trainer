@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "איך נקראת מערכת מחשב שבה מספר תהליכים נשמרים בזיכרון בו-זמנית, והמעבד מריץ את התהליכים לסירוגין?",
+    "en": "What is a computer system called in which several processes are kept in memory simultaneously and the CPU runs them alternately?",
+    "answer_he": "Multiprogramming / time-sharing system",
+    "answer_en": "Multiprogramming / time-sharing system",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "לאילו קטעים ב-RAM מותר לגשת (גם קריאה וגם כתיבה) כאשר המעבד נמצא ב-kernel mode?",
+    "en": "Which regions of RAM may be accessed (both read and write) when the CPU is in kernel mode?",
+    "answer_he": "לכל ה-RAM",
+    "answer_en": "All of RAM",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "מה שמן של הפונקציות שמורצות על ידי ה-kernel בעקבות פסיקות?",
+    "en": "What are the functions run by the kernel in response to interrupts called?",
+    "answer_he": "ISR – Interrupt Service Routines",
+    "answer_en": "ISR (Interrupt Service Routines)",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "באיזה סוג burst תהליך מבצע חיבור בין שני ערכים של שני אוגרים?",
+    "en": "During which type of burst does a process add two register values together?",
+    "answer_he": "CPU Burst",
+    "answer_en": "CPU burst",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "תן דוגמא לאלגוריתם תזמון ספציפי שמאפשר מעבר של תהליך ממצב running למצב ready?",
+    "en": "Give an example of a specific scheduling algorithm that allows a process to move from running to ready (preemptive)?",
+    "answer_he": "יש כאן הרבה תשובות למשל SRTF או Round Robin",
+    "answer_en": "SRTF or Round Robin",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים ופרצי זמן העיבוד שלהם: תהליך 1 – 7 מילי-שניות הגיע בזמן 0, תהליך 2 – 3 מילי-שניות הגיע בזמן 1, תהליך 3 – 22 מילי-שניות הגיע בזמן 4. בשיטת תזמון התהליכים SJF מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Given 3 processes with burst times and arrival times, compute the average waiting time under SJF scheduling.",
+    "answer_he": "3 מילישניות.",
+    "answer_en": "3 milliseconds",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "sync",
+    "type": "concept",
+    "he": "פתרון לבעיית הקטע הקריטי שאיננו פונה למערכת ההפעלה לא יכול להוציא תהליך ממצב running ולכן הפתרון יגרום בוודאי לבעייה הנקראת:",
+    "en": "A critical-section solution that does not call the OS cannot remove a process from running, so it inevitably causes which problem?",
+    "answer_he": "Busy Waiting",
+    "answer_en": "Busy waiting",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "sync",
+    "type": "concept",
+    "he": "מתי אלגוריתם המאפייה (bakery algorithm) משווה את מספרי ת.ז. (PID) של תהליכים?",
+    "en": "When does the bakery algorithm compare the process IDs (PIDs) of processes?",
+    "answer_he": "כשמספרי ה-ticket שלהם שווים.",
+    "answer_en": "When their ticket numbers are equal",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר שני תהליכים משתפים ביניהם שטח זכרון, גודל השטח המשותף חייב להיות כפולה של",
+    "en": "When two processes share a memory region, the size of the shared region must be a multiple of what?",
+    "answer_he": "גודל הדף.",
+    "answer_en": "The page size",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר מתרחש page fault, מערכת ההפעלה מביאה דף מהדיסק הקשיח אל",
+    "en": "When a page fault occurs, the OS brings a page from the hard disk into what?",
+    "answer_he": "ה-RAM",
+    "answer_en": "RAM",
+    "needs_answer": false
+  }
+]

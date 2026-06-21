@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "למה מריצים benchmarks על מחשב? מה המטרה?",
+    "en": "Why are benchmarks run on a computer; what is their purpose?",
+    "answer_he": "בדיקת ביצועי המחשב",
+    "answer_en": "To measure computer performance",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "כדי למנוע מתוכנות משתמש לבצע פעולות קלט/פלט, הוראת המעבד אשר מבצעת קריאת מערכת גורמת למעבד לעבור למצב גרעין (kernel mode) וכן _________________.",
+    "en": "Completes what a system-call instruction does besides switching the CPU to kernel mode.",
+    "answer_he": "קפיצה לקוד של הקרנל",
+    "answer_en": "Jumps to kernel code",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "באיזה מצב בלינוקס נמצא תהליך שרץ עכשיו על אחת הליבות של המעבד? (התשובה צריכה להיות אות אחת בלבד)",
+    "en": "Which single-letter Linux state describes a process currently running on a CPU core.",
+    "answer_he": "R",
+    "answer_en": "R (running)",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "בשיטת תזמון priority scheduling ייתכן כי תהליכים בעלי עדיפות נמוכה לא יצליחו לרוץ בגלל שיש במערכת הרבה מאוד תהליכים בעלי עדיפות גבוהה. איך נקראת בעיה זו?",
+    "en": "Names the problem where low-priority processes never run under priority scheduling.",
+    "answer_he": "הרעבה",
+    "answer_en": "Starvation",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים (P1, P2, P3) שפרצי זמן העיבוד של כל אחד מהם הוא 7 מילי-שניות. כל התהליכים הגיעו ביחד בזמן 0. בשיטת תזמון התהליכים Round-Robin עם time quantum של 4 מילי-שניות ובהנחה שסדר הרצת התהליכים בכל סבב הוא על פי ה-PID של התהליכים (תהליך בעל PID נמוך יותר קודם בריצה בסבב), מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Computes the average waiting time for three 7ms bursts under Round-Robin with quantum 4.",
+    "answer_he": "11",
+    "answer_en": "11 ms",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא התנאי לפתרון מוצלח לבעיית הקטע הקריטי שקובע שאם תהליך X כותב כעת לזכרון משותף, תהליכים אחרים שרוצים לכתוב לזכרון המשותף צריכים להמתין עד שתהליך X יסיים את הכתיבה?",
+    "en": "Names the critical-section condition requiring exclusive access while one process writes shared memory.",
+    "answer_he": "mutual exclusion",
+    "answer_en": "Mutual exclusion",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא הפתרון שהוצג בקורס לבעיית הקטע הקריטי שלא קורא למערכת ההפעלה ומסוגל לסנכרן בין מספר כלשהו של תהליכים?",
+    "en": "Names the critical-section solution that needs no OS calls and works for any number of processes.",
+    "answer_he": "אלגוריתם המאפייה",
+    "answer_en": "Bakery algorithm",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "compute",
+    "he": "מה גודל שטח הזכרון המקסימלי שתופסת הפרגמנטציה הפנימית בדף אחד במערכת בה גודל הדף הוא 4K (כלומר 4096 בתים)?",
+    "en": "Computes the maximum internal fragmentation in one page when the page size is 4096 bytes.",
+    "answer_he": "4095 בתים",
+    "answer_en": "4095 bytes",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "memory",
+    "type": "concept",
+    "he": "מהו מספר האוגרים המקסימלי מסוג Page-table base register (PTBR) שיש בכל ליבה של מעבד?",
+    "en": "Asks the maximum number of PTBR registers per CPU core.",
+    "answer_he": "1",
+    "answer_en": "1",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "replacement",
+    "type": "concept",
+    "he": "תחת ההנחה שמנהל הזיכרון משתמש בשיטת הקצאה מקומית (local allocation), במידה ונדרש לפנות דף מהזיכרון כדי להביא דף עבור תהליך X, דף השייך לאיזה תהליך יפונה?",
+    "en": "Asks which process's page is evicted under local allocation when bringing a page for process X.",
+    "answer_he": "דף השייך לתהליך X",
+    "answer_en": "A page of process X",
+    "needs_answer": false
+  }
+]

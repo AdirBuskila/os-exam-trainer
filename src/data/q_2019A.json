@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "כדי שאפליקציות מייל לא יתקעו כשהן מחכות לרשת, מעתיקים את המיילים למקום ייעודי בדיסק הקשיח ומשם תהליך ייעודי מטפל בשליחת המייל. מה שם המקום הייעודי בדיסק הקשיח?",
+    "en": "What is the name of the dedicated area on the hard disk used to buffer mail so applications don't block waiting for the network?",
+    "answer_he": "spool",
+    "answer_en": "spool",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "compute",
+    "he": "אם בדיסק HDD מסוים יש 4000 צילינדרים ויש בו 2 צלחות (platters) (כלומר 4 משטחי מגנוט), כמה מסילות (tracks) יש בכל משטח מגנוט?",
+    "en": "Given an HDD with 4000 cylinders and 2 platters (4 surfaces), how many tracks are on each surface?",
+    "answer_he": "4000",
+    "answer_en": "4000",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מערכת ההפעלה Linux מנהלת תור בקשות לכל התקן חומרה. כל בקשה מצביעה על תהליך שיזם אותה. באיזה מצב נמצאים התהליכים המוצבעים?",
+    "en": "In which state are the processes pointed to by entries in a Linux per-device request queue?",
+    "answer_he": "sleep",
+    "answer_en": "Sleeping (waiting)",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 4 תהליכים ופרצי זמן העיבוד שלהם: תהליך 1 – 9, תהליך 2 – 3, תהליך 3 – 7, תהליך 4 – 1. בשיטת תזמון התהליכים Round-Robin עם פלח זמן 4, מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Compute the average waiting time for 4 processes (bursts 9, 3, 7, 1) under Round-Robin with quantum 4.",
+    "answer_he": "11+4+12+11=38/4=9.5",
+    "answer_en": "9.5",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "בפתרון לבעיית ה-Bounded Buffer שהוצג בכיתה, השתמשנו בשלושה סמפורים. מה מייצג ערך הסמפור שקראנו לו empty כאשר ערך הסמפור חיובי?",
+    "en": "In the bounded-buffer solution, what does the value of the 'empty' semaphore represent when it is positive?",
+    "answer_he": "כמה מקומות ריקים יש ב-buffer",
+    "answer_en": "Number of empty buffer slots",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "memory",
+    "type": "concept",
+    "he": "תפקידו של ה-MMU הוא:",
+    "en": "What is the role of the MMU?",
+    "answer_he": "תרגום כתובת וירטואלית לכתובת פיזית",
+    "answer_en": "Translate virtual to physical address",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "לשימוש בטבלת דפים למיפוי זיכרון וירטואלי יש חיסרון משמעותי – גישה מרובה לזיכרון. רכיב מיוחד במעבד מאפשר למזער חיסרון זה. איך הוא נקרא?",
+    "en": "Which special CPU component minimizes the multiple memory accesses caused by page-table lookups?",
+    "answer_he": "TLB",
+    "answer_en": "TLB",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "replacement",
+    "type": "concept",
+    "he": "מה הסיבוכיות של מציאת קרבן באלגוריתם השעון (clock), בהנחה שכל דף ממופה למסגרת אחת ומספר המסגרות הוא N?",
+    "en": "What is the time complexity of finding a victim in the clock algorithm with N frames?",
+    "answer_he": "O(N)",
+    "answer_en": "O(N)",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "כמה תהליכים ייוצרו בתוכנית הזו ומה יהיה מצבם?\n\nmain() { fork(); while(1); fork(); while(1); fork(); while(1); }",
+    "en": "How many processes are created by this program and what is their state, given the infinite loops between forks?",
+    "answer_he": "",
+    "answer_en": "2 processes, running (1 child)",
+    "needs_answer": true
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "איזו קריאת מערכת ב-Linux קובעת מה יהיה גודל מערך הסמפורים המוקצה על ידי מערכת ההפעלה?",
+    "en": "Which Linux system call determines the size of the semaphore array allocated by the OS?",
+    "answer_he": "",
+    "answer_en": "semget",
+    "needs_answer": true
+  }
+]

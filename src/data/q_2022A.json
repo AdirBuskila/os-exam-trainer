@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "Trap (מלכודת) היא סוג של interrupt (פסיקה). במה היא מיוחדת משאר הפסיקות?",
+    "en": "What makes a trap special compared to other interrupts?",
+    "answer_he": "שהיא נוצרת על ידי התוכנה.",
+    "answer_en": "It is software-generated.",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "compute",
+    "he": "דיסק HDD מסוים הוא בעל נפח של 1TB. בדיסק יש 2 צלחות (platters) ממוגנטות משני הצדדים. בכל מסילה (track) יש 2K בלוקים/סקטורים (blocks/sectors). כל בלוק/סקטור הוא בגודל 4KB. כמה צילינדרים יש בדיסק?",
+    "en": "Compute the number of cylinders on a 1TB disk with 2 double-sided platters, 2K sectors/track, 4KB per sector.",
+    "answer_he": "32K צילינדרים.",
+    "answer_en": "32K cylinders.",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "כאשר תהליך בן מסיים לרוץ, הוא שולח מספר לאב שמודיע האם הוא הצליח או נכשל ואם נכשל מה היה הכשלון. כיצד נקרא מספר זה?",
+    "en": "What is the number a child sends its parent on termination indicating success or failure called?",
+    "answer_he": "Exit status",
+    "answer_en": "Exit status",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים (P1, P2, P3) עם פרצי זמן העיבוד שונים. תהליך P1 הגיע בזמן 0 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 9 מילישניות. תהליך P2 הגיע בזמן 1 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 7 מילישניות. תהליך P3 הגיע בזמן 2 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 4 מילישניות. בשיטת תזמון התהליכים SRTF, מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Compute the average waiting time under SRTF for three given processes with their arrival and burst times.",
+    "answer_he": "5 מילישניות",
+    "answer_en": "5 milliseconds",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "באלגוריתם המאפיה ייתכן כי שני תהליכים יקבלו את אותו \"מספר מאפייה\". מי משניהם ייכנס ראשון לקטע הקריטי על פי כללי אלגוריתם המאפייה?",
+    "en": "In the bakery algorithm, when two processes get the same number, which enters the critical section first?",
+    "answer_he": "בעל ה-PID הקטן יותר.",
+    "answer_en": "The one with smaller PID.",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "בבעיית הפילוסופים הסועדים ייתכן מצב בו כל פילוסוף מחזיק ב-chopstick משמאל ומחכה ל-chopstick של הפילוסוף שלימינו. כיצד מכונה מצב זה?",
+    "en": "What is the dining-philosophers situation where each holds the left chopstick and waits for the right one called?",
+    "answer_he": "Deadlock",
+    "answer_en": "Deadlock",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "שיטת ניהול הזיכרון שמכונה \"דפדוף\" (paging) סובלת מבעית איטיות בגלל הצורך לפניה למספר טבלאות דפים ב-RAM כמספר רמות הדפדוף שמומשה במחשב. איך נקרא המנגנון שמצמצם משמעותית בעיה זו?",
+    "en": "What mechanism significantly reduces the slowness of multilevel paging from multiple page-table accesses in RAM?",
+    "answer_he": "TLB.",
+    "answer_en": "TLB.",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר הסיבית תקין-לא תקין (valid-invalid bit) כבויה עבור השורה של דף X בטבלת הדפים וה-MMU ניגש לשורה הזו של דף X בטבלה. לאיזו פסיקה ה-MMU יגרום?",
+    "en": "Which interrupt does the MMU cause when the valid-invalid bit is off for page X's page-table entry?",
+    "answer_he": "Page fault",
+    "answer_en": "Page fault",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?\n\nmain()\n{\nint a,b,c;\na=b=c=fork();\nprintf(\"HIT\\n\");\n}",
+    "en": "How many times does this program print HIT given a single fork() call?",
+    "answer_he": "2",
+    "answer_en": "2",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "מה יוקצה בשטחי ה-kernel של לינוקס אחרי ביצוע הפקודה\n\nsemget ( IPC_PRIVATE , 123 , 0600 );",
+    "en": "What is allocated in the Linux kernel after executing semget(IPC_PRIVATE, 123, 0600)?",
+    "answer_he": "מערך של 123 סמפורים",
+    "answer_en": "An array of 123 semaphores.",
+    "needs_answer": false
+  }
+]

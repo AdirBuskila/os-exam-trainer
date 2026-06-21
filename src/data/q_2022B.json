@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "Device drivers הם חלק מהגרעין ותפקידם הוא:",
+    "en": "What is the role of device drivers as part of the kernel?",
+    "answer_he": "לתווך בין החומרות לאפליקציות",
+    "answer_en": "Mediate between hardware and applications",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "compute",
+    "he": "דיסק HDD מסוים הוא בעל נפח של חצי TB. בדיסק יש מספר מסוים של צלחות (platters) ממוגנטות משני הצדדים. בדיסק יש 8K צילינדרים. בכל צילינדר יש מספר מסוים של מסילות. בכל מסילה (track) יש 2K בלוקים/סקטורים (blocks/sectors). כל בלוק/סקטור הוא בגודל 4KB. כמה צלחות יש בדיסק?",
+    "en": "Given disk geometry (0.5TB, 8K cylinders, 2K sectors/track, 4KB sectors, double-sided platters), how many platters are there?",
+    "answer_he": "4 צלחות",
+    "answer_en": "4 platters",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "trick",
+    "he": "מערכת ההפעלה LINUX משחררת את ה-PCB של תהליך בן שנמצא במצב זומבי כתגובה לשני מקרים: 1. תהליך האב מת 2. תהליך האב קורא לקריאת המערכת: (מה שם קריאת המערכת?)",
+    "en": "Which system call, when called by the parent, frees the PCB of a zombie child process?",
+    "answer_he": "wait",
+    "answer_en": "wait",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים (P1, P2, P3) עם פרצי זמן עיבוד שונים. תהליך P1 הגיע בזמן 0 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 9 מילישניות. תהליך P2 הגיע בזמן 1 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 7 מילישניות. תהליך P3 הגיע בזמן 3 מילישניות מזמן ההתחלה ופרץ העיבוד שלו 4 מילישניות. בשיטת תזמון התהליכים RR עם quantum של 4 מילישניות, מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Compute the average waiting time for three processes scheduled with Round Robin (quantum = 4ms).",
+    "answer_he": "9 מילישניות",
+    "answer_en": "9 milliseconds",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "בקוד הכניסה לקטע הקריטי אנו חייבים לבצע שתי פעולות. אחת מהן היא הודעה לכל העולם שאנו רוצים להיכנס לקטע הקריטי. מהי הפעולה השנייה?",
+    "en": "In the critical-section entry code, besides announcing intent to enter, what is the second required operation?",
+    "answer_he": "בדיקה שאין תהליך אחר בקטע הקריטי",
+    "answer_en": "Check no other process inside",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "בבעיית הקוראים כותבים, באיזה מקרה תהליך קורא שיוצא מהקטע הקריטי, מודיע לתהליכים הכותבים שהראשון בתור הכותבים יכול להיכנס לקטע הקריטי?",
+    "en": "In the readers-writers problem, when does an exiting reader signal a writer to enter?",
+    "answer_he": "כשאין עוד תהליכים קוראים בקטע הקריטי",
+    "answer_en": "When no readers remain inside",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "trick",
+    "he": "מה קורה במערכת ההפעלה לינוקס כאשר תהליך מנסה לכתוב לשטח שהוקצה לו בעקבות פרגמנטציה פנימית?",
+    "en": "In Linux, what happens when a process writes to space allocated to it due to internal fragmentation?",
+    "answer_he": "הערך נכתב ללא תקלה.",
+    "answer_en": "Value written without fault",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "replacement",
+    "type": "concept",
+    "he": "כאשר מספר המסגרות שהתהליכים במערכת זקוקים להם בזמן מסוים גבוה ממספר המסגרות שקיימות במערכת, התהליכים מבזבזים זמן רב על שינוע מידע בין הדיסק והזיכרון. כיצד נקראת תופעה זו?",
+    "en": "What is the name of the phenomenon where processes need more frames than available, wasting time swapping between disk and memory?",
+    "answer_he": "thrashing",
+    "answer_en": "Thrashing",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?\n\nmain()\n{\nif (fork()!=fork()) printf (\"HIT\\n\");\n}",
+    "en": "How many times does the program with nested forks compared by inequality print HIT?",
+    "answer_he": "3",
+    "answer_en": "3",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "מה יקרה אם ננסה לעשות בלינוקס פעולה על סמפור (wait או signal) באמצעות הפקודה semop אחרי שמחקנו את הסמפור עם הפקודה semctl?",
+    "en": "What happens in Linux if semop is called on a semaphore after it was deleted with semctl?",
+    "answer_he": "semop יחזיר 1-.",
+    "answer_en": "semop returns -1",
+    "needs_answer": false
+  }
+]

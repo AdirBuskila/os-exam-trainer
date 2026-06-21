@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "בכל סבב של ריצת תהליכים, כל תהליך מקבל הקצאת זמן מקסימלית לרוץ על המעבד. כאשר נגמרת הקצאת הזמן הזו נוצרת פסיקה על ידי חומרה ששמה הוא:",
+    "en": "Names the hardware interrupt raised when a process's CPU time quantum expires.",
+    "answer_he": "Timer",
+    "answer_en": "Timer interrupt",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "processes",
+    "type": "concept",
+    "he": "לכל תהליך בלינוקס נשמר ב-kernel ערך העדיפות שלו (nice), בנוסף לזהות הבעלים של התהליך ועוד נתונים. כיצד נקרא המקום בזכרון בו נשמרים נתונים אלו?",
+    "en": "Names the kernel memory structure holding a process's nice value, owner, and other data.",
+    "answer_he": "PCB - process control block",
+    "answer_en": "PCB (process control block)",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "Context Switch פירושו החלפה בין ריצת תהליך לבין",
+    "en": "Asks what a context switch swaps the running process for.",
+    "answer_he": "ריצת תהליך אחר",
+    "answer_en": "Running another process",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "processes",
+    "type": "concept",
+    "he": "כשתהליך נמצא ב-I/O burst, מה מצבו בלינוקס? (התשובה צריכה להיות אות אחת בלבד)",
+    "en": "Asks the single-letter Linux process state during an I/O burst.",
+    "answer_he": "S",
+    "answer_en": "S (sleeping)",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "נתונים 3 תהליכים (P1, P2, P3) שפרצי זמן העיבוד של כל אחד מהם הוא 7 מילי-שניות. תהליך P1 הגיע בזמן 0 מילישניות מזמן ההתחלה. תהליך P2 הגיע בזמן 1 מילישניות מזמן ההתחלה. תהליך P3 הגיע בזמן 2 מילישניות מזמן ההתחלה. בשיטת תזמון התהליכים FCFS, מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
+    "en": "Compute the FCFS average waiting time for three 7ms processes arriving at 0, 1, 2 ms.",
+    "answer_he": "6",
+    "answer_en": "6 milliseconds",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא התנאי לפתרון מוצלח לבעיית הקטע הקריטי שקובע שלא יווצר deadlock בזמן ריצה?",
+    "en": "Names the critical-section condition that guarantees no deadlock occurs.",
+    "answer_he": "progress",
+    "answer_en": "Progress",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "sync",
+    "type": "concept",
+    "he": "בבעיית הקוראים-כותבים, מה מספר הקוראים המקסימלי שמותר שימצאו בקטע הקריטי בזמן שאחד התהליכים הכותבים נמצא בקטע הקריטי?",
+    "en": "Asks the max number of readers allowed in the critical section while a writer is inside.",
+    "answer_he": "0",
+    "answer_en": "0 (zero readers)",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "concept",
+    "he": "TLB חוסך את זמן הגישה ל__________________",
+    "en": "Asks what access time the TLB saves.",
+    "answer_he": "טבלת הדפים ב-RAM",
+    "answer_en": "Page table in RAM",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "memory",
+    "type": "concept",
+    "he": "במערכות הפעלה העובדות על פי העקרון של demand paging, דף לא נטען מהדיסק הקשיח לזכרון עד ש:",
+    "en": "Asks when a page is loaded from disk under demand paging.",
+    "answer_he": "שמבקשים נתון כלשהו מהדף.",
+    "answer_en": "Data on it is requested",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "replacement",
+    "type": "concept",
+    "he": "כאשר אלגוריתם clock מחפש קורבן והוא נתקל במסגרת בה יש דף עם reference bit דלוק, מה עושה האלגוריתם?",
+    "en": "Asks what the clock algorithm does on a frame whose reference bit is set.",
+    "answer_he": "מכבה את ה-reference bit",
+    "answer_en": "Clears the reference bit",
+    "needs_answer": false
+  }
+]

@@ -1,0 +1,58 @@
+<section class="lesson" id="lesson-memory">
+  <h2>Memory: Virtual Memory, Paging &amp; the Page-Fault Path</h2>
+
+  <p>Virtual memory gives each process an isolated address space larger than RAM. The <strong>MMU</strong> translates virtual→physical via a per-process <strong>page table</strong>; the <strong>TLB</strong> caches recent translations. Most exam points here are one-word concept recalls plus tiny power-of-2 frame/access math.</p>
+
+  <table>
+    <thead>
+      <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Virtual memory</td><td>Virtual Memory</td><td dir="rtl">זיכרון וירטואלי</td><td>Process can be larger than physical RAM; isolation</td></tr>
+      <tr><td>Page vs frame</td><td>Page / Frame</td><td dir="rtl">דף / מסגרת</td><td>Page = virtual unit; frame = physical unit (same size)</td></tr>
+      <tr><td>Page table</td><td>Page Table</td><td dir="rtl">טבלת דפים</td><td>Per-process map page→frame</td></tr>
+      <tr><td>MMU</td><td>Memory Management Unit</td><td dir="rtl">יחידת ניהול זיכרון</td><td>CPU hardware translating virtual→physical address</td></tr>
+      <tr><td>TLB</td><td>Translation Lookaside Buffer</td><td dir="rtl">מטמון תרגום כתובות</td><td>Cache of recent address translations (~90% hit)</td></tr>
+      <tr><td>PTBR</td><td>Page Table Base Register</td><td dir="rtl">אוגר בסיס טבלת הדפים</td><td>Register pointing to start of page table (in PCB)</td></tr>
+      <tr><td>Valid/invalid bit</td><td>Present (Valid) bit</td><td dir="rtl">סיבית תקפות</td><td>Set by OS; page is loaded in RAM</td></tr>
+      <tr><td>Reference bit</td><td>Accessed (Reference) bit</td><td dir="rtl">סיבית התייחסות</td><td>Set by CPU/MMU on every read or write</td></tr>
+      <tr><td>Dirty bit</td><td>Dirty (Modify) bit</td><td dir="rtl">סיבית שינוי</td><td>Set by CPU/MMU on every write</td></tr>
+      <tr><td>Page fault</td><td>Page Fault</td><td dir="rtl">פסיקת דף / כשל דף</td><td>Access to a page not in memory (trap to OS)</td></tr>
+      <tr><td>Demand paging</td><td>Demand Paging</td><td dir="rtl">דפדוף לפי דרישה</td><td>Load a page only when first accessed</td></tr>
+      <tr><td>Internal fragmentation</td><td>Internal Fragmentation</td><td dir="rtl">פיצול פנימי</td><td>Wasted space inside the last partly-used page</td></tr>
+      <tr><td>Copy-on-Write</td><td>Copy-on-Write (COW)</td><td dir="rtl">העתקה בעת כתיבה</td><td>Pages shared read-only; copied only on first write</td></tr>
+      <tr><td>Multilevel page table</td><td>Multilevel Page Table</td><td dir="rtl">טבלת דפים רב-רמתית</td><td>Hierarchy of tables; saves memory (load only needed levels)</td></tr>
+      <tr><td>Effective access time</td><td>EAT</td><td dir="rtl">זמן גישה אפקטיבי</td><td>α·hit + (1-α)·miss cost</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Frame / page &amp; TLB-miss math</h3>
+  <ol class="recipe">
+    <li>Express RAM and page size as powers of 2. <strong>#frames = RAM / page_size</strong> → subtract exponents.</li>
+    <li>offset bits = log2(page_size); page-number bits = address_bits − offset bits.</li>
+    <li>#pages (or #frames) = 2^(page-number bits).</li>
+    <li>Multilevel virtual space = (entries per level)^levels × page_size.</li>
+    <li><strong>TLB hit</strong> = 1 memory access (the page). <strong>TLB miss</strong> = levels + 1 accesses (walk all N tables, then the page).</li>
+  </ol>
+  <pre>
+42-bit virtual address, page size 1MB = 2^20
+  page-number bits = 42 - 20 = 22  =>  #frames = 2^22
+3-level multilevel paging, TLB miss:
+  accesses = 3 (tables) + 1 (page) = 4
+  </pre>
+
+  <div class="traps">
+    <strong>Close-but-precise pitfalls</strong>
+    <ul>
+      <li><strong>Who sets which bit:</strong> CPU/MMU sets the <em>Reference</em> and <em>Dirty</em> bits (automatic on access/write). The <em>OS</em> sets the <em>Present/Valid</em> bit and <em>clears</em> the reference bit (e.g. in Clock).</li>
+      <li><strong>TLB miss = N+1 accesses</strong>, not N — never forget the access to the page itself.</li>
+      <li><strong>Frames ≠ pages:</strong> physical frame count comes from RAM size; virtual page count comes from the address space. Don't mix them.</li>
+      <li><strong>Page vs Swap:</strong> paging moves a single page (4KB); swap (roll out/in) moves an entire process. Linux evicted pages go to the <em>swap partition</em>.</li>
+      <li><strong>Internal</strong> (not external) fragmentation is the paging one — waste inside the last page; pure paging has no external fragmentation.</li>
+      <li><strong>COW</strong> is what makes <code>fork()</code> cheap: pages are shared read-only and copied only when one side writes — not copied up front.</li>
+      <li><strong>Multilevel table saves memory</strong> (don't hold the whole table) but <em>costs</em> extra accesses per translation.</li>
+      <li><strong>Belady's anomaly</strong> (more frames → more faults) belongs to <em>FIFO</em> only; LRU and OPT are stack algorithms and never suffer it.</li>
+      <li><strong>Answer in English term, ≤5 words</strong> (e.g. "Page fault", "Copy-on-Write") — Hebrew spelling is risky.</li>
+    </ul>
+  </div>
+</section>

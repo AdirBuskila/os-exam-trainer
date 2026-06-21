@@ -1,0 +1,102 @@
+[
+  {
+    "q": 1,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "בגרעין (kernel) מערכת ההפעלה קיימות אוסף פונקציות שמגיבות לאירועים חומרתיים שונים שקורים. איך נקראת פונקציה כזו? (שם כללי, לא פונקציה ספציפית):",
+    "en": "What is the general name for a kernel function that responds to hardware events?",
+    "answer_he": "Interrupt service routine (ISR)",
+    "answer_en": "Interrupt service routine (ISR)",
+    "needs_answer": false
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "compute",
+    "he": "דיסק HDD מסוים הוא בעל נפח של 1TB. בדיסק יש מספר מסוים של צלחות (platters) ממוגנטות משני הצדדים. בדיסק יש 8K צילינדרים. בכל צילינדר יש מספר מסוים של מסילות. בכל מסילה (track) יש 8K בלוקים/סקטורים (blocks/sectors). כל בלוק/סקטור הוא בגודל 8KB. כמה צלחות יש בדיסק?",
+    "en": "Given disk geometry (1TB, 8K cylinders, 8K sectors/track, 8KB sectors), how many platters does the disk have?",
+    "answer_he": "צלחת אחת",
+    "answer_en": "One platter",
+    "needs_answer": false
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מערכת ההפעלה LINUX משחררת את ה-PCB של תהליך בן שנמצא במצב זומבי כתגובה לשני מקרים: 1. תהליך האב קורא לקריאת המערכת wait או 2. ______________",
+    "en": "Besides the parent calling wait(), what other case makes Linux release a zombie child's PCB?",
+    "answer_he": "תהליך האב מת",
+    "answer_en": "The parent process dies",
+    "needs_answer": false
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "לאיזה שיטת תזמון שלמדנו תהיה זהה שיטת תזמון התהליכים Round Robin כאשר פלח הזמן (Quantum) שנקבע הוא אינסוף?",
+    "en": "Round Robin with an infinite quantum is equivalent to which scheduling algorithm?",
+    "answer_he": "FCFS",
+    "answer_en": "FCFS",
+    "needs_answer": false
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר מערכת ההפעלה רוצה לתזמן בין מספר גרעינים (kernels) שרצים על מספר ליבות במעבד היא לא יכולה להשתמש בסמפורים כי גרעין מערכת ההפעלה _______________",
+    "en": "Why can't the OS use semaphores to schedule between kernels running on multiple cores?",
+    "answer_he": "לא יכול לעבור למצב sleep.",
+    "answer_en": "Kernel cannot go to sleep",
+    "needs_answer": false
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "בבעיית הקוראים כותבים כפי שהצגנו אותה בכיתה, באיזה תנאי משלושת תנאי הפתרון לבעיית הקטע הקריטי לא נעמוד?",
+    "en": "In the readers-writers problem, which of the three critical-section conditions is violated?",
+    "answer_he": "הרעבה",
+    "answer_en": "Bounded waiting (starvation)",
+    "needs_answer": false
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "מערכת הפעלה לינוקס עובדת עם PAGING ולכן מקצה זיכרון רק בכפולות של דף שלם, מה שמייצר בדרך כלל בזבוז מסויים של זכרון. כיצד נקראת סוג הפרגמנטציה שנגרמת עקב כך?",
+    "en": "What is the name of the fragmentation caused by allocating memory only in whole-page multiples under paging?",
+    "answer_he": "פרגמנטציה פנימית",
+    "answer_en": "Internal fragmentation",
+    "needs_answer": false
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "concept",
+    "he": "מנגנון demand paging גורם לכך שלא כל הדפים של התוכנית יכנסו ל-RAM, אלא רק הדפים ש___________________",
+    "en": "Under demand paging, which pages of the program are loaded into RAM?",
+    "answer_he": "שאתשתמש בהם בפועל",
+    "answer_en": "Pages actually being used",
+    "needs_answer": false
+  },
+  {
+    "q": 9,
+    "section": "fork",
+    "type": "compute",
+    "he": "כמה פעמים התוכנית הזו תדפיס את המילה fork?\n\nmain() { fork()?fork():fork(); printf (\"fork\\n\"); }",
+    "en": "How many times does the given fork() program print the word 'fork'?",
+    "answer_he": "4",
+    "answer_en": "4",
+    "needs_answer": false
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "concept",
+    "he": "במערכת ההפעלה LINUX קריאת המערכת semctl נועדה למספר פעולות בהן מחיקת סמפורים וגם ____________",
+    "en": "Besides deleting semaphores, what other operation does the Linux semctl system call perform?",
+    "answer_he": "אתחול ערכי הסמפורים",
+    "answer_en": "Initializing semaphore values",
+    "needs_answer": false
+  }
+]
