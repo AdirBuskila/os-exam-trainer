@@ -1297,6 +1297,7 @@ window.DATA = {
 "answer_en": "After the previous interrupt finishes",
 "needs_answer": false,
 "exam": "2023A",
+"note": "Course answer (sequential model). Strictly: a higher-IRQL interrupt preempts the current ISR (nested handling); equal- or lower-priority interrupts wait until it finishes.",
 "id": "2023A-2"
 },
 {
@@ -1607,9 +1608,9 @@ window.DATA = {
 "type": "trick",
 "he": "מה המספר המינימלי של קריאות semop כדי לבצע wait על 5 סמפורים ו-signal על 5 אחרים, באופן אטומי?",
 "en": "Minimum semop calls to atomically wait on 5 and signal on 5?",
-"answer_he": "2",
-"answer_en": "2 calls",
-"note": "Reconstructed from solution notes; confirm exact wording with the official key.",
+"answer_he": "קריאה אחת (semop עם nsops=10)",
+"answer_en": "1 call (one semop, nsops=10)",
+"note": "One semop() with a 10-op array is atomic (all-or-none); 2 calls would NOT be atomic across the wait/signal groups. Reconstructed item — confirm exact wording with the official key.",
 "source": "reconstructed-2024A",
 "exam": "2024A",
 "id": "2024A-10"
@@ -1634,6 +1635,7 @@ window.DATA = {
 "en": "Cheapest storage medium?",
 "answer_he": "HDD",
 "answer_en": "HDD",
+"note": "Course/exam answer = HDD. In the full storage hierarchy magnetic tape is strictly cheapest, but the exam's intended answer here is HDD.",
 "source": "reconstructed-2024B",
 "exam": "2024B",
 "id": "2024B-2"

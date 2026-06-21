@@ -31,6 +31,6 @@
   {"q":10,"section":"sync","type":"trick",
    "he":"מה המספר המינימלי של קריאות semop כדי לבצע wait על 5 סמפורים ו-signal על 5 אחרים, באופן אטומי?",
    "en":"Minimum semop calls to atomically wait on 5 and signal on 5?",
-   "answer_he":"2","answer_en":"2 calls",
-   "note":"Reconstructed from solution notes; confirm exact wording with the official key.","source":"reconstructed-2024A"}
+   "answer_he":"קריאה אחת (semop עם nsops=10)","answer_en":"1 call (one semop, nsops=10)",
+   "note":"One semop() with a 10-op array is atomic (all-or-none); 2 calls would NOT be atomic across the wait/signal groups. Reconstructed item — confirm exact wording with the official key.","source":"reconstructed-2024A"}
 ]

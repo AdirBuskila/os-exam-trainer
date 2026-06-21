@@ -45,6 +45,7 @@ OVERRIDES = {
     ("2023B", 6):  {"answer_he": "הרעבה / Bounded waiting", "answer_en": "Bounded waiting (-> starvation)",
                     "note": "Official key: 'starvation/הרעבה'. The violated CONDITION is Bounded Waiting; starvation is its consequence. Both usually accepted."},
     ("2017A", 7):  {"note": "Official phrasing. Real reason: the MMU translates on every memory access — far faster than trapping to the OS each time."},
+    ("2023A", 2):  {"note": "Course answer (sequential model). Strictly: a higher-IRQL interrupt preempts the current ISR (nested handling); equal- or lower-priority interrupts wait until it finishes."},
 }
 
 def load_questions():
