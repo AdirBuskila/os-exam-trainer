@@ -14,7 +14,7 @@ generators** for the computational question types, built from every modern past 
 - **Practice Generators** for fork / scheduling / disk / paging — infinite fresh problems,
   answers computed by an engine validated against the official keys.
 - **Mock Exam** (10 Q, scored), **Review Weak**, **Browse by Year**.
-- Hebrew/English/both toggle, dark/light, mobile-first. No build step needed to *use* it.
+- Every card shows the **Hebrew question + the code (LTR) + an English hint** together; dark/light; mobile-first. No build step needed to *use* it.
 
 ## Focused mode (current-semester exam scope)
 Chapters get dropped in a shortened semester. The **🎯 Focus** toggle (top bar) — or the URL

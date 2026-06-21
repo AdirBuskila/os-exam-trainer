@@ -187,13 +187,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "מה הפלט של הפקודה הזו?\nprintf(\"%d\",(int)(1/(fork()+100)));",
+"he": "מה הפלט של הפקודה הזו?",
 "en": "Asks for the output printed by a printf using integer division over fork()+100 across parent and child.",
 "answer_he": "00",
 "answer_en": "\"00\"",
 "needs_answer": false,
 "exam": "2017A",
-"id": "2017A-9"
+"id": "2017A-9",
+"code": "printf(\"%d\",(int)(1/(fork()+100)));"
 },
 {
 "q": 10,
@@ -307,13 +308,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "בתוכנית זו, כמה פעמים יודפס התו a?\n\nmain()\n{ int i;\nfor (i=0; i<3; i++) fork();\nprintf (\"a\\n\"); }",
+"he": "בתוכנית זו, כמה פעמים יודפס התו a?",
 "en": "How many times is the character 'a' printed by this fork loop program?",
 "answer_he": "8",
 "answer_en": "8",
 "needs_answer": false,
 "exam": "2017B",
-"id": "2017B-9"
+"id": "2017B-9",
+"code": "main()\n{ int i;\nfor (i=0; i<3; i++) fork();\nprintf (\"a\\n\"); }"
 },
 {
 "q": 10,
@@ -429,13 +431,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה תהליכים ייוצרו בתוכנית הזו ומה יהיה מצבם?\n\nmain() { fork(); while(1); fork(); while(1); fork(); while(1); }",
+"he": "כמה תהליכים ייוצרו בתוכנית הזו ומה יהיה מצבם?",
 "en": "How many processes are created by this program and what is their state, given the infinite loops between forks?",
 "answer_he": "2 תהליכים, שניהם רצים (R)",
 "answer_en": "2 processes, both running (R)",
 "needs_answer": true,
 "exam": "2019A",
-"id": "2019A-9"
+"id": "2019A-9",
+"code": "main() { fork(); while(1); fork(); while(1); fork(); while(1); }"
 },
 {
 "q": 10,
@@ -549,13 +552,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "בהנחה שכל התהליכים נוצרו ולא נכשלו, כמה פעמים תודפס האות a?\n\nmain() { if (fork()==fork()) printf (\"a\\n\"); }",
+"he": "בהנחה שכל התהליכים נוצרו ולא נכשלו, כמה פעמים תודפס האות a?",
 "en": "Assuming all forks succeed, how many times is 'a' printed by the given fork code?",
 "answer_he": "1",
 "answer_en": "1",
 "needs_answer": true,
 "exam": "2019B",
-"id": "2019B-9"
+"id": "2019B-9",
+"code": "main() { if (fork()==fork()) printf (\"a\\n\"); }"
 },
 {
 "q": 10,
@@ -1154,25 +1158,27 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?\n\nmain()\n{\nint a,b,c;\na=b=c=fork();\nprintf(\"HIT\\n\");\n}",
+"he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?",
 "en": "How many times does this program print HIT given a single fork() call?",
 "answer_he": "2",
 "answer_en": "2",
 "needs_answer": false,
 "exam": "2022A",
-"id": "2022A-9"
+"id": "2022A-9",
+"code": "main()\n{\nint a,b,c;\na=b=c=fork();\nprintf(\"HIT\\n\");\n}"
 },
 {
 "q": 10,
 "section": "sync",
 "type": "trick",
-"he": "מה יוקצה בשטחי ה-kernel של לינוקס אחרי ביצוע הפקודה\n\nsemget ( IPC_PRIVATE , 123 , 0600 );",
+"he": "מה יוקצה בשטחי ה-kernel של לינוקס אחרי ביצוע הפקודה",
 "en": "What is allocated in the Linux kernel after executing semget(IPC_PRIVATE, 123, 0600)?",
 "answer_he": "מערך של 123 סמפורים",
 "answer_en": "An array of 123 semaphores.",
 "needs_answer": false,
 "exam": "2022A",
-"id": "2022A-10"
+"id": "2022A-10",
+"code": "semget ( IPC_PRIVATE , 123 , 0600 );"
 },
 {
 "q": 1,
@@ -1276,13 +1282,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?\n\nmain()\n{\nif (fork()!=fork()) printf (\"HIT\\n\");\n}",
+"he": "כמה פעמים התוכנית הזו תדפיס את המילה HIT?",
 "en": "How many times does the program with nested forks compared by inequality print HIT?",
 "answer_he": "3",
 "answer_en": "3",
 "needs_answer": false,
 "exam": "2022B",
-"id": "2022B-9"
+"id": "2022B-9",
+"code": "main()\n{\nif (fork()!=fork()) printf (\"HIT\\n\");\n}"
 },
 {
 "q": 10,
@@ -1397,13 +1404,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "בתוכנית זו הנח כי כל הפקודות וקריאות המערכת אינן נכשלות. כמה פעמים תודפס המילה fork?\n#include <stdio.h>\n#include <unistd.h>\nint main() {\nif (fork()+fork()==0) { fork(); printf (\"fork\\n\"); }\n}",
+"he": "בתוכנית זו הנח כי כל הפקודות וקריאות המערכת אינן נכשלות. כמה פעמים תודפס המילה fork?",
 "en": "How many times is the word 'fork' printed by the given fork() program?",
 "answer_he": "2",
 "answer_en": "2",
 "needs_answer": false,
 "exam": "2023A",
-"id": "2023A-9"
+"id": "2023A-9",
+"code": "#include <stdio.h>\n#include <unistd.h>\nint main() {\nif (fork()+fork()==0) { fork(); printf (\"fork\\n\"); }\n}"
 },
 {
 "q": 10,
@@ -1520,13 +1528,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה פעמים התוכנית הזו תדפיס את המילה fork?\n\nmain() { fork()?fork():fork(); printf (\"fork\\n\"); }",
+"he": "כמה פעמים התוכנית הזו תדפיס את המילה fork?",
 "en": "How many times does the given fork() program print the word 'fork'?",
 "answer_he": "4",
 "answer_en": "4",
 "needs_answer": false,
 "exam": "2023B",
-"id": "2023B-9"
+"id": "2023B-9",
+"code": "main() { fork()?fork():fork(); printf (\"fork\\n\"); }"
 },
 {
 "q": 10,
@@ -1616,14 +1625,15 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה פעמים תודפס המילה fork?\n\nif (fork() * fork() * fork() == 0)\n    printf(\"fork\\n\");",
+"he": "כמה פעמים תודפס המילה fork?",
 "en": "How many times does fork()*fork()*fork()==0 print?",
 "answer_he": "7",
 "answer_en": "7",
 "note": "VERIFIED by simulation. 8 processes spawn; only the all-parent process has a nonzero product, so 7 print.",
 "source": "reconstructed-2024A",
 "exam": "2024A",
-"id": "2024A-9"
+"id": "2024A-9",
+"code": "if (fork() * fork() * fork() == 0)\n    printf(\"fork\\n\");"
 },
 {
 "q": 10,
@@ -1727,13 +1737,14 @@ window.DATA = {
 "q": 9,
 "section": "fork",
 "type": "compute",
-"he": "כמה פעמים תודפס המילה fork?\n\nif (fork() - fork() == 0)\n    printf(\"fork\\n\");",
+"he": "כמה פעמים תודפס המילה fork?",
 "en": "How many times does fork()-fork()==0 print?",
 "answer_he": "1",
 "answer_en": "1",
 "source": "reconstructed-2024B",
 "exam": "2024B",
-"id": "2024B-9"
+"id": "2024B-9",
+"code": "if (fork() - fork() == 0)\n    printf(\"fork\\n\");"
 },
 {
 "q": 10,

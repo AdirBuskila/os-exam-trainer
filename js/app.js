@@ -1,7 +1,7 @@
 /* ---------------- state ---------------- */
 const LS='os_trainer_v1';
 let S=JSON.parse(localStorage.getItem(LS)||'{}');
-S.cards=S.cards||{}; S.prefs=S.prefs||{lang:'both',theme:'dark'};
+S.cards=S.cards||{}; S.prefs=S.prefs||{theme:'dark'};
 function save(){localStorage.setItem(LS,JSON.stringify(S));}
 function rec(id,ok){const c=S.cards[id]||{c:0,w:0};if(ok)c.c++;else c.w++;c.last=ok?1:0;S.cards[id]=c;save();}
 function mastery(id){const c=S.cards[id];if(!c||(c.c+c.w)===0)return 0;return c.c/(c.c+c.w);}
@@ -41,12 +41,11 @@ function el(h){const d=document.createElement('div');d.innerHTML=h;return d.firs
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.remove('hide');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('hide'),1400);}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function langClass(){return S.prefs.lang;}
 function qHTML(q){
-  const L=S.prefs.lang;
   let h='';
-  if(L!=='en') h+='<div class="q he">'+esc(q.he)+'</div>';
-  if(L!=='he') h+='<div class="'+(L==='en'?'q':'qen')+'">'+esc(q.en)+'</div>';
+  if(q.he) h+='<div class="q he" dir="rtl">'+esc(q.he)+'</div>';
+  if(q.code) h+='<pre class="qcode" dir="ltr">'+esc(q.code)+'</pre>';
+  if(q.en) h+='<div class="qen" dir="ltr">'+esc(q.en)+'</div>';
   return h;
 }
 function ansHTML(q){
@@ -94,6 +93,13 @@ function renderHome(view){
     '<div class="row" style="margin-top:8px">'+
     '<button class="btn" onclick="go(\'mock\')">📝 Take a Mock Exam</button>'+
     '<button class="btn ghost" onclick="go(\'weak\')">🔁 Review Weak Cards</button></div></div>';
+  h+='<details class="lesson" open><summary>ℹ️ How to use this app</summary><div class="lessonbody"><ul style="line-height:1.75;font-size:13.5px">'+
+    '<li><b>Sections</b> (below): open one → read the short lesson, then flip flashcards. Tap <b>✓ Got it</b> / <b>✗ Missed</b> — missed cards come back automatically (spaced repetition). Press <span class="kbd">space</span> to flip.</li>'+
+    '<li><b>⚡ Practice Generator</b> (fork · scheduling · memory): infinite fresh problems with instantly-checked, verified answers.</li>'+
+    '<li><b>📝 Mock Exam</b>: 10 random questions scored like the real exam · <b>🔁 Review Weak</b>: only what you missed · <b>📅 By Year</b>: every real past exam.</li>'+
+    '<li><b>🎯 Focus</b>: shows only what is on your current-semester exam. Every card shows the <b>Hebrew question + the code + an English hint</b>.</li>'+
+    '<li>Progress is saved on your device.</li>'+
+    '</ul></div></details>';
   h+='<div class="grid">';
   SEC.forEach(s=>{
     const list=secList(s.id); const hidden=(bySec[s.id]||[]).length-list.length;
@@ -289,9 +295,7 @@ function renderYear(e,view){
 /* ---------------- prefs ---------------- */
 function applyPrefs(){document.body.classList.toggle('light',S.prefs.theme==='light');
   document.body.classList.toggle('focusmode',focusOn());
-  document.getElementById('langBtn').textContent=({both:'🌐 HE+EN',he:'🌐 עברית',en:'🌐 English'})[S.prefs.lang];
   const fb=document.getElementById('focusBtn'); if(fb){fb.classList.toggle('on',focusOn()); fb.textContent=focusOn()?'🎯 '+FOCUS.label:'🎯 Focus';}}
-function cycleLang(){S.prefs.lang=({both:'he',he:'en',en:'both'})[S.prefs.lang];save();render();}
 function toggleTheme(){S.prefs.theme=S.prefs.theme==='light'?'dark':'light';save();applyPrefs();}
 
 applyPrefs(); if(!location.hash)location.hash='home'; render(); updateCount();

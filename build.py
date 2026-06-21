@@ -12,7 +12,7 @@ Output:
 OVERRIDES below are the *verified corrections / notes* applied at build time
 (blank-answer fills + the three official-key clarifications surfaced by audit).
 """
-import json, os, glob
+import json, os, glob, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "src", "data")
@@ -48,6 +48,25 @@ OVERRIDES = {
     ("2023A", 2):  {"note": "Course answer (sequential model). Strictly: a higher-IRQL interrupt preempts the current ISR (nested handling); equal- or lower-priority interrupts wait until it finishes."},
 }
 
+_HEB = re.compile(r"[֐-׿]")
+_CODE = re.compile(r"[{};#]|==|!=|<stdio|<unistd|\bmain\b|\bprintf\b|\bfork\b|\bsemget\b|\bsemop\b|\bsemctl\b|\bshm\w+\b|\bint\b|\bvoid\b|if\s*\(|for\s*\(|while\s*\(|IPC_")
+
+def split_code(he):
+    """Separate an embedded C/code block (LTR) from the Hebrew prose so it renders correctly.
+    Code in this dataset always trails the prose on its own lines."""
+    lines = he.split("\n")
+    idx = None
+    for i, l in enumerate(lines):
+        s = l.strip()
+        if not s or _HEB.search(s):
+            continue
+        if _CODE.search(s):
+            idx = i
+            break
+    if idx is None:
+        return he, None
+    return "\n".join(lines[:idx]).strip(), "\n".join(lines[idx:]).strip()
+
 def load_questions():
     qs = []
     for fp in sorted(glob.glob(os.path.join(DATA, "q_*.json"))):
@@ -63,6 +82,10 @@ def load_questions():
                 raise SystemExit(f"Bad section '{item['section']}' in {item['id']}")
             if not item.get("he") or not (item.get("answer_he") or item.get("answer_en")):
                 raise SystemExit(f"Missing text/answer in {item['id']}")
+            prose, code = split_code(item["he"])
+            if code:
+                item["he"] = prose
+                item["code"] = code
             qs.append(item)
     return qs
 
