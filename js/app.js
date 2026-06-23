@@ -104,7 +104,8 @@ window.addEventListener('hashchange',()=>{});
 
 /* ---------------- home ---------------- */
 function renderHome(view){
-  let h=focusBanner();
+  let h='<div class="hero-tree" id="heroTree"><div class="hero-cap">fork()</div></div>';
+  h+=focusBanner();
   h+='<div class="card"><h2 class="sec">'+t('home.planTitle')+'</h2>'+
     '<p class="progresshint">'+t('home.planHint')+'</p>'+
     '<div class="row" style="margin-top:8px">'+
@@ -125,6 +126,7 @@ function renderHome(view){
   h+='</div>';
   h+='<div class="card" style="margin-top:14px"><b>'+t('home.trapsTitle')+'</b>'+t('home.trapsBody')+'</div>';
   view.innerHTML=h;
+  if(window.HERO)HERO.mount(document.getElementById('heroTree'));
   updateCount();
 }
 

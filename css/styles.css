@@ -26,6 +26,19 @@ header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 4px 1
 .chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .nav .chip{font-weight:600}
+/* ---- home hero: forking process-tree canvas ---- */
+.hero-tree{position:relative;width:100%;height:160px;margin-bottom:14px;border-radius:var(--radius);
+  border:1px solid var(--line);overflow:hidden;
+  background:radial-gradient(120% 140% at 0% 0%,rgba(91,140,255,.10),transparent 55%),
+             radial-gradient(120% 140% at 100% 100%,rgba(124,91,255,.10),transparent 55%),
+             linear-gradient(160deg,var(--bg2),var(--card))}
+.hero-tree canvas.hero-canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.hero-cap{position:absolute;inset-inline-end:12px;bottom:9px;font-size:11px;color:var(--mut);
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;direction:ltr;
+  pointer-events:none;opacity:.8;letter-spacing:.3px}
+@media(max-width:560px){.hero-tree{height:130px}}
+@media(prefers-reduced-motion:reduce){.hero-tree{height:140px}}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;cursor:pointer;transition:.15s}
 .tile:hover{transform:translateY(-2px);border-color:var(--acc)}
