@@ -96,3 +96,32 @@ button.good{background:var(--good)}button.bad{background:var(--bad)}
   font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;font-size:13.5px;line-height:1.5;
   direction:ltr;text-align:left;white-space:pre;overflow-x:auto;color:var(--txt)}
 .qen{color:var(--mut);font-size:13px;margin-top:6px;direction:ltr;text-align:left}
+
+/* =======================================================================
+   RTL + BIDI  (Hebrew mode = <html dir="rtl">; English mode = dir="ltr")
+   The base stylesheet already uses logical properties (margin-inline-*,
+   text-align:start/end), so most layout mirrors automatically. The rules
+   below lock the things that must NOT mirror and isolate mixed content.
+   None of these change English (LTR) rendering — they are no-ops in LTR.
+   ======================================================================= */
+
+/* Any code — question code, lesson code, the generated fork <pre>, inline
+   <code> — is ALWAYS left-to-right and bidi-isolated, in either language. */
+pre, code, .qcode{direction:ltr;text-align:left;unicode-bidi:isolate}
+
+/* English helper text that lives inside a card stays LTR even on an RTL page
+   (the English hint, the English answer line, and the English note). */
+.qen, .ans .en, .ans .note{direction:ltr;text-align:left}
+
+/* Hebrew question / answer prose: rtl + start-aligned, consistent in both
+   modes. (.q.he / .ans .he already force rtl; this keeps alignment correct
+   when the page itself is rtl.) */
+[dir="rtl"] .q.he, [dir="rtl"] .ans .he{text-align:right}
+
+/* Lessons: let prose follow the page direction; keep tables/code correct. */
+[dir="rtl"] .lessonbody, [dir="rtl"] details.lesson{text-align:start}
+.lesson pre, .lesson code{direction:ltr;text-align:left;unicode-bidi:isolate}
+
+/* The progress bar fills from the inline-start in both directions. */
+.bar{direction:inherit}
+[dir="rtl"] .bar i{background:linear-gradient(270deg,var(--acc),var(--good))}

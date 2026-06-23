@@ -4,7 +4,7 @@
   "description": "Study trainer for the HIT 61206 Operating Systems exam — flashcards, lessons, and verified practice generators (fork / scheduling / disk / paging).",
   "scripts": {
     "build": "python build.py",
-    "test": "node js/engines.js && node tests/gentest.js && python tests/verify.py",
+    "test": "node js/engines.js && node tests/gentest.js && python tests/verify.py && python tests/parity.py",
     "serve": "python -m http.server 8080"
   },
   "keywords": ["operating-systems", "exam", "flashcards", "HIT", "study"],

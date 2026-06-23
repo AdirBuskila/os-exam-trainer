@@ -1,0 +1,60 @@
+<section class="lesson" id="lesson-replacement">
+  <h2>Page Replacement, Thrashing &amp; Working Set</h2>
+
+  <p>כאשר ה-<bdi dir="ltr">RAM</bdi> מלא ומתרחש <bdi dir="ltr">page fault</bdi> על דף שאינו בזיכרון, מערכת ההפעלה מפנה <strong>דף קורבן</strong> (<bdi dir="ltr">victim page</bdi>). המבחן דורש מונחים מדויקים, מי הבעלים של כל סיבית, ואת הסיבוכיות של מציאת קורבן. ענו במילה אחת או שתיים, באנגלית.</p>
+
+  <table>
+    <thead>
+      <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FIFO</td><td>FIFO</td><td dir="rtl">ראשון נכנס ראשון יוצא</td><td>מפנה את הוותיק ביותר לפי סדר הכניסה; מתעלם מהשימוש. <bdi dir="ltr">O(N)</bdi>.</td></tr>
+      <tr><td>Belady's anomaly</td><td>Belady's anomaly</td><td dir="rtl">אנומליית בלאדי</td><td>יותר <bdi dir="ltr">frames</bdi> &rarr; יותר <bdi dir="ltr">faults</bdi>. רק ב-<bdi dir="ltr">FIFO</bdi>.</td></tr>
+      <tr><td>Optimal</td><td>Optimal (OPT / Belady)</td><td dir="rtl">אופטימלי</td><td>מפנה את הדף שייעשה בו שימוש הכי רחוק בעתיד. לא ניתן למימוש.</td></tr>
+      <tr><td>LRU</td><td>Least Recently Used</td><td dir="rtl">השתמש לאחרונה הכי מזמן</td><td>מפנה את הדף שנעשה בו שימוש הכי מזמן. קרוב ל-<bdi dir="ltr">OPT</bdi>.</td></tr>
+      <tr><td>Clock</td><td>Clock / Second Chance</td><td dir="rtl">שעון / הזדמנות שנייה</td><td><bdi dir="ltr">R=1</bdi>&rarr;<bdi dir="ltr">reset 0</bdi>, <bdi dir="ltr">R=0</bdi>&rarr;<bdi dir="ltr">victim</bdi>. במקרה הגרוע <bdi dir="ltr">O(n)</bdi>.</td></tr>
+      <tr><td>LFU</td><td>Least Frequently Used</td><td dir="rtl">השתמש הכי מעט פעמים</td><td>מפנה את בעל המונה הנמוך ביותר. סובל מ-"<bdi dir="ltr">page stale</bdi>".</td></tr>
+      <tr><td>Victim page</td><td>Victim page</td><td dir="rtl">דף קורבן</td><td>הדף שנבחר לפינוי מה-<bdi dir="ltr">RAM</bdi>.</td></tr>
+      <tr><td>Reference bit</td><td>Reference / Accessed bit (R)</td><td dir="rtl">סיבית התייחסות</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל קריאה או כתיבה.</td></tr>
+      <tr><td>Dirty bit</td><td>Dirty / Modify bit (M)</td><td dir="rtl">סיבית שינוי</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל כתיבה.</td></tr>
+      <tr><td>Thrashing</td><td>Thrashing</td><td dir="rtl">תזזית / שטיפה</td><td>מערכת ההפעלה מבזבזת זמן על העברות דפים, ולא על ריצה.</td></tr>
+      <tr><td>Working set</td><td>Working Set</td><td dir="rtl">קבוצת עבודה</td><td>הדפים שבשימוש בחלון <bdi dir="ltr">[t&minus;&Delta;, t]</bdi>.</td></tr>
+      <tr><td>Global replacement</td><td>Global Replacement</td><td dir="rtl">החלפה גלובלית</td><td>קורבן מכל תהליך שהוא.</td></tr>
+      <tr><td>Local replacement</td><td>Local Replacement</td><td dir="rtl">החלפה מקומית</td><td>קורבן רק מהתהליך המבקש.</td></tr>
+      <tr><td>Page fault</td><td>Page fault</td><td dir="rtl">פספוס דף</td><td>גישה לדף שאינו בזיכרון.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>הרצת אלגוריתם החלפה על מחרוזת ייחוס</h3>
+  <ol class="recipe">
+    <li>ציירו טבלה: שורה אחת לכל גישה, עמודה אחת לכל <bdi dir="ltr">frame</bdi>; התחילו ריקה.</li>
+    <li>לכל ייחוס: אם הדף כבר נמצא ב-<bdi dir="ltr">frame</bdi> &rarr; <strong>hit</strong>.</li>
+    <li>אם לא &rarr; <strong>page fault</strong>; אם קיים <bdi dir="ltr">frame</bdi> פנוי, טענו אותו; אחרת בחרו קורבן לפי הכלל.</li>
+    <li>כלל הקורבן: <bdi dir="ltr">FIFO</bdi> = הכניסה הוותיקה ביותר; <bdi dir="ltr">LRU</bdi> = השימוש הכי מזמן; <bdi dir="ltr">OPT</bdi> = השימוש הכי רחוק בעתיד; <bdi dir="ltr">Clock</bdi> = ה-<bdi dir="ltr">R=0</bdi> הראשון (אפסו <bdi dir="ltr">R=1</bdi> ל-<bdi dir="ltr">0</bdi> תוך כדי הסריקה); <bdi dir="ltr">LFU</bdi> = המונה הנמוך ביותר.</li>
+    <li>ספרו את ה-<bdi dir="ltr">page faults</bdi> בסוף.</li>
+  </ol>
+
+  <pre>Ref string: 1 2 3 4 1 2 5 1 2 3 4 5   |   3 frames   |   FIFO
+Ref:  1  2  3  4  1  2  5  1  2  3  4  5
+F1:   1  1  1  4  4  4  5  5  5  5  5  5
+F2:   .  2  2  2  1  1  1  1  1  3  3  3
+F3:   .  .  3  3  3  2  2  2  2  2  4  4
+Flt:  F  F  F  F  F  F  F  H  H  F  F  H   ->  9 page faults</pre>
+
+  <p><strong>כלל קבוצת העבודה:</strong> אין <bdi dir="ltr">thrashing</bdi> כל עוד <bdi dir="ltr">&Sigma;|WS<sub>i</sub>| &le;</bdi> סך כל ה-<bdi dir="ltr">frames</bdi>. אם הביקוש <bdi dir="ltr">D &gt;</bdi> הזיכרון &rarr; <bdi dir="ltr">thrashing</bdi>; תהליך שאין לו מקום לקבוצת העבודה שלו <strong>מושהה</strong> (<bdi dir="ltr">suspended</bdi>). שימו לב: דפדוף מעביר דף <bdi dir="ltr">4KB</bdi> בודד; <bdi dir="ltr">swap</bdi> (<bdi dir="ltr">roll out / roll in</bdi>) מעביר תהליך שלם.</p>
+
+  <div class="traps">
+    <h3>מלכודות קרובות-אך-מדויקות</h3>
+    <ul>
+      <li><strong>מי קובע איזו סיבית:</strong> ה-<strong><bdi dir="ltr">CPU/MMU</bdi></strong> קובע את סיביות ה-<bdi dir="ltr">Reference</bdi> וה-<bdi dir="ltr">Dirty</bdi> בעת הגישה; <strong>מערכת ההפעלה</strong> קובעת את סיבית ה-<bdi dir="ltr">Present</bdi> ו<strong>מאפסת (מנקה) את סיבית ה-<bdi dir="ltr">Reference</bdi></strong> (למשל ב-<bdi dir="ltr">Clock</bdi>). סיביות ה-<bdi dir="ltr">Reference</bdi>/<bdi dir="ltr">Dirty</bdi> לעולם אינן נקבעות על ידי מערכת ההפעלה.</li>
+      <li><strong>אנומליית <bdi dir="ltr">Belady</bdi> היא ב-<bdi dir="ltr">FIFO</bdi> בלבד.</strong> <bdi dir="ltr">LRU</bdi> ו-<bdi dir="ltr">OPT</bdi> הם אלגוריתמי מחסנית (<bdi dir="ltr">stack algorithms</bdi>) &rarr; חסינים. אל תאשימו את <bdi dir="ltr">LRU</bdi>.</li>
+      <li><strong>סיבוכיות <bdi dir="ltr">Clock</bdi>:</strong> במקרה הגרוע <strong><bdi dir="ltr">O(n)</bdi></strong> (כל ה-<bdi dir="ltr">R=1</bdi> &rarr; סריקה מלאה), משוערכת <bdi dir="ltr">O(1)</bdi>. המבחן רוצה <bdi dir="ltr">O(n)</bdi>.</li>
+      <li><strong><bdi dir="ltr">OPT</bdi> אינו ניתן למימוש</strong> &mdash; הוא דורש את העתיד; הוא רק קנה מידה (<bdi dir="ltr">benchmark</bdi>).</li>
+      <li><strong>המלכודת של <bdi dir="ltr">LFU</bdi> = "<bdi dir="ltr">page stale</bdi>"</strong>: דף שהיה פעם פופולרי לעולם אינו מפונה. (ב-<bdi dir="ltr">LRU</bdi> אין את הבעיה הזו.)</li>
+      <li><strong><bdi dir="ltr">Reference</bdi> מול <bdi dir="ltr">LRU</bdi>:</strong> <bdi dir="ltr">Clock</bdi>/<bdi dir="ltr">second-chance</bdi> <em>מקרב</em> את <bdi dir="ltr">LRU</bdi> בזול; הוא אינו <bdi dir="ltr">LRU</bdi> מדויק.</li>
+      <li><strong>גלובלי מול מקומי:</strong> גלובלי = קורבן מ<em>כל</em> תהליך; מקומי = קורבן רק מהתהליך שגרם ל-<bdi dir="ltr">fault</bdi>.</li>
+      <li><strong><bdi dir="ltr">Thrashing</bdi></strong> איות, ומשמעותו שה-<bdi dir="ltr">CPU</bdi> בטל בעוד הדיסק עובד בתזזית &mdash; ולא "נגמר הזיכרון".</li>
+      <li><strong><bdi dir="ltr">FIFO</bdi> לפי סדר כניסה, <bdi dir="ltr">LRU</bdi> לפי שימוש</strong> &mdash; אל תערבבו בין השניים בעת מעקב.</li>
+    </ul>
+  </div>
+</section>

@@ -90,10 +90,23 @@ def load_questions():
     return qs
 
 def load_lessons():
+    """Each lesson is bilingual: {en, he}. lesson_<sid>.he.html holds the Hebrew
+    version; if it is missing we fall back to the English text so nothing breaks."""
     out = {}
     for sid, *_ in SECTIONS:
-        fp = os.path.join(DATA, f"lesson_{sid}.html")
-        out[sid] = open(fp, encoding="utf-8").read() if os.path.exists(fp) else "<p><em>Lesson pending.</em></p>"
+        fp_en = os.path.join(DATA, f"lesson_{sid}.html")
+        fp_he = os.path.join(DATA, f"lesson_{sid}.he.html")
+        en = open(fp_en, encoding="utf-8").read() if os.path.exists(fp_en) else "<p><em>Lesson pending.</em></p>"
+        he = open(fp_he, encoding="utf-8").read() if os.path.exists(fp_he) else en
+        out[sid] = {"en": en, "he": he}
+    return out
+
+def load_i18n():
+    """Inline the UI string dictionaries so the app needs no fetch (works on file://)."""
+    out = {}
+    for lang in ("en", "he"):
+        fp = os.path.join(DATA, "i18n", f"{lang}.json")
+        out[lang] = json.load(open(fp, encoding="utf-8")) if os.path.exists(fp) else {}
     return out
 
 def load_scope():
@@ -106,11 +119,13 @@ def main():
     questions = load_questions()
     scope = load_scope()
     off = scope.get("offExam", {})
+    off_he = scope.get("offExamHe", {})
     n_off = 0
     for q in questions:
         if q["id"] in off:
             q["offExam"] = True
             q["offReason"] = off[q["id"]]
+            q["offReason_he"] = off_he.get(q["id"], off[q["id"]])
             n_off += 1
     counts = {s: 0 for s in SECTION_IDS}
     for q in questions:
@@ -123,6 +138,7 @@ def main():
             "focus": scope.get("focus"),
         },
         "lessons": load_lessons(),
+        "i18n": load_i18n(),
         "questions": questions,
     }
     payload = json.dumps(data, ensure_ascii=False, indent=0)

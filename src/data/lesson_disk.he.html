@@ -1,0 +1,48 @@
+<p>שאלות על דיסק הן כמעט תמיד שאלות השלמה של מילה אחת (ארכיטיפ <bdi dir="ltr">8</bdi>): היכן יושב ה-<bdi dir="ltr">spool</bdi>, לאן כותב ה-<bdi dir="ltr">DMA</bdi>, איזו יחידה קובץ צריך לחלוק, היכן נמצא ה-<bdi dir="ltr">swap</bdi>. שננו את היררכיית האחסון ואת המונחים המדויקים; התשובות הן <bdi dir="ltr">1-2</bdi> מילים.</p>
+
+<table>
+  <thead>
+    <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>מסילה (<bdi dir="ltr">Track</bdi>)</td><td>Track</td><td dir="rtl">מסילה</td><td>מעגל בודד על משטח אחד של דיסקית</td></tr>
+    <tr><td>סקטור (<bdi dir="ltr">Sector</bdi>)</td><td>Sector</td><td dir="rtl">סקטור</td><td>פלח רדיאלי של מסילה</td></tr>
+    <tr><td>צילינדר (<bdi dir="ltr">Cylinder</bdi>)</td><td>Cylinder</td><td dir="rtl">צילינדר</td><td>היחידה הגדולה ביותר שניתן להגיע אליה בלי להזיז את ראש הקריאה; מסילות באותו רדיוס לאורך כל הדיסקיות</td></tr>
+    <tr><td>בלוק (<bdi dir="ltr">Block</bdi>)</td><td>Block</td><td dir="rtl">בלוק</td><td>היחידה הקטנה ביותר שמערכת ההפעלה קוראת/כותבת</td></tr>
+    <tr><td>דיסקית / משטח (<bdi dir="ltr">Platter / Surface</bdi>)</td><td>Platter / Surface</td><td dir="rtl">דיסקית / משטח</td><td>לוחית פיזית של הדיסק; ראש לכל משטח</td></tr>
+    <tr><td>ספול (<bdi dir="ltr">Spool</bdi>)</td><td>Spool / Spooling</td><td dir="rtl">ספול</td><td>תור הדפסה/עבודות שיושב על הדיסק הקשיח עד שהמשאב מתפנה</td></tr>
+    <tr><td>גישה ישירה לזיכרון (<bdi dir="ltr">DMA</bdi>)</td><td>DMA</td><td dir="rtl">גישה ישירה לזיכרון</td><td>התקן <bdi dir="ltr">I/O</bdi> כותב ישירות ל-<bdi dir="ltr">RAM</bdi>, תוך עקיפת ה-<bdi dir="ltr">CPU</bdi></td></tr>
+    <tr><td><bdi dir="ltr">FAT-32</bdi></td><td>FAT-32</td><td dir="rtl">טבלת <bdi dir="ltr">FAT</bdi></td><td>שרשרת לינארית של מצביעי בלוקים <bdi dir="ltr">&rArr;</bdi> גישה אקראית איטית</td></tr>
+    <tr><td><bdi dir="ltr">UFS</bdi> / <bdi dir="ltr">i-node</bdi></td><td>UFS (i-node)</td><td dir="rtl">מערכת קבצים <bdi dir="ltr">UFS</bdi></td><td><bdi dir="ltr">i-node</bdi> עם מצביעים ישירים <bdi dir="ltr">+</bdi> עקיפים <bdi dir="ltr">&rArr;</bdi> קריאות אקראיות בזמן גישה קבוע</td></tr>
+    <tr><td>מחיצת החלפה (<bdi dir="ltr">Swap partition</bdi>)</td><td>Swap partition</td><td dir="rtl">מחיצת החלפה</td><td>מחיצת דיסק ב-<bdi dir="ltr">Linux</bdi> המחזיקה תהליכים שפונו</td></tr>
+    <tr><td>החלפה (פינוי תהליך) (<bdi dir="ltr">Roll out / Roll in</bdi>)</td><td>Roll out / Roll in</td><td dir="rtl">החלפה (פינוי תהליך)</td><td>העברת זיכרון <bdi dir="ltr">RAM</bdi> שלם של תהליך <bdi dir="ltr">RAM&harr;disk</bdi> (תהליך שלם, לא דף בודד)</td></tr>
+  </tbody>
+</table>
+
+<p><strong>היררכיית אחסון</strong> (מהיר/יקר <bdi dir="ltr">&rarr;</bdi> איטי/זול): <bdi dir="ltr">Registers</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">Cache</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">RAM</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">SSD</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">HDD</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">Tape</bdi>. הזול ביותר <bdi dir="ltr">=</bdi> <strong><bdi dir="ltr">HDD</bdi></strong> (או <bdi dir="ltr">tape</bdi>); יעד ה-<bdi dir="ltr">I/O</bdi> המהיר ביותר <bdi dir="ltr">=</bdi> <bdi dir="ltr">RAM/SSD</bdi>.</p>
+
+<ol class="recipe">
+  <li>זהו את מילת המפתח בשאלה (<bdi dir="ltr">spool</bdi> / <bdi dir="ltr">DMA</bdi> / הזול ביותר / "בלי להזיז את הראש" / <bdi dir="ltr">swap</bdi> / גישה אקראית).</li>
+  <li><bdi dir="ltr">Spool</bdi> יושב על <bdi dir="ltr">&rarr;</bdi> <strong>דיסק קשיח (<bdi dir="ltr">HDD</bdi>)</strong>. <bdi dir="ltr">DMA</bdi> כותב אל <bdi dir="ltr">&rarr;</bdi> <strong><bdi dir="ltr">RAM</bdi></strong>. הזול ביותר <bdi dir="ltr">&rarr;</bdi> <strong><bdi dir="ltr">HDD</bdi></strong>.</li>
+  <li>"קובץ על אותו ___" / "בלי להזיז את ראש הקריאה" <bdi dir="ltr">&rarr;</bdi> <strong>צילינדר (<bdi dir="ltr">Cylinder</bdi>)</strong>.</li>
+  <li><bdi dir="ltr">Linux</bdi> מאחסן תהליכים שפונו/הוצאו ב-<bdi dir="ltr">&rarr;</bdi> <strong>מחיצת החלפה (<bdi dir="ltr">Swap partition</bdi>)</strong>.</li>
+  <li><bdi dir="ltr">FAT-32</bdi> איטית מול <bdi dir="ltr">UFS</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">FAT</bdi> עוברת על <strong>שרשרת מצביעים לינארית</strong>; <bdi dir="ltr">UFS</bdi> משתמשת ב-<strong><bdi dir="ltr">i-node</bdi> (ישיר <bdi dir="ltr">+</bdi> עקיף)</strong>.</li>
+</ol>
+
+<pre>
+Q: "To modify the last byte of a 100MB file, why is FAT-32 much slower than UFS?"
+FAT-32: reach block n => walk n-1 pointers in a chain (linear)  -> slow
+UFS:    i-node direct/indirect/double-indirect => constant # of accesses -> fast
+A (<=5 words): FAT walks linear pointer chain
+</pre>
+
+<div class="traps">
+  <ul>
+    <li><strong><bdi dir="ltr">Spool</bdi> <bdi dir="ltr">=</bdi> תור יציב על הדיסק הקשיח</strong>, לא ב-<bdi dir="ltr">cache</bdi>/<bdi dir="ltr">RAM</bdi>. ה-<bdi dir="ltr">cache</bdi> הוא עותק מהיר זמני; ה-<bdi dir="ltr">spool</bdi> נשמר על הדיסק.</li>
+    <li><strong><bdi dir="ltr">DMA</bdi> עוקף את ה-<bdi dir="ltr">CPU</bdi> &mdash; הוא כותב ל-<bdi dir="ltr">RAM</bdi>, ולא ל-<bdi dir="ltr">CPU</bdi>.</strong> זו כל המהות של <bdi dir="ltr">DMA</bdi>.</li>
+    <li><strong>צילינדר מול מסילה (<bdi dir="ltr">Cylinder</bdi> מול <bdi dir="ltr">Track</bdi>):</strong> קובץ צריך לשבת על אותו <em>צילינדר</em> (ללא הזזת ראש), לא על אותה מסילה. צילינדר <bdi dir="ltr">=</bdi> מסילות ברדיוס אחד לאורך כל הדיסקיות.</li>
+    <li><strong><bdi dir="ltr">Swap</bdi> <bdi dir="ltr">=</bdi> תהליך שלם</strong> (<bdi dir="ltr">roll out/in</bdi>); <strong>דפדוף (<bdi dir="ltr">Paging</bdi>) <bdi dir="ltr">=</bdi> דף <bdi dir="ltr">4KB</bdi> בודד</strong>. אל תערבבו ביניהם.</li>
+    <li><strong>הזול ביותר <bdi dir="ltr">=</bdi> <bdi dir="ltr">HDD</bdi></strong> בתשובת הקורס הזה (<bdi dir="ltr">tape</bdi> זול יותר בתיאוריה, אבל תשובת המבחן היא <bdi dir="ltr">HDD</bdi>).</li>
+    <li><strong><bdi dir="ltr">FAT-32</bdi> איטית בגלל השרשרת הלינארית</strong>, לא בגלל שהבלוקים רחוקים זה מזה. המהירות של <bdi dir="ltr">UFS</bdi> נובעת מהמצביעים העקיפים של ה-<bdi dir="ltr">i-node</bdi>.</li>
+  </ul>
+</div>

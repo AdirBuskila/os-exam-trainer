@@ -28,35 +28,52 @@ function toggleFocus(){
   history.replaceState(null,'',u.toString());
   render();
 }
+/* localized accessors for the (English-authored) focus/scope metadata */
+function isHe(){return I18N.lang==='he';}
+function fLabel(){return (isHe()&&FOCUS.label_he)?FOCUS.label_he:FOCUS.label;}
+function fNote(){return (isHe()&&FOCUS.note_he)?FOCUS.note_he:FOCUS.note;}
+function fExaminer(){return (isHe()&&FOCUS.examiner_he)?FOCUS.examiner_he:FOCUS.examiner;}
+function fDropped(){return (isHe()&&FOCUS.dropped_he)?FOCUS.dropped_he:(FOCUS.dropped||[]);}
+function qReason(q){return (isHe()&&q.offReason_he)?q.offReason_he:(q.offReason||'');}
 function focusBanner(){
   if(!focusOn()) return '';
-  return '<div class="banner"><div class="brow"><b>🎯 Focused on the '+esc(FOCUS.label)+'</b>'+
-    '<span class="bx" onclick="toggleFocus()">show full course ✕</span></div>'+
-    '<div class="bnote">'+esc(FOCUS.note)+(FOCUS.examiner?' — '+esc(FOCUS.examiner):'')+'</div>'+
-    (FOCUS.dropped&&FOCUS.dropped.length?'<div class="bdrop"><b>Hidden:</b> '+FOCUS.dropped.map(esc).join(' · ')+'</div>':'')+'</div>';
+  const dropped=fDropped();
+  return '<div class="banner"><div class="brow"><b>'+t('focus.bannerTitle',{label:esc(fLabel())})+'</b>'+
+    '<span class="bx" onclick="toggleFocus()">'+t('focus.showFull')+'</span></div>'+
+    '<div class="bnote">'+esc(fNote())+(fExaminer()?' — '+esc(fExaminer()):'')+'</div>'+
+    (dropped&&dropped.length?'<div class="bdrop"><b>'+t('focus.hidden')+'</b> '+dropped.map(esc).join(' · ')+'</div>':'')+'</div>';
 }
 
 /* ---------------- helpers ---------------- */
 function el(h){const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+// Hebrew card prose: in HE mode auto-isolate Latin/code/number runs so the bidi
+// algorithm can't reorder fork()/PID 4 → 5 → 6/etc. In EN mode keep plain esc()
+// so English mode stays byte-for-byte identical to before.
+function heContent(s){return isHe()?I18N.autoIsolate(s):esc(s);}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.remove('hide');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('hide'),1400);}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function lessonHTML(sid){
+  const lo=DATA.lessons[sid]; if(!lo) return '';
+  if(typeof lo==='string') return lo;                       // legacy / pre-build shape
+  return (isHe()?(lo.he||lo.en):(lo.en||lo.he))||'';        // bilingual {en, he}
+}
 function qHTML(q){
   let h='';
-  if(q.he) h+='<div class="q he" dir="rtl">'+esc(q.he)+'</div>';
+  if(q.he) h+='<div class="q he" dir="rtl">'+heContent(q.he)+'</div>';
   if(q.code) h+='<pre class="qcode" dir="ltr">'+esc(q.code)+'</pre>';
   if(q.en) h+='<div class="qen" dir="ltr">'+esc(q.en)+'</div>';
   return h;
 }
 function ansHTML(q){
   let h='<div class="ans">';
-  if(q.answer_he) h+='<div class="he" dir="rtl">'+esc(q.answer_he)+'</div>';
+  if(q.answer_he) h+='<div class="he" dir="rtl">'+heContent(q.answer_he)+'</div>';
   if(q.answer_en) h+='<div class="en">'+esc(q.answer_en)+'</div>';
   if(q.note) h+='<div class="note">ℹ︎ '+esc(q.note)+'</div>';
   h+='</div>';
   return h;
 }
-function tagHTML(q){return '<span class="tag '+(q.type||'')+'">'+(q.type||'concept')+'</span>';}
+function tagHTML(q){return '<span class="tag '+(q.type||'')+'">'+t('tag.'+(q.type||'concept'))+'</span>';}
 
 /* ---------------- countdown ---------------- */
 function updateCount(){
@@ -65,8 +82,8 @@ function updateCount(){
   const scoped=scopedQ(); const tot=scoped.length; let strong=0;
   scoped.forEach(q=>{const c=S.cards[q.id]; if(c&&(c.c+c.w)>0&&(c.c/(c.c+c.w))>=0.6)strong++;});
   document.getElementById('count').innerHTML=
-    'Exam '+DATA.meta.examDate+' · <b>'+(days>=0?days:0)+' days</b><br>'+
-    '<span class="pill">'+strong+'/'+tot+' strong · '+tot+(focusOn()?' on your exam':' questions')+'</span>';
+    t('count.exam',{date:DATA.meta.examDate,days:(days>=0?days:0)})+'<br>'+
+    '<span class="pill">'+t('count.summary',{strong:strong,tot:tot})+' '+t(focusOn()?'count.scopeExam':'count.scopeAll')+'</span>';
 }
 
 /* ---------------- router ---------------- */
@@ -78,7 +95,7 @@ function render(){
   const view=document.getElementById('view');
   if(v==='sec') return renderSection(arg,view);
   if(v==='mock') return renderMock(view);
-  if(v==='weak') return renderDeck(scopedQ().filter(q=>isWeak(q.id)),'🔁 Review Weak','Cards you have missed or not seen.',view);
+  if(v==='weak') return renderDeck(scopedQ().filter(q=>isWeak(q.id)),t('weak.title'),t('weak.sub'),view);
   if(v==='years') return renderYears(view);
   if(v==='year') return renderYear(arg,view);
   return renderHome(view);
@@ -88,33 +105,25 @@ window.addEventListener('hashchange',()=>{});
 /* ---------------- home ---------------- */
 function renderHome(view){
   let h=focusBanner();
-  h+='<div class="card"><h2 class="sec">🎯 10-day plan · aim: 100%</h2>'+
-    '<p class="progresshint">7/10 questions are exact-term recall from a recurring bank; 3/10 are mechanical (fork / scheduling / disk) and worth guaranteed points. Drill the free points to reflex, memorize the bank, over-learn the traps.</p>'+
+  h+='<div class="card"><h2 class="sec">'+t('home.planTitle')+'</h2>'+
+    '<p class="progresshint">'+t('home.planHint')+'</p>'+
     '<div class="row" style="margin-top:8px">'+
-    '<button class="btn" onclick="go(\'mock\')">📝 Take a Mock Exam</button>'+
-    '<button class="btn ghost" onclick="go(\'weak\')">🔁 Review Weak Cards</button></div></div>';
-  h+='<details class="lesson" open><summary>ℹ️ How to use this app</summary><div class="lessonbody"><ul style="line-height:1.75;font-size:13.5px">'+
-    '<li><b>Sections</b> (below): open one → read the short lesson, then flip flashcards. Tap <b>✓ Got it</b> / <b>✗ Missed</b> — missed cards come back automatically (spaced repetition). Press <span class="kbd">space</span> to flip.</li>'+
-    '<li><b>⚡ Practice Generator</b> (fork · scheduling · memory): infinite fresh problems with instantly-checked, verified answers.</li>'+
-    '<li><b>📝 Mock Exam</b>: 10 random questions scored like the real exam · <b>🔁 Review Weak</b>: only what you missed · <b>📅 By Year</b>: every real past exam.</li>'+
-    '<li><b>🎯 Focus</b>: shows only what is on your current-semester exam. Every card shows the <b>Hebrew question + the code + an English hint</b>.</li>'+
-    '<li>Progress is saved on your device.</li>'+
-    '</ul></div></details>';
+    '<button class="btn" onclick="go(\'mock\')">'+t('home.takeMock')+'</button>'+
+    '<button class="btn ghost" onclick="go(\'weak\')">'+t('home.reviewWeak')+'</button></div></div>';
+  h+='<details class="lesson" open><summary>'+t('home.howToTitle')+'</summary><div class="lessonbody">'+t('home.howToBody')+'</div></details>';
   h+='<div class="grid">';
   SEC.forEach(s=>{
     const list=secList(s.id); const hidden=(bySec[s.id]||[]).length-list.length;
     const m=list.length?Math.round(100*list.filter(q=>mastery(q.id)>=0.6).length/list.length):0;
+    const he=isHe();
+    const t1=he?s.he:s.title, t2=he?s.title:s.he, t2dir=he?'ltr':'rtl';
     h+='<div class="tile'+(list.length?'':' off')+'" onclick="go(\'sec\',\''+s.id+'\')">'+
-       '<h3>'+esc(s.title)+'</h3><div class="he" dir="rtl">'+esc(s.he)+'</div>'+
+       '<h3'+(he?' dir="rtl"':'')+'>'+esc(t1)+'</h3><div class="he" dir="'+t2dir+'">'+esc(t2)+'</div>'+
        '<div class="bar"><i style="width:'+m+'%"></i></div>'+
-       '<div class="meta"><span>'+list.length+' cards'+(hidden?' <span class="offtag">+'+hidden+' off</span>':'')+'</span><span>'+m+'%</span></div></div>';
+       '<div class="meta"><span>'+t('home.cards',{n:list.length})+(hidden?' <span class="offtag">'+t('home.offCount',{n:hidden})+'</span>':'')+'</span><span>'+m+'%</span></div></div>';
   });
   h+='</div>';
-  h+='<div class="card" style="margin-top:14px"><b>⚠️ The 3 traps that cost aces their last points</b>'+
-     '<ul class="progresshint" style="line-height:1.7">'+
-     '<li><b>Who sets which bit:</b> CPU/MMU <i>sets</i> reference &amp; dirty bits; the <b>OS</b> clears the reference bit (Clock) &amp; sets present/valid.</li>'+
-     '<li><b>Critical-section conditions:</b> Mutual Exclusion / Progress / Bounded Waiting. "Starvation" is a <i>consequence</i>, not a condition.</li>'+
-     '<li><b>Scheduling identity:</b> RR(quantum=∞)=FCFS; SJF=non-preemptive, SRTF=preemptive.</li></ul></div>';
+  h+='<div class="card" style="margin-top:14px"><b>'+t('home.trapsTitle')+'</b>'+t('home.trapsBody')+'</div>';
   view.innerHTML=h;
   updateCount();
 }
@@ -124,21 +133,23 @@ function renderSection(sid,view){
   const sec=SEC.find(s=>s.id===sid); if(!sec)return go('home');
   const list=secList(sid); const hidden=(bySec[sid]||[]).length-list.length;
   const genOff=focusOn()&&GEN_OFF_FOCUS[sid];
+  const he=isHe();
+  const secName=he?sec.he:sec.title, secAlt=he?sec.title:sec.he, altDir=he?'ltr':'rtl';
   let h=focusBanner();
-  h+='<h2 class="sec">'+esc(sec.title)+' <span class="he" dir="rtl" style="color:var(--mut);font-size:15px">'+esc(sec.he)+'</span></h2>';
-  h+='<details class="lesson"><summary>Lesson — '+esc(sec.title)+'</summary><div class="lessonbody">'+(DATA.lessons[sid]||'')+'</div></details>';
+  h+='<h2 class="sec"'+(he?' dir="rtl"':'')+'>'+esc(secName)+' <span class="he" dir="'+altDir+'" style="color:var(--mut);font-size:15px">'+esc(secAlt)+'</span></h2>';
+  h+='<details class="lesson"><summary>'+t('section.lessonLabel',{name:esc(secName)})+'</summary><div class="lessonbody">'+lessonHTML(sid)+'</div></details>';
   const gen=['fork','scheduling','disk','memory'].includes(sid) && !genOff;
-  if(gen) h+='<div class="row" style="margin-bottom:12px"><button class="btn" onclick="go(\'sec\',\''+sid+'\');startGen(\''+sid+'\')">⚡ Practice Generator (infinite)</button> <span class="pill">fresh problems, verified answers</span></div>';
-  if(hidden) h+='<div class="offnote">🎯 '+hidden+' question'+(hidden>1?'s':'')+' hidden — off your '+esc(FOCUS.label)+(genOff?' (incl. the disk-geometry generator)':'')+'. <a onclick="toggleFocus()">show full course</a></div>';
+  if(gen) h+='<div class="row" style="margin-bottom:12px"><button class="btn" onclick="go(\'sec\',\''+sid+'\');startGen(\''+sid+'\')">'+t('gen.practiceBtn')+'</button> <span class="pill">'+t('gen.practiceTag')+'</span></div>';
+  if(hidden) h+='<div class="offnote">'+t('section.offNote',{n:hidden,qword:t(hidden>1?'section.questionMany':'section.questionOne'),label:esc(fLabel()),extra:(genOff?t('section.offNoteGen'):'')})+'<a onclick="toggleFocus()">'+t('focus.showFullLink')+'</a></div>';
   h+='<div id="gen"></div>';
   view.innerHTML=h;
-  if(!list.length){ view.appendChild(el('<div class="card center"><p>🎉 Nothing here is on your '+esc(FOCUS.label)+'.</p></div>')); return; }
-  deckInto(view.appendChild(el('<div class="card"></div>')), list, sec.title);
+  if(!list.length){ view.appendChild(el('<div class="card center"><p>'+t('section.nothingScope',{label:esc(fLabel())})+'</p></div>')); return; }
+  deckInto(view.appendChild(el('<div class="card"></div>')), list, secName);
 }
 
 /* ---------------- generic flashcard deck ---------------- */
 function renderDeck(list,title,sub,view){
-  if(!list.length){view.innerHTML='<div class="card"><h2 class="sec">'+title+'</h2><p>🎉 Nothing here — all strong!</p></div>';return;}
+  if(!list.length){view.innerHTML='<div class="card"><h2 class="sec">'+title+'</h2><p>'+t('deck.allStrong')+'</p></div>';return;}
   let h='<h2 class="sec">'+title+'</h2><p class="progresshint">'+(sub||'')+'</p>';
   view.innerHTML=h; deckInto(view.appendChild(el('<div class="card"></div>')),list,title);
 }
@@ -146,24 +157,24 @@ function deckInto(box,list,title){
   list=shuffle(list); let i=0,shown=false;
   function draw(){
     const q=list[i]; shown=false;
-    box.innerHTML='<div class="row"><span class="pill">'+(i+1)+' / '+list.length+'</span> '+tagHTML(q)+
-      '<span class="pill" style="margin-inline-start:auto">'+esc(q.exam)+' · Q'+q.q+'</span></div>'+
+    box.innerHTML='<div class="row"><span class="pill">'+t('deck.progress',{i:(i+1),n:list.length})+'</span> '+tagHTML(q)+
+      '<span class="pill" style="margin-inline-start:auto">'+t('deck.examq',{exam:esc(q.exam),q:q.q})+'</span></div>'+
       '<div class="fc"><div id="qa">'+qHTML(q)+'</div>'+
       '<div id="rev"></div>'+
-      '<div class="row" id="ctrl"><button class="btn" id="flip">Show answer <span class="kbd">space</span></button></div></div>';
+      '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('deck.showAnswer')+' <span class="kbd">'+t('common.space')+'</span></button></div></div>';
     box.querySelector('#flip').onclick=flip;
     function flip(){
       if(shown)return; shown=true;
       box.querySelector('#rev').innerHTML=ansHTML(q);
       box.querySelector('#ctrl').innerHTML=
-        '<button class="btn good" id="got">✓ Got it</button>'+
-        '<button class="btn bad" id="miss">✗ Missed</button>';
+        '<button class="btn good" id="got">'+t('deck.gotIt')+'</button>'+
+        '<button class="btn bad" id="miss">'+t('deck.missed')+'</button>';
       box.querySelector('#got').onclick=()=>{rec(q.id,true);next();};
-      box.querySelector('#miss').onclick=()=>{rec(q.id,false);toast('Will resurface');next();};
+      box.querySelector('#miss').onclick=()=>{rec(q.id,false);toast(t('deck.willResurface'));next();};
     }
     box._flip=flip;
   }
-  function next(){i++;if(i>=list.length){box.innerHTML='<div class="center"><h3>Deck complete ✓</h3><button class="btn" onclick="render()">Back</button></div>';document.onkeydown=null;updateCount();return;}draw();}
+  function next(){i++;if(i>=list.length){box.innerHTML='<div class="center"><h3>'+t('deck.complete')+'</h3><button class="btn" onclick="render()">'+t('common.back')+'</button></div>';document.onkeydown=null;updateCount();return;}draw();}
   box._key=(e)=>{if(e.code==='Space'){e.preventDefault();if(!shown)box._flip();}};
   draw();
   document.onkeydown=(e)=>{if(box._key)box._key(e);};
@@ -175,8 +186,14 @@ function startGen(sid){
   let prob;
   if(sid==='fork'){
     const idx=Math.floor(Math.random()*OSE.FORK_BANK.length);
-    prob=OSE.forkProblem(idx);
-    show('<pre>'+esc(prob.src)+'</pre><p>'+esc(prob.ask)+'</p>',prob.answer,prob.explain);
+    const item=OSE.FORK_BANK[idx];
+    const base=OSE.forkProblem(idx);                 // {src, ask, answer, explain} (English)
+    const r=OSE.forkSim(item.prog);                  // {procs, prints} for localized prose
+    const ask=isHe()?t(item.count==='procs'?'gen.fork.askProcs':'gen.fork.askPrints'):base.ask;
+    const explain=isHe()
+      ?(item.count==='procs'?t('gen.fork.explainProcs',{procs:r.procs}):t('gen.fork.explainPrints',{procs:r.procs,prints:r.prints}))
+      :base.explain;
+    show('<pre>'+esc(base.src)+'</pre><p>'+esc(ask)+'</p>',base.answer,explain);
   } else if(sid==='disk'){
     prob=genDisk(); show(prob.q,prob.answer,prob.explain);
   } else if(sid==='scheduling'){
@@ -185,10 +202,10 @@ function startGen(sid){
     prob=genPaging(); show(prob.q,prob.answer,prob.explain);
   }
   function show(qhtml,answer,explain){
-    g.innerHTML='<div class="card"><div class="row"><b>⚡ Generated problem</b> <span class="pill" style="margin-inline-start:auto">verified</span></div>'+
+    g.innerHTML='<div class="card"><div class="row"><b>'+t('gen.generated')+'</b> <span class="pill" style="margin-inline-start:auto">'+t('common.verified')+'</span></div>'+
       '<div style="margin:10px 0">'+qhtml+'</div>'+
-      '<div class="row"><input class="input" id="guess" placeholder="your answer" autocomplete="off"> '+
-      '<button class="btn" id="chk">Check</button> <button class="btn ghost" id="again">New ↻</button></div>'+
+      '<div class="row"><input class="input" id="guess" placeholder="'+esc(t('gen.placeholder'))+'" autocomplete="off"> '+
+      '<button class="btn" id="chk">'+t('gen.check')+'</button> <button class="btn ghost" id="again">'+t('gen.newProblem')+'</button></div>'+
       '<div id="res" style="margin-top:10px"></div></div>';
     g.querySelector('#again').onclick=()=>startGen(sid);
     g.querySelector('#chk').onclick=()=>{
@@ -199,7 +216,7 @@ function startGen(sid){
         if(a.indexOf('^')<0 && !isNaN(vn) && !isNaN(an)) ok=Math.abs(vn-an)<0.011;
         else ok=raw.replace(/\s/g,'').toLowerCase()===a.replace(/\s/g,'').toLowerCase();
       }
-      g.querySelector('#res').innerHTML='<div class="ans"><div class="en">'+(ok?'✓ Correct!':'✗ Answer: <b>'+esc(a)+'</b>')+'</div><div class="note" style="color:var(--mut)">'+explain+'</div></div>';
+      g.querySelector('#res').innerHTML='<div class="ans"><div class="en">'+(ok?t('gen.correct'):t('gen.answerIs',{a:esc(a)}))+'</div><div class="note" style="color:var(--mut)">'+explain+'</div></div>';
     };
     g.querySelector('#guess').addEventListener('keydown',e=>{if(e.key==='Enter')g.querySelector('#chk').click();});
   }
@@ -212,13 +229,13 @@ function genDisk(){
   const unknown=['cyl','surf','spt'][rint(0,2)];
   const human=b=>b>=Math.pow(2,40)?(b/Math.pow(2,40))+'TB':b>=Math.pow(2,30)?(b/Math.pow(2,30))+'GB':(b/Math.pow(2,20))+'MB';
   let ask,answer;
-  let q='A hard disk: capacity <b>'+human(cap)+'</b>, '+platters+' platters ('+surfaces+' surfaces), '+
-        'sector size <b>'+human(sec)+'</b>'+(unknown!=='spt'?', <b>'+spt+'</b> sectors/track':'')+
-        (unknown!=='cyl'?', <b>'+cyl+'</b> cylinders':'')+'. ';
-  if(unknown==='cyl'){answer=cyl;ask='How many cylinders?';}
-  else if(unknown==='surf'){answer=surfaces;ask='How many surfaces?';}
-  else{answer=spt;ask='How many sectors per track?';}
-  return {q:q+ask,answer,explain:'total sectors = capacity/sector = '+total+'; = cylinders×surfaces×sectors-per-track. Solve for the unknown.'};
+  let q=t('gen.disk.intro',{cap:human(cap),platters:platters,surfaces:surfaces,sec:human(sec)})+
+        (unknown!=='spt'?t('gen.disk.spt',{spt:spt}):'')+
+        (unknown!=='cyl'?t('gen.disk.cyl',{cyl:cyl}):'')+'. ';
+  if(unknown==='cyl'){answer=cyl;ask=t('gen.disk.askCyl');}
+  else if(unknown==='surf'){answer=surfaces;ask=t('gen.disk.askSurf');}
+  else{answer=spt;ask=t('gen.disk.askSpt');}
+  return {q:q+ask,answer,explain:t('gen.disk.explain',{total:total})};
 }
 function genSched(){
   const algos=['FCFS','SJF','SRTF','RR'], algo=algos[rint(0,3)];
@@ -226,19 +243,20 @@ function genSched(){
   for(let i=0;i<n;i++)ps.push({name:'P'+(i+1),arrival:i===0?0:rint(0,4),burst:rint(2,9)});
   const q=algo==='RR'?rint(2,4):null;
   const r=OSE.schedule(ps,algo,q);
-  const tbl=ps.map(p=>'P'+p.name.slice(1)+': burst '+p.burst+' @ '+p.arrival).join(' · ');
+  const tbl=ps.map(p=>t('gen.sched.proc',{n:p.name.slice(1),burst:p.burst,arrival:p.arrival})).join(' · ');
   const g=r.gantt.map(x=>x[0]+'['+x[1]+'-'+x[2]+']').join(' ');
-  return {q:'Algorithm <b>'+algo+(q?' (q='+q+')':'')+'</b>. Processes: '+tbl+'. <br>Average waiting time?',
+  const algoLabel=algo+(q?' (q='+q+')':'');
+  return {q:t('gen.sched.q',{algo:algoLabel,tbl:tbl}),
     answer:+r.avg.toFixed(2),
-    explain:'Gantt: '+g+'. Avg waiting = '+(+r.avg.toFixed(2))+' (turnaround−burst, averaged).'};
+    explain:t('gen.sched.explain',{gantt:g,avg:(+r.avg.toFixed(2))})};
 }
 function genPaging(){
   const kind=rint(0,2);
-  if(kind===0){const lv=rint(2,4);return {q:'Multilevel paging with <b>'+lv+'</b> levels. On a TLB miss, how many memory accesses?',answer:lv+1,explain:lv+' page-table levels + 1 access to the page = '+(lv+1)+'.'};}
+  if(kind===0){const lv=rint(2,4);return {q:t('gen.paging.levelsQ',{lv:lv}),answer:lv+1,explain:t('gen.paging.levelsExplain',{lv:lv,ans:(lv+1)})};}
   const vb=rint(28,44), pexp=rint(10,22), pb=Math.pow(2,pexp), bits=vb-pexp;
   const human=b=>b>=Math.pow(2,20)?(b/Math.pow(2,20))+'MB':(b/Math.pow(2,10))+'KB';
-  if(kind===1){return {q:'Virtual address <b>'+vb+' bits</b>, page size <b>'+human(pb)+'</b>. Entries in a single-level page table?',answer:'2^'+bits,explain:'page-number bits = '+vb+' − '+pexp+' = '+bits+' → 2^'+bits+' entries.'};}
-  return {q:'Physical address <b>'+vb+' bits</b>, page size <b>'+human(pb)+'</b>. How many frames?',answer:'2^'+bits,explain:'frame bits = '+vb+' − '+pexp+' = '+bits+' → 2^'+bits+' frames.'};
+  if(kind===1){return {q:t('gen.paging.entriesQ',{vb:vb,pb:human(pb)}),answer:'2^'+bits,explain:t('gen.paging.entriesExplain',{vb:vb,pexp:pexp,bits:bits})};}
+  return {q:t('gen.paging.framesQ',{vb:vb,pb:human(pb)}),answer:'2^'+bits,explain:t('gen.paging.framesExplain',{vb:vb,pexp:pexp,bits:bits})};
 }
 
 /* ---------------- mock exam ---------------- */
@@ -250,28 +268,28 @@ function renderMock(view){
   const rest=shuffle(pool.filter(q=>q!==fork&&q!==comp)).slice(0,8);
   const ex=shuffle([fork,comp].filter(Boolean).concat(rest)).slice(0,10);
   let i=0,score=0,answered=0;
-  let h='<h2 class="sec">📝 Mock Exam <span class="tag">10 × 10 pts · ≤5 words</span></h2>'+
+  let h='<h2 class="sec">'+t('mock.title')+' <span class="tag">'+t('mock.tag')+'</span></h2>'+
         '<div class="card" id="mx"></div>';
   view.innerHTML=h;
   const mx=document.getElementById('mx');
   const t0=Date.now();
   function draw(){
     const q=ex[i];
-    mx.innerHTML='<div class="row"><span class="pill">Q'+(i+1)+' / 10</span> '+tagHTML(q)+
-      '<span class="pill" style="margin-inline-start:auto">score '+score+'/'+answered*10+'</span></div>'+
+    mx.innerHTML='<div class="row"><span class="pill">'+t('mock.qcount',{n:(i+1)})+'</span> '+tagHTML(q)+
+      '<span class="pill" style="margin-inline-start:auto">'+t('mock.score',{score:score,outof:answered*10})+'</span></div>'+
       '<div class="fc"><div>'+qHTML(q)+'</div><div id="rev"></div>'+
-      '<div class="row" id="ctrl"><button class="btn" id="flip">Reveal answer</button></div></div>';
+      '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('mock.reveal')+'</button></div></div>';
     mx.querySelector('#flip').onclick=()=>{
       mx.querySelector('#rev').innerHTML=ansHTML(q);
-      mx.querySelector('#ctrl').innerHTML='<button class="btn good" id="r">✓ I got it</button><button class="btn bad" id="w">✗ Missed</button>';
+      mx.querySelector('#ctrl').innerHTML='<button class="btn good" id="r">'+t('mock.gotIt')+'</button><button class="btn bad" id="w">'+t('deck.missed')+'</button>';
       mx.querySelector('#r').onclick=()=>{score+=10;answered++;rec(q.id,true);adv();};
       mx.querySelector('#w').onclick=()=>{answered++;rec(q.id,false);adv();};
     };
   }
   function adv(){i++;if(i>=10){const sec=Math.round((Date.now()-t0)/1000);
     mx.innerHTML='<div class="center"><div class="bigtimer">'+score+'/100</div>'+
-      '<p class="progresshint">'+(score>=90?'Ace range. 🔥':score>=70?'Solid — close the gaps.':'Early days — keep drilling.')+' · '+Math.floor(sec/60)+'m '+(sec%60)+'s</p>'+
-      '<button class="btn" onclick="go(\'mock\')">Another</button> <button class="btn ghost" onclick="go(\'weak\')">Review weak</button></div>';
+      '<p class="progresshint">'+(score>=90?t('mock.verdictAce'):score>=70?t('mock.verdictSolid'):t('mock.verdictEarly'))+' · '+t('mock.time',{m:Math.floor(sec/60),s:(sec%60)})+'</p>'+
+      '<button class="btn" onclick="go(\'mock\')">'+t('mock.another')+'</button> <button class="btn ghost" onclick="go(\'weak\')">'+t('mock.reviewWeak')+'</button></div>';
     updateCount();return;}draw();}
   draw();
 }
@@ -279,24 +297,28 @@ function renderMock(view){
 /* ---------------- browse by year ---------------- */
 function renderYears(view){
   const exams=[...new Set(Q.map(q=>q.exam))].sort();
-  let h='<h2 class="sec">📅 Browse by Exam</h2><div class="grid">';
-  exams.forEach(e=>{h+='<div class="tile" onclick="go(\'year\',\''+e+'\')"><h3>'+e+'</h3><div class="meta"><span>'+Q.filter(q=>q.exam===e).length+' questions</span><span>→</span></div></div>';});
+  let h='<h2 class="sec">'+t('years.title')+'</h2><div class="grid">';
+  exams.forEach(e=>{h+='<div class="tile" onclick="go(\'year\',\''+e+'\')"><h3>'+e+'</h3><div class="meta"><span>'+t('years.count',{n:Q.filter(q=>q.exam===e).length})+'</span><span>'+t('common.arrowNext')+'</span></div></div>';});
   view.innerHTML=h+'</div>';
 }
 function renderYear(e,view){
   const list=Q.filter(q=>q.exam===e).sort((a,b)=>a.q-b.q);
-  let h='<h2 class="sec">'+e+' <span class="tag">'+list.length+' Q</span></h2><div class="card examlist">';
+  let h='<h2 class="sec">'+e+' <span class="tag">'+t('year.qTag',{n:list.length})+'</span></h2><div class="card examlist">';
   list.forEach(q=>{h+='<div class="examq'+(q.offExam?' offexam':'')+'">'+
-    (q.offExam?'<div class="offbadge">⛔ off the '+esc(FOCUS.label)+' — '+esc(q.offReason||'')+'</div>':'')+
+    (q.offExam?'<div class="offbadge">'+t('year.offBadge',{label:esc(fLabel()),reason:esc(qReason(q))})+'</div>':'')+
     qHTML(q)+ansHTML(q)+'</div>';});
-  view.innerHTML=h+'</div><button class="btn ghost" onclick="go(\'years\')">← All exams</button>';
+  view.innerHTML=h+'</div><button class="btn ghost" onclick="go(\'years\')">'+t('year.allExams')+'</button>';
 }
 
 /* ---------------- prefs ---------------- */
 function applyPrefs(){document.body.classList.toggle('light',S.prefs.theme==='light');
   document.body.classList.toggle('focusmode',focusOn());
-  const fb=document.getElementById('focusBtn'); if(fb){fb.classList.toggle('on',focusOn()); fb.textContent=focusOn()?'🎯 '+FOCUS.label:'🎯 Focus';}}
+  const fb=document.getElementById('focusBtn'); if(fb){fb.classList.toggle('on',focusOn()); fb.textContent=focusOn()?'🎯 '+fLabel():t('nav.focus');}}
 function toggleTheme(){S.prefs.theme=S.prefs.theme==='light'?'dark':'light';save();applyPrefs();}
 
+/* ---------------- boot ---------------- */
+I18N.applyLang();
 applyPrefs(); if(!location.hash)location.hash='home'; render(); updateCount();
 window.onhashchange=render;
+// Re-render the whole UI when the language toggle fires.
+window.addEventListener('languagechange',function(){I18N.applyLang();render();updateCount();});

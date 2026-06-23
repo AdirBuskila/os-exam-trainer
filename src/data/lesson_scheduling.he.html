@@ -1,0 +1,62 @@
+<p>תזמון <bdi dir="ltr">CPU</bdi> = המתזמן לטווח הקצר בוחר איזה תהליך במצב <bdi dir="ltr">READY</bdi> יקבל את ה-<bdi dir="ltr">CPU</bdi>. יש לדעת לכל אלגוריתם את שמו, האם הוא <strong>מפנה <bdi dir="ltr">(preemptive)</bdi></strong>, ואת הכשל הקטלני היחיד שלו. בשאלות השלמה במבחן יש לכתוב את המונח באנגלית; נוסחאות המדדים ותרשים <bdi dir="ltr">Gantt</bdi> אחד מכסים את השאר.</p>
+
+<table>
+  <thead>
+    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>כל הקודם זוכה</td><td>FCFS</td><td dir="rtl">כל הקודם זוכה</td><td>לא-מפנה, לפי סדר ההגעה; סובל מ-<bdi dir="ltr">convoy effect</bdi>.</td></tr>
+    <tr><td>העבודה הקצרה ביותר</td><td>SJF</td><td dir="rtl">העבודה הקצרה ביותר</td><td>לא-מפנה; ה-<bdi dir="ltr">burst</bdi> הקצר ביותר תחילה; ממזער את זמן ההמתנה הממוצע.</td></tr>
+    <tr><td>הזמן הנותר הקצר ביותר</td><td>SRTF</td><td dir="rtl">הזמן הנותר הקצר ביותר</td><td><bdi dir="ltr">SJF</bdi> מפנה; הגעה קצרה יותר משלפת את הרץ.</td></tr>
+    <tr><td>סבב מחזורי</td><td>RR</td><td dir="rtl">סבב מחזורי</td><td>מפנה לפי טיימר; קוונטום <bdi dir="ltr">Q</bdi>, ואז לסוף התור.</td></tr>
+    <tr><td>תזמון לפי עדיפות</td><td>Priority</td><td dir="rtl">תזמון לפי עדיפות</td><td>המספר הקטן ביותר = העדיפות הגבוהה ביותר; עלול לגרום להרעבה.</td></tr>
+    <tr><td>תור רב-רמתי</td><td>MLQ</td><td dir="rtl">תור רב-רמתי</td><td>תורים נפרדים וקבועים (חזית <bdi dir="ltr">RR</bdi> / רקע <bdi dir="ltr">FCFS</bdi>).</td></tr>
+    <tr><td>תור רב-רמתי עם משוב</td><td>MLFQ</td><td dir="rtl">תור רב-רמתי עם משוב</td><td>תורים + מעבר ביניהם = הזדקנות (<bdi dir="ltr">aging</bdi>); תהליכי <bdi dir="ltr">CPU-bound</bdi> שוקעים.</td></tr>
+    <tr><td>אפקט השיירה</td><td>Convoy effect</td><td dir="rtl">אפקט השיירה</td><td>תהליך ארוך אחד גורם לכולם להמתין (<bdi dir="ltr">FCFS</bdi>).</td></tr>
+    <tr><td>הרעבה</td><td>Starvation</td><td dir="rtl">הרעבה</td><td>תהליך אחד לעולם לא מקבל <bdi dir="ltr">CPU</bdi>; הפתרון = <bdi dir="ltr">aging</bdi>.</td></tr>
+    <tr><td>הזדקנות</td><td>Aging</td><td dir="rtl">הזדקנות</td><td>העלאת העדיפות לאורך זמן ההמתנה כדי למנוע הרעבה.</td></tr>
+    <tr><td>פרץ חישוב</td><td>Burst</td><td dir="rtl">פרץ חישוב</td><td>ריצת <bdi dir="ltr">CPU</bdi> רציפה בין שתי המתנות <bdi dir="ltr">I/O</bdi>.</td></tr>
+    <tr><td>זמן המתנה</td><td>Waiting time</td><td dir="rtl">זמן המתנה</td><td>הזמן שמבלים בתור <bdi dir="ltr">READY</bdi> (<bdi dir="ltr">Turnaround &minus; Burst</bdi>).</td></tr>
+    <tr><td>זמן סבב</td><td>Turnaround time</td><td dir="rtl">זמן סבב</td><td><bdi dir="ltr">Completion &minus; Arrival</bdi> (מכניסה עד סיום).</td></tr>
+    <tr><td>זמן תגובה</td><td>Response time</td><td dir="rtl">זמן תגובה</td><td><bdi dir="ltr">First-CPU &minus; Arrival</bdi> (עד הריצה הראשונה).</td></tr>
+    <tr><td>תפוקה</td><td>Throughput</td><td dir="rtl">תפוקה</td><td>תהליכים שהושלמו ליחידת זמן.</td></tr>
+    <tr><td>נשלף / קדימה</td><td>Preemptive</td><td dir="rtl">נשלף / קדימה</td><td>ה-<bdi dir="ltr">OS</bdi> לוקח את ה-<bdi dir="ltr">CPU</bdi> (פסיקת טיימר).</td></tr>
+    <tr><td>לא נשלף</td><td>Non-preemptive</td><td dir="rtl">לא נשלף</td><td>רץ עד שמוותר מרצונו או נחסם.</td></tr>
+    <tr><td>מחזור התזמון של <bdi dir="ltr">Linux</bdi></td><td>Epoch</td><td dir="rtl">תקופה</td><td>מחזור תזמון מלא אחד של <bdi dir="ltr">Linux</bdi>; נושא חצי הקצאה הלאה.</td></tr>
+    <tr><td>מתזמן לטווח קצר</td><td>CPU scheduler</td><td dir="rtl">מתזמן לטווח קצר</td><td>בוחר <bdi dir="ltr">runnable&rarr;running</bdi>; רץ כל כמה <bdi dir="ltr">ms</bdi>.</td></tr>
+  </tbody>
+</table>
+
+<ol class="recipe">
+  <li>רשום כל תהליך עם <bdi dir="ltr">Arrival</bdi> ו-<bdi dir="ltr">Burst</bdi> (ו-<bdi dir="ltr">Priority</bdi> אם ניתן).</li>
+  <li>החל את כלל האלגוריתם בכל <em>אירוע</em> (הגעה חדשה או השלמה). <bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">Priority</bdi> = בחר את הטוב ביותר מבין מי שכבר הגיעו; <bdi dir="ltr">SRTF</bdi>/<bdi dir="ltr">RR</bdi> = בדוק מחדש בכל אירוע/קוונטום.</li>
+  <li>צייר את תרשים ה-<bdi dir="ltr">Gantt</bdi> (ציר זמן עם מי שרץ).</li>
+  <li>לכל תהליך: <code>Turnaround = Completion − Arrival</code>; <code>Waiting = Turnaround − Burst</code>; <code>Response = First-CPU − Arrival</code>.</li>
+  <li>ממוצע = סכום / <bdi dir="ltr">n</bdi>. שוויון ב-<bdi dir="ltr">burst</bdi> &rarr; שובר לפי <bdi dir="ltr">FCFS</bdi> (הגעה). זכור: מספר קטן יותר = עדיפות גבוהה יותר.</li>
+</ol>
+
+<pre>
+P1 burst 24, P2 burst 3, P3 burst 3 (all arrive at 0)
+
+FCFS  | P1            | P2 | P3 |   wait: 0, 24, 27  -> avg 17
+      0              24   27   30
+
+SJF   | P2 | P3 | P1            |   wait: 6, 0, 3    -> avg 3  (optimal)
+      0    3    6              30
+
+RR Q=4| P1 |P2 |P3 | P1 P1 P1 P1 P1 |  wait avg ~ 5.67
+</pre>
+
+<div class="traps">
+  <ul>
+    <li><strong><bdi dir="ltr">SJF</bdi> הוא לא-מפנה; <bdi dir="ltr">SRTF</bdi> הוא מפנה.</strong> שני אלגוריתמים שונים &mdash; אין לערבב.</li>
+    <li><strong><bdi dir="ltr">RR</bdi> עם קוונטום = אינסוף (או <bdi dir="ltr">Q &ge;</bdi> ה-<bdi dir="ltr">burst</bdi> הארוך ביותר) מתנהג כמו <bdi dir="ltr">FCFS</bdi>.</strong> <bdi dir="ltr">Q</bdi> קטן מדי &rarr; <bdi dir="ltr">CPU</bdi> מבוזבז על החלפות הקשר; <bdi dir="ltr">Q</bdi> גדול מדי &rarr; כמו <bdi dir="ltr">FCFS</bdi>.</li>
+    <li><strong>ה-<bdi dir="ltr">convoy effect</bdi> שייך ל-<bdi dir="ltr">FCFS</bdi></strong> (עבודה ארוכה אחת חוסמת את כולם). <bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">SRTF</bdi> נותנים את זמן ההמתנה הממוצע המינימלי, אך רק על קבוצה נתונה.</li>
+    <li><strong>הרעבה היא תוצאה, לא אלגוריתם.</strong> היא פוגעת ב-<bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">SRTF</bdi> (עבודות ארוכות) וב-<bdi dir="ltr">Priority</bdi> (עדיפות נמוכה); הפתרון הוא <em><bdi dir="ltr">aging</bdi></em>.</li>
+    <li><strong>זמן ההמתנה משתמש ב-<bdi dir="ltr">burst</bdi>, לא בזמן הכולל.</strong> <bdi dir="ltr">Waiting = Turnaround &minus; Burst</bdi>. <bdi dir="ltr">Response</bdi> = הפעם הראשונה על ה-<bdi dir="ltr">CPU</bdi>, לא ההשלמה.</li>
+    <li><strong><bdi dir="ltr">Priority</bdi>: מספר קטן יותר = עדיפות גבוהה יותר</strong> בקורס זה. טווח <bdi dir="ltr">nice</bdi> מ-<bdi dir="ltr">&minus;20</bdi> (גבוה) &hellip; <bdi dir="ltr">+19</bdi> (נמוך).</li>
+    <li><strong><bdi dir="ltr">Linux</bdi> = <bdi dir="ltr">Multilevel Queue</bdi></strong> (<bdi dir="ltr">FIFO real-time</bdi>, <bdi dir="ltr">RR real-time</bdi>, לא-זמן-אמת/מבוסס-<bdi dir="ltr">epoch</bdi>). מחזור מלא אחד = <em><bdi dir="ltr">Epoch</bdi></em>; הקצאה שלא נוצלה נושאת <em>חצי</em> ל-<bdi dir="ltr">epoch</bdi> הבא.</li>
+    <li><strong><bdi dir="ltr">Windows</bdi>:</strong> חוט של חלון החזית מקבל קוונטום <em>משולש</em>; לאחר <bdi dir="ltr">I/O</bdi>, חיזוק העדיפות הוא ביחס הפוך למהירות ההתקן (התקן איטי &rarr; חיזוק גדול יותר), ואז דועך בכל קוונטום.</li>
+    <li><strong><bdi dir="ltr">RR</bdi> נשלף על ידי פסיקת הטיימר</strong> (סוף הקוונטום), לעולם לא מרצון.</li>
+  </ul>
+</div>

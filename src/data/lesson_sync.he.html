@@ -1,0 +1,74 @@
+<section class="lesson" id="lesson-sync">
+  <h2>Sync: Semaphores, Shared Memory &amp; Critical Sections</h2>
+
+  <p>סנכרון מונע <strong>מצב מירוץ</strong> (<bdi dir="ltr">race condition</bdi>) שבו התוצאה תלויה בסדר הביצוע. הבחינה אוהבת מונחים מדויקים והתנהגות של קריאות <bdi dir="ltr">System&nbsp;V</bdi>: <code>sem_op=-1</code> הוא <bdi dir="ltr">wait</bdi>, <code>+1</code> הוא <bdi dir="ltr">signal</bdi>, וצריך לדעת בעל-פה את <bdi dir="ltr">3</bdi> התנאים של הקטע הקריטי. כתבו את המונח באנגלית גם אם אתם מסבירים בעברית.</p>
+
+  <table>
+    <thead>
+      <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>מצב מירוץ</td><td>Race condition</td><td dir="rtl">מצב מירוץ</td><td>התוצאה תלויה בסדר הביצוע של גישה משותפת.</td></tr>
+      <tr><td>קטע קריטי</td><td>Critical section</td><td dir="rtl">קטע קריטי</td><td>קוד הניגש למשאב משותף; רק אחד בתוכו בכל רגע.</td></tr>
+      <tr><td>מניעה הדדית</td><td>Mutual Exclusion</td><td dir="rtl">מניעה הדדית</td><td>רק תהליך אחד בקטע הקריטי בכל רגע נתון.</td></tr>
+      <tr><td>התקדמות</td><td>Progress</td><td dir="rtl">התקדמות</td><td>אם הקטע פנוי, מועמד נכנס בזמן סופי.</td></tr>
+      <tr><td>המתנה חסומה</td><td>Bounded Waiting</td><td dir="rtl">המתנה חסומה</td><td>חסם על מספר האחרים שייכנסו לפני שמבקש מקבל גישה.</td></tr>
+      <tr><td>סמפור</td><td>Semaphore</td><td dir="rtl">סמפור</td><td>מספר שלם עם <bdi dir="ltr">wait(P/down)</bdi> ו-<bdi dir="ltr">signal(V/up)</bdi> אטומיים.</td></tr>
+      <tr><td>סמפור בינארי</td><td>Binary semaphore / Mutex</td><td dir="rtl">סמפור בינארי</td><td>ערכים <bdi dir="ltr">{0,1}</bdi> בלבד; מתפקד כמנעול.</td></tr>
+      <tr><td>סמפור מונה</td><td>Counting semaphore</td><td dir="rtl">סמפור מונה</td><td>סופר <bdi dir="ltr">N</bdi> משאבים זמינים.</td></tr>
+      <tr><td>TestAndSet</td><td>TestAndSet</td><td dir="rtl">בדוק-וקבע</td><td>פקודת <bdi dir="ltr">CPU</bdi> אטומית: קרא ערך ישן, קבע <bdi dir="ltr">true</bdi>.</td></tr>
+      <tr><td>Spinlock</td><td>Spinlock</td><td dir="rtl">נעילת סיבוב</td><td>המתנה עסוקה בלולאה; בשימוש בגרעין (לא יכול לישון).</td></tr>
+      <tr><td>אלגוריתם המאפייה</td><td>Bakery algorithm</td><td dir="rtl">אלגוריתם המאפייה</td><td>המספר הקטן ביותר נכנס ראשון; מנעול תוכנה ל-<bdi dir="ltr">N</bdi>.</td></tr>
+      <tr><td>יצרן-צרכן</td><td>Bounded Buffer</td><td dir="rtl">יצרן-צרכן / חוצץ חסום</td><td><bdi dir="ltr">3</bdi> סמפורים: <bdi dir="ltr">mutex=1</bdi>, <bdi dir="ltr">full=0</bdi>, <bdi dir="ltr">empty=n</bdi>.</td></tr>
+      <tr><td>קוראים-כותבים</td><td>Readers-Writers</td><td dir="rtl">קוראים-כותבים</td><td>קוראים חולקים; כותב זקוק לגישה בלעדית.</td></tr>
+      <tr><td>קיפאון</td><td>Deadlock</td><td dir="rtl">קיפאון / נעילה הדדית</td><td>כל תהליך ממתין למשאב שאחר מחזיק.</td></tr>
+      <tr><td>זיכרון משותף</td><td>Shared Memory</td><td dir="rtl">זיכרון משותף</td><td>ה-<bdi dir="ltr">IPC</bdi> המהיר ביותר; ללא סנכרון מובנה, שלבו עם סמפור.</td></tr>
+      <tr><td>צינור</td><td>Pipe</td><td dir="rtl">צינור</td><td><bdi dir="ltr">IPC</bdi> חד-כיווני; <bdi dir="ltr">fd[0]=read</bdi>, <bdi dir="ltr">fd[1]=write</bdi>.</td></tr>
+      <tr><td>פקודת ניקוי</td><td>ipcrm</td><td dir="rtl">ipcrm</td><td>פקודת <bdi dir="ltr">shell</bdi> המסירה <bdi dir="ltr">IPC</bdi> שנותר (<bdi dir="ltr">sem/shm</bdi>).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>System V call cheat-list</h3>
+  <table>
+    <thead><tr><th>Call</th><th>Does</th></tr></thead>
+    <tbody>
+      <tr><td><code>semget(IPC_PRIVATE,n,0600)</code></td><td>יצירת מערך של <bdi dir="ltr">n</bdi> סמפורים → <bdi dir="ltr">semid</bdi>.</td></tr>
+      <tr><td><code>semctl(id,num,SETVAL/GETVAL/IPC_RMID,arg)</code></td><td>אתחול / קריאה / מחיקת המערך כולו.</td></tr>
+      <tr><td><code>semop(id,sops,nsops)</code></td><td><bdi dir="ltr">wait/signal</bdi>; <bdi dir="ltr">nsops&gt;1</bdi> = הכול-או-כלום (אטומי).</td></tr>
+      <tr><td><code>shmget / shmat / shmdt / shmctl(IPC_RMID)</code></td><td>יצירה / חיבור / ניתוק / מחיקת מקטע.</td></tr>
+      <tr><td><code>pipe(fd)</code></td><td><bdi dir="ltr">fd[0]</bdi> קצה קריאה, <bdi dir="ltr">fd[1]</bdi> קצה כתיבה.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Solving procedure — semop scenario</h3>
+  <ol class="recipe">
+    <li>כתבו את הערך ההתחלתי של כל סמפור (לאחר <bdi dir="ltr">SETVAL</bdi>).</li>
+    <li>עבור <code>sem_op=-1</code>: אם <bdi dir="ltr">value&gt;0</bdi> הפחיתו; אם <bdi dir="ltr">value=0</bdi> התהליך <strong>נחסם <bdi dir="ltr">(sleep/WAITING)</bdi></strong>.</li>
+    <li>עבור <code>sem_op=+1</code>: הגדילו והעירו ממתין אחד.</li>
+    <li>עבור <code>sem_op=0</code>: המשיכו אם <bdi dir="ltr">value=0</bdi>, אחרת היחסמו עד שיגיע ל-<bdi dir="ltr">0</bdi>.</li>
+    <li>אם <code>nsops&gt;1</code>: כל הפעולות מצליחות יחד או שהקריאה כולה נחסמת (פילוסופים = <bdi dir="ltr">2</bdi> מקלות בו-זמנית).</li>
+  </ol>
+  <pre>Start: S=1
+wait(S)  : sem_op=-1 → S=0, RUNNING
+wait(S)  : sem_op=-1 → S=0, process SLEEPS (was 0)
+signal(S): sem_op=+1 → S=0, waiter woken → RUNNING</pre>
+
+  <div class="traps">
+    <strong>Close-but-precise traps:</strong>
+    <ul>
+      <li><strong><bdi dir="ltr">sem_op=-1</bdi> על סמפור <bdi dir="ltr">0 →</bdi> נחסם/ישן</strong> (לא שגיאה, לא <bdi dir="ltr">-1</bdi>). תשובת <bdi dir="ltr">2024-B Q10</bdi> = <em>sleep</em>.</li>
+      <li><code>sem_op=-1</code> הוא <strong>wait/lock</strong>; <code>+1</code> הוא <strong>signal/unlock</strong> — לעולם לא הפוך.</li>
+      <li>הגדרת <code>sops.sem_op=-1</code> לבדה <strong>אינה עושה דבר</strong> — היא פועלת רק כשקוראים ל-<code>semop()</code>.</li>
+      <li>לאחר <code>IPC_RMID</code> המערך נעלם; <code>semop</code> מאוחר יותר מחזיר <strong>-1</strong>.</li>
+      <li><bdi dir="ltr">3</bdi> התנאים הם <strong>Mutual Exclusion, Progress, Bounded Waiting</strong>. <strong>הרעבה <bdi dir="ltr">(starvation)</bdi> היא תוצאה, ולא תנאי.</strong></li>
+      <li><bdi dir="ltr">Bakery</bdi> ללא מערך ה-<code>choosing[]</code> שובר את <strong>Mutual Exclusion</strong> (שניים בוחרים אותו מספר, שניהם נכנסים).</li>
+      <li><bdi dir="ltr">Spinlock</bdi> סובל מ-<strong><bdi dir="ltr">busy waiting +</bdi> הרעבה</strong>; הגרעין משתמש בו כי הוא <strong>אינו יכול לישון</strong>.</li>
+      <li>בסדר היצרן-צרכן יש חשיבות: <code>wait(empty)</code> <strong>לפני</strong> <code>wait(mutex)</code>, אחרת קיפאון.</li>
+      <li><code>semctl</code> לבדו מבצע <bdi dir="ltr">SETVAL</bdi>, <bdi dir="ltr">GETVAL</bdi> <strong>וגם</strong> <bdi dir="ltr">IPC_RMID</bdi> — אותה קריאה, <code>cmd</code> שונה.</li>
+      <li>לזיכרון משותף <strong>אין סנכרון מובנה</strong> — תמיד הגנו עליו בסמפור. גודל <code>shmget</code> מעוגל כלפי מעלה לדפים של <bdi dir="ltr">4K</bdi>.</li>
+      <li>תנאי הקיפאון של <bdi dir="ltr">Coffman (4)</bdi>: <bdi dir="ltr">Mutual Exclusion</bdi>, <bdi dir="ltr">Hold-and-Wait</bdi>, <bdi dir="ltr">No Preemption</bdi>, <bdi dir="ltr">Circular Wait</bdi>. שבירת אחד → אין קיפאון.</li>
+      <li><strong>TestAndSet</strong> היא פקודת <bdi dir="ltr">CPU</bdi> אטומית אחת (קריאת ערך ישן + קביעת <bdi dir="ltr">true</bdi>); אל תבלבלו עם שני צעדים נפרדים.</li>
+      <li>שכחת <code>IPC_RMID</code> / <code>ipcrm</code> משאירה אובייקטי <bdi dir="ltr">IPC</bdi> עד אתחול מחדש — נחשב לשגוי בתשובות קוד.</li>
+    </ul>
+  </div>
+</section>

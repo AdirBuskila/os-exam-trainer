@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Set language + direction BEFORE first paint to avoid an RTL/LTR flash. -->
+<script>try{var l=localStorage.getItem('os_trainer_lang');if(l!=='he')l='en';document.documentElement.lang=l;document.documentElement.setAttribute('dir',l==='he'?'rtl':'ltr');}catch(e){}</script>
 <title>OS Exam Trainer — HIT 61206</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -13,19 +15,21 @@
     <div class="count" id="count"></div>
   </header>
   <div class="toolbar">
-    <span class="chip" id="navHome" onclick="go('home')">🏠 Dashboard</span>
-    <span class="chip" onclick="go('mock')">📝 Mock Exam</span>
-    <span class="chip" onclick="go('weak')">🔁 Review Weak</span>
-    <span class="chip" onclick="go('years')">📅 By Year</span>
+    <span class="chip" id="navHome" onclick="go('home')" data-i18n="nav.dashboard">🏠 Dashboard</span>
+    <span class="chip" onclick="go('mock')" data-i18n="nav.mock">📝 Mock Exam</span>
+    <span class="chip" onclick="go('weak')" data-i18n="nav.weak">🔁 Review Weak</span>
+    <span class="chip" onclick="go('years')" data-i18n="nav.years">📅 By Year</span>
     <span class="spacer"></span>
+    <span class="chip" id="langBtn" onclick="I18N.toggleLang()">🌐 עברית</span>
     <span class="chip" id="focusBtn" onclick="toggleFocus()">🎯 Focus</span>
-    <span class="chip" onclick="toggleTheme()">🌓 Theme</span>
+    <span class="chip" onclick="toggleTheme()" data-i18n="nav.theme">🌓 Theme</span>
   </div>
   <div id="view"></div>
 </div>
 <div id="toast" class="toast hide"></div>
 <script src="js/engines.js"></script>
 <script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,16 +1,26 @@
 {
-  "_doc": "Defines the 'Focused' exam-scope view. Edit when the coordinator changes the syllabus, then run: python build.py",
+  "_doc": "Defines the 'Focused' exam-scope view. Edit when the coordinator changes the syllabus, then run: python build.py. *_he fields are the Hebrew renderings used when the UI language is Hebrew.",
   "focus": {
     "label": "2026 exam",
+    "label_he": "מבחן 2026",
     "examiner": "Dr. Yair Weissman (course coordinator)",
+    "examiner_he": "ד\"ר יאיר וייסמן (רכז הקורס)",
     "dated": "2026-06-09",
     "note": "Shortened semester: chapters 7 (Deadlock), 11 (File-System Implementation) and 12 (Disk Structure / disk geometry) were dropped, plus slides 6.25–6.27 and 10.11→end. Verified against the course slide decks: the only app topic affected is disk geometry.",
+    "note_he": "סמסטר מקוצר: פרקים 7 (Deadlock), 11 (File-System Implementation) ו-12 (Disk Structure / גאומטריית דיסק) הוסרו, וכן שקופיות 6.25–6.27 ו-10.11 ואילך. אומת מול מצגות הקורס: הנושא היחיד באפליקציה שמושפע הוא גאומטריית הדיסק.",
     "dropped": [
       "Ch 12 — Disk Structure (disk geometry)",
       "Ch 7 — Deadlock theory",
       "Ch 11 — File-System Implementation",
       "Slides 6.25–6.27 (binary-semaphore implementation)",
       "Slides 10.11+ (free-space / journaling)"
+    ],
+    "dropped_he": [
+      "פרק 12 — Disk Structure (גאומטריית דיסק)",
+      "פרק 7 — תורת ה-Deadlock",
+      "פרק 11 — File-System Implementation",
+      "שקופיות 6.25–6.27 (מימוש סמפור בינארי)",
+      "שקופיות 10.11 ואילך (ניהול שטח פנוי / journaling)"
     ]
   },
   "offExam": {
@@ -19,5 +29,12 @@
     "2022A-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
     "2022B-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam",
     "2023B-2": "Ch 12 (Disk Structure) — disk geometry, dropped for the 2026 exam"
+  },
+  "offExamHe": {
+    "2019A-2": "פרק 12 (Disk Structure) — גאומטריית דיסק, הוסר למבחן 2026",
+    "2020A-2": "פרק 12 (Disk Structure) — גאומטריית דיסק, הוסר למבחן 2026",
+    "2022A-2": "פרק 12 (Disk Structure) — גאומטריית דיסק, הוסר למבחן 2026",
+    "2022B-2": "פרק 12 (Disk Structure) — גאומטריית דיסק, הוסר למבחן 2026",
+    "2023B-2": "פרק 12 (Disk Structure) — גאומטריית דיסק, הוסר למבחן 2026"
   }
 }

@@ -1,0 +1,54 @@
+<h2>Interrupts, Traps &amp; Mode Switching</h2>
+
+<p>ה-<bdi dir="ltr">CPU</bdi> מריץ בדרך כלל קוד משתמש ב<strong>מצב משתמש (<bdi dir="ltr">user mode</bdi>)</strong>; רק הגרעין יכול לגעת בחומרה. שלושה אירועים מעבירים אותו ל<strong>מצב גרעין (<bdi dir="ltr">kernel mode</bdi>)</strong>: <strong>קריאת מערכת (<bdi dir="ltr">system call</bdi>)</strong> (התהליך מבקש), <strong>פסיקה (<bdi dir="ltr">interrupt</bdi>)</strong> (חומרה, אסינכרוני), או <strong>מלכודת (<bdi dir="ltr">trap</bdi>)</strong> (קוד התהליך עצמו שוגה, סינכרוני). דע את המונח המדויק ומי מפעיל אותו.</p>
+
+<table>
+  <thead>
+    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>אירוע חומרה אסינכרוני</td><td>Interrupt</td><td dir="rtl">פסיקה</td><td>אירוע אסינכרוני מהחומרה (<bdi dir="ltr">timer</bdi>, סיום <bdi dir="ltr">I/O</bdi>)</td></tr>
+    <tr><td>שגרת טיפול</td><td>ISR (Interrupt Service Routine)</td><td dir="rtl">שגרת שירות פסיקה</td><td>קוד גרעין שרץ כדי לשרת פסיקה</td></tr>
+    <tr><td>חריגה סינכרונית</td><td>Trap</td><td dir="rtl">מלכודת</td><td>פסיקת תוכנה — חריגה מקוד התהליך עצמו (<bdi dir="ltr">div/0</bdi>, גישה ל-<bdi dir="ltr">NULL</bdi>)</td></tr>
+    <tr><td>שעון שמפנה</td><td>Timer interrupt (PIT)</td><td dir="rtl">פסיקת שעון / טיימר</td><td>שעון חומרה; עוצר לולאה משתוללת, מאפשר הפנייה (<bdi dir="ltr">preemption</bdi>)</td></tr>
+    <tr><td>טבלת איתור שגרות טיפול</td><td>Interrupt vector</td><td dir="rtl">וקטור פסיקות</td><td>טבלה הממפה מספר פסיקה לכתובת ה-<bdi dir="ltr">ISR</bdi> שלה</td></tr>
+    <tr><td><bdi dir="ltr">I/O</bdi> עוקף את ה-<bdi dir="ltr">CPU</bdi></td><td>DMA (Direct Memory Access)</td><td dir="rtl">גישה ישירה לזיכרון</td><td>התקן <bdi dir="ltr">I/O</bdi> כותב ישירות ל-<bdi dir="ltr">RAM</bdi>, ללא <bdi dir="ltr">CPU</bdi></td></tr>
+    <tr><td>ה-<bdi dir="ltr">CPU</bdi> שואל שוב ושוב</td><td>Polling</td><td dir="rtl">תשאול / סקירה</td><td>ה-<bdi dir="ltr">CPU</bdi> שואל את ההתקן באופן פעיל "סיימת?" — מבזבז <bdi dir="ltr">CPU</bdi></td></tr>
+    <tr><td>סיבית הרשאה</td><td>Kernel vs User mode (mode bit)</td><td dir="rtl">מצב גרעין / מצב משתמש</td><td><bdi dir="ltr">mode bit = 0</bdi> גרעין (גישה מלאה), <bdi dir="ltr">1</bdi> משתמש (מוגבל)</td></tr>
+    <tr><td>קריאה אל הגרעין</td><td>System call</td><td dir="rtl">קריאת מערכת</td><td>נכנס לגרעין דרך החלפת מצב (<bdi dir="ltr">fork</bdi>, <bdi dir="ltr">read</bdi>, <bdi dir="ltr">write</bdi>, <bdi dir="ltr">semop</bdi>)</td></tr>
+    <tr><td>קריאה במרחב המשתמש בלבד</td><td>Library call</td><td dir="rtl">קריאת ספרייה</td><td>ללא החלפת מצב (<bdi dir="ltr">printf</bdi>, <bdi dir="ltr">strcpy</bdi>, <bdi dir="ltr">malloc</bdi>)</td></tr>
+    <tr><td>מעבר משתמש&harr;גרעין</td><td>Mode switch</td><td dir="rtl">החלפת מצב</td><td>אותו תהליך משנה את רמת ההרשאה; זול</td></tr>
+    <tr><td>החלפת התהליך</td><td>Context switch</td><td dir="rtl">החלפת הקשר</td><td>שמירת <bdi dir="ltr">PCB</bdi>, טעינת <bdi dir="ltr">PCB</bdi> אחר; יקר</td></tr>
+  </tbody>
+</table>
+
+<ol class="recipe">
+  <li>קרא את הטריגר: <em>שגיאת תהליך</em> &rarr; מלכודת; אירוע <em>חומרה</em> &rarr; פסיקה; <em>בקשה מפורשת</em> &rarr; קריאת מערכת.</li>
+  <li>כל אחד מהשלושה גורם ל<strong>החלפת מצב</strong> משתמש&rarr;גרעין (אותו תהליך, זול). רק כשהמתזמן מחליף תהליכים זוהי <strong>החלפת הקשר (<bdi dir="ltr">context switch</bdi>)</strong> (שומרת/טוענת <bdi dir="ltr">PCB</bdi>, יקרה).</li>
+  <li>החומרה יורה פסיקה &rarr; ה-<bdi dir="ltr">CPU</bdi> מאתר את ה<strong>וקטור פסיקות (<bdi dir="ltr">interrupt vector</bdi>)</strong> &rarr; קופץ ל-<strong><bdi dir="ltr">ISR</bdi></strong> המתאימה &rarr; חוזר לקוד שנקטע.</li>
+  <li>סווג קריאה: דורשת את הגרעין/החומרה &rarr; <strong>קריאת מערכת</strong>; קוד משתמש בלבד &rarr; <strong>קריאת ספרייה</strong>.</li>
+  <li>המתנת <bdi dir="ltr">I/O</bdi>: <bdi dir="ltr">CPU</bdi> שמסתובב בלולאה = <strong>תשאול (<bdi dir="ltr">polling</bdi>)</strong>; התקן-אל-<bdi dir="ltr">RAM</bdi> ללא <bdi dir="ltr">CPU</bdi> = <strong><bdi dir="ltr">DMA</bdi></strong>.</li>
+</ol>
+
+<pre>
+while(1){}   // runaway user process
+  -> TIMER INTERRUPT (hardware PIT) fires at quantum end
+  -> mode switch to kernel, run timer ISR (via interrupt vector)
+  -> scheduler may CONTEXT SWITCH to another process
+printf("hi")  -> library call (no mode switch)
+write(fd,...) -> system call (mode switch into kernel)
+*null = 0     -> TRAP (SIGSEGV, the process's own fault)
+</pre>
+
+<div class="traps">
+  <ul>
+    <li><strong>מלכודת מול פסיקה:</strong> מלכודת היא <em>סינכרונית</em> מקוד התהליך עצמו; פסיקה היא <em>אסינכרונית</em> מהחומרה. אל תחליף ביניהן.</li>
+    <li><strong>החלפת מצב &ne; החלפת הקשר:</strong> החלפת מצב = משתמש&harr;גרעין ב<em>אותו</em> תהליך (זול); החלפת הקשר = החלפת <em>תהליכים</em>, שמירה/טעינה של <bdi dir="ltr">PCB</bdi> (יקר).</li>
+    <li><strong>קריאת מערכת מול קריאת ספרייה:</strong> <code>printf</code>/<code>strcpy</code>/<code>malloc</code> הן קריאות ספרייה; <code>fork</code>/<code>read</code>/<code>write</code>/<code>semop</code> הן קריאות מערכת (החלפת מצב). (<code>malloc</code> עשויה לקרוא פנימית ל-<code>brk</code>/<code>mmap</code>.)</li>
+    <li><strong><bdi dir="ltr">DMA</bdi> כותב ל-<bdi dir="ltr">RAM</bdi></strong>, לא ל-<bdi dir="ltr">CPU</bdi> — כל מטרתו היא <em>לעקוף</em> את ה-<bdi dir="ltr">CPU</bdi>.</li>
+    <li><strong>תשאול מבזבז <bdi dir="ltr">CPU</bdi></strong> (שואל בלי הרף); פסיקות/<bdi dir="ltr">DMA</bdi> אינם.</li>
+    <li><strong>מי עוצר לולאה אינסופית?</strong> ה<strong>פסיקת שעון (<bdi dir="ltr">timer interrupt</bdi>)</strong> (נוצרת על ידי החומרה — ה-<bdi dir="ltr">PIT</bdi>/טיימר), לא מתזמן ה-<bdi dir="ltr">OS</bdi> בעצמו.</li>
+    <li><strong>שלוש (רק שלוש) דרכים להיכנס למצב גרעין:</strong> קריאת מערכת, פסיקה, מלכודת/חריגה. שום דבר אחר.</li>
+    <li><strong>ה-<bdi dir="ltr">spool</bdi> יושב על הדיסק הקשיח (<bdi dir="ltr">HDD</bdi>)</strong> — תור הדפסה/עבודות, לא מטמון מהיר.</li>
+  </ul>
+</div>
