@@ -18,9 +18,12 @@
 'use strict';
 
 var LS_KEY = 'os_trainer_lang';
-var DICT = (root.DATA && root.DATA.i18n) || { en: {}, he: {} };
-if (!DICT.en) DICT.en = {};
-if (!DICT.he) DICT.he = {};
+// Read the inlined dictionaries lazily on every lookup, so i18n can never be
+// defeated by script load-order or a late-arriving window.DATA.
+function dict() {
+  var d = (root.DATA && root.DATA.i18n) || {};
+  return { en: d.en || {}, he: d.he || {} };
+}
 
 function readLang() {
   var l;
@@ -36,8 +39,9 @@ function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function 
 /* ---- translation --------------------------------------------------------- */
 function has(d, k) { return d && Object.prototype.hasOwnProperty.call(d, k); }
 function t(key, params) {
-  var v = has(DICT[lang], key) ? DICT[lang][key]
-        : has(DICT.en, key)    ? DICT.en[key]
+  var D = dict();
+  var v = has(D[lang], key) ? D[lang][key]
+        : has(D.en, key)    ? D.en[key]
         : null;
   if (v == null) return key;                       // last-resort: surface the key
   if (params) v = v.replace(/\{(\w+)\}/g, function (m, p) {
@@ -111,6 +115,14 @@ var API = {
 };
 root.I18N = API;
 root.t = t; // convenience alias used throughout app.js
+
+// Self-apply to the static markup as soon as the DOM is parsed, so the toolbar
+// (and <html dir/lang>) is correct even if app.js is older/cached and never
+// calls applyLang(). app.js calling it again later is harmless (idempotent).
+if (doc && doc.addEventListener) {
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', applyLang);
+  else applyLang();
+}
 
 })(typeof window !== 'undefined' ? window : globalThis,
    typeof document !== 'undefined' ? document : { documentElement: {}, querySelectorAll: function () { return []; }, getElementById: function () { return null; } });
