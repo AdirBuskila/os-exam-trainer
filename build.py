@@ -40,8 +40,6 @@ OVERRIDES = {
     ("2019B", 9):  {"answer_he": "1", "answer_en": "1"},
     ("2019B", 10): {"answer_he": "shmctl (IPC_RMID)", "answer_en": "shmctl (IPC_RMID)"},
     ("2017A", 9):  {"answer_he": "00", "answer_en": '"00"'},
-    ("2020B", 6):  {"answer_he": "3 (לפי המחוון); SJF נוקשה=4", "answer_en": "3 ms (key); strict SJF=4",
-                    "note": "Course key computed SJF as preemptive (SRTF) -> 3. Pure non-preemptive SJF = 4 ms. Write the course's value."},
     ("2023B", 6):  {"answer_he": "הרעבה / Bounded waiting", "answer_en": "Bounded waiting (-> starvation)",
                     "note": "Official key: 'starvation/הרעבה'. The violated CONDITION is Bounded Waiting; starvation is its consequence. Both usually accepted."},
     ("2017A", 7):  {"note": "Official phrasing. Real reason: the MMU translates on every memory access — far faster than trapping to the OS each time."},

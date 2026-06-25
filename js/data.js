@@ -21,7 +21,7 @@ window.DATA = {
 "id": "scheduling",
 "title": "Scheduling",
 "he": "תזמון",
-"n": 21
+"n": 20
 },
 {
 "id": "disk",
@@ -985,19 +985,6 @@ window.DATA = {
 "needs_answer": false,
 "exam": "2020B",
 "id": "2020B-5"
-},
-{
-"q": 6,
-"section": "scheduling",
-"type": "compute",
-"he": "נתונים 3 תהליכים ופרצי זמן העיבוד שלהם: תהליך 1 – 7 מילי-שניות הגיע בזמן 0, תהליך 2 – 3 מילי-שניות הגיע בזמן 1, תהליך 3 – 22 מילי-שניות הגיע בזמן 4. בשיטת תזמון התהליכים SJF מה יהיה זמן ההמתנה הממוצע בתזמון תהליכים אלו?",
-"en": "Given 3 processes with burst times and arrival times, compute the average waiting time under SJF scheduling.",
-"answer_he": "3 (לפי המחוון); SJF נוקשה=4",
-"answer_en": "3 ms (key); strict SJF=4",
-"needs_answer": false,
-"exam": "2020B",
-"note": "Course key computed SJF as preemptive (SRTF) -> 3. Pure non-preemptive SJF = 4 ms. Write the course's value.",
-"id": "2020B-6"
 },
 {
 "q": 7,
