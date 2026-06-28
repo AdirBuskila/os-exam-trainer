@@ -1,58 +1,92 @@
 <section class="lesson" id="lesson-memory">
-  <h2>זיכרון: זיכרון וירטואלי, דפדוף ומסלול ה-<bdi dir="ltr">Page-Fault</bdi></h2>
+  <h2>זיכרון ודפדוף: זיכרון וירטואלי, ה-<bdi dir="ltr">MMU</bdi> ומסלול ה-<bdi dir="ltr">Page-Fault</bdi></h2>
 
-  <p>זיכרון וירטואלי מעניק לכל תהליך מרחב כתובות מבודד הגדול יותר מ-<bdi dir="ltr">RAM</bdi>. ה-<strong><bdi dir="ltr">MMU</bdi></strong> מתרגם וירטואלי→פיזי דרך <strong>טבלת דפים</strong> לכל תהליך; ה-<strong><bdi dir="ltr">TLB</bdi></strong> מאחסן במטמון תרגומים אחרונים. רוב הנקודות במבחן כאן הן שליפת מושג במילה אחת בתוספת חישובי מסגרת/גישה קטנים בחזקות של <bdi dir="ltr">2</bdi>.</p>
+  <p>כל תוכנית רוצה גוש זיכרון גדול משלה, <strong>שנראה רציף</strong>, שמתחיל בכתובת 0, אך ה-<bdi dir="ltr">RAM</bdi> האמיתי <strong>מוגבל ומשותף</strong> בין תהליכים רבים. הפתרון הוא <strong>זיכרון וירטואלי + דפדוף</strong>: לתת לכל תוכנית מרחב כתובות מדומה (וירטואלי), לחתוך אותו ל<strong>דפים</strong> בגודל קבוע, ולפזר את הדפים בכל מקום ב-<bdi dir="ltr">RAM</bdi> הפיזי (או להשאיר אותם בדיסק עד שיידרשו). חומרת ה-<strong><bdi dir="ltr">MMU</bdi></strong> מתרגמת את הכתובת הווירטואלית לפיזית ב<strong>כל גישה בודדת</strong>.</p>
 
   <table>
     <thead>
       <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
     </thead>
     <tbody>
-      <tr><td>זיכרון וירטואלי</td><td>Virtual Memory</td><td dir="rtl">זיכרון וירטואלי</td><td>תהליך יכול להיות גדול מ-<bdi dir="ltr">RAM</bdi> פיזי; בידוד</td></tr>
-      <tr><td>דף מול מסגרת</td><td>Page / Frame</td><td dir="rtl">דף / מסגרת</td><td>דף = יחידה וירטואלית; מסגרת = יחידה פיזית (אותו גודל)</td></tr>
-      <tr><td>טבלת דפים</td><td>Page Table</td><td dir="rtl">טבלת דפים</td><td>מיפוי דף→מסגרת לכל תהליך</td></tr>
-      <tr><td><bdi dir="ltr">MMU</bdi></td><td>Memory Management Unit</td><td dir="rtl">יחידת ניהול זיכרון</td><td>חומרת <bdi dir="ltr">CPU</bdi> המתרגמת כתובת וירטואלית→פיזית</td></tr>
-      <tr><td><bdi dir="ltr">TLB</bdi></td><td>Translation Lookaside Buffer</td><td dir="rtl">מטמון תרגום כתובות</td><td>מטמון של תרגומי כתובות אחרונים (~<bdi dir="ltr">90%</bdi> פגיעה)</td></tr>
-      <tr><td><bdi dir="ltr">PTBR</bdi></td><td>Page Table Base Register</td><td dir="rtl">אוגר בסיס טבלת הדפים</td><td>אוגר המצביע לתחילת טבלת הדפים (ב-<bdi dir="ltr">PCB</bdi>)</td></tr>
-      <tr><td>סיבית תקפות</td><td>Present (Valid) bit</td><td dir="rtl">סיבית תקפות</td><td>נקבעת על ידי ה-<bdi dir="ltr">OS</bdi>; הדף טעון ב-<bdi dir="ltr">RAM</bdi></td></tr>
-      <tr><td>סיבית התייחסות</td><td>Accessed (Reference) bit</td><td dir="rtl">סיבית התייחסות</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל קריאה או כתיבה</td></tr>
-      <tr><td>סיבית שינוי</td><td>Dirty (Modify) bit</td><td dir="rtl">סיבית שינוי</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל כתיבה</td></tr>
-      <tr><td>שגיאת דף</td><td>Page Fault</td><td dir="rtl">פסיקת דף / כשל דף</td><td>גישה לדף שאינו בזיכרון (<bdi dir="ltr">trap</bdi> ל-<bdi dir="ltr">OS</bdi>)</td></tr>
-      <tr><td>דפדוף לפי דרישה</td><td>Demand Paging</td><td dir="rtl">דפדוף לפי דרישה</td><td>טעינת דף רק בגישה הראשונה אליו</td></tr>
-      <tr><td>פיצול פנימי</td><td>Internal Fragmentation</td><td dir="rtl">פיצול פנימי</td><td>שטח מבוזבז בתוך הדף האחרון בשימוש חלקי</td></tr>
-      <tr><td>העתקה בעת כתיבה</td><td>Copy-on-Write (COW)</td><td dir="rtl">העתקה בעת כתיבה</td><td>דפים משותפים לקריאה בלבד; מועתקים רק בכתיבה הראשונה</td></tr>
-      <tr><td>טבלת דפים רב-רמתית</td><td>Multilevel Page Table</td><td dir="rtl">טבלת דפים רב-רמתית</td><td>היררכיה של טבלאות; חוסכת זיכרון (טוענת רק רמות נחוצות)</td></tr>
-      <tr><td>זמן גישה אפקטיבי</td><td>EAT</td><td dir="rtl">זמן גישה אפקטיבי</td><td><bdi dir="ltr">α·hit + (1-α)·miss</bdi> עלות</td></tr>
+      <tr><td>כתובת וירטואלית</td><td>Virtual (logical) address</td><td dir="rtl">כתובת לוגית/וירטואלית</td><td>הכתובת המדומה שהתוכנית משתמשת בה; מתחילה ב-0, נראית רציפה</td></tr>
+      <tr><td>כתובת פיזית</td><td>Physical address</td><td dir="rtl">כתובת פיזית</td><td>הכתובת האמיתית ב-<bdi dir="ltr">RAM</bdi></td></tr>
+      <tr><td>דף מול מסגרת</td><td>Page / Frame</td><td dir="rtl">דף / מסגרת</td><td>דף = בלוק במרחב הווירטואלי; מסגרת = בלוק בגודל זהה ב-<bdi dir="ltr">RAM</bdi></td></tr>
+      <tr><td>טבלת דפים</td><td>Page Table</td><td dir="rtl">טבלת דפים</td><td>מיפוי לכל תהליך: מספר דף → מספר מסגרת (וסיביות סטטוס)</td></tr>
+      <tr><td><bdi dir="ltr">MMU</bdi></td><td>Memory Management Unit</td><td dir="rtl">יחידת ניהול זיכרון</td><td>החומרה שמתרגמת וירטואלי→פיזי בכל גישה</td></tr>
+      <tr><td><bdi dir="ltr">TLB</bdi></td><td>Translation Lookaside Buffer</td><td dir="rtl">מטמון תרגום כתובות</td><td>מטמון קטן של תרגומי דף→מסגרת אחרונים, בתוך ה-<bdi dir="ltr">MMU</bdi></td></tr>
+      <tr><td>תקלת דף</td><td>Page Fault</td><td dir="rtl">תקלת דף</td><td>גישה לדף שאינו ב-<bdi dir="ltr">RAM</bdi> → מלכודת ל-<bdi dir="ltr">OS</bdi> → טעינה מהדיסק</td></tr>
+      <tr><td><bdi dir="ltr">PTBR</bdi></td><td>Page Table Base Register</td><td dir="rtl">אוגר בסיס טבלת הדפים</td><td>אוגר המצביע אל טבלת הדפים של התהליך הנוכחי</td></tr>
+      <tr><td>עימוד לפי דרישה</td><td>Demand Paging</td><td dir="rtl">עימוד לפי דרישה</td><td>טעינת דף מהדיסק רק כשהוא באמת נדרש</td></tr>
+      <tr><td>פיצול פנימי</td><td>Internal Fragmentation</td><td dir="rtl">פיצול פנימי</td><td>שטח מבוזבז בתוך הדף השלם האחרון שהוקצה</td></tr>
+      <tr><td>העתקה בעת כתיבה</td><td>Copy-on-Write (COW)</td><td dir="rtl">העתקה בעת כתיבה</td><td>הבן חולק את דפי האב; דף מועתק רק כשאחד מהם כותב</td></tr>
     </tbody>
   </table>
 
-  <h3>חישובי מסגרת / דף ו-<bdi dir="ltr">TLB-miss</bdi></h3>
+  <h3>חישובי כתובת וביטים — המתכון לשימוש חוזר</h3>
   <ol class="recipe">
-    <li>הביעו את <bdi dir="ltr">RAM</bdi> וגודל הדף כחזקות של <bdi dir="ltr">2</bdi>. <strong><bdi dir="ltr">#frames = RAM / page_size</bdi></strong> ← החסירו מעריכים.</li>
-    <li><bdi dir="ltr">offset</bdi> ביטים = <bdi dir="ltr">log2(page_size)</bdi>; ביטים של מספר-דף = <bdi dir="ltr">address_bits − offset bits</bdi>.</li>
-    <li><bdi dir="ltr">#pages</bdi> (או <bdi dir="ltr">#frames</bdi>) = <bdi dir="ltr">2^(page-number bits)</bdi>.</li>
-    <li>מרחב וירטואלי רב-רמתי = <bdi dir="ltr">(entries per level)^levels × page_size</bdi>.</li>
-    <li><strong><bdi dir="ltr">TLB hit</bdi></strong> = גישה אחת לזיכרון (הדף). <strong><bdi dir="ltr">TLB miss</bdi></strong> = <bdi dir="ltr">levels + 1</bdi> גישות (מעבר על כל <bdi dir="ltr">N</bdi> הטבלאות, ואז הדף).</li>
+    <li><strong>ביטי <bdi dir="ltr">offset</bdi></strong> = <bdi dir="ltr">log2</bdi>(גודל הדף) — הביטים הדרושים לכתובת של בית בודד בתוך דף.</li>
+    <li><strong>ביטי מספר-הדף</strong> = ביטי הכתובת − ביטי ה-<bdi dir="ltr">offset</bdi>.</li>
+    <li><strong>מספר הרשומות בטבלת הדפים</strong> = 2 בחזקת (ביטי מספר-הדף) — רשומה אחת לכל דף וירטואלי.</li>
+    <li><strong>מספר המסגרות ב-<bdi dir="ltr">RAM</bdi></strong> = גודל הזיכרון הפיזי / גודל הדף = 2 בחזקת (ביטי הכתובת הפיזית − ביטי ה-<bdi dir="ltr">offset</bdi>).</li>
+    <li><strong>פגיעת <bdi dir="ltr">TLB</bdi></strong> = גישה אחת לזיכרון (רק הנתון). <strong>החטאת <bdi dir="ltr">TLB</bdi></strong> עם דפדוף בן <bdi dir="ltr">k</bdi> רמות = <bdi dir="ltr">k + 1</bdi> גישות (מעבר על כל <bdi dir="ltr">k</bdi> הטבלאות, ואז הנתון).</li>
   </ol>
+
+  <h3>דוגמאות פתורות</h3>
   <pre>
-42-bit virtual address, page size 1MB = 2^20
-  page-number bits = 42 - 20 = 22  =>  #frames = 2^22
-3-level multilevel paging, TLB miss:
-  accesses = 3 (tables) + 1 (page) = 4
+2024A Q7 - 42-bit virtual address, 1MB pages:
+  page size      = 1 MB = 2^20 bytes
+  offset bits    = log2(2^20)      = 20
+  #frames        = 2^(42 - 20)     = 2^22      &lt;- answer
+
+2021A Q8 - max internal fragmentation, page size 4096:
+  max internal fragmentation = page size - 1
+                             = 4096 - 1 = 4095 &lt;- answer
+
+3-level paging, on a TLB miss:
+  accesses = 3 (one per page-table level) + 1 (the data)
+           = 4                                 &lt;- answer
   </pre>
 
+  <h3>מה המבחן שואל</h3>
+  <table>
+    <thead>
+      <tr><th>כרטיס</th><th>שאלה (מקוצרת)</th><th>תשובה</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2017A Q7</td><td>מדוע התרגום וירטואלי→פיזי נעשה ב-<bdi dir="ltr">MMU</bdi> ולא ב-<bdi dir="ltr">OS</bdi></td><td>חומרה בלתי תלויה ב-<bdi dir="ltr">CPU</bdi> (רצה בכל גישה ← מהירה הרבה יותר ממלכודת ל-<bdi dir="ltr">OS</bdi>)</td></tr>
+      <tr><td>2019A Q6</td><td>תפקיד ה-<bdi dir="ltr">MMU</bdi></td><td>תרגום כתובת וירטואלית → כתובת פיזית</td></tr>
+      <tr><td>2023A Q7</td><td>מה עושה ה-<bdi dir="ltr">MMU</bdi> כשסיבית התקפות כבויה</td><td>נופל למלכודת ל-<bdi dir="ltr">OS</bdi> (תקלת דף)</td></tr>
+      <tr><td>2022A Q8</td><td>איזו פסיקה גורם ה-<bdi dir="ltr">MMU</bdi> כשסיבית התקפות כבויה</td><td>תקלת דף</td></tr>
+      <tr><td>2017B Q8</td><td>שם הסיבית ב-<bdi dir="ltr">PTE</bdi> שקובעת אם הגישה תיכשל</td><td>סיבית תקפות (<bdi dir="ltr">valid-invalid</bdi>)</td></tr>
+      <tr><td>2017B Q7</td><td>מדוע מעדיפים את ה-<bdi dir="ltr">TLB</bdi> על פני טבלת הדפים המלאה</td><td>הוא חוסך גישה נוספת לזיכרון</td></tr>
+      <tr><td>2021B Q8</td><td>איזה זמן גישה ה-<bdi dir="ltr">TLB</bdi> חוסך</td><td>את הגישה לטבלת הדפים ב-<bdi dir="ltr">RAM</bdi> (הגישה הנוספת)</td></tr>
+      <tr><td>2020A Q9</td><td>כיצד נקרא המטמון של טבלת הדפים</td><td><bdi dir="ltr">TLB</bdi></td></tr>
+      <tr><td>2019A Q7</td><td>הרכיב שממזער את הגישות המרובות לטבלת הדפים</td><td><bdi dir="ltr">TLB</bdi></td></tr>
+      <tr><td>2022A Q7</td><td>מה מפחית את האיטיות של דפדוף רב-רמתי</td><td><bdi dir="ltr">TLB</bdi></td></tr>
+      <tr><td>2024B Q7</td><td>דפדוף 3 רמות, בהחטאת <bdi dir="ltr">TLB</bdi>: כמה גישות לזיכרון</td><td>4 (3 רמות + דף הנתונים)</td></tr>
+      <tr><td>2019B Q6</td><td>אחרי תקלת דף לגיטימית, לאיזו פקודה חוזרים</td><td>הפקודה שגרמה לתקלה</td></tr>
+      <tr><td>2020B Q10</td><td>בתקלת דף, ה-<bdi dir="ltr">OS</bdi> מביא דף מהדיסק אל מה</td><td><bdi dir="ltr">RAM</bdi></td></tr>
+      <tr><td>2019B Q7</td><td>מה מכילה טבלת הדפים של תהליך חדש שתוזמן</td><td>טבלה ריקה</td></tr>
+      <tr><td>2021B Q9</td><td>מתי דף נטען מהדיסק בעימוד לפי דרישה</td><td>כשנדרשים נתונים שבו</td></tr>
+      <tr><td>2023B Q8</td><td>בעימוד לפי דרישה, אילו דפים נטענים ל-<bdi dir="ltr">RAM</bdi></td><td>הדפים שנמצאים בשימוש בפועל</td></tr>
+      <tr><td>2024A Q7</td><td>כתובת וירטואלית 42 ביט, דפי 1 <bdi dir="ltr">MB</bdi>: מספר המסגרות האפשריות</td><td><bdi dir="ltr">2^22</bdi> (42 − 20 = 22)</td></tr>
+      <tr><td>2021A Q8</td><td>פיצול פנימי מרבי בדף אחד, גודל דף 4096</td><td>4095 בתים (גודל הדף − 1)</td></tr>
+      <tr><td>2023B Q7</td><td>שם הפיצול שנובע מהקצאה ביחידות של דף שלם</td><td>פיצול פנימי</td></tr>
+      <tr><td>2022B Q7</td><td>(<bdi dir="ltr">Linux</bdi>) כתיבה אל שטח של פיצול פנימי</td><td>הערך נכתב, ללא תקלה</td></tr>
+      <tr><td>2020A Q10</td><td>הבן חולק את דפי האב עד שכתיבה מעתיקה</td><td>העתקה בעת כתיבה (<bdi dir="ltr">COW</bdi>)</td></tr>
+      <tr><td>2021A Q9</td><td>מספר אוגרי ה-<bdi dir="ltr">PTBR</bdi> המרבי לכל ליבת <bdi dir="ltr">CPU</bdi></td><td>1</td></tr>
+    </tbody>
+  </table>
+
   <div class="traps">
-    <strong>מלכודות קרובות-אך-מדויקות</strong>
+    <strong>המלכודות שעולות נקודות</strong>
     <ul>
-      <li><strong>מי קובע איזו סיבית:</strong> ה-<bdi dir="ltr">CPU/MMU</bdi> קובע את הסיביות <em><bdi dir="ltr">Reference</bdi></em> ו-<em><bdi dir="ltr">Dirty</bdi></em> (אוטומטית בגישה/כתיבה). ה-<em><bdi dir="ltr">OS</bdi></em> קובע את סיבית ה-<em><bdi dir="ltr">Present/Valid</bdi></em> ו<em>מאפס</em> את סיבית ה-<bdi dir="ltr">reference</bdi> (למשל ב-<bdi dir="ltr">Clock</bdi>).</li>
-      <li><strong><bdi dir="ltr">TLB miss = N+1</bdi> גישות</strong>, לא <bdi dir="ltr">N</bdi> — לעולם אל תשכחו את הגישה לדף עצמו.</li>
-      <li><strong>מסגרות ≠ דפים:</strong> מספר המסגרות הפיזיות נגזר מגודל ה-<bdi dir="ltr">RAM</bdi>; מספר הדפים הווירטואליים נגזר ממרחב הכתובות. אל תערבבו ביניהם.</li>
-      <li><strong>דף מול <bdi dir="ltr">Swap</bdi>:</strong> דפדוף מעביר דף בודד (<bdi dir="ltr">4KB</bdi>); <bdi dir="ltr">swap</bdi> (<bdi dir="ltr">roll out/in</bdi>) מעביר תהליך שלם. ב-<bdi dir="ltr">Linux</bdi> דפים שפונו עוברים אל ה-<em><bdi dir="ltr">swap partition</bdi></em>.</li>
-      <li><strong>פיצול פנימי</strong> (לא חיצוני) הוא זה של הדפדוף — בזבוז בתוך הדף האחרון; בדפדוף טהור אין פיצול חיצוני.</li>
-      <li><strong><bdi dir="ltr">COW</bdi></strong> הוא מה שהופך את <code>fork()</code> לזול: דפים משותפים לקריאה בלבד ומועתקים רק כשצד אחד כותב — לא מועתקים מראש.</li>
-      <li><strong>טבלה רב-רמתית חוסכת זיכרון</strong> (לא מחזיקים את כל הטבלה) אך <em>עולה</em> בגישות נוספות לכל תרגום.</li>
-      <li><strong>אנומליית <bdi dir="ltr">Belady</bdi></strong> (יותר מסגרות ← יותר שגיאות) שייכת ל-<em><bdi dir="ltr">FIFO</bdi></em> בלבד; <bdi dir="ltr">LRU</bdi> ו-<bdi dir="ltr">OPT</bdi> הם אלגוריתמי מחסנית ולעולם אינם סובלים ממנה.</li>
-      <li><strong>ענו במונח האנגלי, ‎≤<bdi dir="ltr">5</bdi> מילים</strong> (למשל <bdi dir="ltr">"Page fault"</bdi>, <bdi dir="ltr">"Copy-on-Write"</bdi>) — איות בעברית מסוכן.</li>
+      <li><strong>ה-<bdi dir="ltr">MMU</bdi> הוא חומרה שרצה בכל גישה</strong> — לכן הוא חומרה ולא ה-<bdi dir="ltr">OS</bdi> (מהירות). הוא רק <em>מאותת</em> על התקלה; ה-<strong><bdi dir="ltr">OS</bdi></strong> מחליט מה לעשות (טעינה מהדיסק או הריגת התהליך).</li>
+      <li><strong>סיבית התקפות (<bdi dir="ltr">valid-invalid</bdi>) מפעילה את תקלת הדף.</strong> כשהיא כבויה ה-<bdi dir="ltr">MMU</bdi> מעורר תקלת דף ונופל למלכודת ל-<bdi dir="ltr">OS</bdi>. אל תענו "<bdi dir="ltr">dirty bit</bdi>" או "<bdi dir="ltr">reference bit</bdi>" — אלה לצורך החלפת דפים.</li>
+      <li><strong>ה-<bdi dir="ltr">TLB</bdi> חוסך את הגישה הנוספת ל-<bdi dir="ltr">RAM</bdi></strong> (קריאת טבלת הדפים), לא את גישת הנתונים. <strong>החטאה ב-<bdi dir="ltr">k</bdi> רמות = <bdi dir="ltr">k + 1</bdi></strong> גישות; החטאה ב-3 רמות = 4, לא 3. את הנתון עדיין צריך לקרוא.</li>
+      <li><strong>אחרי תקלה, מריצים מחדש את הפקודה שכשלה</strong> — בדיוק את הפקודה שגרמה לתקלה, לא את הבאה — והדף נטען ל-<strong><bdi dir="ltr">RAM</bdi></strong>, לא ל-<bdi dir="ltr">TLB</bdi> ולא למטמון.</li>
+      <li><strong>דפדוף גורם לפיצול פנימי, לא חיצוני</strong> — בזבוז בתוך הדף האחרון (כל מסגרת מתאימה לכל דף, ולכן אין פיצול חיצוני). כתיבה אל שטח הפיצול הפנימי שהוקצה לכם אך אינו בשימוש → הערך נכתב, <strong>ללא תקלה</strong>.</li>
+      <li><strong><bdi dir="ltr">PTBR</bdi> = 1 לכל ליבה.</strong> ליבה מריצה תהליך אחד בכל רגע, ולכן דרוש לה בדיוק מצביע אחד אל "טבלת הדפים הנוכחית".</li>
     </ul>
   </div>
 </section>

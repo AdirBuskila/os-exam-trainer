@@ -1,46 +1,72 @@
-<h2>fork() &mdash; Counting Processes &amp; Prints</h2>
+<h2>Fork Counting &mdash; Processes &amp; Prints</h2>
 
-<p><code>fork()</code> creates a child that resumes <em>after</em> the fork line, with copied memory and file descriptors. It returns the <strong>child PID to the parent</strong>, <strong>0 to the child</strong>, and <strong>-1 on failure</strong> (no child created). The child keeps running every later fork too &mdash; so <em>k</em> fork calls reached by all give <strong>2<sup>k</sup></strong> processes.</p>
+<p>The whole topic is one problem: <strong>fork()</strong> duplicates the running process, and both copies continue from the <em>same next line</em>. Given a short C program with one or more fork calls, the exam asks you to count <strong>how many processes exist</strong> and/or <strong>how many times a line is printed</strong>. Draw the tree, label the returns, apply the condition, count &mdash; every Q9 falls to this.</p>
 
 <table>
   <thead>
     <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
   </thead>
   <tbody>
-    <tr><td>Create child process</td><td>fork()</td><td dir="rtl">&#1508;&#1497;&#1510;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>Returns child-PID to parent, 0 to child, -1 on failure</td></tr>
-    <tr><td>Total processes after k forks</td><td>2<sup>k</sup> rule</td><td dir="rtl">&#1502;&#1505;&#1508;&#1512; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501;</td><td>All forks reached by everyone &rArr; 2<sup>k</sup> processes</td></tr>
-    <tr><td>Child=0 in expression</td><td>fork() == 0 test</td><td dir="rtl">&#1488;&#1489; / &#1489;&#1503;</td><td>Branch taken by the child only</td></tr>
-    <tr><td>Shared address space</td><td>Copy-on-Write (COW)</td><td dir="rtl">&#1492;&#1506;&#1514;&#1511;&#1492; &#1489;&#1506;&#1514; &#1499;&#1514;&#1497;&#1489;&#1492;</td><td>Pages shared until one side writes</td></tr>
-    <tr><td>Duplicate print bug</td><td>printf buffer / flush</td><td dir="rtl">&#1495;&#1500;&#1510;&#1497;&#1503; &#1492;&#1491;&#1508;&#1505;&#1492;</td><td>Un-flushed buffer copied &rArr; line prints twice</td></tr>
-    <tr><td>OR short-circuit</td><td>|| (lazy)</td><td dir="rtl">&#1488;&#1493; &#1500;&#1493;&#1490;&#1497;</td><td>If left is non-zero, right fork is skipped</td></tr>
-    <tr><td>AND short-circuit</td><td>&amp;&amp; (lazy)</td><td dir="rtl">&#1493;&#1490;&#1501; &#1500;&#1493;&#1490;&#1497;</td><td>If left is 0, right fork is skipped</td></tr>
+    <tr><td>Create child process</td><td>fork()</td><td dir="rtl">&#1508;&#1497;&#1510;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>Returns child-PID to parent, 0 to child, -1 on error</td></tr>
+    <tr><td>Total after N forks</td><td>2<sup>N</sup> rule</td><td dir="rtl">&#1502;&#1505;&#1508;&#1512; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501;</td><td>N forks reached by everyone &rArr; 2<sup>N</sup> processes</td></tr>
+    <tr><td>Child-only branch</td><td>fork() == 0 test</td><td dir="rtl">&#1488;&#1489; / &#1489;&#1503;</td><td>True only in the child (parent saw a positive PID)</td></tr>
+    <tr><td>AND short-circuit</td><td>&amp;&amp; (lazy)</td><td dir="rtl">&#1493;&#1490;&#1501; &#1500;&#1493;&#1490;&#1497;</td><td>Left is 0 (false) &rArr; right fork is skipped, no child</td></tr>
+    <tr><td>OR short-circuit</td><td>|| (lazy)</td><td dir="rtl">&#1488;&#1493; &#1500;&#1493;&#1490;&#1497;</td><td>Left is &gt;0 (true) &rArr; right fork is skipped, no child</td></tr>
+    <tr><td>No short-circuit</td><td>arithmetic / comparison</td><td dir="rtl">&#1495;&#1497;&#1505;&#1493;&#1489; / &#1492;&#1513;&#1493;&#1493;&#1488;&#1492;</td><td><strong>*</strong> <strong>-</strong> <strong>+</strong> <strong>==</strong> never skip &mdash; every fork runs, full 2<sup>N</sup></td></tr>
+    <tr><td>Unreachable code</td><td>while(1) / exit()</td><td dir="rtl">&#1511;&#1493;&#1491; &#1513;&#1488;&#1497;&#1504;&#1493; &#1504;&#1490;&#1497;&#1513;</td><td>Forks after an infinite loop or exit never run &mdash; don't count</td></tr>
   </tbody>
 </table>
 
 <ol class="recipe">
-  <li>Draw the <strong>process tree</strong>; mark what each fork returned at each node (parent = PID&gt;0, child = 0).</li>
-  <li>If forks are chained with <code>*</code>, <code>-</code>, <code>+</code>: every process runs <em>all</em> calls (no short-circuit). With <code>||</code>/<code>&amp;&amp;</code>: skip the second fork when the first short-circuits.</li>
-  <li>Total processes = <strong>2<sup>(number of forks reached by all)</sup></strong>.</li>
-  <li>For "how many prints": evaluate the <code>if</code> expression per process; count those where it is true (e.g. product == 0).</li>
-  <li>Count the parent itself too &mdash; it executes the line as well.</li>
+  <li><strong>Draw the process tree.</strong> Start with 1 process; each fork reached by a branch doubles it. The leaves are the total processes.</li>
+  <li><strong>Label each process</strong> with the return value it saw at every fork (parent got PID&gt;0, child got 0).</li>
+  <li><strong>Apply the condition.</strong> With <strong>&amp;&amp;</strong>/<strong>||</strong> a fork can be skipped (smaller tree); with <strong>*</strong>/<strong>-</strong>/<strong>+</strong>/<strong>==</strong> all forks run. Test the guard per process to mark who prints.</li>
+  <li><strong>Count</strong> the marked processes (and remember to include the original parent).</li>
 </ol>
 
 <pre>
-if (fork() * fork() * fork() == 0) printf("fork\n");
-  3 forks  -> 2^3 = 8 processes total.
-  Only the original root got 3 positive PIDs (product != 0) -> no print.
-  Every other process had >=1 fork return 0 (product == 0).
-  prints = 8 - 1 = 7   (VERIFIED by simulation; a "4" sometimes seen is wrong for this expression)
-Simpler: fork() - fork() == 0  -> "fork" prints 1 time.
+Plain forks: N calls reached by everyone -> 2^N processes.
+  fork(); fork(); fork(); printf("x");   // 2^3 = 8 prints
+
+fork() * fork() * fork() == 0   ->  prints 7   (2024A Q9)
+  No short-circuit: all 3 forks run -> 8 processes.
+  Product != 0 only for the all-parent process (3 positive PIDs).
+  The other 8 - 1 = 7 had >=1 fork return 0 -> product == 0 -> print.
+
+fork() - fork() == 0   ->  prints 1   (2024B Q9)
+  No short-circuit: 2 forks run -> 4 processes.
+  first - second == 0 only when both returns are equal: 0 - 0 = 0
+  -> the all-child process only -> 1 print.
+
+Rule of thumb:  *...==0 -> 2^N - 1 print ;  -...==0 -> 1 prints.
 </pre>
+
+<h3>What the exam asks</h3>
+
+<table>
+  <thead>
+    <tr><th>Card</th><th>Question</th><th>Answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q9</td><td>Output of printf with integer division over <strong>fork()+100</strong></td><td><strong>"00"</strong></td></tr>
+    <tr><td>2017B Q9</td><td>Times 'a' printed by the fork loop</td><td><strong>8</strong> (three forks, 2<sup>3</sup>)</td></tr>
+    <tr><td>2019A Q9</td><td>Processes created + state (infinite loops between forks)</td><td><strong>2 processes, running</strong> (1 child)</td></tr>
+    <tr><td>2019B Q9</td><td>Times 'a' printed under <strong>if (fork() &amp;&amp; fork())</strong></td><td><strong>Once</strong></td></tr>
+    <tr><td>2022A Q9</td><td>Times "HIT" printed, single <strong>fork()</strong></td><td><strong>2</strong></td></tr>
+    <tr><td>2022B Q9</td><td>Times "HIT", nested forks compared by inequality</td><td><strong>3</strong></td></tr>
+    <tr><td>2023A Q9</td><td>Times "fork" printed (one fork)</td><td><strong>2</strong></td></tr>
+    <tr><td>2023B Q9</td><td>Times "fork" printed (two forks)</td><td><strong>4</strong></td></tr>
+    <tr><td>2024A Q9</td><td><strong>fork()*fork()*fork()==0</strong> prints</td><td><strong>7</strong> (8 &minus; the all-parent)</td></tr>
+    <tr><td>2024B Q9</td><td><strong>fork()-fork()==0</strong> prints</td><td><strong>1</strong> (the all-child)</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>Return values:</strong> parent gets child PID (positive), child gets <strong>0</strong>, failure gives <strong>-1</strong> to parent only &mdash; never mix these up.</li>
-    <li><strong>Child continues after the fork line</strong> and executes every later fork too &mdash; it does not restart at main.</li>
-    <li><strong>printf without <code>\n</code></strong> stays in the libc buffer; fork copies it, so it prints <em>twice</em> at exit. Fix: <code>fflush</code> or <code>\n</code>.</li>
-    <li><strong><code>||</code> / <code>&amp;&amp;</code> short-circuit</strong> can skip a fork &mdash; fewer processes than the raw 2<sup>k</sup>. Plain <code>*</code>/<code>-</code>/<code>+</code> do not short-circuit (but C evaluation order is undefined).</li>
-    <li><strong>Memory is copied, not shared</strong> (COW): after fork, a parent's variable change is invisible to the child.</li>
-    <li><strong>Always include the parent</strong> in the count; a common slip is counting only children.</li>
+    <li><strong>Return-value direction:</strong> parent gets the child PID (positive), child gets <strong>0</strong>, failure gives <strong>-1</strong> to the parent only &mdash; never mix these up.</li>
+    <li><strong>&amp;&amp; / || short-circuit</strong> can skip a fork, so the tree is smaller than the raw 2<sup>N</sup>. Arithmetic and comparison (<strong>*</strong> <strong>-</strong> <strong>+</strong> <strong>==</strong>) never short-circuit &mdash; all their forks run.</li>
+    <li><strong>Code after while(1) or exit() never runs</strong> &mdash; forks placed after it create no processes.</li>
+    <li><strong>The two one-liners:</strong> for <strong>*...==0</strong> the all-parent process is the only nonzero, so 2<sup>N</sup>&minus;1 print; for <strong>-...==0</strong> the all-child process is the only match, so just 1 prints.</li>
+    <li><strong>Always count the parent</strong> and remember the child continues after the fork line (it does not restart at main) &mdash; a common slip is counting only children.</li>
   </ul>
 </div>

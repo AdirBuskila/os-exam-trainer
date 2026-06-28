@@ -1,52 +1,79 @@
-<p><strong>תהליך</strong> (<bdi dir="ltr">process</bdi>) הוא תוכנית בריצה, המיוצגת על ידי ה-<strong><bdi dir="ltr">PCB</bdi></strong> שלה. שננו את שמות המצבים המדויקים <bdi dir="ltr">(5</bdi> הסטנדרטיים + <bdi dir="ltr">Linux R/S/D/T/Z</bdi>), מה החלפת הקשר (<bdi dir="ltr">context switch</bdi>) שומרת, ואת כלל הזומבי/יתום. התשובות הן מילה או שתיים &mdash; העדיפו את המונח האנגלי.</p>
+<h2>תהליכים ומצבים</h2>
+
+<p><strong>תהליך</strong> (process) הוא תוכנית <em>בריצה</em>. מערכת ההפעלה עוקבת אחר תהליכים רבים בו-זמנית, ולכן היא מעניקה לכל אחד <strong>מחזור-חיים של מצבים</strong> (מוכן, רץ, ממתין&hellip;) ורשומת ליבה &mdash; ה-<strong>PCB</strong> &mdash; השומרת את כל הדרוש כדי לעצור אותו ולחדש אותו מאוחר יותר. הנושא = אותם <strong>מצבים</strong>, ה<strong>מעברים</strong> ביניהם, וה-<strong>PCB</strong>. התשובות הן מילה או שתיים &mdash; העדיפו את המונח המדויק.</p>
 
 <table>
   <thead>
     <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
   </thead>
   <tbody>
-    <tr><td>בלוק בקרת תהליך</td><td>PCB</td><td dir="rtl">&#1489;&#1500;&#1493;&#1511; &#1489;&#1511;&#1512;&#1514; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>ה-<bdi dir="ltr">struct</bdi> שה-<bdi dir="ltr">OS</bdi> משתמש בו כדי לייצג תהליך (<bdi dir="ltr">PID</bdi>, מצב, אוגרים, <bdi dir="ltr">PTBR</bdi>)</td></tr>
-    <tr><td>החלפת הקשר</td><td>Context switch</td><td dir="rtl">&#1492;&#1495;&#1500;&#1508;&#1514; &#1492;&#1511;&#1513;&#1512;</td><td>שמירת ה-<bdi dir="ltr">PCB</bdi> הנוכחי, טעינת אחר &mdash; תקורה יקרה</td></tr>
-    <tr><td>החלפת מצב</td><td>Mode switch</td><td dir="rtl">&#1492;&#1495;&#1500;&#1508;&#1514; &#1502;&#1510;&#1489;</td><td>מעבר <bdi dir="ltr">user</bdi>&harr;<bdi dir="ltr">kernel</bdi> בתוך אותו תהליך &mdash; זול</td></tr>
-    <tr><td>המצבים הסטנדרטיים</td><td>NEW/READY/RUNNING/WAITING/TERMINATED</td><td dir="rtl">&#1502;&#1510;&#1489;&#1497; &#1492;&#1514;&#1492;&#1500;&#1497;&#1498;</td><td><bdi dir="ltr">5</bdi> מצבי התהליך של ספר הלימוד</td></tr>
-    <tr><td>רץ/מוכן ב-<bdi dir="ltr">Linux</bdi></td><td>R</td><td dir="rtl">&#1512;&#1509;/&#1502;&#1493;&#1499;&#1503;</td><td>על ה-<bdi dir="ltr">CPU</bdi> או בתור המוכנים</td></tr>
-    <tr><td>שינה הניתנת להפרעה</td><td>S</td><td dir="rtl">&#1513;&#1497;&#1504;&#1492; &#1511;&#1500;&#1492;</td><td>ממתין, יכול להתעורר על אות (למשל המתנה לבן, <bdi dir="ltr">stdin</bdi>)</td></tr>
-    <tr><td>שינה שאינה ניתנת להפרעה</td><td>D</td><td dir="rtl">&#1513;&#1497;&#1504;&#1492; &#1506;&#1502;&#1493;&#1511;&#1492;</td><td>לא יכול להתעורר על אות; ממתין לחומרה (קריאת דיסק) &mdash; מסוכן</td></tr>
-    <tr><td>עצור</td><td>T</td><td dir="rtl">&#1506;&#1510;&#1493;&#1512;</td><td><bdi dir="ltr">Ctrl+Z</bdi> או <bdi dir="ltr">kill -STOP</bdi>; חידוש עם <bdi dir="ltr">-CONT</bdi></td></tr>
-    <tr><td>זומבי</td><td>Z</td><td dir="rtl">&#1494;&#1493;&#1502;&#1489;&#1497;</td><td>סיים אך האב לא קרא ל-<bdi dir="ltr">wait()</bdi>; ה-<bdi dir="ltr">PCB</bdi> מוחזק לקוד היציאה</td></tr>
-    <tr><td>יתום</td><td>Orphan</td><td dir="rtl">&#1497;&#1514;&#1493;&#1501;</td><td>האב מת תחילה; <bdi dir="ltr">init</bdi> (<bdi dir="ltr">PID 1</bdi>) מאמץ ואוסף אותו</td></tr>
-    <tr><td>קוד יציאה</td><td>Exit status</td><td dir="rtl">&#1511;&#1493;&#1491; &#1497;&#1510;&#1497;&#1488;&#1492;</td><td><bdi dir="ltr">0</bdi> = הצלחה, שונה מאפס = כישלון; נקרא דרך <bdi dir="ltr">WEXITSTATUS</bdi></td></tr>
-    <tr><td>חוט</td><td>Thread</td><td dir="rtl">&#1514;&#1492;&#1500;&#1497;&#1498;&#1503; / &#1495;&#1493;&#1496;</td><td>יחידת ביצוע קלת-משקל; חולקת קוד/נתונים/<bdi dir="ltr">heap</bdi>, עם <bdi dir="ltr">stack</bdi>+אוגרים משלה</td></tr>
-    <tr><td>תהליך מאמץ</td><td>init (PID 1)</td><td dir="rtl">init</td><td><bdi dir="ltr">getppid()==1</bdi> משמעו שהאב האמיתי סיים</td></tr>
+    <tr><td>תהליך</td><td>Process</td><td dir="rtl">תהליך</td><td>תוכנית בריצה</td></tr>
+    <tr><td>בלוק בקרת תהליך</td><td>PCB</td><td dir="rtl">בלוק בקרת תהליך</td><td>רשומת ליבה: אוגרים שמורים, כתובת טבלת הדפים (PTBR), מצב, nice, בעלים, PID</td></tr>
+    <tr><td>החלפת הקשר</td><td>Context switch</td><td dir="rtl">החלפת הקשר</td><td>שמירת ה-PCB הרץ, טעינת אחר &mdash; תקורה טהורה</td></tr>
+    <tr><td>מקטע חישוב / קלט-פלט</td><td>CPU / I/O burst</td><td dir="rtl">מקטע חישוב / מקטע קלט-פלט</td><td>פרק של חישוב טהור / פרק של המתנה לקלט-פלט</td></tr>
+    <tr><td>מוכן</td><td>Ready</td><td dir="rtl">מוכן</td><td>רוצה את המעבד, ממתין למעבד פנוי (כשיר לריצה, לא על ליבה)</td></tr>
+    <tr><td>ממתין / חסום</td><td>Waiting / Blocked</td><td dir="rtl">ממתין / חסום</td><td>ישן עד אירוע/קלט-פלט; אינו מתחרה על המעבד</td></tr>
+    <tr><td>זומבי</td><td>Zombie (Z)</td><td dir="rtl">זומבי</td><td>סיים, אך ה-PCB נותר עד שהאב קורא את קוד היציאה</td></tr>
+    <tr><td>יתום</td><td>Orphan</td><td dir="rtl">יתום</td><td>האב מת תחילה; מאומץ מחדש על ידי init (PID 1)</td></tr>
+    <tr><td>קוד יציאה</td><td>Exit status</td><td dir="rtl">קוד יציאה</td><td>מספר ההצלחה/כישלון שהבן מחזיר כדי שהאב יקרא</td></tr>
+    <tr><td>תהליך מאמץ</td><td>init (PID 1)</td><td dir="rtl">init</td><td>מאמץ יתומים ואוסף מיד כל אחד שמת</td></tr>
   </tbody>
 </table>
 
+<pre>
+   New --admitted--> Ready --dispatch--> Running --exit--> Terminated
+                      ^   ^                 |  |
+                      |   +-- timer/preempt-+  |
+              I/O done |                       | I/O or event wait
+                       +---- Waiting (Blocked) +
+
+Linux single-letter states:
+  R = Running or Runnable (on a core, or busy-waiting / spinning)
+  S = Interruptible sleep (I/O burst, full pipe, device request queue)
+  D = Uninterruptible sleep (deep I/O wait, cannot be interrupted)
+  Z = Zombie (finished, PCB not yet reaped)
+  T = Stopped (suspended by a signal / debugger)
+</pre>
+
 <ol class="recipe">
-  <li>נשאל שם מצב &rarr; מפו את הטריגר: <bdi dir="ltr">syscall</bdi> חוסם (<bdi dir="ltr">read/wait/semop</bdi>) &rarr; <bdi dir="ltr">RUNNING</bdi>&rarr;<bdi dir="ltr">WAITING</bdi>; סיום קוונטום / טיימר &rarr; <bdi dir="ltr">RUNNING</bdi>&rarr;<bdi dir="ltr">READY</bdi>; <bdi dir="ltr">I/O</bdi> הסתיים &rarr; <bdi dir="ltr">WAITING</bdi>&rarr;<bdi dir="ltr">READY</bdi>.</li>
-  <li>נשאלת אות <bdi dir="ltr">Linux</bdi> &rarr; קריאת דיסק = <bdi dir="ltr">D</bdi>; המתנה-לבן / <bdi dir="ltr">stdin</bdi> = <bdi dir="ltr">S</bdi>; <bdi dir="ltr">Ctrl+Z</bdi> = <bdi dir="ltr">T</bdi>; סיים-לא-נאסף = <bdi dir="ltr">Z</bdi>.</li>
-  <li>"היכן נשמרים האוגרים בהחלפת הקשר / בחסימה?" &rarr; תמיד ב-<strong><bdi dir="ltr">PCB</bdi></strong>.</li>
-  <li>זומבי + יתום בו-זמנית &rarr; תשובה <strong><bdi dir="ltr">0</bdi></strong> (<bdi dir="ltr">init</bdi> מאמץ ואז מיד אוסף).</li>
-  <li>מספר התהליכים אחרי <bdi dir="ltr">k</bdi> קריאות <bdi dir="ltr">fork</bdi> &rarr; <code>2^k</code>; <bdi dir="ltr">getppid()==1</bdi> &rarr; האב מת.</li>
+  <li>רוצה לרוץ אך אין <strong>מעבד פנוי</strong> &rarr; <strong>מוכן</strong> (לא ממתין).</li>
+  <li>חסום על <strong>קלט-פלט / אירוע</strong> (מקטע קלט-פלט, צינור מלא, תור בקשות) &rarr; <strong>S / ממתין</strong>; המתנת קלט-פלט עמוקה שאינה ניתנת להפרעה &rarr; <strong>D</strong>.</li>
+  <li><strong>המתנה עסוקה</strong> (busy-waiting, סיבוב) מנצלת את המעבד &rarr; <strong>R</strong>.</li>
+  <li>כל נתון ליבה לכל תהליך &mdash; <strong>אוגרים</strong> שמורים, <strong>כתובת טבלת הדפים</strong>, ערך <strong>nice</strong>, <strong>בעלים</strong> &mdash; נמצא ב-<strong>PCB</strong>.</li>
+  <li>כמה תהליכים הם <strong>זומבי וגם יתום</strong> בו-זמנית &rarr; <strong>0</strong> (init מאמץ יתום, ואז אוסף אותו מיד).</li>
 </ol>
 
-<pre>
-Process does read() from disk            -> state D (uninterruptible)
-Parent does wait(), child still running  -> state S (sleeping)
-Child exit(0), parent hasn't wait()ed    -> state Z (zombie)
-Parent dies, child keeps running         -> orphan, getppid()==1
-How many can be zombie AND orphan at once -> 0
-</pre>
+<h3>מה נשאל במבחן</h3>
+
+<table>
+  <thead>
+    <tr><th>Card</th><th>Question (short)</th><th>Answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q3</td><td>רוצה לרוץ, ממתין למעבד פנוי</td><td>מוכן (Ready)</td></tr>
+    <tr><td>2017B Q3</td><td>המצב בעת כתיבה לחוצץ צינור מלא</td><td>S (שינה הניתנת להפרעה)</td></tr>
+    <tr><td>2019A Q3</td><td>המצב בתור בקשות של התקן</td><td>ישן (ממתין)</td></tr>
+    <tr><td>2019B Q2</td><td>היכן נשמרת כתובת טבלת הדפים כשאינו רץ</td><td>PCB</td></tr>
+    <tr><td>2020A Q5</td><td>עצירת תהליך אחד והרצת אחר</td><td>החלפת הקשר</td></tr>
+    <tr><td>2021A Q3</td><td>אות ה-Linux לריצה על ליבה</td><td>R (רץ)</td></tr>
+    <tr><td>2021B Q2</td><td>המבנה המחזיק ערך nice, בעלים וכו'</td><td>PCB</td></tr>
+    <tr><td>2021B Q3</td><td>החלפת הקשר מחליפה את התהליך הרץ ב-</td><td>הרצת תהליך אחר</td></tr>
+    <tr><td>2021B Q4</td><td>אות ה-Linux במהלך מקטע קלט-פלט</td><td>S (ישן)</td></tr>
+    <tr><td>2022A Q3</td><td>המספר הנשלח לאב בעת סיום</td><td>קוד יציאה</td></tr>
+    <tr><td>2022B Q3</td><td>הקריאה המשחררת את ה-PCB של בן זומבי</td><td>wait</td></tr>
+    <tr><td>2023A Q3</td><td>מצב ה-Linux במהלך המתנה עסוקה</td><td>R (רץ/כשיר)</td></tr>
+    <tr><td>2023B Q3</td><td>מלבד wait(), מה משחרר את ה-PCB של זומבי</td><td>האב מת (init אוסף)</td></tr>
+    <tr><td>2024A Q3</td><td>כמה תהליכים הם זומבי וגם יתום בו-זמנית</td><td>0</td></tr>
+    <tr><td>2024B Q3</td><td>היכן נשמרים האוגרים בהמתנה לקלט-פלט</td><td>ב-PCB</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>החלפת הקשר &ne; החלפת מצב.</strong> החלפת מצב = <bdi dir="ltr">user</bdi>&harr;<bdi dir="ltr">kernel</bdi>, אותו תהליך (זול). החלפת הקשר = החלפת התהליך כולו דרך ה-<bdi dir="ltr">PCB</bdi> (יקר).</li>
-    <li><strong><bdi dir="ltr">D</bdi> מול <bdi dir="ltr">S</bdi>:</strong> <bdi dir="ltr">D</bdi> = לא ניתן להפרעה (חומרה/דיסק), לא ניתן להעירו על ידי אות; <bdi dir="ltr">S</bdi> = ניתן להפרעה (המתנה רגילה).</li>
-    <li><strong><bdi dir="ltr">R</bdi> מכסה את שניהם</strong> <bdi dir="ltr">Running</bdi> ו-<bdi dir="ltr">Ready</bdi> ב-<bdi dir="ltr">Linux</bdi> &mdash; אך פורמלית אלה שני מצבים שונים.</li>
-    <li><strong>זומבי + יתום = <bdi dir="ltr">0</bdi></strong>, לא <bdi dir="ltr">1</bdi>. <bdi dir="ltr">init</bdi> תמיד אוסף; יתום מאומץ באופן מיידי.</li>
-    <li><strong>לזומבי עדיין יש <bdi dir="ltr">PCB</bdi></strong> (מוחזק רק כדי למסור את קוד היציאה); אין בבעלותו משאבים אחרים.</li>
-    <li><strong>קוד יציאה:</strong> <bdi dir="ltr">0</bdi> = הצלחה, כל ערך שונה מאפס = כישלון. <code>exit()</code> מרוקן את חוצצי ה-<bdi dir="ltr">libc</bdi>; <code>_exit()</code> לא (השתמשו ב-<bdi dir="ltr">_exit</bdi> בתהליך בן שעבר <bdi dir="ltr">fork</bdi> כדי להימנע מהדפסות כפולות).</li>
-    <li><strong><bdi dir="ltr">printf</bdi> ללא <bdi dir="ltr">\n</bdi> + <bdi dir="ltr">fork</bdi></strong> &rarr; החוצץ מועתק &rarr; הטקסט מודפס פעמיים. תקנו עם <code>fflush</code> או <code>\n</code>.</li>
-    <li><strong>אוגרים בחסימה/החלפת הקשר עוברים ל-<bdi dir="ltr">PCB</bdi></strong> &mdash; לא ל-<bdi dir="ltr">stack</bdi>, לא ל-<bdi dir="ltr">RAM</bdi> באופן כללי.</li>
-    <li><strong><bdi dir="ltr">getppid()==1</bdi></strong> משמעו שהאב סיים (אומץ על ידי <bdi dir="ltr">init</bdi>), ולא שאתם <bdi dir="ltr">init</bdi>.</li>
+    <li><strong>מוכן מול ממתין.</strong> "אין מעבד פנוי" = <strong>מוכן</strong>; "חסום על קלט-פלט / אירוע" = <strong>ממתין / S</strong>. הבחנה זו היא נקודה מובטחת.</li>
+    <li><strong>המתנה עסוקה היא R</strong> (סיבוב פעיל על המעבד) &mdash; אך <strong>מקטע קלט-פלט</strong>, <strong>צינור מלא</strong> או <strong>תור בקשות</strong> הם <strong>S</strong>.</li>
+    <li><strong>האוגרים נשמרים ב-PCB</strong> בהחלפת הקשר &mdash; לא ב-stack, ולא ב-RAM באופן כללי.</li>
+    <li><strong>זומבי + יתום = 0</strong>, לא 1 &mdash; לזומבי תמיד יש אב (חי).</li>
+    <li><strong>init אוסף יתומים מיד:</strong> ברגע שתהליך מתייתם הוא מאומץ על ידי <strong>init (PID 1)</strong>, שאוסף מיד כל בן שמת.</li>
   </ul>
 </div>

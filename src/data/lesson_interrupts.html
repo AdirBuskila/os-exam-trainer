@@ -1,54 +1,65 @@
-<h2>Interrupts, Traps &amp; Mode Switching</h2>
+<h2>Interrupts &amp; CPU Mode</h2>
 
-<p>The CPU normally runs user code in <strong>user mode</strong>; only the kernel can touch hardware. Three events flip it to <strong>kernel mode</strong>: a <strong>system call</strong> (process asks), an <strong>interrupt</strong> (hardware, async), or a <strong>trap</strong> (the process's own code errors, sync). Know the exact term and who triggers it.</p>
+<p>This topic answers two needs of the CPU. First, it must <strong>react to events</strong> from the outside world (a key pressed, a disk finishing, the clock ticking) without constantly polling — that reaction mechanism is the <strong>interrupt</strong>. Second, it must <strong>protect itself</strong> so a buggy or malicious user program cannot touch hardware or other programs' memory — that protection mechanism is the split between <strong>kernel mode</strong> and <strong>user mode</strong>. Almost every exam card here is pure recall of the right term and who triggers it.</p>
 
 <table>
   <thead>
     <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
   </thead>
   <tbody>
-    <tr><td>Async HW event</td><td>Interrupt</td><td dir="rtl">פסיקה</td><td>Asynchronous event from hardware (timer, I/O done)</td></tr>
-    <tr><td>Handler routine</td><td>ISR (Interrupt Service Routine)</td><td dir="rtl">שגרת שירות פסיקה</td><td>Kernel code that runs to service an interrupt</td></tr>
-    <tr><td>Sync exception</td><td>Trap</td><td dir="rtl">מלכודת</td><td>Software interrupt — exception from process's own code (div/0, NULL deref)</td></tr>
-    <tr><td>Clock that preempts</td><td>Timer interrupt (PIT)</td><td dir="rtl">פסיקת שעון / טיימר</td><td>Hardware timer; stops a runaway loop, enables preemption</td></tr>
-    <tr><td>Handler lookup table</td><td>Interrupt vector</td><td dir="rtl">וקטור פסיקות</td><td>Table mapping interrupt number to its ISR address</td></tr>
-    <tr><td>I/O bypasses CPU</td><td>DMA (Direct Memory Access)</td><td dir="rtl">גישה ישירה לזיכרון</td><td>I/O device writes directly to RAM, no CPU</td></tr>
-    <tr><td>CPU keeps asking</td><td>Polling</td><td dir="rtl">תשאול / סקירה</td><td>CPU actively asks device "are you done?" — wastes CPU</td></tr>
-    <tr><td>Privilege bit</td><td>Kernel vs User mode (mode bit)</td><td dir="rtl">מצב גרעין / מצב משתמש</td><td>mode bit = 0 kernel (full access), 1 user (restricted)</td></tr>
-    <tr><td>Call into kernel</td><td>System call</td><td dir="rtl">קריאת מערכת</td><td>Enters kernel via mode switch (fork, read, write, semop)</td></tr>
-    <tr><td>Pure userspace call</td><td>Library call</td><td dir="rtl">קריאת ספרייה</td><td>No mode switch (printf, strcpy, malloc)</td></tr>
-    <tr><td>User&harr;kernel switch</td><td>Mode switch</td><td dir="rtl">החלפת מצב</td><td>Same process changes privilege level; cheap</td></tr>
-    <tr><td>Switch the process</td><td>Context switch</td><td dir="rtl">החלפת הקשר</td><td>Save PCB, load another PCB; expensive</td></tr>
+    <tr><td>Signal that pauses the CPU</td><td>Interrupt</td><td dir="rtl">פסיקה</td><td>Makes the CPU stop, save state, handle an event, then resume</td></tr>
+    <tr><td>Handler routine</td><td>ISR (Interrupt Service Routine)</td><td dir="rtl">שגרת שירות פסיקה</td><td>The kernel function that services a given interrupt</td></tr>
+    <tr><td>Handler lookup table</td><td>Interrupt vector</td><td dir="rtl">וקטור פסיקות</td><td>Maps interrupt number to the address of its ISR</td></tr>
+    <tr><td>Software interrupt</td><td>Trap</td><td dir="rtl">מלכודת</td><td>Software-generated interrupt: a system call or an error (div/0, NULL deref)</td></tr>
+    <tr><td>Clock that preempts</td><td>Timer interrupt</td><td dir="rtl">פסיקת שעון / טיימר</td><td>Hardware interrupt raised when the CPU time quantum expires</td></tr>
+    <tr><td>Privilege levels</td><td>Kernel vs User mode</td><td dir="rtl">מצב גרעין / מצב משתמש</td><td>Kernel = full power (all RAM, I/O, privileged ops); user = restricted</td></tr>
+    <tr><td>Entry into the kernel</td><td>System call</td><td dir="rtl">קריאת מערכת</td><td>A trap a process uses to ask the OS for a privileged service</td></tr>
   </tbody>
 </table>
 
 <ol class="recipe">
-  <li>Read the trigger: a <em>process error</em> &rarr; trap; a <em>hardware</em> event &rarr; interrupt; an <em>explicit request</em> &rarr; system call.</li>
-  <li>Any of the three causes a <strong>mode switch</strong> user&rarr;kernel (same process, cheap). Only the scheduler swapping processes is a <strong>context switch</strong> (saves/loads PCB, expensive).</li>
-  <li>Hardware fires interrupt &rarr; CPU looks up the <strong>interrupt vector</strong> &rarr; jumps to the matching <strong>ISR</strong> &rarr; returns to interrupted code.</li>
-  <li>Classify a call: needs the kernel/hardware &rarr; <strong>system call</strong>; pure user code &rarr; <strong>library call</strong>.</li>
-  <li>I/O wait: spinning CPU = <strong>polling</strong>; device-to-RAM without CPU = <strong>DMA</strong>.</li>
+  <li>Classify the trigger: a <em>process error</em> (div/0, NULL deref) &rarr; <strong>trap</strong>; an external <em>hardware</em> event (keyboard, disk, clock) &rarr; <strong>interrupt</strong>; an <em>explicit request</em> for an OS service &rarr; <strong>system call</strong>.</li>
+  <li>When an interrupt fires, the CPU finds the handler's address in the <strong>interrupt vector</strong>, then jumps to the matching <strong>ISR</strong> and returns to the interrupted code afterwards.</li>
+  <li><strong>I/O and privileged instructions run only in kernel mode.</strong> Kernel mode can read <em>and</em> write <strong>all of RAM</strong>; user mode is fenced to its own region.</li>
+  <li>A <strong>system call</strong> does <em>two</em> things: it <strong>switches the CPU to kernel mode</strong> and it <strong>jumps to kernel code</strong> (the syscall handler). Naming only the mode switch is half an answer.</li>
 </ol>
 
 <pre>
-while(1){}   // runaway user process
-  -> TIMER INTERRUPT (hardware PIT) fires at quantum end
-  -> mode switch to kernel, run timer ISR (via interrupt vector)
-  -> scheduler may CONTEXT SWITCH to another process
-printf("hi")  -> library call (no mode switch)
-write(fd,...) -> system call (mode switch into kernel)
-*null = 0     -> TRAP (SIGSEGV, the process's own fault)
+while(1){}    -> TIMER INTERRUPT (hardware) stops the runaway loop
+interrupt     -> look up address in INTERRUPT VECTOR -> run the ISR
+*null = 0     -> TRAP (software-generated, the process's own error)
+write(fd,...) -> SYSTEM CALL: (1) switch to kernel mode (2) jump to kernel code
+I/O / privileged instruction -> KERNEL MODE only (can access ALL of RAM)
 </pre>
+
+<h3>What the exam asks</h3>
+
+<table>
+  <thead>
+    <tr><th>Card</th><th>Question (short)</th><th>Answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q2</td><td>Mode to run an I/O machine instruction</td><td>Kernel mode</td></tr>
+    <tr><td>2024A Q2</td><td>I/O instruction runs only in which mode</td><td>Kernel mode</td></tr>
+    <tr><td>2020B Q2</td><td>RAM accessible (read+write) in kernel mode</td><td>All of RAM</td></tr>
+    <tr><td>2020A Q3</td><td>Where the address of the run function is stored</td><td>The interrupt vector</td></tr>
+    <tr><td>2020B Q3</td><td>Functions the kernel runs in response to interrupts</td><td>ISR (Interrupt Service Routines)</td></tr>
+    <tr><td>2023B Q1</td><td>General name for a kernel function handling a hardware event</td><td>Interrupt Service Routine (ISR)</td></tr>
+    <tr><td>2019B Q1</td><td>Which interrupts are called a trap</td><td>Software interrupts</td></tr>
+    <tr><td>2022A Q1</td><td>What makes a trap special</td><td>It is software-generated</td></tr>
+    <tr><td>2021B Q1</td><td>Hardware interrupt when the quantum expires</td><td>Timer interrupt</td></tr>
+    <tr><td>2021A Q2</td><td>What a syscall does besides switching to kernel mode</td><td>Jumps to kernel code</td></tr>
+    <tr><td>2023A Q2</td><td>(Windows) when a new ISR runs if one is in progress</td><td>After the previous interrupt finishes</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>Trap vs Interrupt:</strong> trap is <em>synchronous</em> from the process's own code; interrupt is <em>asynchronous</em> from hardware. Don't swap them.</li>
-    <li><strong>Mode switch &ne; context switch:</strong> mode switch = user&harr;kernel in the <em>same</em> process (cheap); context switch = swap <em>processes</em>, save/load PCB (expensive).</li>
-    <li><strong>System call vs library call:</strong> <code>printf</code>/<code>strcpy</code>/<code>malloc</code> are library calls; <code>fork</code>/<code>read</code>/<code>write</code>/<code>semop</code> are system calls (mode switch). (<code>malloc</code> may internally call <code>brk</code>/<code>mmap</code>.)</li>
-    <li><strong>DMA writes to RAM</strong>, not to the CPU — its whole point is to <em>bypass</em> the CPU.</li>
-    <li><strong>Polling wastes CPU</strong> (busy asking); interrupts/DMA do not.</li>
-    <li><strong>Who stops an infinite loop?</strong> The <strong>timer interrupt</strong> (generated by hardware — the PIT/timer), not the OS scheduler by itself.</li>
-    <li><strong>Three (only three) ways into kernel mode:</strong> system call, interrupt, trap/exception. Nothing else.</li>
-    <li><strong>Spool sits on the hard disk (HDD)</strong> — a print/job queue, not a fast cache.</li>
+    <li><strong>I/O and privileged instructions run only in kernel mode</strong> — never "either mode." And kernel mode can access <strong>all of RAM</strong>, not just its own region.</li>
+    <li><strong>The ISR address lives in the interrupt vector</strong> (the lookup table), not vaguely "somewhere in the kernel."</li>
+    <li><strong>Trap = software-generated</strong> interrupt (a system call or an error from the process's own code), not an external hardware event.</li>
+    <li><strong>Timer interrupt = the quantum expired</strong>, and it is a <em>hardware</em> interrupt — this is what lets the OS preempt a runaway process.</li>
+    <li><strong>A system call does two things:</strong> switch to kernel mode <em>and</em> jump to kernel code. Stopping at the mode switch loses the point.</li>
+    <li><strong>Nested interrupts (course model):</strong> a new interrupt arriving while an ISR is running is handled <em>after</em> the current one finishes.</li>
   </ul>
 </div>

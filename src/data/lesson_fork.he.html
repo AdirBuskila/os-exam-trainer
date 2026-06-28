@@ -1,46 +1,72 @@
 <h2><bdi dir="ltr">fork()</bdi> &mdash; ספירת תהליכים והדפסות</h2>
 
-<p><code>fork()</code> יוצר תהליך בן שממשיך לרוץ <em>אחרי</em> שורת ה-<bdi dir="ltr">fork</bdi>, עם זיכרון ומתארי קבצים (<bdi dir="ltr">file descriptors</bdi>) מועתקים. הוא מחזיר את <strong><bdi dir="ltr">PID</bdi> של הבן לתהליך האב</strong>, <strong><bdi dir="ltr">0</bdi> לתהליך הבן</strong>, ו-<strong><bdi dir="ltr">-1</bdi> בכישלון</strong> (לא נוצר בן). תהליך הבן ממשיך לרוץ גם דרך כל <bdi dir="ltr">fork</bdi> מאוחר יותר &mdash; כך ש-<em>k</em> קריאות <bdi dir="ltr">fork</bdi> שאליהן מגיעים כולם נותנות <strong><bdi dir="ltr">2<sup>k</sup></bdi></strong> תהליכים.</p>
+<p>כל הנושא הוא בעיה אחת: <strong><bdi dir="ltr">fork()</bdi></strong> משכפל את התהליך הרץ, ושני העותקים ממשיכים מ<em>אותה שורה הבאה</em>. בהינתן תוכנית <bdi dir="ltr">C</bdi> קצרה עם קריאת <bdi dir="ltr">fork</bdi> אחת או יותר, הבחינה מבקשת לספור <strong>כמה תהליכים קיימים</strong> ו/או <strong>כמה פעמים שורה מודפסת</strong>. שרטטו את העץ, סמנו את ערכי ההחזרה, החילו את התנאי, וספרו &mdash; כל שאלה <bdi dir="ltr">Q9</bdi> נופלת לשיטה הזו.</p>
 
 <table>
   <thead>
     <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
   </thead>
   <tbody>
-    <tr><td>יצירת תהליך בן</td><td>fork()</td><td dir="rtl">&#1508;&#1497;&#1510;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>מחזיר את <bdi dir="ltr">child-PID</bdi> לאב, <bdi dir="ltr">0</bdi> לבן, <bdi dir="ltr">-1</bdi> בכישלון</td></tr>
-    <tr><td>סך התהליכים אחרי <bdi dir="ltr">k</bdi> קריאות <bdi dir="ltr">fork</bdi></td><td>2<sup>k</sup> rule</td><td dir="rtl">&#1502;&#1505;&#1508;&#1512; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501;</td><td>כל קריאות ה-<bdi dir="ltr">fork</bdi> שאליהן הגיעו כולם &rArr; <bdi dir="ltr">2<sup>k</sup></bdi> תהליכים</td></tr>
-    <tr><td>בדיקת <bdi dir="ltr">Child=0</bdi> בתוך ביטוי</td><td>fork() == 0 test</td><td dir="rtl">&#1488;&#1489; / &#1489;&#1503;</td><td>הענף שנלקח על ידי הבן בלבד</td></tr>
-    <tr><td>מרחב כתובות משותף</td><td>Copy-on-Write (COW)</td><td dir="rtl">&#1492;&#1506;&#1514;&#1511;&#1492; &#1489;&#1506;&#1514; &#1499;&#1514;&#1497;&#1489;&#1492;</td><td>דפים משותפים עד שאחד הצדדים כותב</td></tr>
-    <tr><td>באג של הדפסה כפולה</td><td>printf buffer / flush</td><td dir="rtl">&#1495;&#1500;&#1510;&#1497;&#1503; &#1492;&#1491;&#1508;&#1505;&#1492;</td><td>חוצץ שלא רוקן הועתק &rArr; השורה מודפסת פעמיים</td></tr>
-    <tr><td>קצר חשמלי של <bdi dir="ltr">OR</bdi></td><td>|| (lazy)</td><td dir="rtl">&#1488;&#1493; &#1500;&#1493;&#1490;&#1497;</td><td>אם השמאלי שונה מאפס, ה-<bdi dir="ltr">fork</bdi> הימני מדולג</td></tr>
-    <tr><td>קצר חשמלי של <bdi dir="ltr">AND</bdi></td><td>&amp;&amp; (lazy)</td><td dir="rtl">&#1493;&#1490;&#1501; &#1500;&#1493;&#1490;&#1497;</td><td>אם השמאלי הוא <bdi dir="ltr">0</bdi>, ה-<bdi dir="ltr">fork</bdi> הימני מדולג</td></tr>
+    <tr><td>יצירת תהליך בן</td><td>fork()</td><td dir="rtl">&#1508;&#1497;&#1510;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>מחזיר <bdi dir="ltr">child-PID</bdi> לאב, <bdi dir="ltr">0</bdi> לבן, <bdi dir="ltr">-1</bdi> בשגיאה</td></tr>
+    <tr><td>סך הכול אחרי <bdi dir="ltr">N</bdi> קריאות <bdi dir="ltr">fork</bdi></td><td>2<sup>N</sup> rule</td><td dir="rtl">&#1502;&#1505;&#1508;&#1512; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501;</td><td><bdi dir="ltr">N</bdi> קריאות שאליהן הגיעו כולם &rArr; <bdi dir="ltr">2<sup>N</sup></bdi> תהליכים</td></tr>
+    <tr><td>ענף של הבן בלבד</td><td>fork() == 0 test</td><td dir="rtl">&#1488;&#1489; / &#1489;&#1503;</td><td>אמת רק בבן (האב ראה <bdi dir="ltr">PID</bdi> חיובי)</td></tr>
+    <tr><td>קצר חשמלי של <bdi dir="ltr">AND</bdi></td><td>&amp;&amp; (lazy)</td><td dir="rtl">&#1493;&#1490;&#1501; &#1500;&#1493;&#1490;&#1497;</td><td>השמאלי הוא <bdi dir="ltr">0</bdi> (שקר) &rArr; ה-<bdi dir="ltr">fork</bdi> הימני מדולג, אין בן</td></tr>
+    <tr><td>קצר חשמלי של <bdi dir="ltr">OR</bdi></td><td>|| (lazy)</td><td dir="rtl">&#1488;&#1493; &#1500;&#1493;&#1490;&#1497;</td><td>השמאלי <bdi dir="ltr">&gt;0</bdi> (אמת) &rArr; ה-<bdi dir="ltr">fork</bdi> הימני מדולג, אין בן</td></tr>
+    <tr><td>ללא קצר חשמלי</td><td>arithmetic / comparison</td><td dir="rtl">&#1495;&#1497;&#1505;&#1493;&#1489; / &#1492;&#1513;&#1493;&#1493;&#1488;&#1492;</td><td><strong>*</strong> <strong>-</strong> <strong>+</strong> <strong>==</strong> לעולם אינם מדלגים &mdash; כל <bdi dir="ltr">fork</bdi> רץ, עץ מלא <bdi dir="ltr">2<sup>N</sup></bdi></td></tr>
+    <tr><td>קוד שאינו נגיש</td><td>while(1) / exit()</td><td dir="rtl">&#1511;&#1493;&#1491; &#1513;&#1488;&#1497;&#1504;&#1493; &#1504;&#1490;&#1497;&#1513;</td><td>קריאות <bdi dir="ltr">fork</bdi> אחרי לולאה אינסופית או יציאה אינן רצות &mdash; אל תספרו אותן</td></tr>
   </tbody>
 </table>
 
 <ol class="recipe">
-  <li>שרטטו את <strong>עץ התהליכים</strong>; סמנו מה כל <bdi dir="ltr">fork</bdi> החזיר בכל צומת (אב = <bdi dir="ltr">PID&gt;0</bdi>, בן = <bdi dir="ltr">0</bdi>).</li>
-  <li>אם קריאות ה-<bdi dir="ltr">fork</bdi> משורשרות עם <code>*</code>, <code>-</code>, <code>+</code>: כל תהליך מריץ את <em>כל</em> הקריאות (ללא קצר חשמלי). עם <code>||</code>/<code>&amp;&amp;</code>: דלגו על ה-<bdi dir="ltr">fork</bdi> השני כאשר הראשון גורם לקצר.</li>
-  <li>סך התהליכים = <strong><bdi dir="ltr">2<sup>(number of forks reached by all)</sup></bdi></strong>.</li>
-  <li>עבור "כמה הדפסות": העריכו את ביטוי ה-<code>if</code> לכל תהליך; ספרו את אלה שבהם הוא אמת (לדוגמה <bdi dir="ltr">product == 0</bdi>).</li>
-  <li>ספרו גם את תהליך האב עצמו &mdash; גם הוא מריץ את השורה.</li>
+  <li><strong>שרטטו את עץ התהליכים.</strong> התחילו מתהליך אחד; כל <bdi dir="ltr">fork</bdi> שענף מגיע אליו מכפיל אותו. העלים הם סך התהליכים.</li>
+  <li><strong>סמנו כל תהליך</strong> בערך ההחזרה שראה בכל <bdi dir="ltr">fork</bdi> (האב קיבל <bdi dir="ltr">PID&gt;0</bdi>, הבן קיבל <bdi dir="ltr">0</bdi>).</li>
+  <li><strong>החילו את התנאי.</strong> עם <strong>&amp;&amp;</strong>/<strong>||</strong> ייתכן שיהיה <bdi dir="ltr">fork</bdi> מדולג (עץ קטן יותר); עם <strong>*</strong>/<strong>-</strong>/<strong>+</strong>/<strong>==</strong> כל הקריאות רצות. בדקו את התנאי לכל תהליך כדי לסמן מי מדפיס.</li>
+  <li><strong>ספרו</strong> את התהליכים המסומנים (וזכרו לכלול את תהליך האב המקורי).</li>
 </ol>
 
 <pre>
-if (fork() * fork() * fork() == 0) printf("fork\n");
-  3 forks  -> 2^3 = 8 processes total.
-  Only the original root got 3 positive PIDs (product != 0) -> no print.
-  Every other process had >=1 fork return 0 (product == 0).
-  prints = 8 - 1 = 7   (VERIFIED by simulation; a "4" sometimes seen is wrong for this expression)
-Simpler: fork() - fork() == 0  -> "fork" prints 1 time.
+Plain forks: N calls reached by everyone -> 2^N processes.
+  fork(); fork(); fork(); printf("x");   // 2^3 = 8 prints
+
+fork() * fork() * fork() == 0   ->  prints 7   (2024A Q9)
+  No short-circuit: all 3 forks run -> 8 processes.
+  Product != 0 only for the all-parent process (3 positive PIDs).
+  The other 8 - 1 = 7 had >=1 fork return 0 -> product == 0 -> print.
+
+fork() - fork() == 0   ->  prints 1   (2024B Q9)
+  No short-circuit: 2 forks run -> 4 processes.
+  first - second == 0 only when both returns are equal: 0 - 0 = 0
+  -> the all-child process only -> 1 print.
+
+Rule of thumb:  *...==0 -> 2^N - 1 print ;  -...==0 -> 1 prints.
 </pre>
+
+<h3>מה הבחינה שואלת</h3>
+
+<table>
+  <thead>
+    <tr><th>כרטיס</th><th>שאלה</th><th>תשובה</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q9</td><td>פלט של <bdi dir="ltr">printf</bdi> עם חלוקה שלמה על <strong><bdi dir="ltr">fork()+100</bdi></strong></td><td><strong><bdi dir="ltr">"00"</bdi></strong></td></tr>
+    <tr><td>2017B Q9</td><td>כמה פעמים מודפס <bdi dir="ltr">'a'</bdi> בלולאת ה-<bdi dir="ltr">fork</bdi></td><td><strong><bdi dir="ltr">8</bdi></strong> (שלוש קריאות, <bdi dir="ltr">2<sup>3</sup></bdi>)</td></tr>
+    <tr><td>2019A Q9</td><td>כמה תהליכים נוצרו והמצב שלהם (לולאות אינסופיות בין ה-<bdi dir="ltr">fork</bdi>)</td><td><strong>2 תהליכים, רצים</strong> (בן אחד)</td></tr>
+    <tr><td>2019B Q9</td><td>כמה פעמים מודפס <bdi dir="ltr">'a'</bdi> תחת <strong><bdi dir="ltr">if (fork() &amp;&amp; fork())</bdi></strong></td><td><strong>פעם אחת</strong></td></tr>
+    <tr><td>2022A Q9</td><td>כמה פעמים מודפס <bdi dir="ltr">"HIT"</bdi>, <bdi dir="ltr">fork()</bdi> יחיד</td><td><strong><bdi dir="ltr">2</bdi></strong></td></tr>
+    <tr><td>2022B Q9</td><td>כמה פעמים <bdi dir="ltr">"HIT"</bdi>, קריאות מקוננות בהשוואת אי-שוויון</td><td><strong><bdi dir="ltr">3</bdi></strong></td></tr>
+    <tr><td>2023A Q9</td><td>כמה פעמים מודפס <bdi dir="ltr">"fork"</bdi> (<bdi dir="ltr">fork</bdi> אחד)</td><td><strong><bdi dir="ltr">2</bdi></strong></td></tr>
+    <tr><td>2023B Q9</td><td>כמה פעמים מודפס <bdi dir="ltr">"fork"</bdi> (שני <bdi dir="ltr">fork</bdi>)</td><td><strong><bdi dir="ltr">4</bdi></strong></td></tr>
+    <tr><td>2024A Q9</td><td><strong><bdi dir="ltr">fork()*fork()*fork()==0</bdi></strong> מדפיס</td><td><strong><bdi dir="ltr">7</bdi></strong> (<bdi dir="ltr">8</bdi> &minus; תהליך כולו-אב)</td></tr>
+    <tr><td>2024B Q9</td><td><strong><bdi dir="ltr">fork()-fork()==0</bdi></strong> מדפיס</td><td><strong><bdi dir="ltr">1</bdi></strong> (התהליך כולו-בן)</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>ערכי החזרה:</strong> האב מקבל את <bdi dir="ltr">PID</bdi> של הבן (חיובי), הבן מקבל <strong><bdi dir="ltr">0</bdi></strong>, כישלון נותן <strong><bdi dir="ltr">-1</bdi></strong> לאב בלבד &mdash; לעולם אל תערבבו ביניהם.</li>
-    <li><strong>הבן ממשיך אחרי שורת ה-<bdi dir="ltr">fork</bdi></strong> ומריץ גם כל <bdi dir="ltr">fork</bdi> מאוחר יותר &mdash; הוא אינו מתחיל מחדש מ-<bdi dir="ltr">main</bdi>.</li>
-    <li><strong><bdi dir="ltr">printf</bdi> ללא <code>\n</code></strong> נשאר בחוצץ של <bdi dir="ltr">libc</bdi>; ה-<bdi dir="ltr">fork</bdi> מעתיק אותו, ולכן הוא מודפס <em>פעמיים</em> ביציאה. תיקון: <code>fflush</code> או <code>\n</code>.</li>
-    <li><strong>קצר חשמלי של <code>||</code> / <code>&amp;&amp;</code></strong> יכול לדלג על <bdi dir="ltr">fork</bdi> &mdash; פחות תהליכים מאשר <bdi dir="ltr">2<sup>k</sup></bdi> הגולמי. <code>*</code>/<code>-</code>/<code>+</code> רגילים אינם גורמים לקצר חשמלי (אך סדר ההערכה ב-<bdi dir="ltr">C</bdi> אינו מוגדר).</li>
-    <li><strong>הזיכרון מועתק, לא משותף</strong> (<bdi dir="ltr">COW</bdi>): אחרי <bdi dir="ltr">fork</bdi>, שינוי במשתנה של האב אינו נראה לבן.</li>
-    <li><strong>תמיד כללו את האב</strong> בספירה; טעות נפוצה היא לספור רק את הבנים.</li>
+    <li><strong>כיוון ערך ההחזרה:</strong> האב מקבל את <bdi dir="ltr">PID</bdi> של הבן (חיובי), הבן מקבל <strong><bdi dir="ltr">0</bdi></strong>, כישלון נותן <strong><bdi dir="ltr">-1</bdi></strong> לאב בלבד &mdash; לעולם אל תערבבו ביניהם.</li>
+    <li><strong>קצר חשמלי של <bdi dir="ltr">&amp;&amp;</bdi> / <bdi dir="ltr">||</bdi></strong> יכול לדלג על <bdi dir="ltr">fork</bdi>, ולכן העץ קטן מ-<bdi dir="ltr">2<sup>N</sup></bdi> הגולמי. חישוב והשוואה (<strong>*</strong> <strong>-</strong> <strong>+</strong> <strong>==</strong>) לעולם אינם גורמים לקצר &mdash; כל הקריאות שלהם רצות.</li>
+    <li><strong>קוד אחרי <bdi dir="ltr">while(1)</bdi> או <bdi dir="ltr">exit()</bdi> לעולם אינו רץ</strong> &mdash; קריאות <bdi dir="ltr">fork</bdi> שמוקמו אחריו אינן יוצרות תהליכים.</li>
+    <li><strong>שני שורות-הקסם:</strong> עבור <strong><bdi dir="ltr">*...==0</bdi></strong> התהליך כולו-אב הוא היחיד ששונה מאפס, ולכן <bdi dir="ltr">2<sup>N</sup></bdi>&minus;<bdi dir="ltr">1</bdi> מדפיסים; עבור <strong><bdi dir="ltr">-...==0</bdi></strong> התהליך כולו-בן הוא ההתאמה היחידה, ולכן רק <bdi dir="ltr">1</bdi> מדפיס.</li>
+    <li><strong>תמיד ספרו את האב</strong> וזכרו שהבן ממשיך אחרי שורת ה-<bdi dir="ltr">fork</bdi> (הוא אינו מתחיל מחדש מ-<bdi dir="ltr">main</bdi>) &mdash; טעות נפוצה היא לספור רק את הבנים.</li>
   </ul>
 </div>

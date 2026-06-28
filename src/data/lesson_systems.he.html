@@ -1,55 +1,65 @@
 <section class="lesson" id="lesson-systems">
-  <h2>Systems: Real-Time, Multiprocessing &amp; OS Role</h2>
+  <h2>מושגי מערכות: אוצר המילים של מערכת ההפעלה</h2>
 
-  <p>חלק זה הוא כמעט כולו השלמת מילה בודדת (<bdi dir="ltr">Archetype 1 + 9</bdi>). ה־<bdi dir="ltr">OS</bdi> הוא שכבת התוכנה שבין החומרה לתוכניות (ניהול תהליכים, זיכרון, קבצים ו־<bdi dir="ltr">I/O</bdi>). שננו את המונח המדויק לכל הגדרה; כתבו אותו באנגלית כדי להיות בטוחים.</p>
+  <p>זהו הנושא הקטן והקל ביותר — שינון טהור של קומץ הגדרות. זהו אוצר המילים של התמונה הגדולה במערכות הפעלה: כיצד מספר מעבדים חולקים משאבים, כיצד נקראת מערכת הפעלה עם הרבה תהליכים, כיצד מודדים ביצועים, מה עושים מנהלי התקנים, וקטגוריות הזמן-אמת. אין כאן חישובים ואין דיאגרמות. כל כרטיס פשוט ממפה הגדרה אחת למונח אחד, ולכן כל תפקידכם הוא להתאים את ההגדרה למונח שלה.</p>
 
   <table class="terms">
     <thead>
-      <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+      <tr><th>מונח</th><th>משמעות פשוטה</th><th>מונח עברי</th></tr>
     </thead>
     <tbody>
-      <tr><td>תמיד עומד ב־<bdi dir="ltr">deadline</bdi></td><td>Hard real-time</td><td dir="rtl">זמן אמת קשיח</td><td>חובה לעמוד ב־<bdi dir="ltr">deadline</bdi> בכל פעם (כרית אוויר, טייס אוטומטי)</td></tr>
-      <tr><td>בדרך כלל עומד ב־<bdi dir="ltr">deadline</bdi></td><td>Soft real-time</td><td dir="rtl">זמן אמת רך</td><td>עומד ב־<bdi dir="ltr">deadline</bdi> רוב הזמן, לא תמיד (הזרמת וידאו)</td></tr>
-      <tr><td>כל ה־<bdi dir="ltr">CPUs</bdi> שווים</td><td>Symmetric multiprocessing (SMP)</td><td dir="rtl">ריבוי מעבדים סימטרי</td><td>אין יחס אדון/עבד; כל <bdi dir="ltr">CPU</bdi> יכול להריץ את ה־<bdi dir="ltr">kernel</bdi></td></tr>
-      <tr><td><bdi dir="ltr">CPUs</bdi> אדון/עבד</td><td>Asymmetric multiprocessing</td><td dir="rtl">ריבוי מעבדים א-סימטרי</td><td>האדון מריץ את ה־<bdi dir="ltr">kernel</bdi>, העבדים מריצים רק <bdi dir="ltr">userspace</bdi></td></tr>
-      <tr><td>הרבה משימות ב־<bdi dir="ltr">RAM</bdi></td><td>Multiprogramming</td><td dir="rtl">ריבוי תכנות</td><td>החזקת מספר משימות בזיכרון כדי שה־<bdi dir="ltr">CPU</bdi> לעולם לא יהיה בטל</td></tr>
-      <tr><td>החלפה מהירה למשתמשים</td><td>Time-sharing</td><td dir="rtl">שיתוף זמן</td><td>החלפת <bdi dir="ltr">CPU</bdi> מהירה מעניקה לכל משתמש תגובה אינטראקטיבית</td></tr>
-      <tr><td>עבודה שנעשית ליחידת זמן</td><td>Throughput</td><td dir="rtl">תפוקה</td><td>מספר התהליכים שהושלמו ליחידת זמן</td></tr>
-      <tr><td>מבחן ביצועים</td><td>Benchmark</td><td dir="rtl">מבחן ביצועים</td><td>מבחן תקני להשוואת ביצועי מערכות</td></tr>
-      <tr><td>קוד <bdi dir="ltr">kernel</bdi> ייעודי להתקן</td><td>Device driver</td><td dir="rtl">מנהל התקן</td><td>מודול <bdi dir="ltr">kernel</bdi> שמתקשר עם התקן חומרה מסוים</td></tr>
-      <tr><td><bdi dir="ltr">CPUs</bdi> בזיכרון משותף</td><td>Tightly coupled</td><td dir="rtl">צימוד הדוק</td><td>ה־<bdi dir="ltr">CPUs</bdi> חולקים זיכרון אחד + שעון (מכונת <bdi dir="ltr">SMP</bdi> יחידה)</td></tr>
-      <tr><td>מכונות מרושתות</td><td>Loosely coupled</td><td dir="rtl">צימוד רופף</td><td>לכל צומת יש זיכרון משלו; תקשורת דרך הרשת (מבוזר)</td></tr>
-      <tr><td>עוצר תהליך משתולל</td><td>Timer interrupt</td><td dir="rtl">פסיקת שעון</td><td>פסיקת שעון חומרה (<bdi dir="ltr">PIT</bdi>) המאפשרת השהיה כפויה (<bdi dir="ltr">preemption</bdi>)</td></tr>
-      <tr><td>תור עבודות הדפסה על הדיסק</td><td>Spool</td><td dir="rtl">ספול</td><td>תור עבודות המוחזק על הדיסק הקשיח עד שההתקן פנוי</td></tr>
-      <tr><td><bdi dir="ltr">I/O</bdi> ישירות ל־<bdi dir="ltr">RAM</bdi></td><td>DMA</td><td dir="rtl">גישה ישירה לזיכרון</td><td>ההתקן כותב ישירות ל־<bdi dir="ltr">RAM</bdi>, תוך עקיפת ה־<bdi dir="ltr">CPU</bdi></td></tr>
+      <tr><td>Tightly coupled</td><td>ה־<bdi dir="ltr">CPUs</bdi> חולקים זיכרון ראשי אחד (<bdi dir="ltr">RAM</bdi>)</td><td dir="rtl">צימוד הדוק</td></tr>
+      <tr><td>Loosely coupled</td><td>לכל <bdi dir="ltr">CPU</bdi> יש זיכרון משלו; הם מתקשרים דרך רשת</td><td dir="rtl">צימוד רופף</td></tr>
+      <tr><td>Multiprogramming / time-sharing</td><td>מספר תהליכים מוחזקים בזיכרון בו-זמנית; ה־<bdi dir="ltr">CPU</bdi> מריץ אותם לסירוגין</td><td dir="rtl">ריבוי תכנות / שיתוף זמן</td></tr>
+      <tr><td>Throughput</td><td>כמה תהליכים מסתיימים ליחידת זמן (מדד ביצועים)</td><td dir="rtl">תפוקה</td></tr>
+      <tr><td>Benchmark</td><td>עומס עבודה תקני המורץ כדי למדוד את ביצועי המחשב</td><td dir="rtl">מבחן ביצועים</td></tr>
+      <tr><td>Device driver</td><td>קוד <bdi dir="ltr">kernel</bdi> המתווך בין החומרה ליישומים</td><td dir="rtl">מנהל התקן</td></tr>
+      <tr><td>Hard real-time</td><td>תמיד עומד ב־<bdi dir="ltr">deadline</bdi> (מערכות בקרה קריטיות)</td><td dir="rtl">זמן אמת קשיח</td></tr>
+      <tr><td>Soft real-time</td><td>עומד ב־<bdi dir="ltr">deadline</bdi> רוב הזמן (לא תמיד); החמצה נסבלת</td><td dir="rtl">זמן אמת רך</td></tr>
     </tbody>
   </table>
 
-  <p>אין חישוב כבד בחלק זה, אך ההיגיון של פסיקת השעון חוזר במבחנים. השתמשו ברשימת התיוג הזו כדי לענות על ארכיטיפ "מי עוצר אותו / למה".</p>
+  <p>מכיוון שכל כרטיס הוא התאמה של הגדרה למונח, רשימת החלטות קצרה היא כל מה שדרוש כדי לענות במהירות ובדיוק.</p>
 
   <ol class="recipe">
-    <li>זהו את התסמין: תהליך רץ לנצח (למשל <code>while(1)</code>) ומחזיק את ה־<bdi dir="ltr">CPU</bdi>.</li>
-    <li>נקבו בשם העוצר: <strong>פסיקת השעון</strong> (<bdi dir="ltr">timer interrupt</bdi>) כופה מעבר <bdi dir="ltr">RUNNING</bdi> &rarr; <bdi dir="ltr">READY</bdi> (השהיה כפויה).</li>
-    <li>נקבו בשם המקור: <strong>שעון החומרה / <bdi dir="ltr">PIT</bdi></strong>, ולא ה־<bdi dir="ltr">OS</bdi> או פקודת <bdi dir="ltr">CPU</bdi>.</li>
-    <li>ציינו את המטרה: בלעדיו, תהליך שאינו מוותר על ה־<bdi dir="ltr">CPU</bdi> היה מחזיק אותו לנצח.</li>
+    <li>צימוד: הרכיב ש<strong>משותף</strong> בין ה־<bdi dir="ltr">CPUs</bdi> בצימוד הדוק אך <strong>נפרד לכל <bdi dir="ltr">CPU</bdi></strong> בצימוד רופף הוא ה<strong>זיכרון הראשי (<bdi dir="ltr">RAM</bdi>)</strong>.</li>
+    <li>זמן אמת: המילים <strong>רוב הזמן / לא תמיד</strong> מצביעות על <strong>soft real-time</strong>; המילה <strong>תמיד</strong> מצביעה על <strong>hard real-time</strong>.</li>
+    <li>ביצועים: <strong>throughput</strong> הוא משימות שהסתיימו ליחידת זמן — <strong>מדד מערכתי</strong>, לא שעון לכל תהליך.</li>
+    <li>גישה לחומרה: <strong>device driver</strong> מתווך בין <strong>החומרה ליישומים</strong>, ומעניק למערכת ההפעלה דרך אחידה לתקשר עם כל התקן.</li>
   </ol>
 
-  <pre>Q: "A process is stuck in an infinite loop. What stops it?"  -> Timer interrupt
-Q: "Who generates that interrupt?"                          -> Hardware Timer (PIT)
-Q: "System meeting its deadline 99% of the time?"           -> Soft real-time
-Q: "No master/slave relation between CPUs?"                 -> Symmetric multiprocessing</pre>
+  <pre>Q: "Component shared tightly but separate loosely?"   -> RAM
+Q: "Meets deadline most of the time?"                 -> Soft real-time
+Q: "Always meets the deadline?"                       -> Hard real-time
+Q: "How many jobs finish per unit time?"              -> Throughput
+Q: "Mediates between hardware and applications?"       -> Device driver</pre>
+
+  <h3>מה נשאל במבחן</h3>
+
+  <p>נקבו במונח לפי ההגדרה שלו — זה כל הנושא. להלן כל ששת הכרטיסים החוזרים עם התשובות המאומתות שלהם.</p>
+
+  <table class="terms">
+    <thead>
+      <tr><th>כרטיס</th><th>שאלה (מקוצרת)</th><th>תשובה</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2017A Q1</td><td>הרכיב המשותף (הדוק) אך נפרד לכל <bdi dir="ltr">CPU</bdi> (רופף)</td><td>זיכרון ראשי (<bdi dir="ltr">RAM</bdi>)</td></tr>
+      <tr><td>2019B Q3</td><td>מדד: כמה תהליכי <bdi dir="ltr">benchmark</bdi> מסתיימים בזמן קבוע</td><td>Throughput</td></tr>
+      <tr><td>2020B Q1</td><td>מערכת המחזיקה תהליכים רבים בזיכרון, ומריצה אותם לסירוגין</td><td>Multiprogramming / time-sharing</td></tr>
+      <tr><td>2021A Q1</td><td>מטרת הרצת <bdi dir="ltr">benchmarks</bdi></td><td>למדוד את ביצועי המחשב</td></tr>
+      <tr><td>2022B Q1</td><td>תפקיד מנהלי ההתקנים ב־<bdi dir="ltr">kernel</bdi></td><td>תיווך בין החומרה ליישומים</td></tr>
+      <tr><td>2024A Q1</td><td>מערכת העומדת ב־<bdi dir="ltr">deadlines</bdi> רוב הזמן (לא תמיד)</td><td>Soft real-time</td></tr>
+    </tbody>
+  </table>
 
   <div class="traps">
-    <strong>מלכודות "קרוב אך מדויק":</strong>
+    <strong>המלכודות שעולות נקודות:</strong>
     <ul>
-      <li><strong><bdi dir="ltr">Hard</bdi> מול <bdi dir="ltr">Soft real-time</bdi>:</strong> "תמיד" = <bdi dir="ltr">Hard</bdi>; "רוב הזמן / <bdi dir="ltr">99%" =</bdi> <bdi dir="ltr">Soft</bdi>. המילה "תמיד/חובה" היא הסימן המסגיר.</li>
-      <li><strong><bdi dir="ltr">Symmetric</bdi> מול <bdi dir="ltr">Asymmetric</bdi>:</strong> "אין אדון/עבד" / "כל ה־<bdi dir="ltr">CPUs</bdi> שווים" = <bdi dir="ltr">Symmetric</bdi>. "האדון מטפל ב־<bdi dir="ltr">kernel</bdi>, העבדים לא" = <bdi dir="ltr">Asymmetric</bdi>. אל תחליפו ביניהם.</li>
-      <li><strong><bdi dir="ltr">Tightly</bdi> מול <bdi dir="ltr">Loosely coupled</bdi>:</strong> זיכרון + שעון משותפים = <bdi dir="ltr">tightly coupled</bdi> (<bdi dir="ltr">SMP</bdi>). זיכרון נפרד + רשת = <bdi dir="ltr">loosely coupled</bdi> (מבוזר). הצימוד עוסק ב<em>שיתוף זיכרון</em>, לא במספר ה־<bdi dir="ltr">CPU</bdi>.</li>
-      <li><strong><bdi dir="ltr">Multiprogramming</bdi> מול <bdi dir="ltr">Time-sharing</bdi>:</strong> <bdi dir="ltr">multiprogramming</bdi> = לשמור על ה־<bdi dir="ltr">CPU</bdi> עסוק (מטרת תפוקה); <bdi dir="ltr">time-sharing</bdi> = החלפה מהירה למשתמשים אינטראקטיביים (מטרת זמן תגובה).</li>
-      <li><strong>פסיקת השעון היא חומרה, לא תוכנה:</strong> השעון/<bdi dir="ltr">PIT</bdi> מייצר אותה; ה־<bdi dir="ltr">OS</bdi> רק מטפל בה. זהו המנגנון שמאחורי ההשהיה הכפויה.</li>
-      <li><strong><bdi dir="ltr">DMA</bdi> עוקף את ה־<bdi dir="ltr">CPU</bdi> וכותב ל־<bdi dir="ltr">RAM</bdi></strong> (לא ל־<bdi dir="ltr">CPU</bdi>, לא ל־<bdi dir="ltr">cache</bdi>). ה־<bdi dir="ltr">Spool</bdi> יושב על ה־<strong><bdi dir="ltr">HDD</bdi></strong>, לא ב־<bdi dir="ltr">cache</bdi>.</li>
-      <li><strong><bdi dir="ltr">Throughput</bdi> מול <bdi dir="ltr">Turnaround</bdi>:</strong> <bdi dir="ltr">throughput</bdi> = משימות שהסתיימו ליחידת זמן (קצב); <bdi dir="ltr">turnaround</bdi> = הזמן לסיום משימה אחת. אל תבלבלו את מדד ה־<bdi dir="ltr">benchmark</bdi>.</li>
+      <li><strong>צימוד הדוק = <bdi dir="ltr">RAM</bdi> משותף;</strong> צימוד רופף = זיכרון פרטי לכל <bdi dir="ltr">CPU</bdi>. הצימוד עוסק בשיתוף זיכרון, לא במספר ה־<bdi dir="ltr">CPU</bdi>.</li>
+      <li><strong><bdi dir="ltr">Multiprogramming</bdi> אינו דורש מספר מעבדים:</strong> משמעו תהליכים רבים השוכנים בזיכרון ומורצים לסירוגין — <bdi dir="ltr">CPU</bdi> אחד מספיק.</li>
+      <li><strong><bdi dir="ltr">Throughput</bdi> מול <bdi dir="ltr">turnaround</bdi>:</strong> <bdi dir="ltr">throughput</bdi> = משימות שהסתיימו ליחידת זמן (קצב מערכתי); <bdi dir="ltr">turnaround</bdi>/זמן המתנה = שעונים לכל תהליך מנושא התזמון.</li>
       <li><strong><bdi dir="ltr">Device driver</bdi> מול <bdi dir="ltr">system call</bdi>:</strong> ה־<bdi dir="ltr">driver</bdi> הוא קוד <bdi dir="ltr">kernel</bdi> להתקן אחד; <bdi dir="ltr">system call</bdi> היא נקודת הכניסה מ־<bdi dir="ltr">userspace</bdi> אל ה־<bdi dir="ltr">kernel</bdi>. שכבה שונה.</li>
+      <li><strong><bdi dir="ltr">Soft</bdi> = רוב הזמן, <bdi dir="ltr">hard</bdi> = תמיד:</strong> "רוב הזמן (לא תמיד)" פירושו <bdi dir="ltr">soft real-time</bdi>; "תמיד / מובטח" פירושו <bdi dir="ltr">hard real-time</bdi>.</li>
     </ul>
   </div>
 </section>

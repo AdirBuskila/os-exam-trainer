@@ -1,62 +1,150 @@
-<p>CPU scheduling = the short-term scheduler picks which READY process gets the CPU. Know each algorithm's name, whether it is <strong>preemptive</strong>, and its one fatal flaw. For exam fill-ins, write the English term; the metric formulas and one Gantt chart cover the rest.</p>
+<h2>CPU Scheduling</h2>
+
+<p>There is one CPU but many processes sitting <strong>ready</strong> to run, so something must decide who goes next. A scheduling algorithm is just a <strong>rule for picking the next process</strong> (and, for Round-Robin, for how long it runs). Exam questions come in exactly two flavours: <strong>name a concept</strong> (a definition, a preemptive example, an OS quirk) or <strong>compute the average waiting time</strong> from a given set of arrivals and bursts. Master one method and every compute question becomes the same drill.</p>
+
+<h3>Glossary</h3>
 
 <table>
   <thead>
-    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    <tr><th>Term</th><th>Hebrew</th><th>Meaning</th></tr>
   </thead>
   <tbody>
-    <tr><td>First Come First Served</td><td>FCFS</td><td dir="rtl">כל הקודם זוכה</td><td>Non-preemptive, by arrival order; suffers convoy effect.</td></tr>
-    <tr><td>Shortest Job First</td><td>SJF</td><td dir="rtl">העבודה הקצרה ביותר</td><td>Non-preemptive; shortest CPU burst first; min avg wait.</td></tr>
-    <tr><td>Shortest Remaining Time First</td><td>SRTF</td><td dir="rtl">הזמן הנותר הקצר ביותר</td><td>Preemptive SJF; shorter arrival preempts the runner.</td></tr>
-    <tr><td>Round Robin</td><td>RR</td><td dir="rtl">סבב מחזורי</td><td>Preemptive by timer; quantum Q, then back of queue.</td></tr>
-    <tr><td>Priority scheduling</td><td>Priority</td><td dir="rtl">תזמון לפי עדיפות</td><td>Smallest number = highest priority; can starve.</td></tr>
-    <tr><td>Multilevel Queue</td><td>MLQ</td><td dir="rtl">תור רב-רמתי</td><td>Fixed separate queues (foreground RR / background FCFS).</td></tr>
-    <tr><td>Multilevel Feedback Queue</td><td>MLFQ</td><td dir="rtl">תור רב-רמתי עם משוב</td><td>Queues + movement between them = aging; CPU-bound sinks.</td></tr>
-    <tr><td>Convoy effect</td><td>Convoy effect</td><td dir="rtl">אפקט השיירה</td><td>One long process makes everyone wait (FCFS).</td></tr>
-    <tr><td>Starvation</td><td>Starvation</td><td dir="rtl">הרעבה</td><td>One process never gets CPU; fix = aging.</td></tr>
-    <tr><td>Aging</td><td>Aging</td><td dir="rtl">הזדקנות</td><td>Raise priority over wait time to prevent starvation.</td></tr>
-    <tr><td>CPU burst</td><td>Burst</td><td dir="rtl">פרץ חישוב</td><td>Continuous CPU run between two I/O waits.</td></tr>
-    <tr><td>Waiting time</td><td>Waiting time</td><td dir="rtl">זמן המתנה</td><td>Time spent in READY queue (Turnaround − Burst).</td></tr>
-    <tr><td>Turnaround time</td><td>Turnaround time</td><td dir="rtl">זמן סבב</td><td>Completion − Arrival (entry to finish).</td></tr>
-    <tr><td>Response time</td><td>Response time</td><td dir="rtl">זמן תגובה</td><td>First-CPU − Arrival (until it first runs).</td></tr>
-    <tr><td>Throughput</td><td>Throughput</td><td dir="rtl">תפוקה</td><td>Processes completed per time unit.</td></tr>
-    <tr><td>Preemptive</td><td>Preemptive</td><td dir="rtl">נשלף / קדימה</td><td>OS takes CPU away (timer interrupt).</td></tr>
-    <tr><td>Non-preemptive</td><td>Non-preemptive</td><td dir="rtl">לא נשלף</td><td>Runs until it yields or blocks.</td></tr>
-    <tr><td>Linux scheduler cycle</td><td>Epoch</td><td dir="rtl">תקופה</td><td>One full Linux scheduling cycle; carries half allocation.</td></tr>
-    <tr><td>Short-term scheduler</td><td>CPU scheduler</td><td dir="rtl">מתזמן לטווח קצר</td><td>Picks runnable→running; runs every few ms.</td></tr>
+    <tr><td>CPU burst</td><td dir="rtl">פרץ חישוב</td><td>A stretch of pure computing between two I/O requests. "Adds two register values" is a CPU burst.</td></tr>
+    <tr><td>Waiting time</td><td dir="rtl">זמן המתנה</td><td>Total time spent in the ready queue, not running and not doing I/O. Equals Turnaround minus Burst.</td></tr>
+    <tr><td>Turnaround time</td><td dir="rtl">זמן סבב</td><td>From arrival to completion: the process's whole lifetime in the system. Equals Completion minus Arrival.</td></tr>
+    <tr><td>Response time</td><td dir="rtl">זמן תגובה</td><td>From arrival until the process produces its first output (first time it runs).</td></tr>
+    <tr><td>Throughput</td><td dir="rtl">תפוקה</td><td>Number of processes completed per unit of time.</td></tr>
+    <tr><td>Preemptive</td><td dir="rtl">נשלף / מפנה</td><td>The scheduler can yank a running process back to ready. Examples: SRTF and Round-Robin.</td></tr>
+    <tr><td>Non-preemptive</td><td dir="rtl">לא נשלף</td><td>A chosen process keeps the CPU until it finishes its burst or blocks. Examples: FCFS and SJF.</td></tr>
+    <tr><td>Quantum</td><td dir="rtl">קוונטום</td><td>The fixed time slice each process gets in Round-Robin before it is preempted.</td></tr>
+    <tr><td>Starvation</td><td dir="rtl">הרעבה</td><td>A process never getting to run (a Priority or SJF/SRTF victim). The fix is aging.</td></tr>
   </tbody>
 </table>
 
+<h3>The universal method</h3>
+
 <ol class="recipe">
-  <li>List each process with Arrival and Burst (and Priority if given).</li>
-  <li>Apply the algorithm rule at every <em>event</em> (a new arrival or a completion). SJF/Priority = pick best among already-arrived; SRTF/RR = re-check on each event/quantum.</li>
-  <li>Draw the Gantt chart (time axis with who runs).</li>
-  <li>Per process: <code>Turnaround = Completion − Arrival</code>; <code>Waiting = Turnaround − Burst</code>; <code>Response = First-CPU − Arrival</code>.</li>
-  <li>Average = sum / n. Tie in burst → break by FCFS (arrival). Remember: smaller number = higher priority.</li>
+  <li>Build the table: Process, Arrival, Burst (add a Remaining column for SRTF and RR).</li>
+  <li>Draw the Gantt chart by the algorithm's rule, re-checking at every arrival or completion (and every quantum for RR).</li>
+  <li>Read off the <strong>Completion</strong> time of each process from the chart.</li>
+  <li>Compute <strong>Turnaround = Completion &minus; Arrival</strong>.</li>
+  <li>Compute <strong>Waiting = Turnaround &minus; Burst</strong> (the universal formula; it works even when a job runs in pieces).</li>
+  <li>Average waiting time = sum of waiting times divided by the number of processes.</li>
 </ol>
 
+<h3>Worked examples (verified answers)</h3>
+
 <pre>
-P1 burst 24, P2 burst 3, P3 burst 3 (all arrive at 0)
-
-FCFS  | P1            | P2 | P3 |   wait: 0, 24, 27  -> avg 17
-      0              24   27   30
-
-SJF   | P2 | P3 | P1            |   wait: 6, 0, 3    -> avg 3  (optimal)
-      0    3    6              30
-
-RR Q=4| P1 |P2 |P3 | P1 P1 P1 P1 P1 |  wait avg ~ 5.67
+FCFS  2021B Q5   (P1 arr0 b7, P2 arr1 b7, P3 arr2 b7)
+P1 |#######|              0-7
+P2         |#######|      7-14
+P3                 |#######|   14-21
+Completion: P1=7, P2=14, P3=21
+Waiting = Turnaround - Burst
+P1: (7-0)-7  = 0
+P2: (14-1)-7 = 6
+P3: (21-2)-7 = 12
+Average = (0 + 6 + 12) / 3 = 6 ms
 </pre>
+
+<pre>
+SRTF  2022A Q4   (P1 arr0 b9, P2 arr1 b7, P3 arr2 b4)
+P1 |#|                        0-1
+P2   |#|                      1-2   (P2 rem7 < P1 rem8, preempt)
+P3     |####|                 2-6   (P3 smallest remaining)
+P2         |######|           6-12
+P1               |########|   12-20
+Completion: P1=20, P2=12, P3=6
+Waiting = (Completion - Arrival) - Burst
+P1: (20-0)-9 = 11
+P2: (12-1)-7 = 4
+P3: (6-2)-4  = 0
+Average = (11 + 4 + 0) / 3 = 5 ms
+</pre>
+
+<pre>
+RR q=4  2021A Q5   (three 7 ms jobs, all arrive t=0)
+P1|####|P2|####|P3|####|P1|###|P2|###|P3|###|
+  0    4      8      12   15    18    21
+Completion: P1=15, P2=18, P3=21
+Waiting = Turnaround - Burst
+P1: 15-7 = 8
+P2: 18-7 = 11
+P3: 21-7 = 14
+Average = (8 + 11 + 14) / 3 = 11 ms
+</pre>
+
+<pre>
+RR q=4  2019A Q4   (bursts 9,3,7,1; all arrive t=0)
+P1|####|P2|###|P3|####|P4|#|P1|####|P3|###|P1|#|
+  0    4     7      11  12   16     19   20
+Completion: P1=20, P2=7, P3=19, P4=12
+Waiting = Turnaround - Burst
+P1: 20-9 = 11
+P2: 7-3  = 4
+P3: 19-7 = 12
+P4: 12-1 = 11
+Average = (11 + 4 + 12 + 11) / 4 = 9.5 ms
+</pre>
+
+<pre>
+RR q=4  2022B Q4   (P1 arr0 b9, P2 arr1 b7, P3 arr3 b4)  -- staggered, the hard one
+0-4    P1   rem5   arrivals during slice: P2, P3  -> queue [P2, P3, P1]
+4-8    P2   rem3                                  -> queue [P3, P1, P2]
+8-12   P3   rem0 (done)                           -> queue [P1, P2]
+12-16  P1   rem1                                  -> queue [P2, P1]
+16-19  P2   rem0 (done)                           -> queue [P1]
+19-20  P1   rem0 (done)                           -> queue []
+Completion: P1=20, P2=19, P3=12
+Waiting = (Completion - Arrival) - Burst
+P1: (20-0)-9 = 11
+P2: (19-1)-7 = 11
+P3: (12-3)-4 = 5
+Average = (11 + 11 + 5) / 3 = 9 ms
+
+ORDERING RULE: arrivals during a slice queue BEFORE the just-preempted job.
+RR with an infinite quantum = FCFS (nobody is ever preempted).
+</pre>
+
+<h3>What the exam asks</h3>
+
+<p>About half are <strong>definitions</strong> and half are <strong>Gantt math</strong>. Here is the full answer key.</p>
+
+<table>
+  <thead>
+    <tr><th>Card</th><th>Question (short)</th><th>Answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q4</td><td>Compute time without I/O between two I/O requests</td><td>CPU burst</td></tr>
+    <tr><td>2017A Q5</td><td>Response time = start until ___</td><td>It produces first output</td></tr>
+    <tr><td>2017B Q4</td><td>Waiting = from entering ready until ___</td><td>It is selected to run</td></tr>
+    <tr><td>2017B Q5</td><td>How Windows prioritizes the focus window</td><td>3x longer quantum</td></tr>
+    <tr><td>2019A Q4</td><td>RR avg waiting, bursts 9,3,7,1, q=4</td><td>9.5</td></tr>
+    <tr><td>2020A Q4</td><td>Schedulers that move running to ready</td><td>Preemptive schedulers</td></tr>
+    <tr><td>2020A Q6</td><td>FCFS avg waiting (3 processes)</td><td>4 ms</td></tr>
+    <tr><td>2020A Q7</td><td>One Linux round over all CPU-requesting processes</td><td>An epoch</td></tr>
+    <tr><td>2020B Q4</td><td>Burst during which a process adds two registers</td><td>CPU burst</td></tr>
+    <tr><td>2020B Q5</td><td>Example of a preemptive algorithm</td><td>SRTF or Round-Robin</td></tr>
+    <tr><td>2021A Q4</td><td>Low-priority processes never running</td><td>Starvation</td></tr>
+    <tr><td>2021A Q5</td><td>RR avg waiting, three 7 ms bursts, q=4</td><td>11 ms</td></tr>
+    <tr><td>2021B Q5</td><td>FCFS avg waiting, three 7 ms at 0,1,2</td><td>6 ms</td></tr>
+    <tr><td>2022A Q4</td><td>SRTF avg waiting (3 processes)</td><td>5 ms</td></tr>
+    <tr><td>2022B Q4</td><td>RR avg waiting (3 processes), q=4</td><td>9 ms</td></tr>
+    <tr><td>2023A Q4</td><td>Average time from entering until leaving ready queue</td><td>Waiting time</td></tr>
+    <tr><td>2023A Q5</td><td>Which process gets a triple time slice (Windows)</td><td>The focus-window process</td></tr>
+    <tr><td>2023B Q4</td><td>RR with infinite quantum equals</td><td>FCFS</td></tr>
+    <tr><td>2024A Q5</td><td>Linux scheduling approach</td><td>Multilevel Queue</td></tr>
+    <tr><td>2024B Q4</td><td>When RR preempts a process</td><td>When the quantum expires</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>SJF is non-preemptive; SRTF is preemptive.</strong> Two different algorithms — do not mix.</li>
-    <li><strong>RR with quantum = infinity (or Q ≥ longest burst) behaves like FCFS.</strong> Q too small → CPU wasted on context switches; Q too large → like FCFS.</li>
-    <li><strong>Convoy effect belongs to FCFS</strong> (one long job blocks all). SJF/SRTF give the minimum average waiting time, but only on a given set.</li>
-    <li><strong>Starvation is a consequence, not an algorithm.</strong> It hits SJF/SRTF (long jobs) and Priority (low priority); the fix is <em>aging</em>.</li>
-    <li><strong>Waiting time uses burst, not total time.</strong> Waiting = Turnaround − Burst. Response = first time on CPU, not completion.</li>
-    <li><strong>Priority: smaller number = higher priority</strong> in this course. nice range −20 (high) … +19 (low).</li>
-    <li><strong>Linux = Multilevel Queue</strong> (FIFO real-time, RR real-time, non-real-time/epoch-based). One full cycle = <em>Epoch</em>; unfinished allocation carries <em>half</em> to the next epoch.</li>
-    <li><strong>Windows:</strong> foreground-window thread gets a <em>tripled</em> quantum; after I/O, priority boost is inversely proportional to device speed (slow device → bigger boost), then decays each quantum.</li>
-    <li><strong>RR is preempted by the timer interrupt</strong> (quantum end), never voluntarily.</li>
+    <li><strong>Three different clocks.</strong> Waiting is time stuck in the ready queue; Response is time until the first output; Turnaround is arrival to completion. Waiting never includes running time.</li>
+    <li><strong>Use Waiting = Turnaround &minus; Burst for RR and SRTF.</strong> Those jobs run in pieces, so "Start &minus; Arrival" fails; only the universal formula is safe.</li>
+    <li><strong>RR ordering rule.</strong> When a slice ends, enqueue jobs that arrived during that slice first, then the just-preempted job behind them. Putting the preempted job back first breaks the answer.</li>
+    <li><strong>Starvation is fixed by aging.</strong> SJF, SRTF, and Priority can starve long or low-priority jobs; slowly raising a waiting process's priority (aging) prevents it. RR never starves.</li>
+    <li><strong>Windows focus window gets a 3x (triple) quantum.</strong> The process owning the focus window runs three times longer per slice.</li>
+    <li><strong>Linux = epoch + Multilevel Queue.</strong> One round over all CPU-requesting processes is an epoch; the course's expected answer for Linux's scheduling approach is Multilevel Queue. (Bonus identity: RR with an infinite quantum equals FCFS.)</li>
   </ul>
 </div>

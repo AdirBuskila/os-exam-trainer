@@ -1,62 +1,150 @@
-<p>תזמון <bdi dir="ltr">CPU</bdi> = המתזמן לטווח הקצר בוחר איזה תהליך במצב <bdi dir="ltr">READY</bdi> יקבל את ה-<bdi dir="ltr">CPU</bdi>. יש לדעת לכל אלגוריתם את שמו, האם הוא <strong>מפנה <bdi dir="ltr">(preemptive)</bdi></strong>, ואת הכשל הקטלני היחיד שלו. בשאלות השלמה במבחן יש לכתוב את המונח באנגלית; נוסחאות המדדים ותרשים <bdi dir="ltr">Gantt</bdi> אחד מכסים את השאר.</p>
+<h2>תזמון <bdi dir="ltr">CPU</bdi></h2>
+
+<p>יש <bdi dir="ltr">CPU</bdi> אחד אך תהליכים רבים שממתינים במצב <strong>מוכן</strong> לרוץ, ולכן משהו חייב להחליט מי רץ הבא. אלגוריתם תזמון הוא פשוט <strong>כלל לבחירת התהליך הבא</strong> (ובמקרה של <bdi dir="ltr">Round-Robin</bdi> גם למשך כמה זמן ירוץ). שאלות המבחן מגיעות בשני סוגים בלבד: <strong>לנקוב בשם של מושג</strong> (הגדרה, דוגמה לאלגוריתם מפנה, מאפיין של מערכת הפעלה) או <strong>לחשב את זמן ההמתנה הממוצע</strong> מתוך קבוצת הגעות ו-<bdi dir="ltr">bursts</bdi> נתונה. מי ששולט בשיטה אחת הופך כל שאלת חישוב לאותו תרגיל בדיוק.</p>
+
+<h3>מילון מונחים</h3>
 
 <table>
   <thead>
-    <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
+    <tr><th>מונח</th><th>עברית</th><th>משמעות</th></tr>
   </thead>
   <tbody>
-    <tr><td>כל הקודם זוכה</td><td>FCFS</td><td dir="rtl">כל הקודם זוכה</td><td>לא-מפנה, לפי סדר ההגעה; סובל מ-<bdi dir="ltr">convoy effect</bdi>.</td></tr>
-    <tr><td>העבודה הקצרה ביותר</td><td>SJF</td><td dir="rtl">העבודה הקצרה ביותר</td><td>לא-מפנה; ה-<bdi dir="ltr">burst</bdi> הקצר ביותר תחילה; ממזער את זמן ההמתנה הממוצע.</td></tr>
-    <tr><td>הזמן הנותר הקצר ביותר</td><td>SRTF</td><td dir="rtl">הזמן הנותר הקצר ביותר</td><td><bdi dir="ltr">SJF</bdi> מפנה; הגעה קצרה יותר משלפת את הרץ.</td></tr>
-    <tr><td>סבב מחזורי</td><td>RR</td><td dir="rtl">סבב מחזורי</td><td>מפנה לפי טיימר; קוונטום <bdi dir="ltr">Q</bdi>, ואז לסוף התור.</td></tr>
-    <tr><td>תזמון לפי עדיפות</td><td>Priority</td><td dir="rtl">תזמון לפי עדיפות</td><td>המספר הקטן ביותר = העדיפות הגבוהה ביותר; עלול לגרום להרעבה.</td></tr>
-    <tr><td>תור רב-רמתי</td><td>MLQ</td><td dir="rtl">תור רב-רמתי</td><td>תורים נפרדים וקבועים (חזית <bdi dir="ltr">RR</bdi> / רקע <bdi dir="ltr">FCFS</bdi>).</td></tr>
-    <tr><td>תור רב-רמתי עם משוב</td><td>MLFQ</td><td dir="rtl">תור רב-רמתי עם משוב</td><td>תורים + מעבר ביניהם = הזדקנות (<bdi dir="ltr">aging</bdi>); תהליכי <bdi dir="ltr">CPU-bound</bdi> שוקעים.</td></tr>
-    <tr><td>אפקט השיירה</td><td>Convoy effect</td><td dir="rtl">אפקט השיירה</td><td>תהליך ארוך אחד גורם לכולם להמתין (<bdi dir="ltr">FCFS</bdi>).</td></tr>
-    <tr><td>הרעבה</td><td>Starvation</td><td dir="rtl">הרעבה</td><td>תהליך אחד לעולם לא מקבל <bdi dir="ltr">CPU</bdi>; הפתרון = <bdi dir="ltr">aging</bdi>.</td></tr>
-    <tr><td>הזדקנות</td><td>Aging</td><td dir="rtl">הזדקנות</td><td>העלאת העדיפות לאורך זמן ההמתנה כדי למנוע הרעבה.</td></tr>
-    <tr><td>פרץ חישוב</td><td>Burst</td><td dir="rtl">פרץ חישוב</td><td>ריצת <bdi dir="ltr">CPU</bdi> רציפה בין שתי המתנות <bdi dir="ltr">I/O</bdi>.</td></tr>
-    <tr><td>זמן המתנה</td><td>Waiting time</td><td dir="rtl">זמן המתנה</td><td>הזמן שמבלים בתור <bdi dir="ltr">READY</bdi> (<bdi dir="ltr">Turnaround &minus; Burst</bdi>).</td></tr>
-    <tr><td>זמן סבב</td><td>Turnaround time</td><td dir="rtl">זמן סבב</td><td><bdi dir="ltr">Completion &minus; Arrival</bdi> (מכניסה עד סיום).</td></tr>
-    <tr><td>זמן תגובה</td><td>Response time</td><td dir="rtl">זמן תגובה</td><td><bdi dir="ltr">First-CPU &minus; Arrival</bdi> (עד הריצה הראשונה).</td></tr>
-    <tr><td>תפוקה</td><td>Throughput</td><td dir="rtl">תפוקה</td><td>תהליכים שהושלמו ליחידת זמן.</td></tr>
-    <tr><td>נשלף / קדימה</td><td>Preemptive</td><td dir="rtl">נשלף / קדימה</td><td>ה-<bdi dir="ltr">OS</bdi> לוקח את ה-<bdi dir="ltr">CPU</bdi> (פסיקת טיימר).</td></tr>
-    <tr><td>לא נשלף</td><td>Non-preemptive</td><td dir="rtl">לא נשלף</td><td>רץ עד שמוותר מרצונו או נחסם.</td></tr>
-    <tr><td>מחזור התזמון של <bdi dir="ltr">Linux</bdi></td><td>Epoch</td><td dir="rtl">תקופה</td><td>מחזור תזמון מלא אחד של <bdi dir="ltr">Linux</bdi>; נושא חצי הקצאה הלאה.</td></tr>
-    <tr><td>מתזמן לטווח קצר</td><td>CPU scheduler</td><td dir="rtl">מתזמן לטווח קצר</td><td>בוחר <bdi dir="ltr">runnable&rarr;running</bdi>; רץ כל כמה <bdi dir="ltr">ms</bdi>.</td></tr>
+    <tr><td>CPU burst</td><td dir="rtl">פרץ חישוב</td><td>קטע של חישוב טהור בין שתי בקשות <bdi dir="ltr">I/O</bdi>. "מחבר שני ערכי אוגרים" הוא <bdi dir="ltr">CPU burst</bdi>.</td></tr>
+    <tr><td>Waiting time</td><td dir="rtl">זמן המתנה</td><td>סך הזמן שהתהליך מבלה בתור המוכנים, כשאינו רץ ואינו מבצע <bdi dir="ltr">I/O</bdi>. שווה ל-<bdi dir="ltr">Turnaround</bdi> פחות <bdi dir="ltr">Burst</bdi>.</td></tr>
+    <tr><td>Turnaround time</td><td dir="rtl">זמן סבב</td><td>מההגעה ועד ההשלמה: כל אורך חיי התהליך במערכת. שווה ל-<bdi dir="ltr">Completion</bdi> פחות <bdi dir="ltr">Arrival</bdi>.</td></tr>
+    <tr><td>Response time</td><td dir="rtl">זמן תגובה</td><td>מההגעה ועד שהתהליך מפיק את הפלט הראשון שלו (הפעם הראשונה שהוא רץ).</td></tr>
+    <tr><td>Throughput</td><td dir="rtl">תפוקה</td><td>מספר התהליכים שהושלמו ליחידת זמן.</td></tr>
+    <tr><td>Preemptive</td><td dir="rtl">נשלף / מפנה</td><td>המתזמן יכול לשלוף תהליך רץ בחזרה למצב מוכן. דוגמאות: <bdi dir="ltr">SRTF</bdi> ו-<bdi dir="ltr">Round-Robin</bdi>.</td></tr>
+    <tr><td>Non-preemptive</td><td dir="rtl">לא נשלף</td><td>תהליך שנבחר מחזיק ב-<bdi dir="ltr">CPU</bdi> עד שמסיים את ה-<bdi dir="ltr">burst</bdi> שלו או נחסם. דוגמאות: <bdi dir="ltr">FCFS</bdi> ו-<bdi dir="ltr">SJF</bdi>.</td></tr>
+    <tr><td>Quantum</td><td dir="rtl">קוונטום</td><td>פרוסת הזמן הקבועה שכל תהליך מקבל ב-<bdi dir="ltr">Round-Robin</bdi> לפני שהוא נשלף.</td></tr>
+    <tr><td>Starvation</td><td dir="rtl">הרעבה</td><td>תהליך שלעולם אינו זוכה לרוץ (קורבן של <bdi dir="ltr">Priority</bdi> או <bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">SRTF</bdi>). הפתרון הוא <bdi dir="ltr">aging</bdi>.</td></tr>
   </tbody>
 </table>
 
+<h3>השיטה האוניברסלית</h3>
+
 <ol class="recipe">
-  <li>רשום כל תהליך עם <bdi dir="ltr">Arrival</bdi> ו-<bdi dir="ltr">Burst</bdi> (ו-<bdi dir="ltr">Priority</bdi> אם ניתן).</li>
-  <li>החל את כלל האלגוריתם בכל <em>אירוע</em> (הגעה חדשה או השלמה). <bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">Priority</bdi> = בחר את הטוב ביותר מבין מי שכבר הגיעו; <bdi dir="ltr">SRTF</bdi>/<bdi dir="ltr">RR</bdi> = בדוק מחדש בכל אירוע/קוונטום.</li>
-  <li>צייר את תרשים ה-<bdi dir="ltr">Gantt</bdi> (ציר זמן עם מי שרץ).</li>
-  <li>לכל תהליך: <code>Turnaround = Completion − Arrival</code>; <code>Waiting = Turnaround − Burst</code>; <code>Response = First-CPU − Arrival</code>.</li>
-  <li>ממוצע = סכום / <bdi dir="ltr">n</bdi>. שוויון ב-<bdi dir="ltr">burst</bdi> &rarr; שובר לפי <bdi dir="ltr">FCFS</bdi> (הגעה). זכור: מספר קטן יותר = עדיפות גבוהה יותר.</li>
+  <li>בנה את הטבלה: תהליך, <bdi dir="ltr">Arrival</bdi>, <bdi dir="ltr">Burst</bdi> (הוסף עמודת <bdi dir="ltr">Remaining</bdi> עבור <bdi dir="ltr">SRTF</bdi> ו-<bdi dir="ltr">RR</bdi>).</li>
+  <li>צייר את תרשים ה-<bdi dir="ltr">Gantt</bdi> לפי כלל האלגוריתם, תוך בדיקה מחדש בכל הגעה או השלמה (וכל קוונטום ב-<bdi dir="ltr">RR</bdi>).</li>
+  <li>קרא את זמן ה-<strong><bdi dir="ltr">Completion</bdi></strong> של כל תהליך מהתרשים.</li>
+  <li>חשב <strong><bdi dir="ltr">Turnaround = Completion &minus; Arrival</bdi></strong>.</li>
+  <li>חשב <strong><bdi dir="ltr">Waiting = Turnaround &minus; Burst</bdi></strong> (הנוסחה האוניברסלית; היא עובדת גם כשעבודה רצה בחלקים).</li>
+  <li>זמן ההמתנה הממוצע = סכום זמני ההמתנה חלקי מספר התהליכים.</li>
 </ol>
 
+<h3>דוגמאות פתורות (תשובות מאומתות)</h3>
+
 <pre>
-P1 burst 24, P2 burst 3, P3 burst 3 (all arrive at 0)
-
-FCFS  | P1            | P2 | P3 |   wait: 0, 24, 27  -> avg 17
-      0              24   27   30
-
-SJF   | P2 | P3 | P1            |   wait: 6, 0, 3    -> avg 3  (optimal)
-      0    3    6              30
-
-RR Q=4| P1 |P2 |P3 | P1 P1 P1 P1 P1 |  wait avg ~ 5.67
+FCFS  2021B Q5   (P1 arr0 b7, P2 arr1 b7, P3 arr2 b7)
+P1 |#######|              0-7
+P2         |#######|      7-14
+P3                 |#######|   14-21
+Completion: P1=7, P2=14, P3=21
+Waiting = Turnaround - Burst
+P1: (7-0)-7  = 0
+P2: (14-1)-7 = 6
+P3: (21-2)-7 = 12
+Average = (0 + 6 + 12) / 3 = 6 ms
 </pre>
+
+<pre>
+SRTF  2022A Q4   (P1 arr0 b9, P2 arr1 b7, P3 arr2 b4)
+P1 |#|                        0-1
+P2   |#|                      1-2   (P2 rem7 < P1 rem8, preempt)
+P3     |####|                 2-6   (P3 smallest remaining)
+P2         |######|           6-12
+P1               |########|   12-20
+Completion: P1=20, P2=12, P3=6
+Waiting = (Completion - Arrival) - Burst
+P1: (20-0)-9 = 11
+P2: (12-1)-7 = 4
+P3: (6-2)-4  = 0
+Average = (11 + 4 + 0) / 3 = 5 ms
+</pre>
+
+<pre>
+RR q=4  2021A Q5   (three 7 ms jobs, all arrive t=0)
+P1|####|P2|####|P3|####|P1|###|P2|###|P3|###|
+  0    4      8      12   15    18    21
+Completion: P1=15, P2=18, P3=21
+Waiting = Turnaround - Burst
+P1: 15-7 = 8
+P2: 18-7 = 11
+P3: 21-7 = 14
+Average = (8 + 11 + 14) / 3 = 11 ms
+</pre>
+
+<pre>
+RR q=4  2019A Q4   (bursts 9,3,7,1; all arrive t=0)
+P1|####|P2|###|P3|####|P4|#|P1|####|P3|###|P1|#|
+  0    4     7      11  12   16     19   20
+Completion: P1=20, P2=7, P3=19, P4=12
+Waiting = Turnaround - Burst
+P1: 20-9 = 11
+P2: 7-3  = 4
+P3: 19-7 = 12
+P4: 12-1 = 11
+Average = (11 + 4 + 12 + 11) / 4 = 9.5 ms
+</pre>
+
+<pre>
+RR q=4  2022B Q4   (P1 arr0 b9, P2 arr1 b7, P3 arr3 b4)  -- staggered, the hard one
+0-4    P1   rem5   arrivals during slice: P2, P3  -> queue [P2, P3, P1]
+4-8    P2   rem3                                  -> queue [P3, P1, P2]
+8-12   P3   rem0 (done)                           -> queue [P1, P2]
+12-16  P1   rem1                                  -> queue [P2, P1]
+16-19  P2   rem0 (done)                           -> queue [P1]
+19-20  P1   rem0 (done)                           -> queue []
+Completion: P1=20, P2=19, P3=12
+Waiting = (Completion - Arrival) - Burst
+P1: (20-0)-9 = 11
+P2: (19-1)-7 = 11
+P3: (12-3)-4 = 5
+Average = (11 + 11 + 5) / 3 = 9 ms
+
+ORDERING RULE: arrivals during a slice queue BEFORE the just-preempted job.
+RR with an infinite quantum = FCFS (nobody is ever preempted).
+</pre>
+
+<h3>מה שואלים במבחן</h3>
+
+<p>כמחצית מהשאלות הן <strong>הגדרות</strong> וכמחצית הן <strong>חישובי <bdi dir="ltr">Gantt</bdi></strong>. להלן מפתח התשובות המלא.</p>
+
+<table>
+  <thead>
+    <tr><th>כרטיס</th><th>שאלה (מקוצר)</th><th>תשובה</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q4</td><td>זמן חישוב ללא <bdi dir="ltr">I/O</bdi> בין שתי בקשות <bdi dir="ltr">I/O</bdi></td><td>CPU burst</td></tr>
+    <tr><td>2017A Q5</td><td>זמן תגובה = מההתחלה ועד ___</td><td>It produces first output</td></tr>
+    <tr><td>2017B Q4</td><td>המתנה = מהכניסה למוכנים ועד ___</td><td>It is selected to run</td></tr>
+    <tr><td>2017B Q5</td><td>כיצד <bdi dir="ltr">Windows</bdi> מתעדף את חלון החזית</td><td>3x longer quantum</td></tr>
+    <tr><td>2019A Q4</td><td>המתנה ממוצעת ב-<bdi dir="ltr">RR</bdi>, <bdi dir="ltr">bursts</bdi> 9,3,7,1, q=4</td><td>9.5</td></tr>
+    <tr><td>2020A Q4</td><td>מתזמנים שמעבירים תהליך רץ למוכן</td><td>Preemptive schedulers</td></tr>
+    <tr><td>2020A Q6</td><td>המתנה ממוצעת ב-<bdi dir="ltr">FCFS</bdi> (3 תהליכים)</td><td>4 ms</td></tr>
+    <tr><td>2020A Q7</td><td>סבב אחד של <bdi dir="ltr">Linux</bdi> על כל התהליכים המבקשים <bdi dir="ltr">CPU</bdi></td><td>An epoch</td></tr>
+    <tr><td>2020B Q4</td><td>ה-<bdi dir="ltr">burst</bdi> שבמהלכו תהליך מחבר שני אוגרים</td><td>CPU burst</td></tr>
+    <tr><td>2020B Q5</td><td>דוגמה לאלגוריתם מפנה</td><td>SRTF or Round-Robin</td></tr>
+    <tr><td>2021A Q4</td><td>תהליכים בעדיפות נמוכה שלעולם אינם רצים</td><td>Starvation</td></tr>
+    <tr><td>2021A Q5</td><td>המתנה ממוצעת ב-<bdi dir="ltr">RR</bdi>, שלושה <bdi dir="ltr">bursts</bdi> של 7 ms, q=4</td><td>11 ms</td></tr>
+    <tr><td>2021B Q5</td><td>המתנה ממוצעת ב-<bdi dir="ltr">FCFS</bdi>, שלושה של 7 ms ב-0,1,2</td><td>6 ms</td></tr>
+    <tr><td>2022A Q4</td><td>המתנה ממוצעת ב-<bdi dir="ltr">SRTF</bdi> (3 תהליכים)</td><td>5 ms</td></tr>
+    <tr><td>2022B Q4</td><td>המתנה ממוצעת ב-<bdi dir="ltr">RR</bdi> (3 תהליכים), q=4</td><td>9 ms</td></tr>
+    <tr><td>2023A Q4</td><td>זמן ממוצע מהכניסה ועד היציאה מתור המוכנים</td><td>Waiting time</td></tr>
+    <tr><td>2023A Q5</td><td>איזה תהליך מקבל פרוסת זמן משולשת (<bdi dir="ltr">Windows</bdi>)</td><td>The focus-window process</td></tr>
+    <tr><td>2023B Q4</td><td><bdi dir="ltr">RR</bdi> עם קוונטום אינסופי שקול ל-</td><td>FCFS</td></tr>
+    <tr><td>2024A Q5</td><td>גישת התזמון של <bdi dir="ltr">Linux</bdi></td><td>Multilevel Queue</td></tr>
+    <tr><td>2024B Q4</td><td>מתי <bdi dir="ltr">RR</bdi> שולף תהליך</td><td>When the quantum expires</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong><bdi dir="ltr">SJF</bdi> הוא לא-מפנה; <bdi dir="ltr">SRTF</bdi> הוא מפנה.</strong> שני אלגוריתמים שונים &mdash; אין לערבב.</li>
-    <li><strong><bdi dir="ltr">RR</bdi> עם קוונטום = אינסוף (או <bdi dir="ltr">Q &ge;</bdi> ה-<bdi dir="ltr">burst</bdi> הארוך ביותר) מתנהג כמו <bdi dir="ltr">FCFS</bdi>.</strong> <bdi dir="ltr">Q</bdi> קטן מדי &rarr; <bdi dir="ltr">CPU</bdi> מבוזבז על החלפות הקשר; <bdi dir="ltr">Q</bdi> גדול מדי &rarr; כמו <bdi dir="ltr">FCFS</bdi>.</li>
-    <li><strong>ה-<bdi dir="ltr">convoy effect</bdi> שייך ל-<bdi dir="ltr">FCFS</bdi></strong> (עבודה ארוכה אחת חוסמת את כולם). <bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">SRTF</bdi> נותנים את זמן ההמתנה הממוצע המינימלי, אך רק על קבוצה נתונה.</li>
-    <li><strong>הרעבה היא תוצאה, לא אלגוריתם.</strong> היא פוגעת ב-<bdi dir="ltr">SJF</bdi>/<bdi dir="ltr">SRTF</bdi> (עבודות ארוכות) וב-<bdi dir="ltr">Priority</bdi> (עדיפות נמוכה); הפתרון הוא <em><bdi dir="ltr">aging</bdi></em>.</li>
-    <li><strong>זמן ההמתנה משתמש ב-<bdi dir="ltr">burst</bdi>, לא בזמן הכולל.</strong> <bdi dir="ltr">Waiting = Turnaround &minus; Burst</bdi>. <bdi dir="ltr">Response</bdi> = הפעם הראשונה על ה-<bdi dir="ltr">CPU</bdi>, לא ההשלמה.</li>
-    <li><strong><bdi dir="ltr">Priority</bdi>: מספר קטן יותר = עדיפות גבוהה יותר</strong> בקורס זה. טווח <bdi dir="ltr">nice</bdi> מ-<bdi dir="ltr">&minus;20</bdi> (גבוה) &hellip; <bdi dir="ltr">+19</bdi> (נמוך).</li>
-    <li><strong><bdi dir="ltr">Linux</bdi> = <bdi dir="ltr">Multilevel Queue</bdi></strong> (<bdi dir="ltr">FIFO real-time</bdi>, <bdi dir="ltr">RR real-time</bdi>, לא-זמן-אמת/מבוסס-<bdi dir="ltr">epoch</bdi>). מחזור מלא אחד = <em><bdi dir="ltr">Epoch</bdi></em>; הקצאה שלא נוצלה נושאת <em>חצי</em> ל-<bdi dir="ltr">epoch</bdi> הבא.</li>
-    <li><strong><bdi dir="ltr">Windows</bdi>:</strong> חוט של חלון החזית מקבל קוונטום <em>משולש</em>; לאחר <bdi dir="ltr">I/O</bdi>, חיזוק העדיפות הוא ביחס הפוך למהירות ההתקן (התקן איטי &rarr; חיזוק גדול יותר), ואז דועך בכל קוונטום.</li>
-    <li><strong><bdi dir="ltr">RR</bdi> נשלף על ידי פסיקת הטיימר</strong> (סוף הקוונטום), לעולם לא מרצון.</li>
+    <li><strong>שלושה שעונים שונים.</strong> המתנה היא הזמן התקוע בתור המוכנים; תגובה היא הזמן עד הפלט הראשון; סבב הוא מההגעה ועד ההשלמה. ההמתנה לעולם אינה כוללת זמן ריצה.</li>
+    <li><strong>השתמש ב-<bdi dir="ltr">Waiting = Turnaround &minus; Burst</bdi> עבור <bdi dir="ltr">RR</bdi> ו-<bdi dir="ltr">SRTF</bdi>.</strong> עבודות אלה רצות בחלקים, ולכן "<bdi dir="ltr">Start &minus; Arrival</bdi>" נכשל; רק הנוסחה האוניברסלית בטוחה.</li>
+    <li><strong>כלל הסידור של <bdi dir="ltr">RR</bdi>.</strong> כשפרוסה מסתיימת, הכנס לתור תחילה את העבודות שהגיעו במהלך אותה פרוסה, ורק אחריהן את העבודה שזה עתה נשלפה. החזרת העבודה הנשלפת ראשונה שוברת את התשובה.</li>
+    <li><strong>הרעבה נפתרת באמצעות <bdi dir="ltr">aging</bdi>.</strong> <bdi dir="ltr">SJF</bdi>, <bdi dir="ltr">SRTF</bdi> ו-<bdi dir="ltr">Priority</bdi> עלולים להרעיב עבודות ארוכות או בעדיפות נמוכה; העלאה הדרגתית של עדיפות תהליך ממתין (<bdi dir="ltr">aging</bdi>) מונעת זאת. <bdi dir="ltr">RR</bdi> לעולם אינו מרעיב.</li>
+    <li><strong>חלון החזית ב-<bdi dir="ltr">Windows</bdi> מקבל קוונטום פי 3 (משולש).</strong> התהליך שבבעלותו חלון החזית רץ פי שלושה זמן בכל פרוסה.</li>
+    <li><strong><bdi dir="ltr">Linux</bdi> = <bdi dir="ltr">epoch</bdi> + <bdi dir="ltr">Multilevel Queue</bdi>.</strong> סבב אחד על כל התהליכים המבקשים <bdi dir="ltr">CPU</bdi> הוא <bdi dir="ltr">epoch</bdi>; התשובה הצפויה בקורס לגישת התזמון של <bdi dir="ltr">Linux</bdi> היא <bdi dir="ltr">Multilevel Queue</bdi>. (זהות בונוס: <bdi dir="ltr">RR</bdi> עם קוונטום אינסופי שקול ל-<bdi dir="ltr">FCFS</bdi>.)</li>
   </ul>
 </div>

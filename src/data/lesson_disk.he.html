@@ -1,48 +1,84 @@
-<p>שאלות על דיסק הן כמעט תמיד שאלות השלמה של מילה אחת (ארכיטיפ <bdi dir="ltr">8</bdi>): היכן יושב ה-<bdi dir="ltr">spool</bdi>, לאן כותב ה-<bdi dir="ltr">DMA</bdi>, איזו יחידה קובץ צריך לחלוק, היכן נמצא ה-<bdi dir="ltr">swap</bdi>. שננו את היררכיית האחסון ואת המונחים המדויקים; התשובות הן <bdi dir="ltr">1-2</bdi> מילים.</p>
+<h2>דיסק ואחסון</h2>
+
+<p>נושא זה הוא חצי <strong>חשבון גאומטריה</strong> (נוסחה אחת שמסדרים מחדש) וחצי <strong>מושגים קלים</strong> (באפרינג: ספול ושמירה במטמון). דיסק קשיח מאחסן נתונים על דיסקיות מסתובבות בעלות גאומטריה פיזית קבועה, והתקנים איטיים זקוקים לבאפרינג כדי שה-<bdi dir="ltr">CPU</bdi> לא ימתין להם. כל שאלה היא או <em>חשב מספר גאומטרי</em> (צילינדרים, משטחים, דיסקיות, סך הסקטורים) או <em>נקוב בשם מושג</em> (היכן יושב ה-<bdi dir="ltr">spool</bdi>, אילו התקנים מדלגים עליו, מהו כיוון השמירה במטמון, ומהו המדיום הזול ביותר). דמיינו ערימת תקליטים: כל פאה היא <strong>משטח</strong>, טבעת אחת היא <strong>מסילה</strong>, אותה טבעת לאורך כל המשטחים היא <strong>צילינדר</strong>, וכל מסילה מחולקת ל<strong>סקטורים</strong>.</p>
 
 <table>
   <thead>
-    <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
+    <tr><th>מושג</th><th>English</th><th>Hebrew</th><th>משמעות פשוטה</th></tr>
   </thead>
   <tbody>
-    <tr><td>מסילה (<bdi dir="ltr">Track</bdi>)</td><td>Track</td><td dir="rtl">מסילה</td><td>מעגל בודד על משטח אחד של דיסקית</td></tr>
-    <tr><td>סקטור (<bdi dir="ltr">Sector</bdi>)</td><td>Sector</td><td dir="rtl">סקטור</td><td>פלח רדיאלי של מסילה</td></tr>
-    <tr><td>צילינדר (<bdi dir="ltr">Cylinder</bdi>)</td><td>Cylinder</td><td dir="rtl">צילינדר</td><td>היחידה הגדולה ביותר שניתן להגיע אליה בלי להזיז את ראש הקריאה; מסילות באותו רדיוס לאורך כל הדיסקיות</td></tr>
-    <tr><td>בלוק (<bdi dir="ltr">Block</bdi>)</td><td>Block</td><td dir="rtl">בלוק</td><td>היחידה הקטנה ביותר שמערכת ההפעלה קוראת/כותבת</td></tr>
-    <tr><td>דיסקית / משטח (<bdi dir="ltr">Platter / Surface</bdi>)</td><td>Platter / Surface</td><td dir="rtl">דיסקית / משטח</td><td>לוחית פיזית של הדיסק; ראש לכל משטח</td></tr>
-    <tr><td>ספול (<bdi dir="ltr">Spool</bdi>)</td><td>Spool / Spooling</td><td dir="rtl">ספול</td><td>תור הדפסה/עבודות שיושב על הדיסק הקשיח עד שהמשאב מתפנה</td></tr>
-    <tr><td>גישה ישירה לזיכרון (<bdi dir="ltr">DMA</bdi>)</td><td>DMA</td><td dir="rtl">גישה ישירה לזיכרון</td><td>התקן <bdi dir="ltr">I/O</bdi> כותב ישירות ל-<bdi dir="ltr">RAM</bdi>, תוך עקיפת ה-<bdi dir="ltr">CPU</bdi></td></tr>
-    <tr><td><bdi dir="ltr">FAT-32</bdi></td><td>FAT-32</td><td dir="rtl">טבלת <bdi dir="ltr">FAT</bdi></td><td>שרשרת לינארית של מצביעי בלוקים <bdi dir="ltr">&rArr;</bdi> גישה אקראית איטית</td></tr>
-    <tr><td><bdi dir="ltr">UFS</bdi> / <bdi dir="ltr">i-node</bdi></td><td>UFS (i-node)</td><td dir="rtl">מערכת קבצים <bdi dir="ltr">UFS</bdi></td><td><bdi dir="ltr">i-node</bdi> עם מצביעים ישירים <bdi dir="ltr">+</bdi> עקיפים <bdi dir="ltr">&rArr;</bdi> קריאות אקראיות בזמן גישה קבוע</td></tr>
-    <tr><td>מחיצת החלפה (<bdi dir="ltr">Swap partition</bdi>)</td><td>Swap partition</td><td dir="rtl">מחיצת החלפה</td><td>מחיצת דיסק ב-<bdi dir="ltr">Linux</bdi> המחזיקה תהליכים שפונו</td></tr>
-    <tr><td>החלפה (פינוי תהליך) (<bdi dir="ltr">Roll out / Roll in</bdi>)</td><td>Roll out / Roll in</td><td dir="rtl">החלפה (פינוי תהליך)</td><td>העברת זיכרון <bdi dir="ltr">RAM</bdi> שלם של תהליך <bdi dir="ltr">RAM&harr;disk</bdi> (תהליך שלם, לא דף בודד)</td></tr>
+    <tr><td>דיסקית (<bdi dir="ltr">Platter</bdi>)</td><td>Platter</td><td dir="rtl">דיסקית</td><td>לוחית דיסק פיזית אחת. דו-צדדית פירושה <bdi dir="ltr">2</bdi> משטחים לכל דיסקית.</td></tr>
+    <tr><td>משטח (<bdi dir="ltr">Surface</bdi>)</td><td>Surface</td><td dir="rtl">משטח</td><td>צד אחד של דיסקית; לכל משטח ראש קריאה/כתיבה משלו.</td></tr>
+    <tr><td>מסילה (<bdi dir="ltr">Track</bdi>)</td><td>Track</td><td dir="rtl">מסילה</td><td>טבעת קונצנטרית אחת על משטח. מסילות למשטח <bdi dir="ltr">=</bdi> מספר הצילינדרים.</td></tr>
+    <tr><td>צילינדר (<bdi dir="ltr">Cylinder</bdi>)</td><td>Cylinder</td><td dir="rtl">צילינדר</td><td>אוסף המסילות באותו רדיוס לאורך כל המשטחים; עמודה אנכית.</td></tr>
+    <tr><td>סקטור (<bdi dir="ltr">Sector</bdi>)</td><td>Sector</td><td dir="rtl">סקטור</td><td>הבלוק הקטן ביותר שניתן לפנות אליו בכתובת על מסילה.</td></tr>
+    <tr><td>ספול (<bdi dir="ltr">Spool</bdi>)</td><td>Spool / Spooling</td><td dir="rtl">ספול</td><td>באפרינג של עבודות עבור התקן איטי (למשל מדפסת) על הדיסק הקשיח כדי שיישומים לא ייחסמו.</td></tr>
+    <tr><td>שמירה במטמון (<bdi dir="ltr">Caching</bdi>)</td><td>Caching</td><td dir="rtl">שמירה במטמון</td><td>העתקת נתונים מאחסון איטי לאחסון מהיר יותר כדי להאיץ גישה חוזרת.</td></tr>
   </tbody>
 </table>
 
-<p><strong>היררכיית אחסון</strong> (מהיר/יקר <bdi dir="ltr">&rarr;</bdi> איטי/זול): <bdi dir="ltr">Registers</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">Cache</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">RAM</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">SSD</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">HDD</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">Tape</bdi>. הזול ביותר <bdi dir="ltr">=</bdi> <strong><bdi dir="ltr">HDD</bdi></strong> (או <bdi dir="ltr">tape</bdi>); יעד ה-<bdi dir="ltr">I/O</bdi> המהיר ביותר <bdi dir="ltr">=</bdi> <bdi dir="ltr">RAM/SSD</bdi>.</p>
-
 <ol class="recipe">
-  <li>זהו את מילת המפתח בשאלה (<bdi dir="ltr">spool</bdi> / <bdi dir="ltr">DMA</bdi> / הזול ביותר / "בלי להזיז את הראש" / <bdi dir="ltr">swap</bdi> / גישה אקראית).</li>
-  <li><bdi dir="ltr">Spool</bdi> יושב על <bdi dir="ltr">&rarr;</bdi> <strong>דיסק קשיח (<bdi dir="ltr">HDD</bdi>)</strong>. <bdi dir="ltr">DMA</bdi> כותב אל <bdi dir="ltr">&rarr;</bdi> <strong><bdi dir="ltr">RAM</bdi></strong>. הזול ביותר <bdi dir="ltr">&rarr;</bdi> <strong><bdi dir="ltr">HDD</bdi></strong>.</li>
-  <li>"קובץ על אותו ___" / "בלי להזיז את ראש הקריאה" <bdi dir="ltr">&rarr;</bdi> <strong>צילינדר (<bdi dir="ltr">Cylinder</bdi>)</strong>.</li>
-  <li><bdi dir="ltr">Linux</bdi> מאחסן תהליכים שפונו/הוצאו ב-<bdi dir="ltr">&rarr;</bdi> <strong>מחיצת החלפה (<bdi dir="ltr">Swap partition</bdi>)</strong>.</li>
-  <li><bdi dir="ltr">FAT-32</bdi> איטית מול <bdi dir="ltr">UFS</bdi> <bdi dir="ltr">&rarr;</bdi> <bdi dir="ltr">FAT</bdi> עוברת על <strong>שרשרת מצביעים לינארית</strong>; <bdi dir="ltr">UFS</bdi> משתמשת ב-<strong><bdi dir="ltr">i-node</bdi> (ישיר <bdi dir="ltr">+</bdi> עקיף)</strong>.</li>
+  <li>כתבו את הנוסחה הראשית: <strong>קיבולת <bdi dir="ltr">=</bdi> צילינדרים <bdi dir="ltr">&times;</bdi> משטחים <bdi dir="ltr">&times;</bdi> סקטורים למסילה <bdi dir="ltr">&times;</bdi> בתים לסקטור</strong>.</li>
+  <li>המירו כל גודל ל<strong>חזקות של שתיים</strong> (<bdi dir="ltr">1 KB = 2^10</bdi>, <bdi dir="ltr">1 MB = 2^20</bdi>, <bdi dir="ltr">1 GB = 2^30</bdi>, <bdi dir="ltr">1 TB = 2^40</bdi>; <bdi dir="ltr">0.5 TB = 2^39</bdi>).</li>
+  <li>הציבו את מה שידוע ו<strong>סדרו מחדש</strong> כדי לפתור את הנעלם (חלקו את הקיבולת במכפלת הגורמים הידועים).</li>
+  <li>החילו את שני הקשרים: <strong>משטחים <bdi dir="ltr">=</bdi> <bdi dir="ltr">2</bdi> <bdi dir="ltr">&times;</bdi> דיסקיות</strong> (דו-צדדית), ו<strong>מסילות למשטח <bdi dir="ltr">=</bdi> מספר הצילינדרים</strong>.</li>
+  <li>אם נשאלתם על <strong>סך הסקטורים</strong>, עצרו בצילינדרים <bdi dir="ltr">&times;</bdi> משטחים <bdi dir="ltr">&times;</bdi> סקטורים למסילה (בלי בתים לסקטור).</li>
 </ol>
 
 <pre>
-Q: "To modify the last byte of a 100MB file, why is FAT-32 much slower than UFS?"
-FAT-32: reach block n => walk n-1 pointers in a chain (linear)  -> slow
-UFS:    i-node direct/indirect/double-indirect => constant # of accesses -> fast
-A (<=5 words): FAT walks linear pointer chain
+2020A Q2 - total sectors:
+  1000 cylinders x 8 surfaces x 50 sectors/track = 400,000 sectors
+  (total SECTORS -> stop here, do not multiply by bytes/sector)
+
+2022A Q2 - cylinders (1TB, 2 double-sided platters, 2K spt, 4KB/sector):
+  surfaces = 2 x 2 = 4 = 2^2 ; 2K = 2^11 ; 4KB = 2^12 ; 1TB = 2^40
+  cylinders = 2^40 / (2^2 x 2^11 x 2^12) = 2^40 / 2^25 = 2^15 = 32K
+
+2022B Q2 - platters (0.5TB, 8K cyl, 2K spt, 4KB/sector):
+  0.5TB = 2^39 ; 8K = 2^13 ; 2K = 2^11 ; 4KB = 2^12
+  surfaces = 2^39 / (2^13 x 2^11 x 2^12) = 2^39 / 2^36 = 2^3 = 8
+  platters = 8 / 2 = 4
+
+2023B Q2 - platters (1TB, 8K cyl, 8K spt, 8KB/sector):
+  1TB = 2^40 ; 8K = 2^13 ; 8K = 2^13 ; 8KB = 2^13
+  surfaces = 2^40 / (2^13 x 2^13 x 2^13) = 2^40 / 2^39 = 2^1 = 2
+  platters = 2 / 2 = 1
+
+2019A Q2 - tracks per surface (4000 cylinders, 2 platters):
+  tracks/surface = number of cylinders = 4000
+  (the platter count is a distractor)
 </pre>
+
+<h3>מה המבחן שואל</h3>
+
+<table>
+  <thead>
+    <tr><th>כרטיס</th><th>שאלה (בקצרה)</th><th>תשובה</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><bdi dir="ltr">2017B Q1</bdi></td><td>מדוע למסך אין ספול</td><td>הוא התקן פלט מהיר</td></tr>
+    <tr><td><bdi dir="ltr">2017B Q2</bdi></td><td>שמירה במטמון מביאה נתונים מ-<bdi dir="ltr">-&gt;</bdi> אל</td><td>מאחסון איטי לאחסון מהיר יותר</td></tr>
+    <tr><td><bdi dir="ltr">2019A Q1</bdi></td><td>אזור בדיסק שמבאפר דואר כדי שיישומים לא ייחסמו</td><td>ספול</td></tr>
+    <tr><td><bdi dir="ltr">2019A Q2</bdi></td><td>מסילות למשטח (<bdi dir="ltr">4000</bdi> צילינדרים, <bdi dir="ltr">2</bdi> דיסקיות)</td><td><bdi dir="ltr">4000</bdi></td></tr>
+    <tr><td><bdi dir="ltr">2020A Q1</bdi></td><td>תכונה שהתקן צריך כדי שיידרש ספול</td><td>התקן חומרה איטי</td></tr>
+    <tr><td><bdi dir="ltr">2020A Q2</bdi></td><td>סך הסקטורים (<bdi dir="ltr">1000</bdi> ציל׳, <bdi dir="ltr">8</bdi> משט׳, <bdi dir="ltr">50</bdi> ספ״מ)</td><td><bdi dir="ltr">400,000</bdi></td></tr>
+    <tr><td><bdi dir="ltr">2022A Q2</bdi></td><td>צילינדרים (<bdi dir="ltr">1TB</bdi>, <bdi dir="ltr">2</bdi> דו-צדדיות, <bdi dir="ltr">2K</bdi> ספ״מ, <bdi dir="ltr">4KB</bdi>)</td><td><bdi dir="ltr">32K</bdi></td></tr>
+    <tr><td><bdi dir="ltr">2022B Q2</bdi></td><td>דיסקיות (<bdi dir="ltr">0.5TB</bdi>, <bdi dir="ltr">8K</bdi> ציל׳, <bdi dir="ltr">2K</bdi> ספ״מ, <bdi dir="ltr">4KB</bdi>)</td><td><bdi dir="ltr">4</bdi></td></tr>
+    <tr><td><bdi dir="ltr">2023A Q1</bdi></td><td>דוגמה להתקן ללא ספול</td><td>מקלדת או מסך</td></tr>
+    <tr><td><bdi dir="ltr">2023B Q2</bdi></td><td>דיסקיות (<bdi dir="ltr">1TB</bdi>, <bdi dir="ltr">8K</bdi> ציל׳, <bdi dir="ltr">8K</bdi> ספ״מ, <bdi dir="ltr">8KB</bdi>)</td><td><bdi dir="ltr">1</bdi></td></tr>
+    <tr><td><bdi dir="ltr">2024B Q1</bdi></td><td>היכן יושב ה-<bdi dir="ltr">spool</bdi></td><td>דיסק קשיח (<bdi dir="ltr">HDD</bdi>)</td></tr>
+    <tr><td><bdi dir="ltr">2024B Q2</bdi></td><td>מדיום האחסון הזול ביותר</td><td><bdi dir="ltr">HDD</bdi></td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong><bdi dir="ltr">Spool</bdi> <bdi dir="ltr">=</bdi> תור יציב על הדיסק הקשיח</strong>, לא ב-<bdi dir="ltr">cache</bdi>/<bdi dir="ltr">RAM</bdi>. ה-<bdi dir="ltr">cache</bdi> הוא עותק מהיר זמני; ה-<bdi dir="ltr">spool</bdi> נשמר על הדיסק.</li>
-    <li><strong><bdi dir="ltr">DMA</bdi> עוקף את ה-<bdi dir="ltr">CPU</bdi> &mdash; הוא כותב ל-<bdi dir="ltr">RAM</bdi>, ולא ל-<bdi dir="ltr">CPU</bdi>.</strong> זו כל המהות של <bdi dir="ltr">DMA</bdi>.</li>
-    <li><strong>צילינדר מול מסילה (<bdi dir="ltr">Cylinder</bdi> מול <bdi dir="ltr">Track</bdi>):</strong> קובץ צריך לשבת על אותו <em>צילינדר</em> (ללא הזזת ראש), לא על אותה מסילה. צילינדר <bdi dir="ltr">=</bdi> מסילות ברדיוס אחד לאורך כל הדיסקיות.</li>
-    <li><strong><bdi dir="ltr">Swap</bdi> <bdi dir="ltr">=</bdi> תהליך שלם</strong> (<bdi dir="ltr">roll out/in</bdi>); <strong>דפדוף (<bdi dir="ltr">Paging</bdi>) <bdi dir="ltr">=</bdi> דף <bdi dir="ltr">4KB</bdi> בודד</strong>. אל תערבבו ביניהם.</li>
-    <li><strong>הזול ביותר <bdi dir="ltr">=</bdi> <bdi dir="ltr">HDD</bdi></strong> בתשובת הקורס הזה (<bdi dir="ltr">tape</bdi> זול יותר בתיאוריה, אבל תשובת המבחן היא <bdi dir="ltr">HDD</bdi>).</li>
-    <li><strong><bdi dir="ltr">FAT-32</bdi> איטית בגלל השרשרת הלינארית</strong>, לא בגלל שהבלוקים רחוקים זה מזה. המהירות של <bdi dir="ltr">UFS</bdi> נובעת מהמצביעים העקיפים של ה-<bdi dir="ltr">i-node</bdi>.</li>
+    <li><strong>דיסקיות דו-צדדיות פירושן משטחים <bdi dir="ltr">=</bdi> <bdi dir="ltr">2</bdi> <bdi dir="ltr">&times;</bdi> דיסקיות.</strong> השאלה נותנת לעיתים קרובות דיסקיות בעוד שהנוסחה דורשת משטחים (או להפך) - הכפילו או חלקו ב-<bdi dir="ltr">2</bdi> לפני ההצבה.</li>
+    <li><strong>שמרו כל גודל בחזקות של שתיים.</strong> <bdi dir="ltr">0.5 TB = 2^39</bdi> (ולא <bdi dir="ltr">2^40</bdi>), <bdi dir="ltr">2K = 2^11</bdi>, <bdi dir="ltr">4 KB = 2^12</bdi>. ערבוב עשרוני ובינארי הוא טעות החשבון הנפוצה ביותר.</li>
+    <li><strong>מסילות למשטח <bdi dir="ltr">=</bdi> מספר הצילינדרים.</strong> מספר הדיסקיות שניתן לצידו הוא הסחת דעת.</li>
+    <li><strong>"סך הסקטורים" עוצר בצילינדרים <bdi dir="ltr">&times;</bdi> משטחים <bdi dir="ltr">&times;</bdi> סקטורים למסילה</strong> - אל תוסיפו בתים לסקטור. "קיבולת" מכפילה גם בבתים לסקטור.</li>
+    <li><strong>ספול נועד להתקנים איטיים והוא יושב על ה-<bdi dir="ltr">HDD</bdi>.</strong> התקן מהיר כמו מסך או מקלדת אינו זקוק לספול; הספול עניינו איטיות, לא קלט מול פלט.</li>
+    <li><strong>כיוון השמירה במטמון הוא איטי <bdi dir="ltr">-&gt;</bdi> מהיר</strong> (מעמידים עותק בשכבה המהירה). אל תהפכו את הכיוון.</li>
+    <li><strong>ה-<bdi dir="ltr">HDD</bdi> הוא המדיום הזול ביותר</strong> בתשובת הקורס הזה.</li>
   </ul>
 </div>

@@ -1,60 +1,68 @@
 <section class="lesson" id="lesson-replacement">
-  <h2>Page Replacement, Thrashing &amp; Working Set</h2>
+  <h2>החלפת דפים ותזזית</h2>
 
-  <p>כאשר ה-<bdi dir="ltr">RAM</bdi> מלא ומתרחש <bdi dir="ltr">page fault</bdi> על דף שאינו בזיכרון, מערכת ההפעלה מפנה <strong>דף קורבן</strong> (<bdi dir="ltr">victim page</bdi>). המבחן דורש מונחים מדויקים, מי הבעלים של כל סיבית, ואת הסיבוכיות של מציאת קורבן. ענו במילה אחת או שתיים, באנגלית.</p>
+  <p>תחת דפדוף לפי דרישה, ה-<bdi dir="ltr">RAM</bdi> מחזיק רק חלק מהדפים. כאשר <bdi dir="ltr">page fault</bdi> זקוק לדף חדש אך כל ה-<bdi dir="ltr">frames</bdi> מלאים, מערכת ההפעלה חייבת לבחור <strong>דף קורבן</strong> (<bdi dir="ltr">victim page</bdi>) לפינוי. <strong>אלגוריתמי</strong> החלפת הדפים הם פשוט הכללים השונים לבחירת אותו קורבן &mdash; ו<strong>תזזית</strong> (<bdi dir="ltr">thrashing</bdi>) היא מה שקורה כשהמערכת טועה בגדול. ענו במילה אחת או שתיים, באנגלית.</p>
 
   <table>
     <thead>
-      <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
+      <tr><th>מונח</th><th>English</th><th>Hebrew</th><th>משמעות בשורה אחת</th></tr>
     </thead>
     <tbody>
-      <tr><td>FIFO</td><td>FIFO</td><td dir="rtl">ראשון נכנס ראשון יוצא</td><td>מפנה את הוותיק ביותר לפי סדר הכניסה; מתעלם מהשימוש. <bdi dir="ltr">O(N)</bdi>.</td></tr>
-      <tr><td>Belady's anomaly</td><td>Belady's anomaly</td><td dir="rtl">אנומליית בלאדי</td><td>יותר <bdi dir="ltr">frames</bdi> &rarr; יותר <bdi dir="ltr">faults</bdi>. רק ב-<bdi dir="ltr">FIFO</bdi>.</td></tr>
-      <tr><td>Optimal</td><td>Optimal (OPT / Belady)</td><td dir="rtl">אופטימלי</td><td>מפנה את הדף שייעשה בו שימוש הכי רחוק בעתיד. לא ניתן למימוש.</td></tr>
-      <tr><td>LRU</td><td>Least Recently Used</td><td dir="rtl">השתמש לאחרונה הכי מזמן</td><td>מפנה את הדף שנעשה בו שימוש הכי מזמן. קרוב ל-<bdi dir="ltr">OPT</bdi>.</td></tr>
-      <tr><td>Clock</td><td>Clock / Second Chance</td><td dir="rtl">שעון / הזדמנות שנייה</td><td><bdi dir="ltr">R=1</bdi>&rarr;<bdi dir="ltr">reset 0</bdi>, <bdi dir="ltr">R=0</bdi>&rarr;<bdi dir="ltr">victim</bdi>. במקרה הגרוע <bdi dir="ltr">O(n)</bdi>.</td></tr>
-      <tr><td>LFU</td><td>Least Frequently Used</td><td dir="rtl">השתמש הכי מעט פעמים</td><td>מפנה את בעל המונה הנמוך ביותר. סובל מ-"<bdi dir="ltr">page stale</bdi>".</td></tr>
-      <tr><td>Victim page</td><td>Victim page</td><td dir="rtl">דף קורבן</td><td>הדף שנבחר לפינוי מה-<bdi dir="ltr">RAM</bdi>.</td></tr>
-      <tr><td>Reference bit</td><td>Reference / Accessed bit (R)</td><td dir="rtl">סיבית התייחסות</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל קריאה או כתיבה.</td></tr>
-      <tr><td>Dirty bit</td><td>Dirty / Modify bit (M)</td><td dir="rtl">סיבית שינוי</td><td>נקבעת על ידי ה-<bdi dir="ltr">CPU/MMU</bdi> בכל כתיבה.</td></tr>
-      <tr><td>Thrashing</td><td>Thrashing</td><td dir="rtl">תזזית / שטיפה</td><td>מערכת ההפעלה מבזבזת זמן על העברות דפים, ולא על ריצה.</td></tr>
-      <tr><td>Working set</td><td>Working Set</td><td dir="rtl">קבוצת עבודה</td><td>הדפים שבשימוש בחלון <bdi dir="ltr">[t&minus;&Delta;, t]</bdi>.</td></tr>
-      <tr><td>Global replacement</td><td>Global Replacement</td><td dir="rtl">החלפה גלובלית</td><td>קורבן מכל תהליך שהוא.</td></tr>
-      <tr><td>Local replacement</td><td>Local Replacement</td><td dir="rtl">החלפה מקומית</td><td>קורבן רק מהתהליך המבקש.</td></tr>
-      <tr><td>Page fault</td><td>Page fault</td><td dir="rtl">פספוס דף</td><td>גישה לדף שאינו בזיכרון.</td></tr>
+      <tr><td>Victim page</td><td>Victim page</td><td dir="rtl">דף קורבן</td><td>הדף שנבחר לפינוי כדי לשחרר <bdi dir="ltr">frame</bdi>.</td></tr>
+      <tr><td>FIFO</td><td>FIFO</td><td dir="rtl">ראשון נכנס ראשון יוצא</td><td>מפנה את הדף הוותיק ביותר. האלגוריתם היחיד עם אנומליית <bdi dir="ltr">Belady</bdi>.</td></tr>
+      <tr><td>LRU</td><td>Least Recently Used</td><td dir="rtl">השתמש לאחרונה הכי מזמן</td><td>מפנה את הדף שלא היה בשימוש הכי הרבה זמן (מסתכל על העבר).</td></tr>
+      <tr><td>Optimal</td><td>Optimal (OPT)</td><td dir="rtl">אופטימלי</td><td>מפנה את הדף שייעשה בו שימוש הכי רחוק בעתיד. הטוב ביותר, לא ניתן למימוש.</td></tr>
+      <tr><td>Clock</td><td>Clock / Second Chance</td><td dir="rtl">שעון / הזדמנות שנייה</td><td>מקרב את <bdi dir="ltr">LRU</bdi> בעזרת סיבית התייחסות; חיפוש הקורבן הוא <bdi dir="ltr">O(N)</bdi>.</td></tr>
+      <tr><td>Thrashing</td><td>Thrashing</td><td dir="rtl">תזזית / שטיפה</td><td>המערכת מבזבזת את רוב הזמן על החלפת דפים במקום לרוץ.</td></tr>
+      <tr><td>Belady's anomaly</td><td>Belady's anomaly</td><td dir="rtl">אנומליית בלאדי</td><td>יותר <bdi dir="ltr">frames</bdi> &rarr; יותר <bdi dir="ltr">faults</bdi>. רק <bdi dir="ltr">FIFO</bdi> סובל מזה.</td></tr>
     </tbody>
   </table>
 
-  <h3>הרצת אלגוריתם החלפה על מחרוזת ייחוס</h3>
+  <h3>איך עונים</h3>
   <ol class="recipe">
-    <li>ציירו טבלה: שורה אחת לכל גישה, עמודה אחת לכל <bdi dir="ltr">frame</bdi>; התחילו ריקה.</li>
-    <li>לכל ייחוס: אם הדף כבר נמצא ב-<bdi dir="ltr">frame</bdi> &rarr; <strong>hit</strong>.</li>
-    <li>אם לא &rarr; <strong>page fault</strong>; אם קיים <bdi dir="ltr">frame</bdi> פנוי, טענו אותו; אחרת בחרו קורבן לפי הכלל.</li>
-    <li>כלל הקורבן: <bdi dir="ltr">FIFO</bdi> = הכניסה הוותיקה ביותר; <bdi dir="ltr">LRU</bdi> = השימוש הכי מזמן; <bdi dir="ltr">OPT</bdi> = השימוש הכי רחוק בעתיד; <bdi dir="ltr">Clock</bdi> = ה-<bdi dir="ltr">R=0</bdi> הראשון (אפסו <bdi dir="ltr">R=1</bdi> ל-<bdi dir="ltr">0</bdi> תוך כדי הסריקה); <bdi dir="ltr">LFU</bdi> = המונה הנמוך ביותר.</li>
-    <li>ספרו את ה-<bdi dir="ltr">page faults</bdi> בסוף.</li>
+    <li><strong><bdi dir="ltr">Optimal</bdi></strong> מפנה את הדף שייעשה בו שימוש הכי רחוק ב<strong>עתיד</strong>; <strong><bdi dir="ltr">LRU</bdi></strong> מפנה את הדף שנעשה בו שימוש הכי מזמן ב<strong>עבר</strong>. הניסוח "עתיד מול עבר" הוא הסימן המבחין.</li>
+    <li><strong><bdi dir="ltr">FIFO</bdi></strong> מפנה את הדף הוותיק ביותר, והוא האלגוריתם ה<strong>יחיד</strong> שסובל מאנומליית <bdi dir="ltr">Belady</bdi> (<bdi dir="ltr">LRU</bdi> ו-<bdi dir="ltr">OPT</bdi> הם אלגוריתמי מחסנית, חסינים).</li>
+    <li><strong><bdi dir="ltr">Clock</bdi></strong>: החומרה <strong>קובעת</strong> את סיבית ההתייחסות ל-1 בעת הגישה; מערכת ההפעלה <strong>מאפסת</strong> אותה ל-0 תוך כדי סריקה אחר קורבן. דף שהופנה אליו מקבל <strong>הזדמנות שנייה</strong> (הסיבית מאופסת והדף מדולג). מציאת קורבן היא <strong><bdi dir="ltr">O(N)</bdi></strong> במקרה הגרוע.</li>
+    <li><strong>הקצאה מקומית</strong>: תהליך שגרם ל-<bdi dir="ltr">fault</bdi> רשאי לפנות רק את הדפים <strong>שלו</strong>, ולכן הבאת דף עבור <bdi dir="ltr">X</bdi> מפנה דף של <bdi dir="ltr">X</bdi>.</li>
+    <li><strong>תזזית</strong> נובעת ממחסור ב-<bdi dir="ltr">frames</bdi> (תהליכים זקוקים ליותר <bdi dir="ltr">frames</bdi> מאשר קיימים). הפתרון הוא הורדת דרגת ריבוי התכנות (<bdi dir="ltr">multiprogramming</bdi>).</li>
   </ol>
 
-  <pre>Ref string: 1 2 3 4 1 2 5 1 2 3 4 5   |   3 frames   |   FIFO
-Ref:  1  2  3  4  1  2  5  1  2  3  4  5
-F1:   1  1  1  4  4  4  5  5  5  5  5  5
-F2:   .  2  2  2  1  1  1  1  1  3  3  3
-F3:   .  .  3  3  3  2  2  2  2  2  4  4
-Flt:  F  F  F  F  F  F  F  H  H  F  F  H   ->  9 page faults</pre>
+  <pre>Clock sweep (hand looks for reference bit R = 0):
+  page A  R=1  ->  second chance: OS clears R to 0, advance
+  page B  R=1  ->  second chance: OS clears R to 0, advance
+  page C  R=0  ->  VICTIM (evict C)
+  worst case: hand visits all N frames  ->  O(N)
 
-  <p><strong>כלל קבוצת העבודה:</strong> אין <bdi dir="ltr">thrashing</bdi> כל עוד <bdi dir="ltr">&Sigma;|WS<sub>i</sub>| &le;</bdi> סך כל ה-<bdi dir="ltr">frames</bdi>. אם הביקוש <bdi dir="ltr">D &gt;</bdi> הזיכרון &rarr; <bdi dir="ltr">thrashing</bdi>; תהליך שאין לו מקום לקבוצת העבודה שלו <strong>מושהה</strong> (<bdi dir="ltr">suspended</bdi>). שימו לב: דפדוף מעביר דף <bdi dir="ltr">4KB</bdi> בודד; <bdi dir="ltr">swap</bdi> (<bdi dir="ltr">roll out / roll in</bdi>) מעביר תהליך שלם.</p>
+FIFO + Belady: more frames can give MORE faults (FIFO only).
+Optimal: evict the page whose next use is farthest in the FUTURE.</pre>
+
+  <h3>מה המבחן שואל</h3>
+  <table>
+    <thead>
+      <tr><th>כרטיס</th><th>שאלה (בקצרה)</th><th>תשובה</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2017A Q8</td><td>מצב שבו כל תהליך מפנה דפים של אחרים כדי לטעון מחדש את שלו</td><td>Thrashing</td></tr>
+      <tr><td>2019A Q8</td><td>הסיבוכיות של מציאת קורבן ב-Clock עם N frames</td><td>O(N)</td></tr>
+      <tr><td>2019B Q5</td><td>מי כותב 0 לסיבית ההתייחסות ב-Clock</td><td>The operating system</td></tr>
+      <tr><td>2019B Q8</td><td>איזה דף מפנה Optimal</td><td>Page used farthest in the future</td></tr>
+      <tr><td>2021A Q10</td><td>תחת הקצאה מקומית, דף של מי מפונה עבור X</td><td>A page of process X</td></tr>
+      <tr><td>2021B Q10</td><td>מה Clock עושה ל-frame שסיבית ההתייחסות שלו דלוקה</td><td>Clears the reference bit (second chance)</td></tr>
+      <tr><td>2022B Q8</td><td>צורך ביותר frames מהזמין, החלפות מתמדות</td><td>Thrashing</td></tr>
+      <tr><td>2023A Q8</td><td>אלגוריתם שעלול לסבול מאנומליית Belady</td><td>FIFO</td></tr>
+      <tr><td>2024A Q8</td><td>מערכת ההפעלה מבזבזת את רוב הזמן על החלפות במקום לרוץ</td><td>Thrashing</td></tr>
+      <tr><td>2024B Q8</td><td>הסיבוכיות במקרה הגרוע למציאת קורבן ב-Clock</td><td>O(n)</td></tr>
+    </tbody>
+  </table>
 
   <div class="traps">
     <h3>מלכודות קרובות-אך-מדויקות</h3>
     <ul>
-      <li><strong>מי קובע איזו סיבית:</strong> ה-<strong><bdi dir="ltr">CPU/MMU</bdi></strong> קובע את סיביות ה-<bdi dir="ltr">Reference</bdi> וה-<bdi dir="ltr">Dirty</bdi> בעת הגישה; <strong>מערכת ההפעלה</strong> קובעת את סיבית ה-<bdi dir="ltr">Present</bdi> ו<strong>מאפסת (מנקה) את סיבית ה-<bdi dir="ltr">Reference</bdi></strong> (למשל ב-<bdi dir="ltr">Clock</bdi>). סיביות ה-<bdi dir="ltr">Reference</bdi>/<bdi dir="ltr">Dirty</bdi> לעולם אינן נקבעות על ידי מערכת ההפעלה.</li>
-      <li><strong>אנומליית <bdi dir="ltr">Belady</bdi> היא ב-<bdi dir="ltr">FIFO</bdi> בלבד.</strong> <bdi dir="ltr">LRU</bdi> ו-<bdi dir="ltr">OPT</bdi> הם אלגוריתמי מחסנית (<bdi dir="ltr">stack algorithms</bdi>) &rarr; חסינים. אל תאשימו את <bdi dir="ltr">LRU</bdi>.</li>
-      <li><strong>סיבוכיות <bdi dir="ltr">Clock</bdi>:</strong> במקרה הגרוע <strong><bdi dir="ltr">O(n)</bdi></strong> (כל ה-<bdi dir="ltr">R=1</bdi> &rarr; סריקה מלאה), משוערכת <bdi dir="ltr">O(1)</bdi>. המבחן רוצה <bdi dir="ltr">O(n)</bdi>.</li>
-      <li><strong><bdi dir="ltr">OPT</bdi> אינו ניתן למימוש</strong> &mdash; הוא דורש את העתיד; הוא רק קנה מידה (<bdi dir="ltr">benchmark</bdi>).</li>
-      <li><strong>המלכודת של <bdi dir="ltr">LFU</bdi> = "<bdi dir="ltr">page stale</bdi>"</strong>: דף שהיה פעם פופולרי לעולם אינו מפונה. (ב-<bdi dir="ltr">LRU</bdi> אין את הבעיה הזו.)</li>
-      <li><strong><bdi dir="ltr">Reference</bdi> מול <bdi dir="ltr">LRU</bdi>:</strong> <bdi dir="ltr">Clock</bdi>/<bdi dir="ltr">second-chance</bdi> <em>מקרב</em> את <bdi dir="ltr">LRU</bdi> בזול; הוא אינו <bdi dir="ltr">LRU</bdi> מדויק.</li>
-      <li><strong>גלובלי מול מקומי:</strong> גלובלי = קורבן מ<em>כל</em> תהליך; מקומי = קורבן רק מהתהליך שגרם ל-<bdi dir="ltr">fault</bdi>.</li>
-      <li><strong><bdi dir="ltr">Thrashing</bdi></strong> איות, ומשמעותו שה-<bdi dir="ltr">CPU</bdi> בטל בעוד הדיסק עובד בתזזית &mdash; ולא "נגמר הזיכרון".</li>
-      <li><strong><bdi dir="ltr">FIFO</bdi> לפי סדר כניסה, <bdi dir="ltr">LRU</bdi> לפי שימוש</strong> &mdash; אל תערבבו בין השניים בעת מעקב.</li>
+      <li><strong><bdi dir="ltr">Optimal</bdi> = עתיד, <bdi dir="ltr">LRU</bdi> = עבר.</strong> <bdi dir="ltr">Optimal</bdi> מפנה את הדף שייעשה בו שימוש הכי רחוק בעתיד; <bdi dir="ltr">LRU</bdi> מפנה את הדף שנעשה בו שימוש הכי מזמן. הניסוח "עתיד" מול "עבר" קובע את התשובה.</li>
+      <li><strong>אנומליית <bdi dir="ltr">Belady</bdi> היא ב-<bdi dir="ltr">FIFO</bdi> בלבד.</strong> אם יותר <bdi dir="ltr">frames</bdi> גרמו ליותר <bdi dir="ltr">faults</bdi>, האלגוריתם הוא <bdi dir="ltr">FIFO</bdi>. <bdi dir="ltr">LRU</bdi> ו-<bdi dir="ltr">OPT</bdi> הם אלגוריתמי מחסנית ולעולם אינם סובלים מזה.</li>
+      <li><strong>סיביות <bdi dir="ltr">Clock</bdi>:</strong> החומרה <strong>קובעת</strong> את סיבית ההתייחסות בעת הגישה; <strong>מערכת ההפעלה מאפסת</strong> אותה תוך כדי חיפוש הקורבן. דף שהופנה אליו מקבל הזדמנות שנייה (הסיבית מאופסת והדף מדולג), והחיפוש הוא <strong><bdi dir="ltr">O(N)</bdi></strong>.</li>
+      <li><strong>הקצאה מקומית</strong> מפנה דף <strong>של התהליך עצמו</strong> שגרם ל-<bdi dir="ltr">fault</bdi>; הקצאה גלובלית עשויה לפנות דף של כל תהליך.</li>
+      <li><strong>תזזית</strong> = דרישה ליותר מדי <bdi dir="ltr">frames</bdi> ביחס ל-<bdi dir="ltr">RAM</bdi> הזמין, כך שמערכת ההפעלה מחליפה דפים ללא הרף. הפתרון הוא הורדת דרגת ריבוי התכנות, ולא שינוי האלגוריתם.</li>
     </ul>
   </div>
 </section>

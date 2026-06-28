@@ -1,52 +1,79 @@
-<p>A <strong>process</strong> is a program in execution, represented by its <strong>PCB</strong>. Memorize the exact state names (standard 5 + Linux R/S/D/T/Z), what a context switch saves, and the zombie/orphan rule. Answers are one or two words &mdash; prefer the English term.</p>
+<h2>Processes &amp; States</h2>
+
+<p>A <strong>process</strong> is a program <em>in execution</em>. The OS tracks many at once, so it gives each one a <strong>life-cycle of states</strong> (ready, running, waiting&hellip;) and a kernel <strong>record &mdash; the PCB</strong> that stores everything needed to pause and later resume it. This topic = those <strong>states</strong>, the <strong>transitions</strong> between them, and the <strong>PCB</strong>. Answers are one or two words &mdash; prefer the exact term.</p>
 
 <table>
   <thead>
     <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
   </thead>
   <tbody>
-    <tr><td>Process control block</td><td>PCB</td><td dir="rtl">&#1489;&#1500;&#1493;&#1511; &#1489;&#1511;&#1512;&#1514; &#1514;&#1492;&#1500;&#1497;&#1498;</td><td>The struct the OS uses to represent a process (PID, state, registers, PTBR)</td></tr>
-    <tr><td>Context switch</td><td>Context switch</td><td dir="rtl">&#1492;&#1495;&#1500;&#1508;&#1514; &#1492;&#1511;&#1513;&#1512;</td><td>Save current PCB, load another &mdash; expensive overhead</td></tr>
-    <tr><td>Mode switch</td><td>Mode switch</td><td dir="rtl">&#1492;&#1495;&#1500;&#1508;&#1514; &#1502;&#1510;&#1489;</td><td>User&harr;kernel within the SAME process &mdash; cheap</td></tr>
-    <tr><td>Standard states</td><td>NEW/READY/RUNNING/WAITING/TERMINATED</td><td dir="rtl">&#1502;&#1510;&#1489;&#1497; &#1492;&#1514;&#1492;&#1500;&#1497;&#1498;</td><td>The 5 textbook process states</td></tr>
-    <tr><td>Linux Running/Ready</td><td>R</td><td dir="rtl">&#1512;&#1509;/&#1502;&#1493;&#1499;&#1503;</td><td>On CPU or in ready queue</td></tr>
-    <tr><td>Interruptible sleep</td><td>S</td><td dir="rtl">&#1513;&#1497;&#1504;&#1492; &#1511;&#1500;&#1492;</td><td>Waiting, can wake on signal (e.g. wait for child, stdin)</td></tr>
-    <tr><td>Uninterruptible sleep</td><td>D</td><td dir="rtl">&#1513;&#1497;&#1504;&#1492; &#1506;&#1502;&#1493;&#1511;&#1492;</td><td>Cannot wake on signal; waiting on hardware (disk read) &mdash; dangerous</td></tr>
-    <tr><td>Stopped</td><td>T</td><td dir="rtl">&#1506;&#1510;&#1493;&#1512;</td><td>Ctrl+Z or kill -STOP; resume with -CONT</td></tr>
-    <tr><td>Zombie</td><td>Z</td><td dir="rtl">&#1494;&#1493;&#1502;&#1489;&#1497;</td><td>Finished but parent hasn't called wait(); PCB held for exit status</td></tr>
-    <tr><td>Orphan</td><td>Orphan</td><td dir="rtl">&#1497;&#1514;&#1493;&#1501;</td><td>Parent died first; init (PID 1) adopts and reaps it</td></tr>
-    <tr><td>Exit status</td><td>Exit status</td><td dir="rtl">&#1511;&#1493;&#1491; &#1497;&#1510;&#1497;&#1488;&#1492;</td><td>0 = success, non-zero = failure; read via WEXITSTATUS</td></tr>
-    <tr><td>Thread</td><td>Thread</td><td dir="rtl">&#1514;&#1492;&#1500;&#1497;&#1498;&#1503; / &#1495;&#1493;&#1496;</td><td>Lightweight execution unit; shares code/data/heap, own stack+registers</td></tr>
-    <tr><td>Adopting process</td><td>init (PID 1)</td><td dir="rtl">init</td><td>getppid()==1 means the real parent finished</td></tr>
+    <tr><td>Process</td><td>Process</td><td dir="rtl">תהליך</td><td>A program in execution</td></tr>
+    <tr><td>Process control block</td><td>PCB</td><td dir="rtl">בלוק בקרת תהליך</td><td>Kernel record: saved registers, page-table address (PTBR), state, nice, owner, PID</td></tr>
+    <tr><td>Context switch</td><td>Context switch</td><td dir="rtl">החלפת הקשר</td><td>Save the running PCB, load another &mdash; pure overhead</td></tr>
+    <tr><td>CPU / I/O burst</td><td>CPU / I/O burst</td><td dir="rtl">מקטע חישוב / מקטע קלט-פלט</td><td>A stretch of computing / a stretch of waiting on I/O</td></tr>
+    <tr><td>Ready</td><td>Ready</td><td dir="rtl">מוכן</td><td>Wants the CPU, waiting for a free CPU (runnable, not on a core)</td></tr>
+    <tr><td>Waiting / Blocked</td><td>Waiting / Blocked</td><td dir="rtl">ממתין / חסום</td><td>Sleeping on an event/I/O; not competing for the CPU</td></tr>
+    <tr><td>Zombie</td><td>Zombie (Z)</td><td dir="rtl">זומבי</td><td>Finished, but PCB lingers until the parent reads its exit status</td></tr>
+    <tr><td>Orphan</td><td>Orphan</td><td dir="rtl">יתום</td><td>Parent died first; re-parented to init (PID 1)</td></tr>
+    <tr><td>Exit status</td><td>Exit status</td><td dir="rtl">קוד יציאה</td><td>The success/failure number a child returns for the parent to read</td></tr>
+    <tr><td>Adopting process</td><td>init (PID 1)</td><td dir="rtl">init</td><td>Adopts orphans and immediately reaps any that die</td></tr>
   </tbody>
 </table>
 
+<pre>
+   New --admitted--> Ready --dispatch--> Running --exit--> Terminated
+                      ^   ^                 |  |
+                      |   +-- timer/preempt-+  |
+              I/O done |                       | I/O or event wait
+                       +---- Waiting (Blocked) +
+
+Linux single-letter states:
+  R = Running or Runnable (on a core, or busy-waiting / spinning)
+  S = Interruptible sleep (I/O burst, full pipe, device request queue)
+  D = Uninterruptible sleep (deep I/O wait, cannot be interrupted)
+  Z = Zombie (finished, PCB not yet reaped)
+  T = Stopped (suspended by a signal / debugger)
+</pre>
+
 <ol class="recipe">
-  <li>State name asked &rarr; map the trigger: blocking syscall (read/wait/semop) &rarr; RUNNING&rarr;WAITING; quantum end / timer &rarr; RUNNING&rarr;READY; I/O done &rarr; WAITING&rarr;READY.</li>
-  <li>Linux letter asked &rarr; disk read = D; wait-for-child / stdin = S; Ctrl+Z = T; finished-not-reaped = Z.</li>
-  <li>"Where are registers saved on a context switch / blocking?" &rarr; always the <strong>PCB</strong>.</li>
-  <li>zombie + orphan simultaneously &rarr; answer <strong>0</strong> (init adopts then immediately reaps).</li>
-  <li>#processes after k forks &rarr; <code>2^k</code>; getppid()==1 &rarr; parent died.</li>
+  <li>Wants to run but there is <strong>no free CPU</strong> &rarr; <strong>Ready</strong> (not Waiting).</li>
+  <li>Blocked on an <strong>I/O / event</strong> (I/O burst, full pipe, request queue) &rarr; <strong>S / Waiting</strong>; deep uninterruptible I/O &rarr; <strong>D</strong>.</li>
+  <li><strong>Busy-waiting</strong> (spinning) is using the CPU &rarr; <strong>R</strong>.</li>
+  <li>Any per-process kernel data &mdash; saved <strong>registers</strong>, <strong>page-table address</strong>, <strong>nice value</strong>, <strong>owner</strong> &mdash; lives in the <strong>PCB</strong>.</li>
+  <li>How many processes are <strong>zombie AND orphan</strong> at once &rarr; <strong>0</strong> (init adopts an orphan, then reaps it instantly).</li>
 </ol>
 
-<pre>
-Process does read() from disk            -> state D (uninterruptible)
-Parent does wait(), child still running  -> state S (sleeping)
-Child exit(0), parent hasn't wait()ed    -> state Z (zombie)
-Parent dies, child keeps running         -> orphan, getppid()==1
-How many can be zombie AND orphan at once -> 0
-</pre>
+<h3>What the exam asks</h3>
+
+<table>
+  <thead>
+    <tr><th>Card</th><th>Question (short)</th><th>Answer</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2017A Q3</td><td>Wants to run, waiting for a free CPU</td><td>Ready</td></tr>
+    <tr><td>2017B Q3</td><td>State when writing to a full pipe buffer</td><td>S (interruptible sleep)</td></tr>
+    <tr><td>2019A Q3</td><td>State in a per-device request queue</td><td>Sleeping (waiting)</td></tr>
+    <tr><td>2019B Q2</td><td>Where the page-table address is stored when not running</td><td>PCB</td></tr>
+    <tr><td>2020A Q5</td><td>Stopping one process, running another</td><td>Context switch</td></tr>
+    <tr><td>2021A Q3</td><td>Linux letter for running on a core</td><td>R (running)</td></tr>
+    <tr><td>2021B Q2</td><td>Structure holding nice value, owner, etc.</td><td>PCB</td></tr>
+    <tr><td>2021B Q3</td><td>A context switch swaps the running process for</td><td>Running another process</td></tr>
+    <tr><td>2021B Q4</td><td>Linux letter during an I/O burst</td><td>S (sleeping)</td></tr>
+    <tr><td>2022A Q3</td><td>Number sent to parent on termination</td><td>Exit status</td></tr>
+    <tr><td>2022B Q3</td><td>Syscall that frees a zombie child's PCB</td><td>wait</td></tr>
+    <tr><td>2023A Q3</td><td>Linux state during busy-waiting</td><td>R (running/runnable)</td></tr>
+    <tr><td>2023B Q3</td><td>Besides wait(), what releases a zombie's PCB</td><td>The parent dies (init reaps)</td></tr>
+    <tr><td>2024A Q3</td><td>How many processes are zombie AND orphan at once</td><td>0</td></tr>
+    <tr><td>2024B Q3</td><td>Where registers are saved on wait-for-I/O</td><td>In the PCB</td></tr>
+  </tbody>
+</table>
 
 <div class="traps">
   <ul>
-    <li><strong>Context switch &ne; mode switch.</strong> Mode switch = user&harr;kernel, same process (cheap). Context switch = swap whole process via PCB (expensive).</li>
-    <li><strong>D vs S:</strong> D = uninterruptible (hardware/disk), cannot be woken by signal; S = interruptible (normal waiting).</li>
-    <li><strong>R covers both</strong> Running and Ready in Linux &mdash; but they are formally two different states.</li>
-    <li><strong>Zombie + orphan = 0</strong>, not 1. init always reaps; an orphan is adopted instantly.</li>
-    <li><strong>Zombie still has a PCB</strong> (held only to deliver exit status); it owns no other resources.</li>
-    <li><strong>exit status:</strong> 0 = success, any non-zero = failure. <code>exit()</code> flushes libc buffers; <code>_exit()</code> does not (use _exit in a forked child to avoid duplicate prints).</li>
-    <li><strong>printf without \n + fork</strong> &rarr; buffer is copied &rarr; text prints twice. Fix with <code>fflush</code> or <code>\n</code>.</li>
-    <li><strong>Registers on a blocking/context switch go to the PCB</strong> &mdash; not the stack, not RAM generically.</li>
-    <li><strong>getppid()==1</strong> means the parent finished (adopted by init), NOT that you are init.</li>
+    <li><strong>Ready vs Waiting.</strong> "No free CPU" = <strong>Ready</strong>; "blocked on I/O / event" = <strong>Waiting / S</strong>. This distinction is a guaranteed point.</li>
+    <li><strong>Busy-waiting is R</strong> (actively spinning on the CPU) &mdash; but an <strong>I/O burst</strong>, a <strong>full pipe</strong>, or a <strong>request queue</strong> is <strong>S</strong>.</li>
+    <li><strong>Registers are saved in the PCB</strong> on a context switch &mdash; not on the stack, not "in RAM" generally.</li>
+    <li><strong>Zombie + orphan = 0</strong>, not 1 &mdash; a zombie always still has a (live) parent.</li>
+    <li><strong>init reaps orphans instantly:</strong> the moment a process is orphaned it is adopted by <strong>init (PID 1)</strong>, which immediately reaps any child that dies.</li>
   </ul>
 </div>
