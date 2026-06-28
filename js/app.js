@@ -4,8 +4,10 @@ let S=JSON.parse(localStorage.getItem(LS)||'{}');
 S.cards=S.cards||{}; S.prefs=S.prefs||{theme:'dark'};
 function save(){localStorage.setItem(LS,JSON.stringify(S));}
 function rec(id,ok){const c=S.cards[id]||{c:0,w:0};if(ok)c.c++;else c.w++;c.last=ok?1:0;S.cards[id]=c;save();}
-function mastery(id){const c=S.cards[id];if(!c||(c.c+c.w)===0)return 0;return c.c/(c.c+c.w);}
-function isWeak(id){const c=S.cards[id];return !c||c.last===0||mastery(id)<0.6;}
+// "known" tracks the most recent answer: Got It -> known, Missed -> not known.
+// (A cumulative c/(c+w) ratio left cards stuck below 100% after one Got It.)
+function known(id){const c=S.cards[id];return !!c&&c.last===1;}
+function isWeak(id){return !known(id);}
 
 const Q=DATA.questions, SEC=DATA.meta.sections;
 const byId={}; Q.forEach(q=>byId[q.id]=q);
@@ -80,7 +82,7 @@ function updateCount(){
   const exam=new Date(DATA.meta.examDate+'T08:00:00');
   const days=Math.ceil((exam-new Date())/86400000);
   const scoped=scopedQ(); const tot=scoped.length; let strong=0;
-  scoped.forEach(q=>{const c=S.cards[q.id]; if(c&&(c.c+c.w)>0&&(c.c/(c.c+c.w))>=0.6)strong++;});
+  scoped.forEach(q=>{if(known(q.id))strong++;});
   document.getElementById('count').innerHTML=
     t('count.exam',{date:DATA.meta.examDate,days:(days>=0?days:0)})+'<br>'+
     '<span class="pill">'+t('count.summary',{strong:strong,tot:tot})+' '+t(focusOn()?'count.scopeExam':'count.scopeAll')+'</span>';
@@ -115,7 +117,7 @@ function renderHome(view){
   h+='<div class="grid">';
   SEC.forEach(s=>{
     const list=secList(s.id); const hidden=(bySec[s.id]||[]).length-list.length;
-    const m=list.length?Math.round(100*list.filter(q=>mastery(q.id)>=0.6).length/list.length):0;
+    const m=list.length?Math.round(100*list.filter(q=>known(q.id)).length/list.length):0;
     const he=isHe();
     const t1=he?s.he:s.title, t2=he?s.title:s.he, t2dir=he?'ltr':'rtl';
     h+='<div class="tile'+(list.length?'':' off')+'" onclick="go(\'sec\',\''+s.id+'\')">'+
