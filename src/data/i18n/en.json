@@ -2,7 +2,6 @@
   "app.title": "OS Exam Trainer — HIT 61206",
 
   "nav.dashboard": "🏠 Dashboard",
-  "nav.mock": "📝 Mock Exam",
   "nav.weak": "🔁 Review Weak",
   "nav.years": "🗂️ Test Mode",
   "nav.focus": "🎯 Focus",
@@ -16,10 +15,9 @@
 
   "home.planTitle": "🎯 10-day plan · aim: 100%",
   "home.planHint": "7/10 questions are exact-term recall from a recurring bank; 3/10 are mechanical (fork / scheduling / disk) and worth guaranteed points. Drill the free points to reflex, memorize the bank, over-learn the traps.",
-  "home.takeMock": "📝 Take a Mock Exam",
   "home.reviewWeak": "🔁 Review Weak Cards",
   "home.howToTitle": "ℹ️ How to use this app",
-  "home.howToBody": "<ul style=\"line-height:1.75;font-size:13.5px\"><li><b>Sections</b> (below): open one → read the short lesson, then flip flashcards. Tap <b>✓ Got it</b> / <b>✗ Missed</b> — missed cards come back automatically (spaced repetition). Press <span class=\"kbd\">space</span> to flip.</li><li><b>⚡ Practice Generator</b> (fork · scheduling · memory): infinite fresh problems with instantly-checked, verified answers.</li><li><b>📝 Mock Exam</b>: 10 random questions scored like the real exam · <b>🔁 Review Weak</b>: only what you missed · <b>📅 By Year</b>: every real past exam.</li><li><b>🎯 Focus</b>: shows only what is on your current-semester exam. Every card shows the <b>Hebrew question + the code + an English hint</b>.</li><li>Progress is saved on your device.</li></ul>",
+  "home.howToBody": "<ul style=\"line-height:1.75;font-size:13.5px\"><li><b>Sections</b> (below): open one → read the short lesson, then flip flashcards. Tap <b>✓ Got it</b> / <b>✗ Missed</b> — missed cards come back automatically (spaced repetition). Press <span class=\"kbd\">space</span> to flip.</li><li><b>⚡ Practice Generator</b> (fork · scheduling · memory): infinite fresh problems with instantly-checked, verified answers.</li><li><b>🔁 Review Weak</b>: only what you missed · <b>🗂️ Test Mode</b>: every real past exam, question by question.</li><li><b>🎯 Focus</b>: shows only what is on your current-semester exam. Every card shows the <b>Hebrew question + the code + an English hint</b>.</li><li>Progress is saved on your device.</li></ul>",
   "home.cards": "{n} cards",
   "home.offCount": "+{n} off",
   "home.trapsTitle": "⚠️ The 3 traps that cost aces their last points",
@@ -86,19 +84,6 @@
 
   "weak.title": "🔁 Review Weak",
   "weak.sub": "Cards you have missed or not seen.",
-
-  "mock.title": "📝 Mock Exam",
-  "mock.tag": "10 × 10 pts · ≤5 words",
-  "mock.qcount": "Q{n} / 10",
-  "mock.score": "score {score}/{outof}",
-  "mock.reveal": "Reveal answer",
-  "mock.gotIt": "✓ I got it",
-  "mock.verdictAce": "Ace range. 🔥",
-  "mock.verdictSolid": "Solid — close the gaps.",
-  "mock.verdictEarly": "Early days — keep drilling.",
-  "mock.time": "{m}m {s}s",
-  "mock.another": "Another",
-  "mock.reviewWeak": "Review weak",
 
   "years.title": "🗂️ Test Mode",
   "years.sub": "Pick an exam and take it question by question — reveal each answer, then mark Got it / Missed. Progress is saved.",

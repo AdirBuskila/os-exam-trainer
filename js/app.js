@@ -96,7 +96,6 @@ function render(){
   const [v,arg]=location.hash.replace(/^#/,'').split('/');
   const view=document.getElementById('view');
   if(v==='sec') return renderSection(arg,view);
-  if(v==='mock') return renderMock(view);
   if(v==='weak') return renderDeck(scopedQ().filter(q=>isWeak(q.id)),t('weak.title'),t('weak.sub'),view);
   if(v==='years') return renderYears(view);
   if(v==='year') return renderYear(arg,view);
@@ -111,8 +110,7 @@ function renderHome(view){
   h+='<div class="card"><h2 class="sec">'+t('home.planTitle')+'</h2>'+
     '<p class="progresshint">'+t('home.planHint')+'</p>'+
     '<div class="row" style="margin-top:8px">'+
-    '<button class="btn" onclick="go(\'mock\')">'+t('home.takeMock')+'</button>'+
-    '<button class="btn ghost" onclick="go(\'weak\')">'+t('home.reviewWeak')+'</button></div></div>';
+    '<button class="btn" onclick="go(\'weak\')">'+t('home.reviewWeak')+'</button></div></div>';
   h+='<details class="lesson" open><summary>'+t('home.howToTitle')+'</summary><div class="lessonbody">'+t('home.howToBody')+'</div></details>';
   h+='<div class="grid">';
   SEC.forEach(s=>{
@@ -261,41 +259,6 @@ function genPaging(){
   const human=b=>b>=Math.pow(2,20)?(b/Math.pow(2,20))+'MB':(b/Math.pow(2,10))+'KB';
   if(kind===1){return {q:t('gen.paging.entriesQ',{vb:vb,pb:human(pb)}),answer:'2^'+bits,explain:t('gen.paging.entriesExplain',{vb:vb,pexp:pexp,bits:bits})};}
   return {q:t('gen.paging.framesQ',{vb:vb,pb:human(pb)}),answer:'2^'+bits,explain:t('gen.paging.framesExplain',{vb:vb,pexp:pexp,bits:bits})};
-}
-
-/* ---------------- mock exam ---------------- */
-function renderMock(view){
-  // 1 fork + 1 disk/sched compute + 8 others, mirror the real spread
-  const pool=scopedQ();
-  const fork=shuffle(pool.filter(q=>q.section==='fork'))[0];
-  const comp=shuffle(pool.filter(q=>q.type==='compute'&&q.section!=='fork'))[0];
-  const rest=shuffle(pool.filter(q=>q!==fork&&q!==comp)).slice(0,8);
-  const ex=shuffle([fork,comp].filter(Boolean).concat(rest)).slice(0,10);
-  let i=0,score=0,answered=0;
-  let h='<h2 class="sec">'+t('mock.title')+' <span class="tag">'+t('mock.tag')+'</span></h2>'+
-        '<div class="card" id="mx"></div>';
-  view.innerHTML=h;
-  const mx=document.getElementById('mx');
-  const t0=Date.now();
-  function draw(){
-    const q=ex[i];
-    mx.innerHTML='<div class="row"><span class="pill">'+t('mock.qcount',{n:(i+1)})+'</span> '+tagHTML(q)+
-      '<span class="pill" style="margin-inline-start:auto">'+t('mock.score',{score:score,outof:answered*10})+'</span></div>'+
-      '<div class="fc"><div>'+qHTML(q)+'</div><div id="rev"></div>'+
-      '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('mock.reveal')+'</button></div></div>';
-    mx.querySelector('#flip').onclick=()=>{
-      mx.querySelector('#rev').innerHTML=ansHTML(q);
-      mx.querySelector('#ctrl').innerHTML='<button class="btn good" id="r">'+t('mock.gotIt')+'</button><button class="btn bad" id="w">'+t('deck.missed')+'</button>';
-      mx.querySelector('#r').onclick=()=>{score+=10;answered++;rec(q.id,true);adv();};
-      mx.querySelector('#w').onclick=()=>{answered++;rec(q.id,false);adv();};
-    };
-  }
-  function adv(){i++;if(i>=10){const sec=Math.round((Date.now()-t0)/1000);
-    mx.innerHTML='<div class="center"><div class="bigtimer">'+score+'/100</div>'+
-      '<p class="progresshint">'+(score>=90?t('mock.verdictAce'):score>=70?t('mock.verdictSolid'):t('mock.verdictEarly'))+' · '+t('mock.time',{m:Math.floor(sec/60),s:(sec%60)})+'</p>'+
-      '<button class="btn" onclick="go(\'mock\')">'+t('mock.another')+'</button> <button class="btn ghost" onclick="go(\'weak\')">'+t('mock.reviewWeak')+'</button></div>';
-    updateCount();return;}draw();}
-  draw();
 }
 
 /* ---------------- test mode (pick an exam, take it question by question) ---------------- */

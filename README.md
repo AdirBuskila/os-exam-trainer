@@ -13,7 +13,7 @@ generators** for the computational question types, built from every modern past 
 - **Flashcards** with self-grading; missed cards resurface (spaced repetition via `localStorage`).
 - **Practice Generators** for fork / scheduling / disk / paging — infinite fresh problems,
   answers computed by an engine validated against the official keys.
-- **Mock Exam** (10 Q, scored), **Review Weak**, **Test Mode** (take any past exam question-by-question — reveal each answer, then mark Got it / Missed, like the flashcards).
+- **Review Weak**, **Test Mode** (take any past exam question-by-question — reveal each answer, then mark Got it / Missed, like the flashcards).
 - Every card shows the **Hebrew question + the code (LTR) + an English hint** together; dark/light; mobile-first. No build step needed to *use* it.
 
 ## Focused mode (current-semester exam scope)
