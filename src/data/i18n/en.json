@@ -4,7 +4,7 @@
   "nav.dashboard": "🏠 Dashboard",
   "nav.mock": "📝 Mock Exam",
   "nav.weak": "🔁 Review Weak",
-  "nav.years": "📅 By Year",
+  "nav.years": "🗂️ Test Mode",
   "nav.focus": "🎯 Focus",
   "nav.cheatsheet": "📄 Cheat Sheet",
   "nav.theme": "🌓 Theme",
@@ -100,10 +100,13 @@
   "mock.another": "Another",
   "mock.reviewWeak": "Review weak",
 
-  "years.title": "📅 Browse by Exam",
+  "years.title": "🗂️ Test Mode",
+  "years.sub": "Pick an exam and take it question by question — reveal each answer, then mark Got it / Missed. Progress is saved.",
   "years.count": "{n} questions",
 
   "year.qTag": "{n} Q",
+  "year.testHint": "Question by question — reveal the answer, then mark Got it / Missed. Your progress is saved.",
+  "year.testOffNote": "{n} question(s) here are outside the {label} scope (shown anyway).",
   "year.offBadge": "⛔ off the {label} — {reason}",
   "year.allExams": "← All exams",
 

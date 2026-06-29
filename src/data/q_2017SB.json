@@ -1,0 +1,92 @@
+[
+  {
+    "q": 1,
+    "section": "memory",
+    "type": "concept",
+    "he": "מתי משתנה ערכו של האוגר page table base register (PTBR)?",
+    "en": "When does the value of the page-table base register (PTBR) change?",
+    "answer_he": "בעת החלפת הקשר (context switch)",
+    "answer_en": "On a context switch"
+  },
+  {
+    "q": 2,
+    "section": "processes",
+    "type": "concept",
+    "he": "איך נקרא ב-LINUX המצב של תהליך שממתין לקלט/פלט, לבן שלו שימות, לסמפור או לכל אירוע אחר?",
+    "en": "In Linux, what is the name of the state of a process waiting for I/O, for its child to die, for a semaphore, or for any other event?",
+    "answer_he": "S (גם התשובה Waiting התקבלה)",
+    "answer_en": "S (Sleeping/Waiting state); Waiting also accepted"
+  },
+  {
+    "q": 3,
+    "section": "scheduling",
+    "type": "compute",
+    "he": "בשיטת התזמון First-Come-First-Served, מה יהיה זמן ההמתנה הממוצע של 4 המשימות הבאות?\nמשימה 1: זמן הגעה = 0, אורך 7. משימה 2: זמן הגעה = 2, אורך 4.\nמשימה 3: זמן הגעה = 4, אורך 1. משימה 4: זמן הגעה = 5, אורך 4.",
+    "en": "Under FCFS, what is the average waiting time of these 4 jobs? J1(arrive 0, len 7), J2(arrive 2, len 4), J3(arrive 4, len 1), J4(arrive 5, len 4).",
+    "answer_he": "4.75",
+    "answer_en": "4.75 (individual waits 0, 5, 7, 7 → 19/4 = 4.75)"
+  },
+  {
+    "q": 4,
+    "section": "sync",
+    "type": "concept",
+    "he": "למדנו כיצד ניתן לממש קטע קריטי באמצעות משתנה בוליאני משותף ופעולת המעבד TestAndSet. מתי Linux עושה שימוש במנגנון זה?",
+    "en": "We learned how to implement a critical section using a shared boolean and the TestAndSet instruction. When does Linux use this mechanism?",
+    "answer_he": "למימוש קטע קריטי בקרנל",
+    "answer_en": "To implement critical sections inside the kernel"
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "קיימים שני סוגים של סמפורים: סמפור בינארי וסמפור מונה. מה נכון לגביהם? (א) ניתן לממש סמפור בינארי באמצעות סמפור מונה אך לא להיפך (ב) ניתן לממש סמפור מונה באמצעות סמפור בינארי אך לא להיפך (ג) ניתן לממש סמפור מונה באמצעות סמפור בינארי ולהיפך (ד) לא ניתן לממש סמפור בינארי באמצעות סמפור מונה ולא ניתן לממש סמפור מונה באמצעות סמפור בינארי.",
+    "en": "Two semaphore types exist: binary and counting. Which is true? (c) a counting semaphore can be implemented with binary semaphores and vice versa.",
+    "answer_he": "(ג) ניתן לממש סמפור מונה באמצעות סמפור בינארי ולהיפך",
+    "answer_en": "(c) Each can be implemented using the other (both directions)."
+  },
+  {
+    "q": 6,
+    "section": "replacement",
+    "type": "concept",
+    "he": "כאשר יש צורך להדליק את סיבית ה-accessed/reference, מי מדליק את הסיבית?",
+    "en": "When the accessed/reference bit needs to be set, who sets it?",
+    "answer_he": "ה-MMU",
+    "answer_en": "The MMU (hardware)"
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "איך נקרא הרכיב במעבד שמבצע (לעתים) תרגום כתובת לוגית/וירטואלית לפיסית ללא גישה לזיכרון?",
+    "en": "What is the CPU component that sometimes translates a logical/virtual address to physical without accessing memory?",
+    "answer_he": "TLB",
+    "answer_en": "The TLB (translation lookaside buffer)"
+  },
+  {
+    "q": 8,
+    "section": "sync",
+    "type": "trick",
+    "he": "במודל הפילוסופים הסועדים, מה מספר הפילוסופים הקטן ביותר שיכול לגרום לאפשרות של deadlock?",
+    "en": "In the dining-philosophers model, what is the smallest number of philosophers that can cause a possible deadlock?",
+    "answer_he": "2",
+    "answer_en": "2"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "כדי להבטיח שעשרה תהליכים לא ישנו זיכרון משותף בו-זמנית משתמשים בסמפור שמאותחל ל-______.",
+    "en": "To ensure ten processes don't modify shared memory simultaneously, use a semaphore initialized to ____.",
+    "answer_he": "1",
+    "answer_en": "1"
+  },
+  {
+    "q": 10,
+    "section": "processes",
+    "type": "trick",
+    "he": "תוכנית זו יוצרת בנים רבים. הרצתי את התוכנית ואז עצרתי (אבל לא הרגתי) את האבא ונתתי הוראה למחשב לראות את מצב הבנים. מה יהיה מצבם (status) של בנים אלו?\nmain() { while (fork()); }",
+    "en": "This program spawns many children; I stopped (but didn't kill) the parent and then checked the children's status. What status will those children have?",
+    "answer_he": "Z (גם התשובה Terminated התקבלה)",
+    "answer_en": "Z (Zombie); Terminated also accepted"
+  }
+]

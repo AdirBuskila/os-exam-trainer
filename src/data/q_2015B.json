@@ -1,0 +1,93 @@
+[
+  {
+    "q": 1,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "כיצד נקראת הפונקציה של הגרעין (kernel) שמטפלת במידע שנשלח ומתקבל מהתקני החומרה המחוברים למחשב?",
+    "en": "What is the kernel function/component called that handles data sent to and received from hardware devices connected to the computer?",
+    "answer_he": "Device Driver",
+    "answer_en": "Device driver"
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "concept",
+    "he": "כיצד נקרא התקן החומרה שכותב את הנתונים שהובאו מהדיסק ל-RAM?",
+    "en": "What is the hardware device called that writes data fetched from the disk into RAM?",
+    "answer_he": "DMA – Direct Memory Allocation",
+    "answer_en": "DMA (Direct Memory Access)",
+    "note": "The official key literally writes 'Direct Memory Allocation'; the correct expansion is 'Direct Memory Access' (used in answer_en). answer_he kept verbatim per the key."
+  },
+  {
+    "q": 3,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא מנגנון תקשורת בו תהליכים אינם כותבים ישירות לזכרון של השני, אלא משתמשים בהקצאת שטח בתוך הגרעין (kernel) כדי להעביר מידע? (שם כללי לכל המנגנונים הללו ולא רק דוגמא).",
+    "en": "What is the general name for an IPC mechanism where processes don't write directly to each other's memory but pass info via space allocated inside the kernel?",
+    "answer_he": "Indirect Communication",
+    "answer_en": "Indirect communication"
+  },
+  {
+    "q": 4,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא מצב בו אף תהליך לא מצליח להיכנס לקטע הקריטי בכלל?",
+    "en": "What is the name for a state in which no process at all manages to enter the critical section?",
+    "answer_he": "DeadLock",
+    "answer_en": "Deadlock"
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "בעיית הקוראים-כותבים היא דוגמא שנתנו בכיתה לבעייה שפתרונה עושה שימוש בסמפורים, אבל הפתרון שהצגנו בכיתה סובל מבעיית ______.",
+    "en": "The classroom readers-writers semaphore solution suffers from which problem?",
+    "answer_he": "Starvation - הרעבה",
+    "answer_en": "Starvation"
+  },
+  {
+    "q": 6,
+    "section": "memory",
+    "type": "compute",
+    "he": "כתובת וירטואלית של Pentium היא 32 סיביות וגודל הדף (page) הוא 4KB. מה מספר המסגרות (frames) המקסימלי שאפשר להגיע אליו במערכת מבוססת Pentium?",
+    "en": "With a 32-bit Pentium virtual address and 4KB pages, what is the maximum number of frames?",
+    "answer_he": "2^32 = 4G ; 4G / 4K = 1 mega",
+    "answer_en": "1 Mega = 2^20 = 1,048,576 frames"
+  },
+  {
+    "q": 7,
+    "section": "replacement",
+    "type": "concept",
+    "he": "ציין שם של אלגוריתם להחלפת דפים שלמדנו ואשר הסיבוכיות שלו בכל פנייה לזכרון של כל תהליך היא ((O(log(n). (מספיק לציין שם של אלגוריתם אחד).",
+    "en": "Name a page-replacement algorithm studied whose cost per memory access per process is O(log n).",
+    "answer_he": "LFU (מסדר את הדפים בערימה)",
+    "answer_en": "LFU (keeps pages ordered in a heap)"
+  },
+  {
+    "q": 8,
+    "section": "processes",
+    "type": "trick",
+    "he": "מה קורה כאשר תהליך מריץ wait ואין לו אף בן?",
+    "en": "What happens when a process calls wait() but has no children?",
+    "answer_he": "ממשיך הלאה ומחזיר 1-",
+    "answer_en": "Continues execution and returns -1"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, מה מספר הדפים המינמלי שיוקצו עבור מערך של סמפורים שמוקצה על ידי פקודת semget?",
+    "en": "In Linux, what is the minimum number of pages allocated for a semaphore array created by semget?",
+    "answer_he": "1",
+    "answer_en": "1 page"
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "trick",
+    "he": "נניח כי p הוא מצביע לזכרון משותף ותהליך ביצע *p=0 לאחר שהוא ביצע עליו shmdt אבל עדיין לא בוצע shmctl ( shmid , IPC_RMID , 0 ) תוצאת הפנייה תהיה ______.",
+    "en": "A process does *p=0 on a shared-memory pointer after shmdt but before shmctl IPC_RMID; what is the result of the access?",
+    "answer_he": "SEGMENTATION FAULT",
+    "answer_en": "Segmentation fault"
+  }
+]

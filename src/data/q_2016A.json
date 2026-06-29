@@ -1,0 +1,92 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "מערכות הפעלה כמו Linux ו-Windows אשר בהן אין \"מעבד אדון\" ו-\"מעבדים משרתים\", אלא כל המעבדים מריצים kernel זהה, נקראות ____.",
+    "en": "Asks what OSes are called when all processors run the same kernel with no master/slave processor distinction.",
+    "answer_he": "מערכות הפעלה סימטריות",
+    "answer_en": "Symmetric (SMP) operating systems"
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "כאשר תהליך מבצע פעולות ב-CPU במשך מחזורי שעון רבים מדי, הוא יושעה על ידי פסיקה שהיוצר שלה הוא ____:",
+    "en": "Asks which device generates the interrupt that suspends a process using the CPU for too many clock cycles.",
+    "answer_he": "Timer",
+    "answer_en": "Timer"
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מה מצבו (Status) של תהליך שמחכה לבנו שימות?",
+    "en": "Asks the status of a process that is waiting for its child to terminate.",
+    "answer_he": "Sleep",
+    "answer_en": "Sleep"
+  },
+  {
+    "q": 4,
+    "section": "processes",
+    "type": "concept",
+    "he": "Kernels של מערכות הפעלה מודרניות הן multi-threaded משתי סיבות א. כדי לא לעשות boot אחרי כל התקן חומרה חדש שנוסף. ב. כדי למנוע (בחלק מהמקרים) ____.",
+    "en": "Asks the second reason modern kernels are multi-threaded: to prevent (in some cases) what.",
+    "answer_he": "נפילת המחשב",
+    "answer_en": "System/computer crash"
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "כיצד נקרא במערכת ההפעלה Linux, זמן סבב מלא של כל התהליכים שהיו זקוקים לזמן CPU?",
+    "en": "Asks the Linux name for one full round in which all processes needing CPU time are served.",
+    "answer_he": "Epoch",
+    "answer_en": "Epoch"
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "פתרון Spin-lock של Linux שהצגנו לבעיית הקטע הקריטי סובל מבעייה של busy wating ובנוסף מבעייה של ____.",
+    "en": "Asks which additional problem (besides busy waiting) the Linux spin-lock critical-section solution suffers from.",
+    "answer_he": "הרעבה",
+    "answer_en": "Starvation"
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux יש שתי רמות בחלוקת הזכרון של כל תהליך. הרמה הנמוכה היא של דפים (pages) והרמה הגבוהה היא של ____.",
+    "en": "Asks the higher level of a Linux process's memory division above pages.",
+    "answer_he": "Segments",
+    "answer_en": "Segments"
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, היכן בדיסק נשמרים דפים שהוצאו מ-RAM?",
+    "en": "Asks where on disk pages evicted from RAM are stored in Linux.",
+    "answer_he": "Swap partition",
+    "answer_en": "Swap partition"
+  },
+  {
+    "q": 9,
+    "section": "processes",
+    "type": "trick",
+    "he": "הפקודות שכתובות לאחר פקודת ()execv יתבצעו רק בתנאי ש____.",
+    "en": "Asks under what condition the code written after an execv() call will execute.",
+    "answer_he": "שנכשל",
+    "answer_en": "Only if execv() failed"
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, קריאת המערכת שגם מתאחלת ערכי סמפורים וגם מוחקת סמפורים מהזכרון (תלוי בפרמטרים שהיא מקבלת) היא ____.",
+    "en": "Asks which Linux system call both initializes semaphore values and removes semaphores, depending on its parameters.",
+    "answer_he": "Semctl",
+    "answer_en": "semctl"
+  }
+]

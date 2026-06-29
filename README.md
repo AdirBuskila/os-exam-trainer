@@ -3,17 +3,17 @@
 A self-contained, offline-friendly web app for cramming the **Operating Systems** exam
 (HIT 61206 — Weissman / Meir / Hagiz). Flashcards + micro-lessons + **verified practice
 generators** for the computational question types, built from every modern past exam
-(2017–2024, the 10-question / ≤5-word-answer format).
+(2014–2024, the 10-question / ≤5-word-answer format).
 
 **Live:** _enable GitHub Pages on this repo (Settings → Pages → Deploy from branch → `main` / root)._
 
 ## Features
-- **137 questions** from 14 exams, auto-sorted into **9 sections**, each answer in Hebrew + English.
+- **216 questions** from 22 exams, auto-sorted into **9 sections**, each answer in Hebrew + English.
 - **A lesson per section** — exact terms (EN+HE), solving recipes, and a "traps" box.
 - **Flashcards** with self-grading; missed cards resurface (spaced repetition via `localStorage`).
 - **Practice Generators** for fork / scheduling / disk / paging — infinite fresh problems,
   answers computed by an engine validated against the official keys.
-- **Mock Exam** (10 Q, scored), **Review Weak**, **Browse by Year**.
+- **Mock Exam** (10 Q, scored), **Review Weak**, **Test Mode** (take any past exam question-by-question — reveal each answer, then mark Got it / Missed, like the flashcards).
 - Every card shows the **Hebrew question + the code (LTR) + an English hint** together; dark/light; mobile-first. No build step needed to *use* it.
 
 ## Focused mode (current-semester exam scope)
@@ -61,7 +61,8 @@ npm run serve          # http://localhost:8080
 Editing content: change a file in `src/data/`, run `npm run build`, commit `js/data.js`.
 
 ## Content & accuracy
-- **2017–2023** questions and model answers are transcribed from the official past-exam PDFs.
+- **2014–2023** questions and model answers are transcribed from the official past-exam PDFs
+  (including the summer-2017 sitting, exam ids `2017SA`/`2017SB`, distinct from the winter `2017A`/`2017B`).
 - **2024 A/B** (`q_2024A.json`, `q_2024B.json`) are **reconstructed from solution notes** and
   marked with `"source": "reconstructed-…"`; computational answers are engine-verified, and any
   uncertain item carries a `note`.

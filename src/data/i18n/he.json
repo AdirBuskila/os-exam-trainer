@@ -4,7 +4,7 @@
   "nav.dashboard": "🏠 לוח בקרה",
   "nav.mock": "📝 מבחן לדוגמה",
   "nav.weak": "🔁 חזרה על חלשים",
-  "nav.years": "📅 לפי שנה",
+  "nav.years": "🗂️ מצב מבחן",
   "nav.focus": "🎯 פוקוס",
   "nav.cheatsheet": "📄 דף נוסחאות",
   "nav.theme": "🌓 ערכת נושא",
@@ -100,10 +100,13 @@
   "mock.another": "עוד אחד",
   "mock.reviewWeak": "חזרה על חלשים",
 
-  "years.title": "📅 עיון לפי מבחן",
+  "years.title": "🗂️ מצב מבחן",
+  "years.sub": "בחר מבחן ופתור אותו שאלה-שאלה — חשוף כל תשובה וסמן ידעתי / פספסתי. ההתקדמות נשמרת.",
   "years.count": "{n} שאלות",
 
   "year.qTag": "{n} שאלות",
+  "year.testHint": "שאלה אחר שאלה — חשוף את התשובה וסמן ידעתי / פספסתי. ההתקדמות נשמרת.",
+  "year.testOffNote": "{n} שאלות כאן מחוץ למסגרת {label} (מוצגות בכל זאת).",
   "year.offBadge": "⛔ מחוץ ל-{label} — {reason}",
   "year.allExams": "→ כל המבחנים",
 

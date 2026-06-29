@@ -1,0 +1,92 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "כיצד נקראת תוכנית או אוסף תוכניות שמטרתם היא אך ורק לבדוק את ביצועי המחשב?",
+    "en": "What is a program (or set of programs) whose sole purpose is to measure computer performance called?",
+    "answer_he": "Benchmark",
+    "answer_en": "Benchmark"
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "מערכת הפעלה היא בעלת אופי תגובתי. היא איננה רצה ביוזמתה אלא רק כתגובה לאירועים ששמם הוא:",
+    "en": "An OS is reactive, running only in response to events called what?",
+    "answer_he": "interupt",
+    "answer_en": "Interrupt"
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מה יהיה מצבו (status) של תהליך ב-LINUX, הממתין לסמפור בגלל שערך הסמפור שלילי?",
+    "en": "What is the status in Linux of a process waiting on a semaphore because its value is negative?",
+    "answer_he": "sleeping",
+    "answer_en": "Sleeping"
+  },
+  {
+    "q": 4,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "איזה סוג מוסת מעבד (CPU scheduler) לא קיים במערכות של Desktop Computers אבל פעמים רבות קיים במחשבי על?",
+    "en": "Which type of CPU scheduler is absent on desktop computers but often present on supercomputers?",
+    "answer_he": "Long term scheduler",
+    "answer_en": "Long-term scheduler"
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר משתמשים בסמפור לפתרון בעיית הקטע הקריטי, לאיזה ערך מאתחלים את הסמפור?",
+    "en": "To what value is a semaphore initialized when used to solve the critical section problem?",
+    "answer_he": "1",
+    "answer_en": "1"
+  },
+  {
+    "q": 6,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר אנו מבקשים הקצאה בגודל 6K המחשב יקצה לנו 8K. זהו כמובן בזבוז. כיצד מכונה בזבוז זה?",
+    "en": "When a 6K request is given an 8K allocation, what is this waste called?",
+    "answer_he": "פרגמנטציה פנימית",
+    "answer_en": "Internal fragmentation"
+  },
+  {
+    "q": 7,
+    "section": "disk",
+    "type": "concept",
+    "he": "כיצד נקראת מערכת הקבצים שמייצג כל קובץ על ידי רשימה מקושרת של בלוקים?",
+    "en": "What is the file system that represents each file as a linked list of blocks called?",
+    "answer_he": "FAT – Linked Alocation",
+    "answer_en": "FAT (linked allocation)"
+  },
+  {
+    "q": 8,
+    "section": "processes",
+    "type": "concept",
+    "he": "מהי קריאת המערכת (system call) במערכת ההפעלה Linux שגורמת לתהליך להפסיק קבל זמן CPU עד שאחד מבניו ימות?",
+    "en": "Which Linux system call makes a process stop receiving CPU until one of its children dies?",
+    "answer_he": "wait",
+    "answer_en": "wait"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, מתי יימחקו סמפורים שלא נמחקו במפורש על ידי פקודת semctl?",
+    "en": "In Linux, when are semaphores not explicitly removed by semctl finally deleted?",
+    "answer_he": "כשהמחשב נופל או ריסטרט reboot",
+    "answer_en": "When the computer crashes or reboots"
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, מהי הפונקציה שמנתקת בין סגמנט של זכרון משותף לבין טבלאות הדפים של התהליך?",
+    "en": "In Linux, which function detaches a shared-memory segment from the process's page tables?",
+    "answer_he": "shmdt",
+    "answer_en": "shmdt"
+  }
+]

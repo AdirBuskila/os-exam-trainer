@@ -1,0 +1,95 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "כיצד נקרא התהליך שמעביר קובץ מה-spool אל המדפסת?",
+    "en": "What is the name of the process that moves a file from the spool to the printer?",
+    "answer_he": "Printer daemon",
+    "answer_en": "Printer daemon",
+    "note": "Solution: 'Printer daemon' = full 10 pts; answering 'Spooling' got 5 pts."
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "concept",
+    "he": "כידוע הבאת נתונים מהדיסק היא איטית הרבה יותר מהבאת הנתונים מה-RAM. כמעט כל זמן הבאת הנתונים מהדיסק היא העברת הנתונים מהדיסק אל ______.",
+    "en": "Almost all of the disk-fetch time is spent transferring the data from the disk into what (intermediate location)?",
+    "answer_he": "Controller's buffer",
+    "answer_en": "The (disk) controller's buffer"
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "כאשר תהליך מחכה בתור לסמפור, ערכי האוגרים (registers) שלו ביחד עם עוד נתונים על אותו תהליך נשמרים בזכרון המוקצה לגרעין מערכת ההפעלה, במקום שנקרא: ______",
+    "en": "While a process waits on a semaphore, its register values and other process data are saved in kernel memory in a structure called what?",
+    "answer_he": "PCB",
+    "answer_en": "PCB (Process Control Block)"
+  },
+  {
+    "q": 4,
+    "section": "processes",
+    "type": "concept",
+    "he": "User level threads נתמכים על ידי פונקציות ספריה (library functions), אולם kernel supported threads נתמכים על ידי פונקציות שנקראות ______",
+    "en": "User-level threads are supported by library functions; kernel-supported threads are supported by what kind of functions?",
+    "answer_he": "System calls",
+    "answer_en": "System calls"
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "תן דוגמא לשיטת תזמון מעבד (CPU Scheduling) הסובלת מ-\"אפקט השיירה\".",
+    "en": "Give an example of a CPU scheduling method that suffers from the convoy effect.",
+    "answer_he": "FCFS",
+    "answer_en": "FCFS (First-Come First-Served)"
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר מספרי המאפייה של שני תהליכים הוא שווה, התהליך הראשון שייכנס לקטע הקריטי הוא התהליך ______",
+    "en": "In the Bakery algorithm, when two processes have equal ticket numbers, which process enters the critical section first?",
+    "answer_he": "PID קטן יותר",
+    "answer_en": "The one with the smaller PID"
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "חלק של תוכנית שאני לא משתמש בו לא ייטען ל-RAM בגלל מנגנון ששמו ______",
+    "en": "A part of a program that is not used is not loaded into RAM thanks to which mechanism?",
+    "answer_he": "Demand paging",
+    "answer_en": "Demand paging",
+    "note": "Solution image spells it 'Deamnd paging' (typo); intended answer is Demand paging."
+  },
+  {
+    "q": 8,
+    "section": "disk",
+    "type": "concept",
+    "he": "כיצד נקראת פעולת ה-\"תלייה\" של עץ ספריות שמגיע מדיסק אחד מתחת לספריה ספציפית בעץ ספריות מדיסק אחר?",
+    "en": "What is the operation called that attaches a directory tree from one disk under a specific directory of another disk's tree?",
+    "answer_he": "Mount",
+    "answer_en": "Mount"
+  },
+  {
+    "q": 9,
+    "section": "processes",
+    "type": "concept",
+    "he": "במערכת ההפעלה Linux, על ידי איזה קריאת מערכת מוחקים תהליך כולל מחיקת טבלאות הדפים של כל הסגמנטים של התהליך מה-kernel?",
+    "en": "In Linux, which system call terminates a process and frees the page tables of all its segments from the kernel?",
+    "answer_he": "exit",
+    "answer_en": "exit"
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "trick",
+    "he": "בהנחה שכל המשתנים וגם הסמפור הוגדרו כהלכה, הפקודות שכתובות אחר רצף הפקודות הללו יתבצעו רק בתנאי ש______:\nsemarg.val=0;\nsemctl ( semid , 0 , SETVAL , semarg );\nsops->sem_op = -1;\nsemop ( semid , sops , 1 );",
+    "en": "Given the semaphore is set to 0 and then a P-operation (sem_op=-1) is issued, under what condition will the commands after this sequence actually execute?",
+    "answer_he": "sops->sem_num שונה מ-0",
+    "answer_en": "Only if sops->sem_num is different from 0",
+    "note": "Trick: SETVAL zeroes semaphore #0, but semop acts on sops->sem_num. If sem_num==0 the P-operation blocks forever; the following code runs only if sem_num != 0 (a different semaphore)."
+  }
+]

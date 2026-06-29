@@ -1,0 +1,92 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "לפני שקובץ מודפס, הוא מועבר למקום אחר בדיסק הקשיח. כיצד נקרא מקום זה?",
+    "en": "Asks the name of the disk area a file is moved to before being printed.",
+    "answer_he": "Spool",
+    "answer_en": "Spool (spooling area)"
+  },
+  {
+    "q": 2,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "ל-CPU יש שני מצבי פעולה. אחד בו מותר לו לעשות כל פקודה ואחד בו הוא מוגבל בפקודות שמותר לו לבצע. כיצד נקרא המצב בו ה-CPU מוגבל?",
+    "en": "Asks the name of the CPU mode in which the instructions it may execute are restricted.",
+    "answer_he": "User mode (ב-kernel mode: 1. גישה לכל הזיכרון. 2. הטיימר לא מפסיק אותו. 3. פנייה ל-I/O)",
+    "answer_en": "User mode (kernel mode allows: full memory access, timer doesn't preempt it, I/O access)"
+  },
+  {
+    "q": 3,
+    "section": "processes",
+    "type": "concept",
+    "he": "מה יהיה מצבו (status) של תהליך X ב-LINUX, אם אביו של תהליך X עדיין רץ. תהליך X רוצה למות ונשאר לו רק להחזיר exit status.",
+    "en": "Asks the state of a Linux process that wants to terminate and only needs to return its exit status while its parent is still running.",
+    "answer_he": "Zombie",
+    "answer_en": "Zombie"
+  },
+  {
+    "q": 4,
+    "section": "processes",
+    "type": "concept",
+    "he": "איזה קטעים בזיכרון משתפים ביניהם threads ששייכים לאותו task?",
+    "en": "Asks which memory segments are shared among threads belonging to the same task.",
+    "answer_he": "Code ו-Data",
+    "answer_en": "Code and Data segments"
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "באילו שיטות ויסות מעבד (CPU scheduling) לולאה אינסופית שאין בה קריאות ל-I/O, יכולה ל\"תקוע\" את המחשב? לא לרשום רשימה של שיטות, אלא את שם הקבוצה של שיטות אלו.",
+    "en": "Asks for the name of the class of CPU scheduling methods in which an infinite I/O-free loop can freeze the computer.",
+    "answer_he": "non-preemptive (לא ניתן לקחת משאב בכוח – מחשב תקוע)",
+    "answer_en": "non-preemptive (a resource cannot be taken by force, so the computer hangs)"
+  },
+  {
+    "q": 6,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא המנגנון של מערכת ההפעלה שמאפשר פתרון מוצלח לבעיית הקטע הקריטי?",
+    "en": "Asks the name of the OS mechanism enabling a successful solution to the critical-section problem.",
+    "answer_he": "סמפור",
+    "answer_en": "Semaphore"
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "כאשר אנו פונים לדף בתוך קוד התוכנית בפעם הראשונה, נוצרת פסיקה (interrupt) ששמה היא:",
+    "en": "Asks the name of the interrupt generated when a page is accessed for the first time in the program code.",
+    "answer_he": "Page-Fault",
+    "answer_en": "Page-Fault"
+  },
+  {
+    "q": 8,
+    "section": "fork",
+    "type": "concept",
+    "he": "איזה ערך קריאת המערכת ()fork מחזירה לתהליך הבן?",
+    "en": "Asks which value the fork() system call returns to the child process.",
+    "answer_he": "0 (לאב מחזיר את ה-Pid של הבן)",
+    "answer_en": "0 (to the parent it returns the child's PID)"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "פעולות wait ו-signal של סמפורים אינן נקראות כך ב-Linux. מהי קריאת המערכת שמפעילה הן את wait והן את signal (כמובן בהתאם לערכים שמעבירים לה)?",
+    "en": "Asks which Linux system call performs both the semaphore wait and signal operations depending on the values passed.",
+    "answer_he": "()semop",
+    "answer_en": "semop()"
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "concept",
+    "he": "מהי הפונקציה במערכת ההפעלה LINUX שמחברת בין סגמנט של זיכרון משותף לבין טבלאות הדפים של התהליך?",
+    "en": "Asks which Linux function attaches a shared-memory segment to the process's page tables.",
+    "answer_he": "shmat",
+    "answer_en": "shmat"
+  }
+]

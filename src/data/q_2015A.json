@@ -1,0 +1,93 @@
+[
+  {
+    "q": 1,
+    "section": "systems",
+    "type": "concept",
+    "he": "מערכת הפעלה שמסוגלת לעמוד בזמנים הנדרשים לביצוע המטלות רק ב-99% מהמקרים נקראת ״מערכת הפעלה מסוג: ______________״",
+    "en": "What is an OS called that can meet the required task deadlines only in 99% of cases?",
+    "answer_he": "Soft Real-Time",
+    "answer_en": "Soft Real-Time"
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "concept",
+    "he": "כיצד נקרא אוסף המסילות (tracks) הנמצאות אחת מעל השניה בצלחות הדיסק ואפשר לגשת אליהן בלי להזיז את זרוע הדיסק?",
+    "en": "What is the set of tracks stacked above one another on the disk platters, reachable without moving the disk arm, called?",
+    "answer_he": "צילינדר",
+    "answer_en": "Cylinder"
+  },
+  {
+    "q": 3,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקראת הסיטואציה בה תהליך A לא יכול להתקדם כי תהליך B נמצא בקטע הקריטי ולכן תהליך A מבזבז את זמן ה-CPU המוקצה לו בשאלות חוזרות ונשנות ״האם אפשר להכנס לקטע הקריטי״?",
+    "en": "What is the situation called where process A cannot progress because B is in the critical section, so A wastes its CPU time repeatedly checking whether it may enter?",
+    "answer_he": "Busy Waiting",
+    "answer_en": "Busy Waiting"
+  },
+  {
+    "q": 4,
+    "section": "sync",
+    "type": "concept",
+    "he": "כיצד נקרא מצב בו יש תהליך אחד או קבוצת תהליכים מקופח/ים אשר כל הזמן נכנסים לפניהם תהליכים אחרים לקטע הקריטי והם לא מצליח/ים להיכנס?",
+    "en": "What is the state called where one or a group of processes are continually preempted by others entering the critical section and never get to enter?",
+    "answer_he": "Starvation – הרעבה (הערה: סמפור מונע הרעבה ע״י תור)",
+    "answer_en": "Starvation (a semaphore prevents starvation using a queue)"
+  },
+  {
+    "q": 5,
+    "section": "sync",
+    "type": "concept",
+    "he": "לסמפור יש הקצאת זכרון בתוך שטחי הזכרון של ה-kernel (גרעין). ההקצאה כוללת מספר מסוג integer ובנוסף ______________.",
+    "en": "A semaphore's kernel-memory allocation contains an integer and, in addition, what?",
+    "answer_he": "תור",
+    "answer_en": "A queue (of waiting processes)"
+  },
+  {
+    "q": 6,
+    "section": "memory",
+    "type": "concept",
+    "he": "כיצד נקראת הטבלה שעל פיה מתרגמים מספר דף (page) וירטואלי למספר מסגרת (frame) פיסית?",
+    "en": "What is the table that maps a virtual page number to a physical frame number called?",
+    "answer_he": "Page Table",
+    "answer_en": "Page Table"
+  },
+  {
+    "q": 7,
+    "section": "memory",
+    "type": "concept",
+    "he": "עבור כל דף (page) שהובא מהדיסק מוקצת סיבית אחת שמציינת האם חל שינוי במידע בדף מאז שהובא מהדיסק. כיצד נקראת סיבית זו?",
+    "en": "What is the per-page bit called that indicates whether the page's contents changed since it was brought in from disk?",
+    "answer_he": "Dirty-Bit",
+    "answer_en": "Dirty-Bit"
+  },
+  {
+    "q": 8,
+    "section": "processes",
+    "type": "concept",
+    "he": "איזה קריאת מערכת הבן צריך לבצע כדי לקבוע את ערך ה-exit status שהוא יחזיר לאביו?",
+    "en": "Which system call must the child invoke to set the exit status it returns to its parent?",
+    "answer_he": "exit",
+    "answer_en": "exit()"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "compute",
+    "he": "ב-struct מסוג sembuf ישנו חבר בשם sem_op. כדי לבצע 10 פעולות wait על סמפור מסויים, איזה ערך יש לתת לו?",
+    "en": "In struct sembuf, what value should sem_op be given to perform 10 wait operations on a semaphore?",
+    "answer_he": "10-",
+    "answer_en": "-10"
+  },
+  {
+    "q": 10,
+    "section": "memory",
+    "type": "trick",
+    "he": "במערכת ההפעלה Linux על מעבד Pentium, מה מספר הבתים שיוקצו עבור סגמנט של זכרון משותף שמוקצה על ידי פקודת\nshmget (IPC_PRIVATE , sizeof(int), 0600)",
+    "en": "On Linux/Pentium, how many bytes are allocated for a shared-memory segment created by shmget(IPC_PRIVATE, sizeof(int), 0600)?",
+    "answer_he": "4096",
+    "answer_en": "4096 (rounded up to one page)",
+    "note": "Trick: only sizeof(int)=4 bytes requested, but shared memory is allocated in whole pages, so a full 4096-byte page is allocated."
+  }
+]

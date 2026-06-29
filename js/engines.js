@@ -164,6 +164,7 @@ if (typeof require !== 'undefined' && require.main === module) {
   check('FCFS 7@0,7@1,7@2 (2021B)   =6',  avg([{name:'P1',arrival:0,burst:7},{name:'P2',arrival:1,burst:7},{name:'P3',arrival:2,burst:7}],'FCFS'),6);
   check('RR4 9@0,7@1,4@3 (2022B)    =9',  avg([{name:'P1',arrival:0,burst:9},{name:'P2',arrival:1,burst:7},{name:'P3',arrival:3,burst:4}],'RR',4),9);
   check('SRTF 7@0,2@2,4@4 (DIAG)    =2',  avg([{name:'P1',arrival:0,burst:7},{name:'P2',arrival:2,burst:2},{name:'P3',arrival:4,burst:4}],'SRTF'),2);
+  check('FCFS 7@0,4@2,1@4,4@5 (2017SB)=4.75', avg([{name:'P1',arrival:0,burst:7},{name:'P2',arrival:2,burst:4},{name:'P3',arrival:4,burst:1},{name:'P4',arrival:5,burst:4}],'FCFS'),4.75);
 
   console.log('--- DISK / PAGING ---');
   check('disk sectors 1000*8*50      =400000', diskSolve({capacity:1000*8*50*512, sectorSize:512, cylinders:1000, surfaces:8, spt:50}),400000);
@@ -172,6 +173,7 @@ if (typeof require !== 'undefined' && require.main === module) {
   check('disk cyl DIAG 2TB,8s,16K,8K =2048',    diskSolve({capacity:Math.pow(2,41), sectorSize:8192, surfaces:8, spt:16384, cylinders:null}),2048);
   check('paging frames 42b,1MB       =4194304', pagingFrames(42,Math.pow(2,20)),4194304);
   check('paging entries 36b,4KB      =16777216',pagingEntries(36,4096),16777216);
+  check('paging frames 32b,4KB (2015B) =1048576',pagingEntries(32,4096),1048576);
   check('tlb miss 3 levels           =4',       tlbMissAccesses(3),4);
 
   console.log(`\n${pass} passed, ${fail} failed.`);

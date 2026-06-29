@@ -1,0 +1,92 @@
+[
+  {
+    "q": 1,
+    "section": "disk",
+    "type": "concept",
+    "he": "השלם: כדי לאפשר שליפה מהירה של קובץ מדיסק מגנטי (HDD), תוכן הקובץ צריך להימצא באותו/ה ______. (אם יש מספר אפשרויות, יש לכתוב את זאת שנפחה הוא הגדול ביותר)",
+    "en": "To allow fast retrieval of a file from a magnetic disk (HDD), the file's contents should reside in the same ____ (choose the largest such unit).",
+    "answer_he": "גליל",
+    "answer_en": "Cylinder"
+  },
+  {
+    "q": 2,
+    "section": "disk",
+    "type": "concept",
+    "he": "DMA הוא התקן החומרה שכותב את הנתונים שהובאו מהדיסק אל ה-______.",
+    "en": "DMA is the hardware device that writes the data brought from the disk to the ____.",
+    "answer_he": "RAM",
+    "answer_en": "RAM (main memory)"
+  },
+  {
+    "q": 3,
+    "section": "interrupts",
+    "type": "concept",
+    "he": "מה מהבאים ניתן לבצע ב-kernel mode אבל לא ב-user mode (רשום את כל התשובות הנכונות): (א) ביצוע קלט/פלט (ב) קריאה לפונקציות (ג) יצירת פסיקות (ד) כתיבה לזיכרון משותף של מספר תהליכים.",
+    "en": "Which of the following can be done in kernel mode but not in user mode? (a) performing I/O (b) calling functions (c) creating interrupts (d) writing to shared memory of several processes.",
+    "answer_he": "(א) ביצוע קלט/פלט",
+    "answer_en": "(a) performing I/O"
+  },
+  {
+    "q": 4,
+    "section": "processes",
+    "type": "concept",
+    "he": "כדי להגן על זיכרון התהליכים, מערכת ההפעלה משתמשת בזוג אוגרים: Page-table base register ו-Page-table length register שערכם משתנה מעת לעת. איך נקרא מבנה הנתונים שמערכת ההפעלה שומרת בו את ערכי האוגרים הללו עבור כל תהליך?",
+    "en": "What data structure holds, per process, the page-table base/length register values that the OS uses to protect process memory?",
+    "answer_he": "Process Control Block (PCB)",
+    "answer_en": "The Process Control Block (PCB)"
+  },
+  {
+    "q": 5,
+    "section": "scheduling",
+    "type": "concept",
+    "he": "השלם: בשיטת תזמון התהליכים Round-Robin כאשר פלח הזמן Q הוא קטן מאוד, רוב זמן המעבד מבוזבז על ______.",
+    "en": "In Round-Robin scheduling, when the quantum Q is very small, most CPU time is wasted on ____.",
+    "answer_he": "החלפת הקשר (context switch)",
+    "answer_en": "Context switching"
+  },
+  {
+    "q": 6,
+    "section": "replacement",
+    "type": "concept",
+    "he": "כאשר יש צורך להדליק את סיבית ה-dirty/modify, מי מדליק את הסיבית?",
+    "en": "When the dirty/modify bit needs to be set, who sets it?",
+    "answer_he": "MMU",
+    "answer_en": "The MMU (hardware)"
+  },
+  {
+    "q": 7,
+    "section": "sync",
+    "type": "trick",
+    "he": "להלן אלגוריתם (Bakery) המאפיין בו הושמט מערך ה-choosing וכל השימושים בו. אילו מהתנאים על קטע קריטי לא מתקיימים כעת? (רשום את כל התשובות הנכונות) (א) Mutual exclusion (ב) Progress (ג) Bounded waiting\nnumber[i] := max(number[0], number[1], ..., number[n – 1])+1;\nfor j := 0 to n – 1\n    while number[j] != 0 and (number[j],j) < (number[i], i) do no-op;\n>critical section<\nnumber[i] := 0;",
+    "en": "In the Bakery algorithm with the 'choosing' array removed, which critical-section conditions no longer hold? (a) Mutual exclusion (b) Progress (c) Bounded waiting.",
+    "answer_he": "(א) Mutual exclusion",
+    "answer_en": "(a) Mutual exclusion"
+  },
+  {
+    "q": 8,
+    "section": "memory",
+    "type": "compute",
+    "he": "בארכיטקטורת מחשב מסוימת, גודלה של מסגרת הוא 1024 בתים וכתובות לוגיות ממופות באמצעות page table בת 4 רמות. כל הטבלאות (בכל הרמות) הן בנות 128 כניסות. מה גודלו של המרחב הלוגי/וירטואלי?",
+    "en": "Frame size 1024 bytes, a 4-level page table with 128 entries per table at every level. What is the size of the logical/virtual address space?",
+    "answer_he": "1024*128^4",
+    "answer_en": "1024 × 128^4 bytes (= 2^10 × 2^28 = 2^38)"
+  },
+  {
+    "q": 9,
+    "section": "sync",
+    "type": "concept",
+    "he": "במודל הפילוסופים הסועדים, בכל פעם שפילוסוף רוצה לאכול הוא תופס שני סמפורים. איך קריאת המערכת semop של Linux יכולה לפתור את בעיית ה-Deadlock של הפילוסופים הסועדים? (בשאלה זו ניתן לענות עד 10 מילים).",
+    "en": "How can Linux's semop system call solve the dining-philosophers deadlock when a philosopher grabs two semaphores?",
+    "answer_he": "היא מאפשרת לבצע wait על שני סמפורים באופן אטומי",
+    "answer_en": "It can perform a wait on both semaphores atomically (all-or-nothing)."
+  },
+  {
+    "q": 10,
+    "section": "sync",
+    "type": "concept",
+    "he": "כאשר רוצים שהפונקציה F של תהליך א' תתבצע לפני הפונקציה G של תהליך ב', משתמשים בסמפור שמאותחל ל-______.",
+    "en": "To make function F of process A run before function G of process B, you use a semaphore initialized to ____.",
+    "answer_he": "0",
+    "answer_en": "0"
+  }
+]

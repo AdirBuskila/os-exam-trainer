@@ -157,8 +157,8 @@ function renderDeck(list,title,sub,view){
   let h='<h2 class="sec">'+title+'</h2><p class="progresshint">'+(sub||'')+'</p>';
   view.innerHTML=h; deckInto(view.appendChild(el('<div class="card"></div>')),list,title);
 }
-function deckInto(box,list,title){
-  list=shuffle(list); let i=0,shown=false;
+function deckInto(box,list,title,ordered){
+  list=ordered?list.slice():shuffle(list); let i=0,shown=false;
   function draw(){
     const q=list[i]; shown=false;
     box.innerHTML='<div class="row"><span class="pill">'+t('deck.progress',{i:(i+1),n:list.length})+'</span> '+tagHTML(q)+
@@ -298,20 +298,29 @@ function renderMock(view){
   draw();
 }
 
-/* ---------------- browse by year ---------------- */
+/* ---------------- test mode (pick an exam, take it question by question) ---------------- */
 function renderYears(view){
   const exams=[...new Set(Q.map(q=>q.exam))].sort();
-  let h='<h2 class="sec">'+t('years.title')+'</h2><div class="grid">';
-  exams.forEach(e=>{h+='<div class="tile" onclick="go(\'year\',\''+e+'\')"><h3>'+e+'</h3><div class="meta"><span>'+t('years.count',{n:Q.filter(q=>q.exam===e).length})+'</span><span>'+t('common.arrowNext')+'</span></div></div>';});
+  let h='<h2 class="sec">'+t('years.title')+'</h2><p class="progresshint">'+t('years.sub')+'</p><div class="grid">';
+  exams.forEach(e=>{
+    const list=Q.filter(q=>q.exam===e);
+    const m=list.length?Math.round(100*list.filter(q=>known(q.id)).length/list.length):0;
+    h+='<div class="tile" onclick="go(\'year\',\''+e+'\')"><h3>'+esc(e)+'</h3>'+
+       '<div class="bar"><i style="width:'+m+'%"></i></div>'+
+       '<div class="meta"><span>'+t('years.count',{n:list.length})+'</span><span>'+m+'%</span></div></div>';
+  });
   view.innerHTML=h+'</div>';
 }
 function renderYear(e,view){
   const list=Q.filter(q=>q.exam===e).sort((a,b)=>a.q-b.q);
-  let h='<h2 class="sec">'+e+' <span class="tag">'+t('year.qTag',{n:list.length})+'</span></h2><div class="card examlist">';
-  list.forEach(q=>{h+='<div class="examq'+(q.offExam?' offexam':'')+'">'+
-    (q.offExam?'<div class="offbadge">'+t('year.offBadge',{label:esc(fLabel()),reason:esc(qReason(q))})+'</div>':'')+
-    qHTML(q)+ansHTML(q)+'</div>';});
-  view.innerHTML=h+'</div><button class="btn ghost" onclick="go(\'years\')">'+t('year.allExams')+'</button>';
+  if(!list.length) return go('years');
+  const off=list.filter(q=>q.offExam).length;
+  let h='<h2 class="sec">'+esc(e)+' <span class="tag">'+t('year.qTag',{n:list.length})+'</span></h2>'+
+        '<p class="progresshint">'+t('year.testHint')+'</p>'+
+        (off?'<div class="offnote">'+t('year.testOffNote',{n:off,label:esc(fLabel())})+'</div>':'');
+  view.innerHTML=h;
+  deckInto(view.appendChild(el('<div class="card"></div>')),list,e,true);
+  view.appendChild(el('<div class="row" style="margin-top:12px"><button class="btn ghost" onclick="go(\'years\')">'+t('year.allExams')+'</button></div>'));
 }
 
 /* ---------------- prefs ---------------- */
