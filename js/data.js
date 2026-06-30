@@ -15,13 +15,13 @@ window.DATA = {
 "id": "processes",
 "title": "Processes & States",
 "he": "תהליכים ומצבים",
-"n": 30
+"n": 31
 },
 {
 "id": "scheduling",
 "title": "Scheduling",
 "he": "תזמון",
-"n": 26
+"n": 27
 },
 {
 "id": "disk",
@@ -33,31 +33,31 @@ window.DATA = {
 "id": "memory",
 "title": "Memory & Paging",
 "he": "זיכרון ודפדוף",
-"n": 37
+"n": 39
 },
 {
 "id": "replacement",
 "title": "Page Replacement",
 "he": "החלפת דפים",
-"n": 13
+"n": 14
 },
 {
 "id": "sync",
 "title": "Synchronization",
 "he": "סנכרון",
-"n": 53
+"n": 56
 },
 {
 "id": "interrupts",
 "title": "Interrupts & Mode",
 "he": "פסיקות ומצב",
-"n": 16
+"n": 17
 },
 {
 "id": "systems",
 "title": "Systems Concepts",
 "he": "מושגי מערכת",
-"n": 9
+"n": 10
 }
 ],
 "focus": {
@@ -2847,6 +2847,128 @@ window.DATA = {
 "source": "reconstructed-2024B",
 "exam": "2024B",
 "id": "2024B-10"
+},
+{
+"q": 1,
+"section": "systems",
+"type": "concept",
+"he": "מערכת הפעלה של מכונה תעשייתית חייבת להבטיח זמני תגובה במקרה הגרוע, מהו סוג מערכת ההפעלה (לאיזו משפחה היא שייכת)?",
+"en": "An industrial machine's OS must guarantee worst-case response times — which OS family is it?",
+"answer_he": "מערכת זמן אמת (Real-Time / RTOS)",
+"answer_en": "Real-time OS (RTOS)",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-1"
+},
+{
+"q": 2,
+"section": "interrupts",
+"type": "concept",
+"he": "דפים מסוימים בזיכרון המחשב אינם יכולים לעבור תהליך של SWAP כיוון שהם יעד ל-IO, כיצד נקראת התכונה של החומרה הכותבת מידע ישירות לזיכרון ללא התערבות המעבד?",
+"en": "Hardware feature that writes data directly to memory without CPU intervention (so I/O-target pages can't be swapped)?",
+"answer_he": "DMA (Direct Memory Access)",
+"answer_en": "DMA (Direct Memory Access)",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-2"
+},
+{
+"q": 3,
+"section": "processes",
+"type": "concept",
+"he": "בזמן הריצה תהליכים מתניידים בין תורים שונים במערכת ההפעלה, מהו מבנה הנתונים שאליו מצביעים התורים השונים המכיל מידע על התהליכים?",
+"en": "Data structure the various OS queues point to, holding the per-process info?",
+"answer_he": "PCB (Process Control Block)",
+"answer_en": "PCB (Process Control Block)",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-3"
+},
+{
+"q": 4,
+"section": "scheduling",
+"type": "concept",
+"he": "בתזמון תהליכים, אם נחבר את זמן ההמתנה ואת זמן הריצה, איזה זמן נקבל?",
+"en": "In scheduling, waiting time + running time gives which metric?",
+"answer_he": "זמן סבב (turnaround time)",
+"answer_en": "Turnaround time",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-4"
+},
+{
+"q": 5,
+"section": "sync",
+"type": "concept",
+"he": "נניח ופתרון מסוים לבעיית הקטע הקריטי לא כולל בתוכו bounded waiting, מהי הבעיה שעלולה להתרחש?",
+"en": "If a critical-section solution lacks bounded waiting, what problem can arise?",
+"answer_he": "הרעבה (starvation)",
+"answer_en": "Starvation",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-5"
+},
+{
+"q": 6,
+"section": "sync",
+"type": "trick",
+"he": "באלגוריתם המאפייה (bakery algorithm), אם נשנה את ההשוואה של מספרי הזיהוי כך שתהליך שמספרו גדול יותר יקבל עדיפות, מה נצטרך לשנות בנוסף בכדי להמנע מ-race conditions?",
+"en": "In the bakery algorithm, if we flip the comparison so the larger ticket number wins priority, what else must change to avoid race conditions?",
+"answer_he": "לשבור שוויון לפי PID גדול יותר (להפוך גם את שובר-השוויון)",
+"answer_en": "Flip the tie-break too — larger PID wins",
+"note": "With the priority comparison flipped, the (number, PID) lexicographic tie-break must also be reversed so equal-number processes resolve consistently; otherwise two processes can both enter the critical section.",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-6"
+},
+{
+"q": 7,
+"section": "memory",
+"type": "concept",
+"he": "שני תהליכים רוצים לשתף ביניהם בייט בודד של זיכרון ב-RAM, אבל מקבלים בהקצאה דף שלם, איך נקרא בזבוז הזיכרון שנוצר במקרה הזה?",
+"en": "Two processes want to share a single byte of RAM but are allocated a whole page — what is this memory waste called?",
+"answer_he": "פרגמנטציה פנימית (internal fragmentation)",
+"answer_en": "Internal fragmentation",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-7"
+},
+{
+"q": 8,
+"section": "memory",
+"type": "compute",
+"he": "אם אחוזי הפגיעה שלנו (hitrate) בשימוש ב-TLB בטבלת דפדוף דו-שכבתית עומדים על 80%, ובהנחה שניתן להזניח את זמן השימוש ב-TLB והזמן לגישה לזיכרון עומד על 10 ננו שניות, מה יהיה זמן הגישה הממוצע לזיכרון?",
+"en": "TLB hit rate 80%, two-level page table, negligible TLB time, 10ns memory access — average memory access time?",
+"answer_he": "14 ננו-שניות",
+"answer_en": "14 ns",
+"note": "Hit (80%): 1 access = 10ns. Miss (20%, two-level table): 3 accesses = 30ns. 0.8·10 + 0.2·30 = 8 + 6 = 14ns.",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-8"
+},
+{
+"q": 9,
+"section": "replacement",
+"type": "concept",
+"he": "כשהתהליך הסתיים, הסתבר שחלק מדפי הזיכרון שלו סומנו עם סיבית dirty, מה יקרה לדפים אלו בסיום הריצה?",
+"en": "At process exit, some of its pages are marked dirty — what happens to them?",
+"answer_he": "ייכתבו (חזרה) לדיסק",
+"answer_en": "Written back to disk",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-9"
+},
+{
+"q": 10,
+"section": "sync",
+"type": "concept",
+"he": "בלינוקס, מהי קריאת המערכת בלינוקס המפעילה הן את ה-wait והן את ה-signal על סמפורים שהוקצו בעזרת semget?",
+"en": "In Linux, which system call performs both wait and signal on semaphores allocated via semget?",
+"answer_he": "semop",
+"answer_en": "semop",
+"source": "actual-2026A",
+"exam": "2026A",
+"id": "2026A-10"
 }
 ]
 };
