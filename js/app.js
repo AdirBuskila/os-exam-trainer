@@ -107,10 +107,6 @@ window.addEventListener('hashchange',()=>{});
 function renderHome(view){
   let h='<div class="hero-tree" id="heroTree"><div class="hero-cap">fork()</div></div>';
   h+=focusBanner();
-  h+='<div class="card"><h2 class="sec">'+t('home.planTitle')+'</h2>'+
-    '<p class="progresshint">'+t('home.planHint')+'</p>'+
-    '<div class="row" style="margin-top:8px">'+
-    '<button class="btn" onclick="go(\'weak\')">'+t('home.reviewWeak')+'</button></div></div>';
   h+='<details class="lesson" open><summary>'+t('home.howToTitle')+'</summary><div class="lessonbody">'+t('home.howToBody')+'</div></details>';
   h+='<div class="grid">';
   SEC.forEach(s=>{
