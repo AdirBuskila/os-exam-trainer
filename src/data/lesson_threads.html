@@ -1,0 +1,31 @@
+<p><b>Thread (lightweight process)</b> — the basic unit of CPU utilization. A thread has its own <b>stack</b> and <b>registers</b> (plus a PCB in the kernel); it <b>shares</b> the <b>code (text)</b>, <b>data</b>, and open <b>files</b> with its peer threads. That shared bundle is called a <b>task</b>. A traditional <i>heavyweight</i> process = a task with exactly <b>one</b> thread.</p>
+
+<h4>Why threads?</h4>
+<ul>
+<li>While one (server) thread is <b>blocked/waiting</b>, another thread in the <b>same task</b> can run.</li>
+<li>Apps that share a <b>common buffer</b> (producer–consumer) benefit from threads.</li>
+<li>They let sequential processes make <b>blocking system calls</b> while still achieving <b>parallelism</b>.</li>
+</ul>
+
+<h4>Types of threads</h4>
+<ul>
+<li><b>Kernel-supported</b> threads.</li>
+<li><b>User-level</b> threads — supported above the kernel via a set of <b>library calls</b>.</li>
+<li><b>Anderson's</b> threads — like kernel threads, but send scheduling events up to the task instead of interpreting them alone.</li>
+</ul>
+
+<h4>Multithreading models</h4>
+<ul>
+<li><b>Many-to-One</b> — many user threads → one kernel thread; used on systems with no kernel-thread support (e.g. CMU's Project Andrew).</li>
+<li><b>One-to-One</b> — each user thread → its own kernel thread (Windows 95/98, OS/2).</li>
+<li><b>Many-to-Many</b> — many user threads ↔ many kernel threads; hybrid of both (Solaris 2, Linux, Windows NT/2000).</li>
+</ul>
+
+<h4>Solaris 2</h4>
+<ul>
+<li><b>LWP</b> (lightweight process) = the <b>intermediate level</b> between user-level and kernel-level threads.</li>
+<li><b>User-level thread</b>: needs only a <b>stack + program counter</b>, no kernel involvement → fast switching.</li>
+<li><b>Kernel thread</b>: small data structure + stack; switching is fast (no memory-map change). <b>LWP</b> switching is slower (a PCB with register/accounting/memory info).</li>
+</ul>
+
+<p><em>Source: course slide deck <b>os4 — Threads</b> (Silberschatz &amp; Galvin, rev. Wiseman). New for the 2026 exam — questions here are predicted from these slides.</em></p>

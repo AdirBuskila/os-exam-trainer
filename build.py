@@ -21,6 +21,7 @@ OUT  = os.path.join(ROOT, "js", "data.js")
 SECTIONS = [
     ("fork",        "Fork Counting",        "ספירת fork"),
     ("processes",   "Processes & States",   "תהליכים ומצבים"),
+    ("threads",     "Threads",              "תהליכונים"),
     ("scheduling",  "Scheduling",           "תזמון"),
     ("disk",        "Disk & Storage",       "דיסק ואחסון"),
     ("memory",      "Memory & Paging",      "זיכרון ודפדוף"),
