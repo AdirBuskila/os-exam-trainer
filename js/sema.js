@@ -20,16 +20,18 @@
 (function(){
   'use strict';
 
-  var OP_MS   = 460;   // how long a wait()/signal() label lingers
+  var OP_MS   = 340;   // how long a wait()/signal() label lingers
   var CS_MS   = 900;   // critical-section token transfer duration (the slow glide)
   var APPEAR  = 380;   // deposited-token pop-in duration
 
   // Slow "tempo" oscillator: every PHASE_MS we swap which actor is fast, so the
   // buffer swings fully full↔empty and BOTH blocking cases get shown — producer
   // stalled on a full buffer (empty=0), consumer stalled on an empty one (full=0).
-  var PHASE_MS  = 13000;
-  var T_FAST_MIN= 420, T_FAST_MAX = 820;    // think time for the fast actor
-  var T_SLOW_MIN= 4200, T_SLOW_MAX = 6400;  // think time for the slow (near-idle) actor
+  // The fast actor clearly outpaces the slow one so the buffer reaches its
+  // extreme (and the matching block) every phase, not just on lucky timing.
+  var PHASE_MS  = 13500;
+  var T_FAST_MIN= 240, T_FAST_MAX = 440;    // think time for the fast actor
+  var T_SLOW_MIN= 5200, T_SLOW_MAX = 7600;  // think time for the slow (near-idle) actor
 
   var reduce = false;
   try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
@@ -161,9 +163,9 @@
       prodEdge: { x: prodX + pdir*aw/2, y: midY },
       consEdge: { x: consX + cdir*aw/2, y: midY },
       slots: slots,
-      labelY: midY - ah/2 - 9,
-      badgeY: midY + ah/2 + 11,
-      chipsY: h - 13,
+      labelY: midY - ah/2 - 9,           // op label sits just above the actor
+      waitTagY: midY - ah/2 - 22,        // WAITING tag stacks above that (when blocked)
+      chipsY: h - 34,                    // chips ride well above the corner caption
       rtl: rtl
     };
   };
@@ -359,12 +361,13 @@
       ctx.fillText(a.label, cx, g.labelY);
       ctx.globalAlpha = 1;
     }
-    // WAITING badge below a blocked actor (pulsing)
-    if (a.blocked){
+    // WAITING tag ABOVE a blocked actor (pulsing). Kept up here — not below —
+    // so the bottom row (semaphore chips) never collides with the corner caption.
+    if (a.blocked && g.waitTagY > 6){
       var puls = 0.55 + 0.45*Math.abs(Math.sin((this.colorTick)*0.12));
       ctx.font='700 9px ui-monospace,"SF Mono",Menlo,Consolas,monospace';
       ctx.fillStyle = C.warn; ctx.globalAlpha = puls;
-      ctx.fillText('WAITING', cx, g.badgeY);
+      ctx.fillText('WAITING', cx, g.waitTagY);
       ctx.globalAlpha = 1;
     }
   };
