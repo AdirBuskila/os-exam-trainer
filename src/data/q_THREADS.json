@@ -2,14 +2,14 @@
   {"q":1,"section":"threads","type":"concept",
    "he":"מהו שם נוסף לתהליכון (thread)?",
    "en":"What is another name for a thread?",
-   "answer_he":"תהליך קל-משקל (lightweight process)",
+   "answer_he":"תהליך קל-משקל",
    "answer_en":"Lightweight process",
    "note":"From the os4 Threads slides (4.1). Predicted card.","source":"os4-slides"},
 
   {"q":2,"section":"threads","type":"concept",
    "he":"אילו שני מקטעי זיכרון חולקים ביניהם תהליכונים השייכים לאותה משימה?",
    "en":"Which two memory sections do peer threads of the same task share?",
-   "answer_he":"מקטעי Code ו-Data",
+   "answer_he":"Code ו-Data",
    "answer_en":"Code and Data sections",
    "note":"From the os4 Threads slides (4.1). Predicted card.","source":"os4-slides"},
 
@@ -23,14 +23,14 @@
   {"q":4,"section":"threads","type":"concept",
    "he":"לתהליך מסורתי (heavyweight) שקול task עם כמה תהליכונים?",
    "en":"A traditional (heavyweight) process equals a task with how many threads?",
-   "answer_he":"תהליכון אחד",
+   "answer_he":"אחד",
    "answer_en":"One thread",
    "note":"From the os4 Threads slides (4.1). Predicted card.","source":"os4-slides"},
 
   {"q":5,"section":"threads","type":"concept",
    "he":"אילו רכיבים פרטיים לכל תהליכון בנפרד (אינם משותפים)?",
    "en":"Which components are private to each individual thread (not shared)?",
-   "answer_he":"אוגרים ומחסנית (registers + stack)",
+   "answer_he":"אוגרים ומחסנית",
    "answer_en":"Registers and stack",
    "note":"From the os4 Threads slides (4.2 diagram: code/data/files shared; registers/stack per-thread). Predicted card.","source":"os4-slides"},
 
@@ -44,7 +44,7 @@
   {"q":7,"section":"threads","type":"concept",
    "he":"איזה דפוס יישום קלאסי (שיתוף buffer משותף) מרוויח במיוחד משימוש בתהליכונים?",
    "en":"Which classic application pattern (sharing a common buffer) benefits from threads?",
-   "answer_he":"יצרן-צרכן (producer-consumer)",
+   "answer_he":"יצרן-צרכן",
    "answer_en":"Producer–consumer",
    "note":"From the os4 Threads slides (4.3). Predicted card.","source":"os4-slides"},
 
@@ -58,7 +58,7 @@
   {"q":9,"section":"threads","type":"concept",
    "he":"במודל Many-to-One, לכמה תהליכוני-קרנל ממופים תהליכוני-המשתמש?",
    "en":"In the Many-to-One model, how many kernel threads do the user threads map to?",
-   "answer_he":"תהליכון-קרנל אחד",
+   "answer_he":"לאחד",
    "answer_en":"One kernel thread",
    "note":"Used on systems without kernel-thread support (e.g. CMU's Project Andrew). From the os4 slides (4.4). Predicted card.","source":"os4-slides"},
 
@@ -72,7 +72,7 @@
   {"q":11,"section":"threads","type":"concept",
    "he":"ב-Solaris 2, כיצד נקראת רמת הביניים שבין תהליכוני-המשתמש לתהליכוני-הקרנל?",
    "en":"In Solaris 2, what is the intermediate level between user-level and kernel-level threads called?",
-   "answer_he":"LWP (lightweight process)",
+   "answer_he":"LWP",
    "answer_en":"LWP (lightweight process)",
    "note":"From the os4 Threads slides (4.6). Predicted card.","source":"os4-slides"},
 
@@ -93,15 +93,15 @@
   {"q":14,"section":"threads","type":"concept",
    "he":"מה מכיל LWP שגורם לכך שהחלפה בין LWPs איטית יחסית?",
    "en":"What does an LWP contain that makes switching between LWPs relatively slow?",
-   "answer_he":"PCB עם אוגרים, חשבונאות, זיכרון",
-   "answer_en":"PCB (registers, accounting, memory)",
-   "note":"From the os4 Threads slides (4.6). Hard / predicted.","source":"os4-slides"},
+   "answer_he":"PCB",
+   "answer_en":"A (full) PCB",
+   "note":"The PCB holds register data, accounting and memory information (vs a kernel thread's small struct). From the os4 slides (4.6). Hard / predicted.","source":"os4-slides"},
 
   {"q":15,"section":"threads","type":"concept",
    "he":"מדוע החלפת תהליכון-קרנל נשארת מהירה (ללא עלות זיכרון)?",
    "en":"Why does switching a kernel thread stay fast (no memory cost)?",
-   "answer_he":"אין שינוי מידע גישת-הזיכרון",
-   "answer_en":"No memory-access info change",
+   "answer_he":"אין שינוי גישת-הזיכרון",
+   "answer_en":"No memory-access change",
    "note":"Slide 4.6: switching does not require changing memory-access information. Hard / predicted.","source":"os4-slides"},
 
   {"q":16,"section":"threads","type":"concept",
@@ -128,9 +128,9 @@
   {"q":19,"section":"threads","type":"trick",
    "he":"לפי מצגת זו, האם לכל תהליכון יש PCB משלו?",
    "en":"According to these slides, does each thread have its own PCB?",
-   "answer_he":"כן — לכל תהליכון PCB",
-   "answer_en":"Yes — each has a PCB",
-   "note":"Slide 4.1: a thread consists of a stack + a PCB in the kernel (this deck assigns each thread a PCB). Hard / predicted.","source":"os4-slides"},
+   "answer_he":"כן",
+   "answer_en":"Yes",
+   "note":"Slide 4.1: a thread consists of a stack + a PCB in the kernel (this deck gives each thread a PCB — most textbooks call it a TCB). Hard / predicted.","source":"os4-slides"},
 
   {"q":20,"section":"threads","type":"concept",
    "he":"באיזה מודל ריבוי-תהליכונים מומש Project Andrew של CMU?",
@@ -142,7 +142,7 @@
   {"q":21,"section":"threads","type":"concept",
    "he":"מדוע יישומי יצרן-צרכן מתאימים באופן טבעי לתהליכונים?",
    "en":"Why do producer–consumer applications map naturally onto threads?",
-   "answer_he":"חולקים buffer (data) משותף",
+   "answer_he":"חולקים buffer משותף",
    "answer_en":"They share a common buffer",
    "note":"Threads of a task share data, and while one blocks another runs. From the os4 slides (4.1 & 4.3). Hard / predicted.","source":"os4-slides"}
 ]
