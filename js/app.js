@@ -104,8 +104,27 @@ function render(){
 window.addEventListener('hashchange',()=>{});
 
 /* ---------------- home ---------------- */
+/* Two home-page hero animations alternate per page load/refresh: the fork()
+   process tree (hero.js) and the producer⇄consumer bounded buffer (sema.js).
+   The scene is decided once per page load and cached for the session, so
+   navigating home↔section keeps the same one; a refresh swaps to the other. */
+let _heroSceneIdx=null;
+function pickHeroScene(){
+  const scenes=[
+    { cap:'fork()',              mount(c){ if(window.HERO) HERO.mount(c); } },
+    { cap:'producer ⇄ consumer', mount(c){ if(window.SEMA) SEMA.mount(c); } },
+  ];
+  if(_heroSceneIdx===null){
+    let i=0;
+    try{ i=parseInt(localStorage.getItem('os_trainer_hero'),10); if(!(i>=0)||i>=scenes.length) i=0; }catch(e){}
+    _heroSceneIdx=i;
+    try{ localStorage.setItem('os_trainer_hero', String((i+1)%scenes.length)); }catch(e){}
+  }
+  return scenes[_heroSceneIdx];
+}
 function renderHome(view){
-  let h='<div class="hero-tree" id="heroTree"><div class="hero-cap">fork()</div></div>';
+  const scene=pickHeroScene();
+  let h='<div class="hero-tree" id="heroTree"><div class="hero-cap">'+scene.cap+'</div></div>';
   h+=focusBanner();
   h+='<details class="lesson" open><summary>'+t('home.howToTitle')+'</summary><div class="lessonbody">'+t('home.howToBody')+'</div></details>';
   h+='<div class="grid">';
@@ -122,7 +141,7 @@ function renderHome(view){
   h+='</div>';
   h+='<div class="card" style="margin-top:14px"><b>'+t('home.trapsTitle')+'</b>'+t('home.trapsBody')+'</div>';
   view.innerHTML=h;
-  if(window.HERO)HERO.mount(document.getElementById('heroTree'));
+  scene.mount(document.getElementById('heroTree'));
   updateCount();
 }
 
