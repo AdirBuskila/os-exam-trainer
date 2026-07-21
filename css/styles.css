@@ -142,9 +142,29 @@ pre, code, .qcode{direction:ltr;text-align:left;unicode-bidi:isolate}
 
 /* ---- back to the study-tools deck ---- */
 .appfoot{margin-top:28px;padding:18px 4px 0;border-top:1px solid var(--line);text-align:center}
-.deck-link{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;
-  border:1px solid var(--line);border-radius:999px;background:var(--card);
-  color:var(--mut);text-decoration:none;font-size:13px;
-  transition:color .15s ease,border-color .15s ease}
-.deck-link:hover,.deck-link:focus-visible{color:var(--txt);border-color:var(--acc)}
-.deck-link .deck-arrow{color:var(--acc);font-weight:700}
+/* Deliberately the one warm spot in the footer — as muted fine print it read as a
+   disclaimer and got missed. Pre-color-mix declarations are the old look, kept as a
+   fallback for older browsers. */
+.deck-link{display:inline-flex;align-items:center;gap:8px;padding:9px 17px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  border:1px solid color-mix(in oklab, var(--acc) 45%, transparent);
+  background:var(--card);
+  background:color-mix(in oklab, var(--acc) 14%, transparent);
+  color:var(--txt);text-decoration:none;font-size:14px;font-weight:600;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.deck-link:hover,.deck-link:focus-visible{
+  border-color:var(--acc);
+  background:color-mix(in oklab, var(--acc) 24%, transparent);
+  box-shadow:0 6px 18px -8px var(--acc);
+  transform:translateY(-1px)}
+.deck-link .deck-arrow{color:var(--acc);font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:1.35em;height:1.35em;border-radius:50%;
+  background:color-mix(in oklab, var(--acc) 22%, transparent);
+  transition:transform .18s ease}
+.deck-link:hover .deck-arrow,.deck-link:focus-visible .deck-arrow{transform:translate(2px,-2px)}
+@media (prefers-reduced-motion: reduce){
+  .deck-link,.deck-link .deck-arrow{transition:none}
+  .deck-link:hover,.deck-link:focus-visible{transform:none}
+  .deck-link:hover .deck-arrow,.deck-link:focus-visible .deck-arrow{transform:none}}
