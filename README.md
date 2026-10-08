@@ -10,7 +10,7 @@ generators** for the computational question types, built from every modern past 
 ## Features
 - **216 questions** from 22 exams, auto-sorted into **9 sections**, each answer in Hebrew + English.
 - **A lesson per section** — exact terms (EN+HE), solving recipes, and a "traps" box.
-- **Flashcards** with self-grading; missed cards resurface (spaced repetition via `localStorage`).
+- **Flashcards** with self-grading; missed cards resurface (spaced repetition via `localStorage`). **← Previous** steps back to a card you already graded and shows its answer and your grade.
 - **Practice Generators** for fork / scheduling / disk / paging — infinite fresh problems,
   answers computed by an engine validated against the official keys.
 - **Review Weak**, **Test Mode** (take any past exam question-by-question — reveal each answer, then mark Got it / Missed, like the flashcards).

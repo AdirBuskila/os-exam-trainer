@@ -62,4 +62,25 @@ const saved = JSON.parse(window.localStorage.getItem('os_trainer_v1') || '{}');
 if (!saved.cards || !saved.cards['2017SB-1'] || saved.cards['2017SB-1'].last !== 1)
   fail('Got it was not recorded to localStorage for 2017SB-1');
 
-console.log('test-mode smoke OK — list shows all exams; ordered Q-by-Q; reveal + Got it/Missed + progress all wired.');
+// 5) Previous -> back to card 1, shown as already graded (answer revealed, no re-grade); Next -> card 2 again
+const prev = view().querySelector('#prev');
+if (!prev || prev.disabled) fail('card 2 has no enabled #prev button');
+prev.onclick();
+if (!/1\s*\/\s*10/.test(view().textContent)) fail('Previous did not go back to card 1 / 10');
+if (!view().querySelector('#rev').textContent.includes(a1)) fail('previous card did not show its revealed answer');
+if (view().querySelector('#got') || view().querySelector('#miss')) fail('previous card offers re-grading');
+if (!/Got it/i.test(view().querySelector('#ctrl').textContent)) fail('previous card does not show how it was graded');
+if (!view().querySelector('#prev').disabled) fail('#prev is not disabled on the first card');
+const before = JSON.stringify(JSON.parse(window.localStorage.getItem('os_trainer_v1')).cards['2017SB-1']);
+view().querySelector('#next').onclick();
+if (!/2\s*\/\s*10/.test(view().textContent)) fail('Next did not return to card 2 / 10');
+if (!view().querySelector('#flip')) fail('card 2 lost its Show answer control after back/next');
+if (JSON.stringify(JSON.parse(window.localStorage.getItem('os_trainer_v1')).cards['2017SB-1']) !== before) fail('back/next changed recorded progress');
+
+// 6) Deck complete -> Previous returns to the last card, shown as graded
+for (let k = 2; k <= 10; k++) { view().querySelector('#flip').onclick(); view().querySelector('#got').onclick(); }
+if (!/Deck complete/i.test(view().textContent)) fail('deck did not complete after grading all 10 cards');
+view().querySelector('#prev').onclick();
+if (!/10\s*\/\s*10/.test(view().textContent) || !view().querySelector('#next')) fail('Previous from the complete screen did not show card 10 as graded');
+
+console.log('test-mode smoke OK — list shows all exams; ordered Q-by-Q; reveal + Got it/Missed + progress; previous/next through graded cards.');

@@ -76,6 +76,7 @@ details.lesson[open]>summary{border-bottom:1px solid var(--line);margin-bottom:1
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 button.btn{background:var(--acc);color:#fff;border:0;border-radius:12px;padding:11px 18px;font-size:15px;font-weight:600;cursor:pointer}
 button.btn:active{transform:scale(.97)}
+button.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 button.ghost{background:var(--card2);color:var(--txt);border:1px solid var(--line)}
 button.good{background:var(--good)}button.bad{background:var(--bad)}
 .input{background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:16px;width:140px}

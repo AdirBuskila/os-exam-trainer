@@ -83,6 +83,9 @@
   "deck.allStrong": "🎉 Nothing here — all strong!",
   "deck.progress": "{i} / {n}",
   "deck.examq": "{exam} · Q{q}",
+  "deck.prev": "← Previous",
+  "deck.next": "Next →",
+  "deck.marked": "You marked:",
 
   "weak.title": "🔁 Review Weak",
   "weak.sub": "Cards you have missed or not seen.",

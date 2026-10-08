@@ -172,26 +172,52 @@ function renderDeck(list,title,sub,view){
 }
 function deckInto(box,list,title,ordered){
   list=ordered?list.slice():shuffle(list); let i=0,shown=false;
+  const graded=[];   // graded[i] = true (Got it) / false (Missed) — "previous" replays a card exactly as it was graded
+  const prevBtn=()=>'<button class="btn ghost" id="prev" style="margin-inline-start:auto"'+(i>0?'':' disabled')+'>'+t('deck.prev')+'</button>';
+  const wirePrev=()=>{box.querySelector('#prev').onclick=prev;};
   function draw(){
     const q=list[i]; shown=false;
     box.innerHTML='<div class="row"><span class="pill">'+t('deck.progress',{i:(i+1),n:list.length})+'</span> '+tagHTML(q)+
       '<span class="pill" style="margin-inline-start:auto">'+t('deck.examq',{exam:esc(q.exam),q:q.q})+'</span></div>'+
       '<div class="fc"><div id="qa">'+qHTML(q)+'</div>'+
       '<div id="rev"></div>'+
-      '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('deck.showAnswer')+' <span class="kbd">'+t('common.space')+'</span></button></div></div>';
-    box.querySelector('#flip').onclick=flip;
+      '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('deck.showAnswer')+' <span class="kbd">'+t('common.space')+'</span></button>'+prevBtn()+'</div></div>';
+    box.querySelector('#flip').onclick=flip; wirePrev();
     function flip(){
       if(shown)return; shown=true;
       box.querySelector('#rev').innerHTML=ansHTML(q);
       box.querySelector('#ctrl').innerHTML=
         '<button class="btn good" id="got">'+t('deck.gotIt')+'</button>'+
-        '<button class="btn bad" id="miss">'+t('deck.missed')+'</button>';
-      box.querySelector('#got').onclick=()=>{rec(q.id,true);next();};
-      box.querySelector('#miss').onclick=()=>{rec(q.id,false);toast(t('deck.willResurface'));next();};
+        '<button class="btn bad" id="miss">'+t('deck.missed')+'</button>'+prevBtn();
+      box.querySelector('#got').onclick=()=>{graded[i]=true;rec(q.id,true);next();};
+      box.querySelector('#miss').onclick=()=>{graded[i]=false;rec(q.id,false);toast(t('deck.willResurface'));next();};
+      wirePrev();
     }
     box._flip=flip;
+    // came back to a card that was already graded: show the answer and the grade, no re-grading
+    if(graded[i]!==undefined){
+      shown=true;
+      box.querySelector('#rev').innerHTML=ansHTML(q);
+      box.querySelector('#ctrl').innerHTML=
+        '<span class="pill">'+t('deck.marked')+' <b>'+t(graded[i]?'deck.gotIt':'deck.missed')+'</b></span>'+
+        '<button class="btn" id="next">'+t('deck.next')+'</button>'+prevBtn();
+      box.querySelector('#next').onclick=next; wirePrev();
+    }
   }
-  function next(){i++;if(i>=list.length){box.innerHTML='<div class="center"><h3>'+t('deck.complete')+'</h3><button class="btn" onclick="render()">'+t('common.back')+'</button></div>';document.onkeydown=null;updateCount();return;}draw();}
+  function next(){
+    i++;
+    if(i>=list.length){
+      box.innerHTML='<div class="center"><h3>'+t('deck.complete')+'</h3><div class="row" style="justify-content:center">'+
+        '<button class="btn" onclick="render()">'+t('common.back')+'</button>'+
+        '<button class="btn ghost" id="prev">'+t('deck.prev')+'</button></div></div>';
+      wirePrev(); document.onkeydown=null; updateCount(); return;
+    }
+    draw();
+  }
+  function prev(){   // one card back; from the "complete" screen, back to the last card
+    if(i>=list.length) i=list.length-1; else if(i>0) i--; else return;
+    draw(); document.onkeydown=(e)=>{if(box._key)box._key(e);};
+  }
   box._key=(e)=>{if(e.code==='Space'){e.preventDefault();if(!shown)box._flip();}};
   draw();
   document.onkeydown=(e)=>{if(box._key)box._key(e);};

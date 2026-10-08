@@ -83,6 +83,9 @@
   "deck.allStrong": "🎉 אין כאן כלום — הכול חזק!",
   "deck.progress": "<bdi dir=\"ltr\">{i} / {n}</bdi>",
   "deck.examq": "<bdi dir=\"ltr\">{exam}</bdi> · <bdi dir=\"ltr\">Q{q}</bdi>",
+  "deck.prev": "→ הקודם",
+  "deck.next": "הבא ←",
+  "deck.marked": "סימנת:",
 
   "weak.title": "🔁 חזרה על חלשים",
   "weak.sub": "כרטיסים שפספסת או שעדיין לא ראית.",
