@@ -18,7 +18,7 @@
   {"q":7,"section":"memory","type":"compute",
    "he":"כתובת וירטואלית בגודל 42 ביט, גודל דף 1MB. כמה מסגרות (frames) פוטנציאליות?",
    "en":"42-bit virtual address, 1MB pages — number of potential frames?",
-   "answer_he":"2^22","answer_en":"2^22 (42-20=22)","source":"reconstructed-2024A"},
+   "answer_he":"2²²","answer_en":"2²² (42-20=22)","source":"reconstructed-2024A"},
   {"q":8,"section":"replacement","type":"concept",
    "he":"כיצד נקרא המצב בו המערכת מבזבזת את רוב הזמן על העברת דפים במקום להריץ תהליכים?",
    "en":"State where the OS spends most time swapping pages instead of running?",

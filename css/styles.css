@@ -60,6 +60,7 @@ details.lesson[open]>summary{border-bottom:1px solid var(--line);margin-bottom:1
 .lesson table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
 .lesson th,.lesson td{border:1px solid var(--line);padding:7px 9px;text-align:start;vertical-align:top}
 .lesson th{background:var(--card2)}
+.lesson .tscroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}   /* a wide table scrolls in its own box */
 .lesson pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;overflow:auto;font-size:13px}
 .lesson code{background:var(--bg);padding:1px 5px;border-radius:5px}
 .lesson .recipe li{margin:4px 0}

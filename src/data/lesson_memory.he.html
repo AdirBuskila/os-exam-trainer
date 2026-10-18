@@ -3,7 +3,7 @@
 
   <p>כל תוכנית רוצה גוש זיכרון גדול משלה, <strong>שנראה רציף</strong>, שמתחיל בכתובת 0, אך ה-<bdi dir="ltr">RAM</bdi> האמיתי <strong>מוגבל ומשותף</strong> בין תהליכים רבים. הפתרון הוא <strong>זיכרון וירטואלי + דפדוף</strong>: לתת לכל תוכנית מרחב כתובות מדומה (וירטואלי), לחתוך אותו ל<strong>דפים</strong> בגודל קבוע, ולפזר את הדפים בכל מקום ב-<bdi dir="ltr">RAM</bdi> הפיזי (או להשאיר אותם בדיסק עד שיידרשו). חומרת ה-<strong><bdi dir="ltr">MMU</bdi></strong> מתרגמת את הכתובת הווירטואלית לפיזית ב<strong>כל גישה בודדת</strong>.</p>
 
-  <table>
+  <div class="tscroll"><table>
     <thead>
       <tr><th>מושג</th><th>English term</th><th>Hebrew term</th><th>מזהה בשורה אחת</th></tr>
     </thead>
@@ -20,7 +20,7 @@
       <tr><td>פיצול פנימי</td><td>Internal Fragmentation</td><td dir="rtl">פיצול פנימי</td><td>שטח מבוזבז בתוך הדף השלם האחרון שהוקצה</td></tr>
       <tr><td>העתקה בעת כתיבה</td><td>Copy-on-Write (COW)</td><td dir="rtl">העתקה בעת כתיבה</td><td>הבן חולק את דפי האב; דף מועתק רק כשאחד מהם כותב</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h3>חישובי כתובת וביטים — המתכון לשימוש חוזר</h3>
   <ol class="recipe">
@@ -48,7 +48,7 @@
   </pre>
 
   <h3>מה המבחן שואל</h3>
-  <table>
+  <div class="tscroll"><table>
     <thead>
       <tr><th>כרטיס</th><th>שאלה (מקוצרת)</th><th>תשובה</th></tr>
     </thead>
@@ -69,14 +69,14 @@
       <tr><td>2019B Q7</td><td>מה מכילה טבלת הדפים של תהליך חדש שתוזמן</td><td>טבלה ריקה</td></tr>
       <tr><td>2021B Q9</td><td>מתי דף נטען מהדיסק בעימוד לפי דרישה</td><td>כשנדרשים נתונים שבו</td></tr>
       <tr><td>2023B Q8</td><td>בעימוד לפי דרישה, אילו דפים נטענים ל-<bdi dir="ltr">RAM</bdi></td><td>הדפים שנמצאים בשימוש בפועל</td></tr>
-      <tr><td>2024A Q7</td><td>כתובת וירטואלית 42 ביט, דפי 1 <bdi dir="ltr">MB</bdi>: מספר המסגרות האפשריות</td><td><bdi dir="ltr">2^22</bdi> (42 − 20 = 22)</td></tr>
+      <tr><td>2024A Q7</td><td>כתובת וירטואלית 42 ביט, דפי 1 <bdi dir="ltr">MB</bdi>: מספר המסגרות האפשריות</td><td><bdi dir="ltr">2²²</bdi> (42 − 20 = 22)</td></tr>
       <tr><td>2021A Q8</td><td>פיצול פנימי מרבי בדף אחד, גודל דף 4096</td><td>4095 בתים (גודל הדף − 1)</td></tr>
       <tr><td>2023B Q7</td><td>שם הפיצול שנובע מהקצאה ביחידות של דף שלם</td><td>פיצול פנימי</td></tr>
       <tr><td>2022B Q7</td><td>(<bdi dir="ltr">Linux</bdi>) כתיבה אל שטח של פיצול פנימי</td><td>הערך נכתב, ללא תקלה</td></tr>
       <tr><td>2020A Q10</td><td>הבן חולק את דפי האב עד שכתיבה מעתיקה</td><td>העתקה בעת כתיבה (<bdi dir="ltr">COW</bdi>)</td></tr>
       <tr><td>2021A Q9</td><td>מספר אוגרי ה-<bdi dir="ltr">PTBR</bdi> המרבי לכל ליבת <bdi dir="ltr">CPU</bdi></td><td>1</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="traps">
     <strong>המלכודות שעולות נקודות</strong>

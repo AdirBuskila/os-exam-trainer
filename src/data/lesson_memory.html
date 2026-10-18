@@ -3,7 +3,7 @@
 
   <p>Every program wants its own big, <strong>contiguous-looking</strong> block of memory starting at address 0, but real RAM is <strong>limited and shared</strong> by many processes. The fix is <strong>virtual memory + paging</strong>: give each program a fake (virtual) address space, chop it into fixed-size <strong>pages</strong>, and scatter those pages anywhere in physical RAM (or leave them on disk until needed). The <strong>MMU</strong> hardware translates the virtual address to the physical one on <strong>every single access</strong>.</p>
 
-  <table>
+  <div class="tscroll"><table>
     <thead>
       <tr><th>Concept</th><th>English term</th><th>Hebrew term</th><th>One-line identifier</th></tr>
     </thead>
@@ -20,7 +20,7 @@
       <tr><td>Internal fragmentation</td><td>Internal Fragmentation</td><td dir="rtl">פיצול פנימי</td><td>Wasted space inside the last whole page allocated</td></tr>
       <tr><td>Copy-on-Write</td><td>Copy-on-Write (COW)</td><td dir="rtl">העתקה בעת כתיבה</td><td>Child shares parent's pages; copy a page only when one writes</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h3>Address &amp; bit math — the reusable recipe</h3>
   <ol class="recipe">
@@ -48,7 +48,7 @@
   </pre>
 
   <h3>What the exam asks</h3>
-  <table>
+  <div class="tscroll"><table>
     <thead>
       <tr><th>Card</th><th>Question (short)</th><th>Answer</th></tr>
     </thead>
@@ -69,14 +69,14 @@
       <tr><td>2019B Q7</td><td>Newly scheduled process's page table contains</td><td>An empty table</td></tr>
       <tr><td>2021B Q9</td><td>When a page is loaded from disk under demand paging</td><td>When data on it is requested</td></tr>
       <tr><td>2023B Q8</td><td>Under demand paging, which pages are loaded into RAM</td><td>The pages actually being used</td></tr>
-      <tr><td>2024A Q7</td><td>42-bit VA, 1 MB pages: number of potential frames</td><td>2^22 (42 − 20 = 22)</td></tr>
+      <tr><td>2024A Q7</td><td>42-bit VA, 1 MB pages: number of potential frames</td><td>2²² (42 − 20 = 22)</td></tr>
       <tr><td>2021A Q8</td><td>Max internal fragmentation in one page, page size 4096</td><td>4095 bytes (page size − 1)</td></tr>
       <tr><td>2023B Q7</td><td>Name of fragmentation from whole-page allocation</td><td>Internal fragmentation</td></tr>
       <tr><td>2022B Q7</td><td>(Linux) writing to internal-fragmentation space</td><td>Value written, no fault</td></tr>
       <tr><td>2020A Q10</td><td>Child shares parent's pages until a write copies</td><td>Copy-on-Write</td></tr>
       <tr><td>2021A Q9</td><td>Max number of PTBR registers per CPU core</td><td>1</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="traps">
     <strong>The traps that cost points</strong>

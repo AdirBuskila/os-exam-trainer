@@ -52,7 +52,8 @@ function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':
 // Hebrew card prose: in HE mode auto-isolate Latin/code/number runs so the bidi
 // algorithm can't reorder fork()/PID 4 → 5 → 6/etc. In EN mode keep plain esc()
 // so English mode stays byte-for-byte identical to before.
-function heContent(s){return isHe()?I18N.autoIsolate(s):esc(s);}
+// always isolate: a Latin-only answer (2² = 4G, 11+4+12) in a dir=rtl block is reordered otherwise
+function heContent(s){return window.I18N?I18N.autoIsolate(s):esc(s);}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.remove('hide');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('hide'),1400);}
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function lessonHTML(sid){

@@ -60,16 +60,29 @@ function wrapLtr(token) { return '<bdi dir="ltr">' + esc(token) + '</bdi>'; }
 // short and local. Trailing sentence punctuation/spaces are left outside the
 // isolate so Hebrew punctuation still flows naturally. In LTR text this is a
 // harmless no-op wrap.
-var LTR_RUN = /[(\[{<]?[A-Za-z0-9][A-Za-z0-9 \t()\[\]{}<>.,:;!?*+\-=\/\\^&|%#_'"→←↔]*/g;
+var LTR_RUN = /[(\[{<]?[A-Za-z0-9][A-Za-z0-9 \t()\[\]{}<>.,:;!?*+\-=\/\\^&|%#_'"→←↔⁰¹²³⁴⁵⁶⁷⁸⁹×]*/g;
 // Trailing neutrals (incl. an opening bracket/comma that really belongs to the
 // following Hebrew clause) are left OUTSIDE the isolate so Hebrew flows normally.
 var TRAIL  = /[ \t.,:;!?'"([{<]+$/;
+// A run ends at a clause boundary outside brackets (". " ", " "; " ": "). One isolate over
+// "kernel mode: 1. access ..." or "TP = 44, FN = 6" would read the later clause first; the
+// remainder is re-scanned as its own run. "(3, 8, 2)" and "1,048,576" stay whole.
+function clauseEnd(run) {
+  var depth = 0;
+  for (var i = 0; i < run.length - 1; i++) {
+    var c = run.charAt(i);
+    if ('([{'.indexOf(c) >= 0) depth++;
+    else if (')]}'.indexOf(c) >= 0) depth = Math.max(0, depth - 1);
+    else if (depth === 0 && '.,;:!?'.indexOf(c) >= 0 && /\s/.test(run.charAt(i + 1)) && i > 0) return run.slice(0, i + 1);
+  }
+  return run;
+}
 function autoIsolate(str) {
   str = String(str == null ? '' : str);
   var out = '', last = 0, m;
   LTR_RUN.lastIndex = 0;
   while ((m = LTR_RUN.exec(str))) {
-    var start = m.index, full = m[0];
+    var start = m.index, full = clauseEnd(m[0]);
     var tm = TRAIL.exec(full);
     if (tm) full = full.slice(0, full.length - tm[0].length); // strip trailing neutral
     if (!full) { LTR_RUN.lastIndex = start + 1; continue; }

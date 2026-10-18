@@ -51,8 +51,8 @@
     "type": "compute",
     "he": "כתובת וירטואלית של Pentium היא 32 סיביות וגודל הדף (page) הוא 4KB. מה מספר המסגרות (frames) המקסימלי שאפשר להגיע אליו במערכת מבוססת Pentium?",
     "en": "With a 32-bit Pentium virtual address and 4KB pages, what is the maximum number of frames?",
-    "answer_he": "2^32 = 4G ; 4G / 4K = 1 mega",
-    "answer_en": "1 Mega = 2^20 = 1,048,576 frames"
+    "answer_he": "2³² = 4G ; 4G / 4K = 1 mega",
+    "answer_en": "1 Mega = 2²⁰ = 1,048,576 frames"
   },
   {
     "q": 7,

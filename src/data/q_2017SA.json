@@ -68,8 +68,8 @@
     "type": "compute",
     "he": "בארכיטקטורת מחשב מסוימת, גודלה של מסגרת הוא 1024 בתים וכתובות לוגיות ממופות באמצעות page table בת 4 רמות. כל הטבלאות (בכל הרמות) הן בנות 128 כניסות. מה גודלו של המרחב הלוגי/וירטואלי?",
     "en": "Frame size 1024 bytes, a 4-level page table with 128 entries per table at every level. What is the size of the logical/virtual address space?",
-    "answer_he": "1024*128^4",
-    "answer_en": "1024 × 128^4 bytes (= 2^10 × 2^28 = 2^38)"
+    "answer_he": "1024*128⁴",
+    "answer_en": "1024 × 128⁴ bytes (= 2¹⁰ × 2²⁸ = 2³⁸)"
   },
   {
     "q": 9,
