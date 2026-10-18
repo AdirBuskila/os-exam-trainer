@@ -143,6 +143,15 @@ pre, code, .qcode{direction:ltr;text-align:left;unicode-bidi:isolate}
 
 /* ---- back to the study-tools deck ---- */
 .appfoot{margin-top:28px;padding:18px 4px 0;border-top:1px solid var(--line);text-align:center}
+/* feedback links (js/feedback.js): small and muted, a real <a> for keyboard use */
+.feedback-line{font-size:12.5px;line-height:1.5;margin:0 0 12px}
+.feedback-link,.reportlink{color:var(--mut);text-decoration:none;overflow-wrap:anywhere}
+.feedback-link{border-bottom:1px dotted currentColor}
+.feedback-link:hover,.feedback-link:focus-visible,.reportlink:hover,.reportlink:focus-visible{color:var(--txt)}
+.feedback-link:focus-visible,.reportlink:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:3px}
+.reportrow{margin:10px 0 2px;font-size:12px;text-align:end}
+.reportlink{display:inline-block;padding:3px 0}
+.reportlink:hover,.reportlink:focus-visible{text-decoration:underline}
 /* Deliberately the one warm spot in the footer — as muted fine print it read as a
    disclaimer and got missed. Pre-color-mix declarations are the old look, kept as a
    fallback for older browsers. */

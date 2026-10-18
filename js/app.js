@@ -75,6 +75,8 @@ function ansHTML(q){
   h+='</div>';
   return h;
 }
+/* feedback.js: "report a mistake" mailto link for one question (nothing if the helper is absent) */
+function reportHTML(q){return window.Feedback?window.Feedback.reportRow({id:q.id,exam:q.exam+' Q'+q.q,text:(isHe()?(q.he||q.en):(q.en||q.he))}):'';}
 function tagHTML(q){return '<span class="tag '+(q.type||'')+'">'+t('tag.'+(q.type||'concept'))+'</span>';}
 
 /* ---------------- countdown ---------------- */
@@ -179,7 +181,7 @@ function deckInto(box,list,title,ordered){
     const q=list[i]; shown=false;
     box.innerHTML='<div class="row"><span class="pill">'+t('deck.progress',{i:(i+1),n:list.length})+'</span> '+tagHTML(q)+
       '<span class="pill" style="margin-inline-start:auto">'+t('deck.examq',{exam:esc(q.exam),q:q.q})+'</span></div>'+
-      '<div class="fc"><div id="qa">'+qHTML(q)+'</div>'+
+      '<div class="fc"><div id="qa">'+qHTML(q)+'</div>'+reportHTML(q)+
       '<div id="rev"></div>'+
       '<div class="row" id="ctrl"><button class="btn" id="flip">'+t('deck.showAnswer')+' <span class="kbd">'+t('common.space')+'</span></button>'+prevBtn()+'</div></div>';
     box.querySelector('#flip').onclick=flip; wirePrev();

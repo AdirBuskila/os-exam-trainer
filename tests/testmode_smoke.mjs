@@ -27,7 +27,7 @@ window.IntersectionObserver = class { constructor(cb){ this.cb = cb; } observe()
 
 // load the app scripts in the same order index.html does, then export the
 // router fns (classic-script top-level fns are global in a browser; mirror that).
-for (const f of ['js/engines.js', 'js/data.js', 'js/i18n.js', 'js/hero.js']) window.eval(F(f));
+for (const f of ['js/engines.js', 'js/data.js', 'js/i18n.js', 'js/feedback.js', 'js/hero.js']) window.eval(F(f));
 window.eval(F('js/app.js') + '\n;window.__go=go;window.__render=render;');
 
 const view = () => doc.getElementById('view');
@@ -82,5 +82,29 @@ for (let k = 2; k <= 10; k++) { view().querySelector('#flip').onclick(); view().
 if (!/Deck complete/i.test(view().textContent)) fail('deck did not complete after grading all 10 cards');
 view().querySelector('#prev').onclick();
 if (!/10\s*\/\s*10/.test(view().textContent) || !view().querySelector('#next')) fail('Previous from the complete screen did not show card 10 as graded');
+
+// 7) feedback links: footer line + per-question report link, in both UI languages, with the right mailto subjects
+{
+  const parts = (a) => { const [h, qs] = a.getAttribute('href').split('?'); const sp = new URLSearchParams(qs); return { to: h.replace(/^mailto:/, ''), subject: sp.get('subject'), body: sp.get('body') || '' }; };
+  const foot = doc.querySelector('#feedbackLine a');
+  if (!foot || !/^mailto:[^@?]+@[^@?]+\?/.test(foot.getAttribute('href'))) fail('footer feedback mailto link missing');
+  if (parts(foot).subject !== window.DATA.i18n.en['app.title'] + ' — Feedback') fail('footer subject (en): ' + parts(foot).subject);
+  if (!/Found a mistake\?/.test(foot.textContent)) fail('footer link text (en)');
+  if (/[\w.-]+@[\w-]+\.\w+/.test(F('index.html')) || /[\w.-]+@[\w-]+\.\w+/.test(F('js/feedback.js'))) fail('the address is written out literally in index.html or feedback.js');
+  window.__go('years'); window.__go('year', '2017SB');
+  const rl = view().querySelector('.reportrow a.reportlink');
+  if (!rl) fail('question card has no report link');
+  const q1 = window.DATA.questions.find(q => q.exam === '2017SB' && q.q === 1);
+  const pe = parts(rl);
+  if (pe.subject !== window.DATA.i18n.en['app.title'] + ' — Mistake in question ' + q1.id) fail('report subject (en): ' + pe.subject);
+  if (!pe.body.includes(q1.id) || !pe.body.includes('2017SB') || !/Question start: \S/.test(pe.body)) fail('report body (en): ' + pe.body);
+  window.I18N.setLanguage('he');
+  const foot2 = doc.querySelector('#feedbackLine a');
+  if (parts(foot2).subject !== window.DATA.i18n.he['app.title'] + ' — משוב') fail('footer subject (he): ' + parts(foot2).subject);
+  if (!/מצאתם טעות\?.*📩 כתבו לי ואוסיף/.test(foot2.textContent)) fail('footer link text (he)');
+  const rl2 = view().querySelector('.reportrow a.reportlink');
+  if (!rl2 || parts(rl2).subject !== window.DATA.i18n.he['app.title'] + ' — טעות בשאלה ' + q1.id) fail('report subject (he): ' + (rl2 && parts(rl2).subject));
+  if (!/תחילת השאלה: \S/.test(parts(rl2).body)) fail('report body (he)');
+}
 
 console.log('test-mode smoke OK — list shows all exams; ordered Q-by-Q; reveal + Got it/Missed + progress; previous/next through graded cards.');

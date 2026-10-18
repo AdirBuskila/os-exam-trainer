@@ -9,6 +9,11 @@
   "nav.theme": "🌓 Theme",
 
   "foot.deck": "<span class=\"deck-arrow\">↗</span> More study tools for other courses",
+  "foot.feedback": "Found a mistake? A new exam that isn't here? 📩 Email me and I'll add it",
+  "report.link": "⚑ Report a mistake",
+  "mail.footerSubject": "{title} — Feedback",
+  "mail.reportSubject": "{title} — Mistake in question {id}",
+  "mail.reportBody": "Question: {id}\nExam: {exam}\nQuestion start: {snippet}\n\nWhat's wrong / what to fix:\n",
 
   "common.space": "space",
   "common.back": "Back",

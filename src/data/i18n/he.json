@@ -9,6 +9,11 @@
   "nav.theme": "🌓 ערכת נושא",
 
   "foot.deck": "<span class=\"deck-arrow\">↗</span> עוד כלי תרגול לקורסים אחרים",
+  "foot.feedback": "מצאתם טעות? יצא מבחן חדש שלא מופיע כאן? 📩 כתבו לי ואוסיף",
+  "report.link": "⚑ דווחו על טעות",
+  "mail.footerSubject": "{title} — משוב",
+  "mail.reportSubject": "{title} — טעות בשאלה {id}",
+  "mail.reportBody": "שאלה: {id}\nמבחן: {exam}\nתחילת השאלה: {snippet}\n\nמה הטעות / מה לתקן:\n",
 
   "common.space": "רווח",
   "common.back": "חזרה",
