@@ -28,7 +28,8 @@ window.IntersectionObserver = class { constructor(cb){ this.cb = cb; } observe()
 // load the app scripts in the same order index.html does, then export the
 // router fns (classic-script top-level fns are global in a browser; mirror that).
 for (const f of ['js/engines.js', 'js/data.js', 'js/i18n.js', 'js/feedback.js', 'js/hero.js']) window.eval(F(f));
-window.eval(F('js/app.js') + '\n;window.__go=go;window.__render=render;');
+// courses.js shares app.js's top-level `let S`; in a browser two classic scripts share it, here one eval scope does
+window.eval(F('js/courses.js') + '\n' + F('js/app.js') + '\n;window.__go=go;window.__render=render;window.__S=S;');
 
 const view = () => doc.getElementById('view');
 const text = () => view().textContent;
@@ -108,3 +109,25 @@ if (!/10\s*\/\s*10/.test(view().textContent) || !view().querySelector('#next')) 
 }
 
 console.log('test-mode smoke OK — list shows all exams; ordered Q-by-Q; reveal + Got it/Missed + progress; previous/next through graded cards.');
+
+// 3) "צריך עזרה?" guided courses: hub -> map -> lesson -> quiz (all right) -> pass, progress saved
+window.__go('help');
+if (!/sched/.test(Array.from(view().querySelectorAll('[data-course]')).map(b => b.dataset.course).join())) fail('help hub lists no courses');
+const U = window.COURSE_UI, C = window.COURSES;
+for (const id of ['sched', 'paging', 'vmem', 'sync']) {
+  U.openMap(id);
+  const L = C[id].levels[0];
+  U.openLesson(L);
+  if (doc.getElementById('crsLessonView').classList.contains('hidden')) fail(id + ' lesson not shown');
+  U.startLevel(L);
+  for (let i = 0; i < L.questions.length; i++) {
+    doc.querySelectorAll('#crsQuizView .opt')[L.questions[i].ans].click();
+    if (!doc.querySelector('#crsQuizView .opt.right')) fail(id + ' correct option not marked');
+    if (!doc.querySelector('#crsQuizView .reportlink')) fail(id + ' question has no report link');
+    if (doc.getElementById('crsNextBtn').classList.contains('hidden')) fail(id + ' next button hidden after answering'); U.next();
+  }
+  if (doc.getElementById('crsSumView').classList.contains('hidden')) fail(id + ' summary not shown');
+  if (!/100%/.test(doc.getElementById('crsSumView').textContent)) fail(id + ' level 1 not 100% with the stored answers');
+  if (window.__S.courses[id][L.id].best !== 100) fail(id + ' progress not saved');
+}
+console.log('courses smoke OK: 4 courses open, level 1 playable with report links');

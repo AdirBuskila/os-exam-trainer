@@ -225,7 +225,48 @@ window.DATA = {
 "year.allExams": "← All exams",
 "tag.concept": "concept",
 "tag.compute": "compute",
-"tag.trick": "trick"
+"tag.trick": "trick",
+"nav.help": "🧭 Need help? · צריך עזרה?",
+"help.title": "🧭 Need help? · צריך עזרה?",
+"help.sub": "Four guided courses on the hardest exam areas. Each one starts from a tiny exercise and climbs to exam level: a short lesson, then questions, level by level. The last level of each course is a 🏆 boss made of real exam items.",
+"help.homeHint": "Stuck on a topic? Guided courses go from small exercises up to exam level: lesson first, then questions.",
+"crs.toHub": "← All courses",
+"crs.toHome": "← Dashboard",
+"crs.toMap": "🗺️ Level map",
+"crs.notStarted": "Not started · {m} levels",
+"crs.progressNext": "{n} of {m} levels passed · next: {title}",
+"crs.finished": "Finished 🏆",
+"crs.levelsPassed": "You passed {n} of {m} levels",
+"crs.allDone": "🏆 You finished the whole course. Next step: the real exam questions on this topic.",
+"crs.rule": "Every level is open. A level counts as passed at 80%. Progress is saved on your device.",
+"crs.level": "Level {n}",
+"crs.levelOf": "Level {n} of {m}",
+"crs.boss": "Boss",
+"crs.qCount": "{n} questions",
+"crs.fromExams": "{n} from past exams",
+"crs.status.new": "Not started · {n} questions",
+"crs.status.passed": "✓ Passed · best {best}%",
+"crs.status.try": "Last {last}% · best {best}% (need 80%)",
+"crs.start": "Start the questions →",
+"crs.question": "Question {i} of {n}",
+"crs.exam": "📌 Real exam question: {exam}",
+"crs.correct": "✓ Correct.",
+"crs.wrong": "✗ Not quite.",
+"crs.nextQ": "Next →",
+"crs.finish": "Finish ✓",
+"crs.quit": "← Back to the lesson",
+"crs.correctWord": "correct answers",
+"crs.passMsg": "✓ Level passed. You can move on.",
+"crs.bossMsg": "🏆 You passed the boss of {name}!",
+"crs.failMsg": "Not 80% yet. Read the lesson again and retry: this is exactly where it gets built.",
+"crs.review": "Worth another look:",
+"crs.nextLevel": "Next level: {title} →",
+"crs.real": "To the real exam questions →",
+"crs.retry": "🔁 Try again",
+"crs.lessonBtn": "📘 Lesson",
+"crs.mapBtn": "🗺️ Level map",
+"crs.reset": "Reset progress",
+"crs.resetConfirm": "Reset your progress in this course?"
 },
 "he": {
 "app.title": "מתרגל למבחן OS — HIT 61206",
@@ -319,7 +360,6111 @@ window.DATA = {
 "year.allExams": "→ כל המבחנים",
 "tag.concept": "מושג",
 "tag.compute": "חישוב",
-"tag.trick": "מלכודת"
+"tag.trick": "מלכודת",
+"nav.help": "🧭 צריך עזרה?",
+"help.title": "🧭 צריך עזרה?",
+"help.sub": "ארבעה קורסים מודרכים על אזורי המבחן הקשים ביותר. כל קורס מתחיל בתרגיל קטן ועולה עד רמת המבחן: שיעור קצר ואחריו שאלות, שלב אחרי שלב. השלב האחרון בכל קורס הוא 🏆 בוס מפריטים אמיתיים מהמבחנים.",
+"help.homeHint": "תקועים על נושא? קורסים מודרכים שעולים מתרגילים קטנים עד רמת המבחן: קודם שיעור, אחר כך שאלות.",
+"crs.toHub": "← כל הקורסים",
+"crs.toHome": "← לוח הבקרה",
+"crs.toMap": "🗺️ מפת השלבים",
+"crs.notStarted": "עוד לא התחלת · {m} שלבים",
+"crs.progressNext": "עברת {n} מתוך {m} שלבים · הבא: {title}",
+"crs.finished": "סיימת 🏆",
+"crs.levelsPassed": "עברת {n} מתוך {m} שלבים",
+"crs.allDone": "🏆 סיימת את כל הקורס. הצעד הבא: שאלות המבחנים האמיתיות בנושא.",
+"crs.rule": "כל השלבים פתוחים. שלב נחשב עבור מ-80%. ההתקדמות נשמרת במכשיר שלך.",
+"crs.level": "שלב {n}",
+"crs.levelOf": "שלב {n} מתוך {m}",
+"crs.boss": "בוס",
+"crs.qCount": "{n} שאלות",
+"crs.fromExams": "{n} ממבחנים קודמים",
+"crs.status.new": "עוד לא התחלת · {n} שאלות",
+"crs.status.passed": "✓ עברת · שיא {best}%",
+"crs.status.try": "אחרון {last}% · שיא {best}% (צריך 80%)",
+"crs.start": "להתחיל את השאלות →",
+"crs.question": "שאלה {i} מתוך {n}",
+"crs.exam": "📌 שאלה אמיתית מהמבחן: {exam}",
+"crs.correct": "✓ נכון.",
+"crs.wrong": "✗ לא בדיוק.",
+"crs.nextQ": "הבא →",
+"crs.finish": "סיום ✓",
+"crs.quit": "← חזרה לשיעור",
+"crs.correctWord": "תשובות נכונות",
+"crs.passMsg": "✓ עברת את השלב. אפשר להתקדם.",
+"crs.bossMsg": "🏆 עברת את הבוס של {name}!",
+"crs.failMsg": "עוד לא 80%. כדאי לקרוא שוב את השיעור ולנסות שוב, זה בדיוק השלב שבו זה נבנה.",
+"crs.review": "כדאי לחזור על:",
+"crs.nextLevel": "לשלב הבא: {title} ←",
+"crs.real": "לשאלות המבחנים האמיתיות ←",
+"crs.retry": "🔁 לנסות שוב",
+"crs.lessonBtn": "📘 לשיעור",
+"crs.mapBtn": "🗺️ למפת השלבים",
+"crs.reset": "איפוס התקדמות",
+"crs.resetConfirm": "לאפס את ההתקדמות בקורס הזה?"
+}
+},
+"courses": {
+"sched": {
+"id": "sched",
+"icon": "🕒",
+"title": {
+"en": "CPU scheduling: Gantt charts and waiting time",
+"he": "תזמון מעבד: תרשימי גאנט וזמני המתנה"
+},
+"intro": {
+"en": "Scheduling is the guaranteed-points topic: about half theory words and half Gantt arithmetic. This course goes from one process and three formulas up to the exam's Round Robin and SRTF tables. Each level has a short lesson, then questions. Every level is open; 80% passes.",
+"he": "תזמון הוא הנושא של הנקודות המובטחות: בערך חצי מילות תאוריה וחצי חשבון עם תרשימי גאנט. הקורס עובר מתהליך אחד ושלוש נוסחאות ועד טבלאות ה-Round Robin וה-SRTF של המבחן. בכל שלב שיעור קצר ואחריו שאלות. כל השלבים פתוחים; 80% עובר."
+},
+"section": "scheduling",
+"levels": [
+{
+"id": "sched-1",
+"order": 1,
+"icon": "⏱️",
+"boss": false,
+"title": {
+"en": "Arrival, burst and the three clocks",
+"he": "הגעה, פרץ ושלושת המדדים"
+},
+"goal": {
+"en": "Turnaround, waiting and response from a single process.",
+"he": "זמן סבב, המתנה ותגובה של תהליך בודד."
+},
+"lesson": {
+"en": "\n<p>Every CPU question uses the same three numbers per process: <b>arrival</b> (when it enters the ready queue), <b>burst</b> (how much CPU time it needs) and <b>completion</b> (when it finishes). Three clocks are built from them. They are different things, and the exam mixes them up on purpose.</p>\n<table>\n<tr><th>Metric</th><th>Formula</th><th>In words</th></tr>\n<tr><td>Turnaround</td><td>completion &minus; arrival</td><td>the whole time in the system</td></tr>\n<tr><td>Waiting</td><td>turnaround &minus; burst</td><td>time spent in the ready queue, not running</td></tr>\n<tr><td>Response</td><td>first run &minus; arrival</td><td>time until it first gets the CPU</td></tr>\n</table>\n<p>So <b>waiting + running = turnaround</b>. The formula <code>waiting = turnaround &minus; burst</code> works for every algorithm, even when a process runs in pieces, so it is the one to memorise.</p>\n<pre>P2 arrives at 2, burst 3, finishes at 8\nturnaround = 8 - 2 = 6\nwaiting    = 6 - 3 = 3\n</pre>\n<p>A <b>CPU burst</b> is a stretch of pure computing between two I/O requests (adding two register values is a CPU burst). The average waiting time of a set is the sum of the waiting times divided by the number of processes.</p>\n",
+"he": "\n<p>בכל שאלת מעבד משתמשים באותם שלושה מספרים לכל תהליך: <b>הגעה</b> (מתי נכנס לתור המוכנים), <b>פרץ</b> (כמה זמן מעבד הוא צריך) ו<b>סיום</b> (מתי הוא מסתיים). מהם בונים שלושה מדדים. הם לא אותו דבר, והמבחן מערבב ביניהם בכוונה.</p>\n<table>\n<tr><th>מדד</th><th>נוסחה</th><th>במילים</th></tr>\n<tr><td>זמן סבב (Turnaround)</td><td>סיום &minus; הגעה</td><td>כל הזמן שהתהליך במערכת</td></tr>\n<tr><td>זמן המתנה (Waiting)</td><td>סבב &minus; פרץ</td><td>הזמן בתור המוכנים, בלי לרוץ</td></tr>\n<tr><td>זמן תגובה (Response)</td><td>ריצה ראשונה &minus; הגעה</td><td>הזמן עד שהוא מקבל את המעבד בפעם הראשונה</td></tr>\n</table>\n<p>כלומר <b>המתנה + ריצה = סבב</b>. הנוסחה <code>waiting = turnaround &minus; burst</code> נכונה לכל האלגוריתמים, גם כשתהליך רץ בחתיכות, ולכן היא הנוסחה לשנן.</p>\n<pre>P2 arrives at 2, burst 3, finishes at 8\nturnaround = 8 - 2 = 6\nwaiting    = 6 - 3 = 3\n</pre>\n<p><b>פרץ חישוב (CPU burst)</b> הוא רצף של חישוב טהור בין שתי בקשות קלט/פלט (חיבור של שני אוגרים הוא פרץ חישוב). זמן ההמתנה הממוצע של קבוצה הוא סכום זמני ההמתנה חלקי מספר התהליכים.</p>\n"
+},
+"questions": [
+{
+"id": "sched-1-1",
+"q": {
+"en": "A process arrives at time 2, needs 3 ms of CPU and finishes at time 8. What is its **turnaround time**?",
+"he": "תהליך מגיע בזמן 2, צריך 3 מ״ש של מעבד ומסיים בזמן 8. מהו **זמן הסבב** שלו?"
+},
+"opts": [
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "5",
+"he": "5"
+}
+],
+"ans": 1,
+"why": {
+"en": "Turnaround = completion − arrival = 8 − 2 = 6. The 8 is only the completion time.",
+"he": "זמן סבב = סיום − הגעה = 8 − 2 = 6. המספר 8 הוא רק זמן הסיום."
+},
+"recap": {
+"en": "Turnaround = completion − arrival.",
+"he": "זמן סבב = סיום − הגעה."
+}
+},
+{
+"id": "sched-1-2",
+"q": {
+"en": "The same process (arrival 2, burst 3, completion 8). What is its **waiting time**?",
+"he": "אותו תהליך (הגעה 2, פרץ 3, סיום 8). מהו **זמן ההמתנה** שלו?"
+},
+"opts": [
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 3,
+"why": {
+"en": "Waiting = turnaround − burst = (8 − 2) − 3 = 3. It sat in the ready queue for 3 ms.",
+"he": "המתנה = סבב − פרץ = (8 − 2) − 3 = 3. הוא חיכה בתור המוכנים 3 מ״ש."
+},
+"recap": {
+"en": "Waiting = turnaround − burst.",
+"he": "המתנה = סבב − פרץ."
+}
+},
+{
+"id": "sched-1-3",
+"q": {
+"en": "Which metric is the total time a process spends in the ready queue, waiting for the CPU?",
+"he": "איזה מדד הוא כל הזמן שתהליך מבלה בתור המוכנים, בהמתנה למעבד?"
+},
+"opts": [
+{
+"en": "Turnaround time",
+"he": "זמן סבב"
+},
+{
+"en": "Waiting time",
+"he": "זמן המתנה"
+},
+{
+"en": "Response time",
+"he": "זמן תגובה"
+},
+{
+"en": "Burst time",
+"he": "זמן פרץ"
+}
+],
+"ans": 1,
+"why": {
+"en": "Waiting time is exactly the time in the ready queue. Turnaround also includes the running time.",
+"he": "זמן המתנה הוא בדיוק הזמן בתור המוכנים. זמן סבב כולל גם את זמן הריצה."
+},
+"recap": {
+"en": "Waiting = time in the ready queue.",
+"he": "המתנה = הזמן בתור המוכנים."
+},
+"exam": "2023A-4"
+},
+{
+"id": "sched-1-4",
+"q": {
+"en": "In scheduling, waiting time + running time gives which metric?",
+"he": "בתזמון, זמן המתנה + זמן ריצה נותנים איזה מדד?"
+},
+"opts": [
+{
+"en": "Response time",
+"he": "זמן תגובה"
+},
+{
+"en": "Throughput",
+"he": "תפוקה"
+},
+{
+"en": "Turnaround time",
+"he": "זמן סבב"
+},
+{
+"en": "Quantum",
+"he": "קוונטום"
+}
+],
+"ans": 2,
+"why": {
+"en": "Turnaround = waiting + burst, from the formula waiting = turnaround − burst.",
+"he": "סבב = המתנה + פרץ, מהנוסחה המתנה = סבב − פרץ."
+},
+"recap": {
+"en": "Waiting + running = turnaround.",
+"he": "המתנה + ריצה = סבב."
+},
+"exam": "2026A-4"
+},
+{
+"id": "sched-1-5",
+"q": {
+"en": "FCFS finished three processes at the times in the table. What is the **average waiting time**?",
+"he": "FCFS סיים שלושה תהליכים בזמנים שבטבלה. מהו **זמן ההמתנה הממוצע**?"
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "6.33",
+"he": "6.33"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 0,
+"why": {
+"en": "Waits: P1 (4−0)−4 = 0, P2 (8−1)−4 = 3, P3 (10−2)−2 = 6. Sum 9, divided by 3 = 3. The 6.33 is the average turnaround.",
+"he": "המתנות: P1 (4−0)−4 = 0, P2 (8−1)−4 = 3, P3 (10−2)−2 = 6. סכום 9 חלקי 3 = 3. המספר 6.33 הוא הסבב הממוצע."
+},
+"recap": {
+"en": "Average waiting = sum of (completion − arrival − burst) / n.",
+"he": "המתנה ממוצעת = סכום (סיום − הגעה − פרץ) חלקי n."
+},
+"code": "Process  Arrival  Burst  Completion\nP1       0        4      4\nP2       1        4      8\nP3       2        2      10"
+}
+]
+},
+{
+"id": "sched-2",
+"order": 2,
+"icon": "🚶",
+"boss": false,
+"title": {
+"en": "FCFS and the convoy effect",
+"he": "FCFS ואפקט השיירה"
+},
+"goal": {
+"en": "Draw the Gantt chart for first-come first-served.",
+"he": "לצייר תרשים גאנט ל-FCFS."
+},
+"lesson": {
+"en": "\n<p><b>FCFS</b> (First-Come First-Served) runs the processes in arrival order and never interrupts one: it is <b>non-preemptive</b>. To solve a question, draw the Gantt chart, read each completion time, then use <code>waiting = completion &minus; arrival &minus; burst</code>.</p>\n<pre>P1 (arr 0, burst 7)   P2 (arr 1, burst 7)   P3 (arr 2, burst 7)\n|-- P1 --|-- P2 --|-- P3 --|\n0        7        14       21\nwaits: 0,  14-1-7 = 6,  21-2-7 = 12   -> average 6\n</pre>\n<p>If the CPU becomes free before the next process arrives it simply sits <b>idle</b>; the idle gap is not waiting for anyone. A process that arrives after the gap starts the moment it arrives and waits 0.</p>\n<p>The weakness of FCFS is the <b>convoy effect</b>: one long process at the front makes all the short ones queue behind it, which inflates the average waiting time.</p>\n",
+"he": "\n<p><b>FCFS</b> (First-Come First-Served) מריץ את התהליכים לפי סדר ההגעה ולעולם לא מפסיק תהליך באמצע: הוא <b>לא נשלף</b> (non-preemptive). כדי לפתור שאלה: מציירים תרשים גאנט, קוראים את זמן הסיום של כל תהליך, ואז <code>waiting = completion &minus; arrival &minus; burst</code>.</p>\n<pre>P1 (arr 0, burst 7)   P2 (arr 1, burst 7)   P3 (arr 2, burst 7)\n|-- P1 --|-- P2 --|-- P3 --|\n0        7        14       21\nwaits: 0,  14-1-7 = 6,  21-2-7 = 12   -> average 6\n</pre>\n<p>אם המעבד מתפנה לפני שהתהליך הבא הגיע, הוא פשוט <b>סרק</b>. זמן הסרק הוא לא המתנה של אף אחד. תהליך שמגיע אחרי הפער מתחיל לרוץ ברגע שהגיע וממתין 0.</p>\n<p>החולשה של FCFS היא <b>אפקט השיירה (convoy effect)</b>: תהליך ארוך אחד בראש התור גורם לכל הקצרים לחכות מאחוריו, וזמן ההמתנה הממוצע מתנפח.</p>\n"
+},
+"questions": [
+{
+"id": "sched-2-1",
+"q": {
+"en": "Under FCFS, which ready process gets the CPU next?",
+"he": "ב-FCFS, איזה תהליך מוכן מקבל את המעבד הבא?"
+},
+"opts": [
+{
+"en": "The one that arrived first",
+"he": "זה שהגיע ראשון"
+},
+{
+"en": "The one with the shortest burst",
+"he": "זה עם הפרץ הקצר ביותר"
+},
+{
+"en": "The one that has waited the least",
+"he": "זה שהמתין הכי מעט"
+},
+{
+"en": "The one with the most work left",
+"he": "זה שנשאר לו הכי הרבה עבודה"
+}
+],
+"ans": 0,
+"why": {
+"en": "FCFS is purely arrival order; burst lengths are ignored.",
+"he": "FCFS הוא סדר הגעה בלבד; אורך הפרץ לא משנה."
+},
+"recap": {
+"en": "FCFS = arrival order.",
+"he": "FCFS = לפי סדר ההגעה."
+}
+},
+{
+"id": "sched-2-2",
+"q": {
+"en": "Compute the average waiting time under FCFS.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-FCFS."
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "7",
+"he": "7"
+}
+],
+"ans": 2,
+"why": {
+"en": "Gantt: P1 0–7, P2 7–10, P3 10–32. Waits: 0, 7−1 = 6, 10−4 = 6. Average 12/3 = 4.",
+"he": "גאנט: P1 0–7, P2 7–10, P3 10–32. המתנות: 0, 7−1 = 6, 10−4 = 6. ממוצע 12/3 = 4."
+},
+"recap": {
+"en": "FCFS 7@0, 3@1, 22@4 gives 4 ms.",
+"he": "FCFS עם 7@0, 3@1, 22@4 נותן 4 מ״ש."
+},
+"code": "Process  Arrival  Burst\nP1       0        7\nP2       1        3\nP3       4        22",
+"exam": "2020A-6"
+},
+{
+"id": "sched-2-3",
+"q": {
+"en": "Which scheduling method is known for the **convoy effect** (short jobs stuck behind one long job)?",
+"he": "איזו שיטת תזמון ידועה ב**אפקט השיירה** (עבודות קצרות תקועות מאחורי עבודה ארוכה אחת)?"
+},
+"opts": [
+{
+"en": "FCFS",
+"he": "FCFS"
+},
+{
+"en": "Round Robin",
+"he": "Round Robin"
+},
+{
+"en": "SRTF",
+"he": "SRTF"
+},
+{
+"en": "Multilevel feedback",
+"he": "Multilevel feedback"
+}
+],
+"ans": 0,
+"why": {
+"en": "The convoy effect belongs to FCFS: a long process in front cannot be preempted.",
+"he": "אפקט השיירה שייך ל-FCFS: תהליך ארוך בראש התור לא ניתן להפסקה."
+},
+"recap": {
+"en": "Convoy effect = FCFS.",
+"he": "אפקט השיירה = FCFS."
+},
+"exam": "2016B-5"
+},
+{
+"id": "sched-2-4",
+"q": {
+"en": "Compute the average waiting time under FCFS. P1 is long, P2 and P3 are short.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-FCFS. P1 ארוך, P2 ו-P3 קצרים."
+},
+"opts": [
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "19",
+"he": "19"
+},
+{
+"en": "4.5",
+"he": "4.5"
+},
+{
+"en": "6.33",
+"he": "6.33"
+}
+],
+"ans": 3,
+"why": {
+"en": "Gantt: P1 0–10, P2 10–12, P3 12–14. Waits: 0, 10−1 = 9, 12−2 = 10. Sum 19, average 19/3 = 6.33.",
+"he": "גאנט: P1 0–10, P2 10–12, P3 12–14. המתנות: 0, 10−1 = 9, 12−2 = 10. סכום 19, ממוצע 19/3 = 6.33."
+},
+"recap": {
+"en": "Sum the waits, then divide by n.",
+"he": "מסכמים את ההמתנות ומחלקים ב-n."
+},
+"code": "Process  Arrival  Burst\nP1       0        10\nP2       1        2\nP3       2        2"
+},
+{
+"id": "sched-2-5",
+"q": {
+"en": "The CPU is idle between time 2 and time 5. What is the **waiting time of P2**?",
+"he": "המעבד סרק בין זמן 2 לזמן 5. מהו **זמן ההמתנה של P2**?"
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "0",
+"he": "0"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "5",
+"he": "5"
+}
+],
+"ans": 1,
+"why": {
+"en": "P2 arrives at 5, the CPU is free, so it runs at once: 5–8. Waiting = (8−5)−3 = 0. The idle gap is not waiting.",
+"he": "P2 מגיע ב-5, המעבד פנוי, ולכן הוא רץ מיד: 5–8. המתנה = (8−5)−3 = 0. הסרק אינו המתנה."
+},
+"recap": {
+"en": "An idle CPU means the next arrival waits 0.",
+"he": "מעבד סרק אומר שההגעה הבאה ממתינה 0."
+},
+"code": "Process  Arrival  Burst\nP1       0        2\nP2       5        3"
+}
+]
+},
+{
+"id": "sched-3",
+"order": 3,
+"icon": "🥇",
+"boss": false,
+"title": {
+"en": "SJF: shortest job first",
+"he": "SJF: העבודה הקצרה ראשונה"
+},
+"goal": {
+"en": "Pick the shortest burst among the processes that have arrived.",
+"he": "לבחור את הפרץ הקצר ביותר מבין התהליכים שהגיעו."
+},
+"lesson": {
+"en": "\n<p><b>SJF</b> (Shortest Job First) picks, whenever the CPU becomes free, the process with the <b>shortest burst among those that have already arrived</b>. It is <b>non-preemptive</b>: once a process starts it keeps the CPU until its burst ends, even if a shorter one arrives.</p>\n<pre>P1 (arr 0, b 6)   P2 (arr 1, b 8)   P3 (arr 2, b 2)\n|-- P1 --|P3|----- P2 -----|\n0        6  8              16\nat t=6 both P2 (8) and P3 (2) are waiting -> the shorter goes\nwaits: P1 0,  P2 (16-1)-8 = 7,  P3 (8-2)-2 = 4   -> average 3.67\n</pre>\n<p>Careful: a process that has <b>not arrived yet</b> is never a candidate, however short it is. SJF gives a smaller average waiting time than FCFS, but long processes can wait forever if short ones keep arriving (<b>starvation</b>).</p>\n",
+"he": "\n<p><b>SJF</b> (Shortest Job First) בוחר, בכל פעם שהמעבד מתפנה, את התהליך עם <b>הפרץ הקצר ביותר מבין אלה שכבר הגיעו</b>. הוא <b>לא נשלף</b>: תהליך שהתחיל ממשיך עד סוף הפרץ שלו, גם אם הגיע תהליך קצר ממנו.</p>\n<pre>P1 (arr 0, b 6)   P2 (arr 1, b 8)   P3 (arr 2, b 2)\n|-- P1 --|P3|----- P2 -----|\n0        6  8              16\nat t=6 both P2 (8) and P3 (2) are waiting -> the shorter goes\nwaits: P1 0,  P2 (16-1)-8 = 7,  P3 (8-2)-2 = 4   -> average 3.67\n</pre>\n<p>שימו לב: תהליך ש<b>עוד לא הגיע</b> אף פעם לא מועמד, גם אם הוא קצר מאוד. SJF נותן המתנה ממוצעת קטנה מ-FCFS, אבל תהליכים ארוכים עלולים לחכות לנצח אם כל הזמן מגיעים קצרים (<b>הרעבה</b>).</p>\n"
+},
+"questions": [
+{
+"id": "sched-3-1",
+"q": {
+"en": "Under SJF, P1 finishes at time 6. Who runs next?",
+"he": "ב-SJF, P1 מסיים בזמן 6. מי רץ אחריו?"
+},
+"opts": [
+{
+"en": "P2",
+"he": "P2"
+},
+{
+"en": "Whoever arrived first",
+"he": "Whoever arrived first"
+},
+{
+"en": "The idle process",
+"he": "The idle process"
+},
+{
+"en": "P3",
+"he": "P3"
+}
+],
+"ans": 3,
+"why": {
+"en": "At t=6 both P2 (burst 8) and P3 (burst 2) are waiting. SJF takes the shorter one, P3.",
+"he": "בזמן 6 גם P2 (פרץ 8) וגם P3 (פרץ 2) מחכים. SJF לוקח את הקצר, P3."
+},
+"recap": {
+"en": "SJF: shortest burst among arrived.",
+"he": "SJF: הפרץ הקצר מבין אלה שהגיעו."
+},
+"code": "Process  Arrival  Burst\nP1       0        6\nP2       1        8\nP3       2        2"
+},
+{
+"id": "sched-3-2",
+"q": {
+"en": "What is the average waiting time under SJF for the same table?",
+"he": "מהו זמן ההמתנה הממוצע ב-SJF לאותה טבלה?"
+},
+"opts": [
+{
+"en": "5.67",
+"he": "5.67"
+},
+{
+"en": "3.67",
+"he": "3.67"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 1,
+"why": {
+"en": "Order P1, P3, P2. Waits: 0, (8−2)−2 = 4, (16−1)−8 = 7. Sum 11, average 3.67. FCFS would give 5.67.",
+"he": "הסדר P1, P3, P2. המתנות: 0, (8−2)−2 = 4, (16−1)−8 = 7. סכום 11, ממוצע 3.67. FCFS היה נותן 5.67."
+},
+"recap": {
+"en": "SJF waits: 0, 4, 7.",
+"he": "המתנות ב-SJF: 0, 4, 7."
+},
+"code": "Process  Arrival  Burst\nP1       0        6\nP2       1        8\nP3       2        2"
+},
+{
+"id": "sched-3-3",
+"q": {
+"en": "Under SJF, in what order do the processes run?",
+"he": "ב-SJF, באיזה סדר רצים התהליכים?"
+},
+"opts": [
+{
+"en": "P1, P3, P2",
+"he": "P1, P3, P2"
+},
+{
+"en": "P3, P1, P2",
+"he": "P3, P1, P2"
+},
+{
+"en": "P2, P1, P3",
+"he": "P2, P1, P3"
+},
+{
+"en": "P1, P2, P3",
+"he": "P1, P2, P3"
+}
+],
+"ans": 3,
+"why": {
+"en": "At t=5 only P2 has arrived (P3 arrives at 6), so P2 runs 5–8 although P3 is shorter. Then P3.",
+"he": "בזמן 5 רק P2 הגיע (P3 מגיע ב-6), לכן P2 רץ 5–8 למרות ש-P3 קצר יותר. אחר כך P3."
+},
+"recap": {
+"en": "A process that has not arrived is not a candidate.",
+"he": "תהליך שעוד לא הגיע אינו מועמד."
+},
+"code": "Process  Arrival  Burst\nP1       0        5\nP2       1        3\nP3       6        1"
+},
+{
+"id": "sched-3-4",
+"q": {
+"en": "P1 (burst 10) is running under SJF when P2 (burst 1) arrives at time 1. When does P2 start?",
+"he": "P1 (פרץ 10) רץ ב-SJF כש-P2 (פרץ 1) מגיע בזמן 1. מתי P2 מתחיל?"
+},
+"opts": [
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "11",
+"he": "11"
+}
+],
+"ans": 0,
+"why": {
+"en": "SJF is non-preemptive: P1 keeps the CPU until time 10, then P2 runs.",
+"he": "SJF לא נשלף: P1 שומר על המעבד עד זמן 10, ואז P2 רץ."
+},
+"recap": {
+"en": "SJF never interrupts a running process.",
+"he": "SJF אף פעם לא מפסיק תהליך שרץ."
+},
+"code": "Process  Arrival  Burst\nP1       0        10\nP2       1        1"
+},
+{
+"id": "sched-3-5",
+"q": {
+"en": "Which processes can starve under SJF?",
+"he": "אילו תהליכים עלולים להיות מורעבים ב-SJF?"
+},
+"opts": [
+{
+"en": "Short ones",
+"he": "קצרים"
+},
+{
+"en": "The first to arrive",
+"he": "הראשון שהגיע"
+},
+{
+"en": "Long ones, when short processes keep arriving",
+"he": "ארוכים, כשמגיעים כל הזמן תהליכים קצרים"
+},
+{
+"en": "None, SJF is always fair",
+"he": "אף אחד, SJF תמיד הוגן"
+}
+],
+"ans": 2,
+"why": {
+"en": "A long job is always passed over while shorter jobs keep showing up.",
+"he": "עבודה ארוכה נדחית שוב ושוב כל עוד מגיעות עבודות קצרות יותר."
+},
+"recap": {
+"en": "SJF can starve long jobs.",
+"he": "SJF יכול להרעיב עבודות ארוכות."
+}
+}
+]
+},
+{
+"id": "sched-4",
+"order": 4,
+"icon": "✂️",
+"boss": false,
+"title": {
+"en": "SRTF: preempt when someone is shorter",
+"he": "SRTF: מפסיקים כשמישהו קצר יותר"
+},
+"goal": {
+"en": "Compare the newcomer with the time LEFT, not the original burst.",
+"he": "משווים את החדש למה שנשאר, לא לפרץ המקורי."
+},
+"lesson": {
+"en": "\n<p><b>SRTF</b> (Shortest Remaining Time First) is the <b>preemptive</b> version of SJF. At every moment the CPU runs the process with the <b>least time remaining</b>. When a new process arrives, compare its burst with what is <b>left</b> of the running one (not with the running one's original burst). If the newcomer is smaller, the running process goes back to ready.</p>\n<pre>P1 (arr 0, b 9)   P2 (arr 1, b 7)   P3 (arr 2, b 4)\nt=1: P2 arrives, P1 has 8 left, 7 &lt; 8  -> preempt\nt=2: P3 arrives, P2 has 6 left, 4 &lt; 6  -> preempt\n|P1|P2|--- P3 ---|----- P2 -----|------- P1 -------|\n0  1  2          6              12                 20\nwaits: P1 20-0-9 = 11, P2 12-1-7 = 4, P3 6-2-4 = 0  -> average 5\n</pre>\n<p>Keep a \"remaining\" column in your table and update it at every arrival. SRTF gives the smallest average waiting time of any algorithm when the bursts are known, and like SJF it can starve long processes.</p>\n",
+"he": "\n<p><b>SRTF</b> (Shortest Remaining Time First) הוא הגרסה ה<b>נשלפת</b> של SJF. בכל רגע המעבד מריץ את התהליך עם <b>הזמן הנותר הקטן ביותר</b>. כשמגיע תהליך חדש, משווים את הפרץ שלו למה ש<b>נשאר</b> לתהליך הרץ (לא לפרץ המקורי שלו). אם החדש קטן יותר, הרץ חוזר למצב מוכן.</p>\n<pre>P1 (arr 0, b 9)   P2 (arr 1, b 7)   P3 (arr 2, b 4)\nt=1: P2 arrives, P1 has 8 left, 7 &lt; 8  -> preempt\nt=2: P3 arrives, P2 has 6 left, 4 &lt; 6  -> preempt\n|P1|P2|--- P3 ---|----- P2 -----|------- P1 -------|\n0  1  2          6              12                 20\nwaits: P1 20-0-9 = 11, P2 12-1-7 = 4, P3 6-2-4 = 0  -> average 5\n</pre>\n<p>מוסיפים לטבלה עמודת &quot;נשאר&quot; ומעדכנים אותה בכל הגעה. SRTF נותן את זמן ההמתנה הממוצע הקטן ביותר מבין כל האלגוריתמים כשהפרצים ידועים, וכמו SJF הוא יכול להרעיב תהליכים ארוכים.</p>\n"
+},
+"questions": [
+{
+"id": "sched-4-1",
+"q": {
+"en": "Compute the average waiting time under SRTF.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-SRTF."
+},
+"opts": [
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "11",
+"he": "11"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 2,
+"why": {
+"en": "P2 preempts P1 at t=1 (7 < 8) and P3 preempts P2 at t=2 (4 < 6). Waits 11, 4, 0 give 15/3 = 5.",
+"he": "P2 שולף את P1 בזמן 1 (7 < 8) ו-P3 שולף את P2 בזמן 2 (4 < 6). המתנות 11, 4, 0 נותנות 15/3 = 5."
+},
+"recap": {
+"en": "SRTF 9@0, 7@1, 4@2 gives 5 ms.",
+"he": "SRTF עם 9@0, 7@1, 4@2 נותן 5 מ״ש."
+},
+"code": "Process  Arrival  Burst\nP1       0        9\nP2       1        7\nP3       2        4",
+"exam": "2022A-4"
+},
+{
+"id": "sched-4-2",
+"q": {
+"en": "P1 (burst 8) is running. At time 3 P2 arrives with burst 6. Does SRTF preempt P1?",
+"he": "P1 (פרץ 8) רץ. בזמן 3 מגיע P2 עם פרץ 6. האם SRTF שולף את P1?"
+},
+"opts": [
+{
+"en": "No: P1 has 5 left, less than 6",
+"he": "לא: ל-P1 נשארו 5, פחות מ-6"
+},
+{
+"en": "Yes: 6 is less than 8",
+"he": "כן: 6 קטן מ-8"
+},
+{
+"en": "Yes: SRTF always preempts on an arrival",
+"he": "כן: SRTF תמיד שולף בהגעה"
+},
+{
+"en": "No: SRTF never preempts",
+"he": "לא: SRTF אף פעם לא שולף"
+}
+],
+"ans": 0,
+"why": {
+"en": "Compare with the REMAINING time: P1 ran 3 ms, so 5 are left, and 5 < 6. P1 continues.",
+"he": "משווים לזמן הנותר: P1 רץ 3 מ״ש ונשארו לו 5, ו-5 < 6. P1 ממשיך."
+},
+"recap": {
+"en": "Compare against the remaining time.",
+"he": "משווים לזמן הנותר."
+},
+"code": "Process  Arrival  Burst\nP1       0        8\nP2       3        6"
+},
+{
+"id": "sched-4-3",
+"q": {
+"en": "Compute the average waiting time under SRTF.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-SRTF."
+},
+"opts": [
+{
+"en": "3.33",
+"he": "3.33"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "2.67",
+"he": "2.67"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 2,
+"why": {
+"en": "Gantt: P1 0–1, P2 1–2, P3 2–4, P2 4–7, P1 7–14. Waits: P1 6, P2 2, P3 0. Sum 8, average 2.67.",
+"he": "גאנט: P1 0–1, P2 1–2, P3 2–4, P2 4–7, P1 7–14. המתנות: P1 6, P2 2, P3 0. סכום 8, ממוצע 2.67."
+},
+"recap": {
+"en": "Update the remaining time at every arrival.",
+"he": "מעדכנים את הזמן הנותר בכל הגעה."
+},
+"code": "Process  Arrival  Burst\nP1       0        8\nP2       1        4\nP3       2        2"
+},
+{
+"id": "sched-4-4",
+"q": {
+"en": "Which of these is a **preemptive** algorithm?",
+"he": "איזה מאלה הוא אלגוריתם **נשלף**?"
+},
+"opts": [
+{
+"en": "FCFS",
+"he": "FCFS"
+},
+{
+"en": "SRTF",
+"he": "SRTF"
+},
+{
+"en": "SJF",
+"he": "SJF"
+},
+{
+"en": "None of them",
+"he": "None of them"
+}
+],
+"ans": 1,
+"why": {
+"en": "SRTF can move a running process back to ready; FCFS and SJF never do.",
+"he": "SRTF יכול להחזיר תהליך רץ למצב מוכן; FCFS ו-SJF אף פעם לא."
+},
+"recap": {
+"en": "SRTF and Round Robin are preemptive.",
+"he": "SRTF ו-Round Robin הם נשלפים."
+},
+"exam": "2020B-5"
+},
+{
+"id": "sched-4-5",
+"q": {
+"en": "Compute the **response time** of P2 under SRTF (time from arrival to its first run).",
+"he": "חשבו את **זמן התגובה** של P2 ב-SRTF (מההגעה עד הריצה הראשונה)."
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "0",
+"he": "0"
+}
+],
+"ans": 3,
+"why": {
+"en": "P2 arrives at 1 and preempts P1 immediately, so it first runs at 1: response 1 − 1 = 0.",
+"he": "P2 מגיע בזמן 1 ושולף את P1 מיד, לכן הוא רץ לראשונה ב-1: תגובה 1 − 1 = 0."
+},
+"recap": {
+"en": "Response = first run − arrival.",
+"he": "תגובה = ריצה ראשונה − הגעה."
+},
+"code": "Process  Arrival  Burst\nP1       0        8\nP2       1        4\nP3       2        2"
+}
+]
+},
+{
+"id": "sched-5",
+"order": 5,
+"icon": "🔄",
+"boss": false,
+"title": {
+"en": "Round Robin and the queue rule",
+"he": "Round Robin וכלל התור"
+},
+"goal": {
+"en": "Fixed time slices, and who goes behind whom.",
+"he": "פרוסות זמן קבועות, ומי עומד מאחורי מי."
+},
+"lesson": {
+"en": "\n<p><b>Round Robin</b> gives each process a fixed <b>quantum</b> of CPU time, then moves it to the back of the ready queue. A process that needs less than a quantum simply finishes early.</p>\n<p>The ordering rule that decides most exam questions: when a slice ends, put the processes that <b>arrived during that slice first</b>, and the process that was just preempted <b>behind them</b>.</p>\n<pre>q = 4:  P1 (arr 0, b 9)  P2 (arr 1, b 7)  P3 (arr 3, b 4)\n0-4   P1 runs (5 left).  P2 and P3 arrived  -> queue [P2, P3, P1]\n4-8   P2 (3 left)                           -> queue [P3, P1, P2]\n8-12  P3 done at 12                          -> queue [P1, P2]\n12-16 P1 (1 left)  16-19 P2 done  19-20 P1 done\nwaits: P1 20-9 = 11, P2 19-1-7 = 11, P3 12-3-4 = 5  -> average 9\n</pre>\n<p>Two identities to remember: RR with an <b>infinite quantum</b> is FCFS, and when the quantum is <b>very small</b> most of the CPU time is wasted on context switching. RR never starves anyone.</p>\n",
+"he": "\n<p><b>Round Robin</b> נותן לכל תהליך <b>קוונטום</b> קבוע של זמן מעבד, ואז מעביר אותו לסוף תור המוכנים. תהליך שצריך פחות מקוונטום פשוט מסיים מוקדם.</p>\n<p>כלל הסדר שמכריע את רוב שאלות המבחן: כשפרוסה מסתיימת, מכניסים לתור קודם את התהליכים ש<b>הגיעו במהלך הפרוסה</b>, ואת התהליך שזה עתה הופסק <b>מאחוריהם</b>.</p>\n<pre>q = 4:  P1 (arr 0, b 9)  P2 (arr 1, b 7)  P3 (arr 3, b 4)\n0-4   P1 runs (5 left).  P2 and P3 arrived  -> queue [P2, P3, P1]\n4-8   P2 (3 left)                           -> queue [P3, P1, P2]\n8-12  P3 done at 12                          -> queue [P1, P2]\n12-16 P1 (1 left)  16-19 P2 done  19-20 P1 done\nwaits: P1 20-9 = 11, P2 19-1-7 = 11, P3 12-3-4 = 5  -> average 9\n</pre>\n<p>שני זהויות לזכור: RR עם <b>קוונטום אינסופי</b> הוא FCFS, וכשהקוונטום <b>קטן מאוד</b> רוב זמן המעבד מבוזבז על החלפות הקשר. RR לא מרעיב אף אחד.</p>\n"
+},
+"questions": [
+{
+"id": "sched-5-1",
+"q": {
+"en": "Round Robin, quantum 4. Three processes of 7 ms arrive at time 0. What is the average waiting time?",
+"he": "Round Robin, קוונטום 4. שלושה תהליכים של 7 מ״ש מגיעים בזמן 0. מהו זמן ההמתנה הממוצע?"
+},
+"opts": [
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "11",
+"he": "11"
+},
+{
+"en": "14",
+"he": "14"
+},
+{
+"en": "8",
+"he": "8"
+}
+],
+"ans": 1,
+"why": {
+"en": "Slices P1, P2, P3, P1, P2, P3 end at 15, 18, 21. Waits are 15−7 = 8, 18−7 = 11, 21−7 = 14. Average 11.",
+"he": "הפרוסות P1, P2, P3, P1, P2, P3 מסתיימות ב-15, 18, 21. המתנות: 15−7 = 8, 18−7 = 11, 21−7 = 14. ממוצע 11."
+},
+"recap": {
+"en": "Three 7 ms jobs with q=4 give 11 ms.",
+"he": "שלושה תהליכי 7 מ״ש עם q=4 נותנים 11 מ״ש."
+},
+"code": "Process  Arrival  Burst\nP1       0        7\nP2       0        7\nP3       0        7",
+"exam": "2021A-5"
+},
+{
+"id": "sched-5-2",
+"q": {
+"en": "Round Robin, quantum 2. What is the average waiting time?",
+"he": "Round Robin, קוונטום 2. מהו זמן ההמתנה הממוצע?"
+},
+"opts": [
+{
+"en": "4.33",
+"he": "4.33"
+},
+{
+"en": "2.67",
+"he": "2.67"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "3.33",
+"he": "3.33"
+}
+],
+"ans": 3,
+"why": {
+"en": "Slices: P1 0–2, P2 2–4, P3 4–5, P1 5–7, P2 7–8, P1 8–9. Waits: P1 4, P2 4, P3 2. Sum 10, average 3.33.",
+"he": "פרוסות: P1 0–2, P2 2–4, P3 4–5, P1 5–7, P2 7–8, P1 8–9. המתנות: P1 4, P2 4, P3 2. סכום 10, ממוצע 3.33."
+},
+"recap": {
+"en": "Turnaround − burst for each, then average.",
+"he": "סבב פחות פרץ לכל אחד, ואז ממוצע."
+},
+"code": "Process  Arrival  Burst\nP1       0        5\nP2       1        3\nP3       2        1"
+},
+{
+"id": "sched-5-3",
+"q": {
+"en": "Round Robin, quantum 4. In what order do the slices run?",
+"he": "Round Robin, קוונטום 4. באיזה סדר רצות הפרוסות?"
+},
+"opts": [
+{
+"en": "P1, P3, P2, P1, P2, P1",
+"he": "P1, P3, P2, P1, P2, P1"
+},
+{
+"en": "P1, P2, P3, P1, P2, P1",
+"he": "P1, P2, P3, P1, P2, P1"
+},
+{
+"en": "P1, P2, P1, P3, P2, P1",
+"he": "P1, P2, P1, P3, P2, P1"
+},
+{
+"en": "P1, P2, P3, P2, P1",
+"he": "P1, P2, P3, P2, P1"
+}
+],
+"ans": 1,
+"why": {
+"en": "P2 and P3 arrived during P1's slice, so they queue before the preempted P1: [P2, P3, P1].",
+"he": "P2 ו-P3 הגיעו במהלך הפרוסה של P1, ולכן הם בתור לפני P1 שהופסק: [P2, P3, P1]."
+},
+"recap": {
+"en": "Arrivals during the slice go before the preempted job.",
+"he": "מי שהגיע בפרוסה נכנס לפני התהליך שהופסק."
+},
+"code": "Process  Arrival  Burst\nP1       0        9\nP2       1        7\nP3       3        4"
+},
+{
+"id": "sched-5-4",
+"q": {
+"en": "Round Robin with an **infinite quantum** is equivalent to which algorithm?",
+"he": "Round Robin עם **קוונטום אינסופי** שקול לאיזה אלגוריתם?"
+},
+"opts": [
+{
+"en": "SJF",
+"he": "SJF"
+},
+{
+"en": "SRTF",
+"he": "SRTF"
+},
+{
+"en": "FCFS",
+"he": "FCFS"
+},
+{
+"en": "Priority",
+"he": "Priority"
+}
+],
+"ans": 2,
+"why": {
+"en": "Nobody is ever preempted, so processes simply run in arrival order: FCFS.",
+"he": "אף אחד לא מופסק, והתהליכים פשוט רצים לפי סדר הגעה: FCFS."
+},
+"recap": {
+"en": "RR with q = infinity is FCFS.",
+"he": "RR עם q = אינסוף הוא FCFS."
+},
+"exam": "2023B-4"
+},
+{
+"id": "sched-5-5",
+"q": {
+"en": "When the quantum is very small, most CPU time is wasted on ____.",
+"he": "כשהקוונטום קטן מאוד, רוב זמן המעבד מבוזבז על ____."
+},
+"opts": [
+{
+"en": "context switching",
+"he": "החלפות הקשר"
+},
+{
+"en": "busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "starvation",
+"he": "הרעבה"
+},
+{
+"en": "page faults",
+"he": "החטאות דפים"
+}
+],
+"ans": 0,
+"why": {
+"en": "Every tiny slice costs a context switch, which does no useful work.",
+"he": "כל פרוסה זעירה עולה החלפת הקשר, שאינה עבודה מועילה."
+},
+"recap": {
+"en": "Tiny quantum = mostly context-switch overhead.",
+"he": "קוונטום זעיר = בעיקר עלות החלפות הקשר."
+},
+"exam": "2017SA-5"
+}
+]
+},
+{
+"id": "sched-6",
+"order": 6,
+"icon": "📖",
+"boss": false,
+"title": {
+"en": "The theory words",
+"he": "מילות התאוריה"
+},
+"goal": {
+"en": "Preemptive, starvation, aging, epoch and the OS quirks.",
+"he": "נשלף, הרעבה, aging, epoch והמוזרויות של מערכות ההפעלה."
+},
+"lesson": {
+"en": "\n<p>The theory questions of the exam are short and exact. Learn these as pairs.</p>\n<table>\n<tr><th>Term</th><th>Meaning</th></tr>\n<tr><td>Preemptive</td><td>the scheduler can move a running process back to ready (SRTF, Round Robin). FCFS and SJF are non-preemptive.</td></tr>\n<tr><td>CPU burst</td><td>a stretch of computing with no I/O between two I/O requests.</td></tr>\n<tr><td>Starvation</td><td>a process never gets the CPU (low priority, or long jobs under SJF/SRTF). The cure is <b>aging</b>: raise the priority of a process the longer it waits.</td></tr>\n<tr><td>Windows</td><td>the process that owns the <b>focus window</b> gets a quantum <b>three times</b> as long.</td></tr>\n<tr><td>Linux</td><td>one full round in which every process that wants CPU time is served is an <b>epoch</b>. The course answer for Linux's approach is <b>Multilevel Queue</b>.</td></tr>\n</table>\n",
+"he": "\n<p>שאלות התאוריה במבחן קצרות ומדויקות. לומדים אותן בזוגות.</p>\n<table>\n<tr><th>מושג</th><th>משמעות</th></tr>\n<tr><td>נשלף (Preemptive)</td><td>המתזמן יכול להחזיר תהליך רץ למצב מוכן (SRTF, Round Robin). FCFS ו-SJF אינם נשלפים.</td></tr>\n<tr><td>פרץ חישוב (CPU burst)</td><td>רצף חישוב בלי קלט/פלט בין שתי בקשות קלט/פלט.</td></tr>\n<tr><td>הרעבה (Starvation)</td><td>תהליך לא מקבל מעבד לעולם (עדיפות נמוכה, או תהליכים ארוכים ב-SJF/SRTF). התרופה היא <b>הזדקנות (aging)</b>: מעלים עדיפות לתהליך ככל שהוא ממתין יותר.</td></tr>\n<tr><td>Windows</td><td>התהליך ששייך ל<b>חלון הפוקוס</b> מקבל קוונטום ארוך <b>פי שלושה</b>.</td></tr>\n<tr><td>Linux</td><td>סבב מלא שבו מטופלים כל התהליכים שרוצים מעבד נקרא <b>epoch</b>. התשובה בקורס לגישת התזמון של Linux היא <b>Multilevel Queue</b>.</td></tr>\n</table>\n"
+},
+"questions": [
+{
+"id": "sched-6-1",
+"q": {
+"en": "What are schedulers that can move a process from running to ready called?",
+"he": "איך קוראים למתזמנים שיכולים להעביר תהליך ממצב רץ למצב מוכן?"
+},
+"opts": [
+{
+"en": "Preemptive",
+"he": "נשלפים (preemptive)"
+},
+{
+"en": "Non-preemptive",
+"he": "לא נשלפים"
+},
+{
+"en": "Cooperative-only",
+"he": "שיתופיים בלבד"
+},
+{
+"en": "Batch-only",
+"he": "אצווה בלבד"
+}
+],
+"ans": 0,
+"why": {
+"en": "A scheduler that can take the CPU away from a running process is preemptive.",
+"he": "מתזמן שיכול לקחת את המעבד מתהליך רץ הוא נשלף."
+},
+"recap": {
+"en": "Running → ready by the scheduler = preemptive.",
+"he": "רץ → מוכן בידי המתזמן = נשלף."
+},
+"exam": "2020A-4"
+},
+{
+"id": "sched-6-2",
+"q": {
+"en": "Low-priority processes never get to run under priority scheduling. What is this problem called, and how is it fixed?",
+"he": "תהליכים בעדיפות נמוכה אף פעם לא רצים בתזמון עדיפויות. איך קוראים לבעיה ואיך פותרים אותה?"
+},
+"opts": [
+{
+"en": "Convoy effect, fixed by a bigger quantum",
+"he": "אפקט שיירה, נפתר בקוונטום גדול יותר"
+},
+{
+"en": "Thrashing, fixed by more RAM",
+"he": "תזזית, נפתרת ביותר זיכרון"
+},
+{
+"en": "Starvation, fixed by aging",
+"he": "הרעבה, נפתרת ב-aging"
+},
+{
+"en": "Deadlock, fixed by a reboot",
+"he": "קיפאון, נפתר באתחול"
+}
+],
+"ans": 2,
+"why": {
+"en": "Starvation is cured by aging: the longer a process waits, the higher its priority becomes.",
+"he": "הרעבה נפתרת ב-aging: ככל שתהליך ממתין יותר, העדיפות שלו עולה."
+},
+"recap": {
+"en": "Starvation → aging.",
+"he": "הרעבה → aging."
+},
+"exam": "2021A-4"
+},
+{
+"id": "sched-6-3",
+"q": {
+"en": "Which single process does Windows give a **triple-length** time slice, as a personal-computing OS?",
+"he": "לאיזה תהליך Windows נותנת פרוסת זמן **פי שלושה**, כמערכת למחשב אישי?"
+},
+"opts": [
+{
+"en": "The process of the focus window",
+"he": "תהליך חלון הפוקוס"
+},
+{
+"en": "The first process started",
+"he": "התהליך הראשון שהופעל"
+},
+{
+"en": "The process with the most threads",
+"he": "התהליך עם הכי הרבה תהליכונים"
+},
+{
+"en": "The kernel",
+"he": "הליבה"
+}
+],
+"ans": 0,
+"why": {
+"en": "Windows favours the window the user is looking at: its process gets a 3× longer quantum.",
+"he": "Windows מעדיפה את החלון שהמשתמש מסתכל עליו: התהליך שלו מקבל קוונטום ארוך פי 3."
+},
+"recap": {
+"en": "Focus window = 3× quantum.",
+"he": "חלון פוקוס = קוונטום ×3."
+},
+"exam": "2023A-5"
+},
+{
+"id": "sched-6-4",
+"q": {
+"en": "In the Linux scheduler, one round over all processes that request CPU time is called ____.",
+"he": "בתזמון של Linux, סבב אחד על כל התהליכים שמבקשים זמן מעבד נקרא ____."
+},
+"opts": [
+{
+"en": "a quantum",
+"he": "a quantum"
+},
+{
+"en": "a burst",
+"he": "a burst"
+},
+{
+"en": "a convoy",
+"he": "a convoy"
+},
+{
+"en": "an epoch",
+"he": "an epoch"
+}
+],
+"ans": 3,
+"why": {
+"en": "The word is epoch: one round in which every runnable process gets its share.",
+"he": "המילה היא epoch: סבב אחד שבו כל תהליך ריץ מקבל את חלקו."
+},
+"recap": {
+"en": "Linux round = epoch.",
+"he": "סבב של Linux = epoch."
+},
+"exam": "2020A-7"
+},
+{
+"id": "sched-6-5",
+"q": {
+"en": "Which scheduling approach does Linux use, according to the course?",
+"he": "באיזו גישת תזמון Linux משתמשת, לפי הקורס?"
+},
+"opts": [
+{
+"en": "Pure FCFS",
+"he": "Pure FCFS"
+},
+{
+"en": "Multilevel Queue",
+"he": "Multilevel Queue"
+},
+{
+"en": "Shortest Job First",
+"he": "Shortest Job First"
+},
+{
+"en": "Pure Round Robin",
+"he": "Pure Round Robin"
+}
+],
+"ans": 1,
+"why": {
+"en": "The course answer is Multilevel Queue.",
+"he": "התשובה בקורס היא Multilevel Queue."
+},
+"recap": {
+"en": "Linux = Multilevel Queue (with epochs).",
+"he": "Linux = Multilevel Queue (עם epochs)."
+},
+"exam": "2024A-5"
+},
+{
+"id": "sched-6-6",
+"q": {
+"en": "During which kind of burst does a process add two register values together?",
+"he": "באיזה סוג פרץ תהליך מחבר שני ערכי אוגרים?"
+},
+"opts": [
+{
+"en": "I/O burst",
+"he": "פרץ קלט/פלט"
+},
+{
+"en": "Memory burst",
+"he": "פרץ זיכרון"
+},
+{
+"en": "Wait burst",
+"he": "פרץ המתנה"
+},
+{
+"en": "CPU burst",
+"he": "פרץ חישוב (CPU burst)"
+}
+],
+"ans": 3,
+"why": {
+"en": "Adding registers is pure computation with no I/O: a CPU burst.",
+"he": "חיבור אוגרים הוא חישוב טהור בלי קלט/פלט: פרץ חישוב."
+},
+"recap": {
+"en": "Pure computing = CPU burst.",
+"he": "חישוב טהור = פרץ חישוב."
+},
+"exam": "2020B-4"
+}
+]
+},
+{
+"id": "sched-7",
+"order": 7,
+"icon": "🏆",
+"boss": true,
+"title": {
+"en": "Boss: scheduling exam",
+"he": "בוס: מבחן תזמון"
+},
+"goal": {
+"en": "Real exam items on FCFS, SRTF and Round Robin.",
+"he": "שאלות מהמבחנים על FCFS, SRTF ו-Round Robin."
+},
+"lesson": {
+"en": "\n<p>This is the exam level. No new theory, only the real question types. Before you start:</p>\n<ol>\n<li>Build the table (arrival, burst) and draw the Gantt chart for the algorithm named in the question.</li>\n<li>Read each completion time, then <code>waiting = completion &minus; arrival &minus; burst</code>.</li>\n<li>Average = sum / number of processes.</li>\n<li>Round Robin: arrivals during a slice queue <b>before</b> the preempted process. SRTF: compare with the time <b>left</b>.</li>\n</ol>\n<p>Each question is a past-exam item or built the same way. You need 80% to pass.</p>\n",
+"he": "\n<p>זה שלב המבחן. אין תאוריה חדשה, רק סוגי השאלות האמיתיים. לפני שמתחילים:</p>\n<ol>\n<li>בונים טבלה (הגעה, פרץ) ומציירים גאנט לאלגוריתם שנזכר בשאלה.</li>\n<li>קוראים את זמן הסיום של כל תהליך, ואז <code>waiting = completion &minus; arrival &minus; burst</code>.</li>\n<li>ממוצע = סכום חלקי מספר התהליכים.</li>\n<li>Round Robin: מי שהגיע במהלך פרוסה נכנס לתור <b>לפני</b> התהליך שהופסק. SRTF: משווים לזמן שנשאר.</li>\n</ol>\n<p>כל שאלה היא פריט ממבחן קודם או בנויה באותו אופן. צריך 80% כדי לעבור.</p>\n"
+},
+"questions": [
+{
+"id": "sched-7-1",
+"q": {
+"en": "Compute the average waiting time under Round Robin, quantum 4.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-Round Robin עם קוונטום 4."
+},
+"opts": [
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "11",
+"he": "11"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "9.5",
+"he": "9.5"
+}
+],
+"ans": 3,
+"why": {
+"en": "Slices: P1 0–4, P2 4–7, P3 7–11, P4 11–12, P1 12–16, P3 16–19, P1 19–20. Waits 11, 4, 12, 11 give 38/4 = 9.5.",
+"he": "פרוסות: P1 0–4, P2 4–7, P3 7–11, P4 11–12, P1 12–16, P3 16–19, P1 19–20. המתנות 11, 4, 12, 11 נותנות 38/4 = 9.5."
+},
+"recap": {
+"en": "RR q=4 on 9, 3, 7, 1 gives 9.5.",
+"he": "RR עם q=4 על 9, 3, 7, 1 נותן 9.5."
+},
+"code": "Process  Arrival  Burst\nP1       0        9\nP2       0        3\nP3       0        7\nP4       0        1",
+"exam": "2019A-4"
+},
+{
+"id": "sched-7-2",
+"q": {
+"en": "Compute the average waiting time under FCFS.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-FCFS."
+},
+"opts": [
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "14",
+"he": "14"
+}
+],
+"ans": 1,
+"why": {
+"en": "Gantt: 0–7, 7–14, 14–21. Waits 0, 14−1−7 = 6, 21−2−7 = 12. Average 18/3 = 6.",
+"he": "גאנט: 0–7, 7–14, 14–21. המתנות 0, 14−1−7 = 6, 21−2−7 = 12. ממוצע 18/3 = 6."
+},
+"recap": {
+"en": "Waits 0, 6, 12.",
+"he": "המתנות 0, 6, 12."
+},
+"code": "Process  Arrival  Burst\nP1       0        7\nP2       1        7\nP3       2        7",
+"exam": "2021B-5"
+},
+{
+"id": "sched-7-3",
+"q": {
+"en": "Compute the average waiting time under Round Robin, quantum 4 (staggered arrivals).",
+"he": "חשבו את זמן ההמתנה הממוצע ב-Round Robin עם קוונטום 4 (הגעות מדורגות)."
+},
+"opts": [
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "11",
+"he": "11"
+},
+{
+"en": "9",
+"he": "9"
+}
+],
+"ans": 3,
+"why": {
+"en": "P1 0–4, P2 4–8, P3 8–12, P1 12–16, P2 16–19, P1 19–20. Waits P1 11, P2 11, P3 5. Sum 27, average 9.",
+"he": "P1 0–4, P2 4–8, P3 8–12, P1 12–16, P2 16–19, P1 19–20. המתנות P1 11, P2 11, P3 5. סכום 27, ממוצע 9."
+},
+"recap": {
+"en": "Arrivals during a slice queue before the preempted job.",
+"he": "מי שהגיע בפרוסה נכנס לפני התהליך שהופסק."
+},
+"code": "Process  Arrival  Burst\nP1       0        9\nP2       1        7\nP3       3        4",
+"exam": "2022B-4"
+},
+{
+"id": "sched-7-4",
+"q": {
+"en": "Compute the average waiting time under SRTF.",
+"he": "חשבו את זמן ההמתנה הממוצע ב-SRTF."
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "5.33",
+"he": "5.33"
+},
+{
+"en": "2",
+"he": "2"
+}
+],
+"ans": 0,
+"why": {
+"en": "P1 0–1, P2 1–4, P1 4–10, P3 10–32. Waits: P1 (10−0)−7 = 3, P2 0, P3 10−4 = 6. Sum 9, average 9/3 = 3.",
+"he": "P1 0–1, P2 1–4, P1 4–10, P3 10–32. המתנות: P1 3, P2 0, P3 10−4 = 6. ממוצע (3+0+6)/3 = 3."
+},
+"recap": {
+"en": "SRTF on 7@0, 3@1, 22@4 gives 3.",
+"he": "SRTF על 7@0, 3@1, 22@4 נותן 3."
+},
+"code": "Process  Arrival  Burst\nP1       0        7\nP2       1        3\nP3       4        22"
+},
+{
+"id": "sched-7-5",
+"q": {
+"en": "Compute the average waiting time under FCFS (four processes).",
+"he": "חשבו את זמן ההמתנה הממוצע ב-FCFS (ארבעה תהליכים)."
+},
+"opts": [
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "4.75",
+"he": "4.75"
+},
+{
+"en": "19",
+"he": "19"
+}
+],
+"ans": 2,
+"why": {
+"en": "Gantt: 0–7, 7–11, 11–12, 12–16. Waits 0, 5, 7, 7 give 19/4 = 4.75.",
+"he": "גאנט: 0–7, 7–11, 11–12, 12–16. המתנות 0, 5, 7, 7 נותנות 19/4 = 4.75."
+},
+"recap": {
+"en": "Sum 19 over 4 processes.",
+"he": "סכום 19 על 4 תהליכים."
+},
+"code": "Process  Arrival  Burst\nP1       0        7\nP2       2        4\nP3       4        1\nP4       5        4",
+"exam": "2017SB-3"
+},
+{
+"id": "sched-7-6",
+"q": {
+"en": "When does Round Robin preempt a running process?",
+"he": "מתי Round Robin מפסיק תהליך רץ?"
+},
+"opts": [
+{
+"en": "When its quantum expires",
+"he": "כשהקוונטום שלו נגמר"
+},
+{
+"en": "When a shorter process arrives",
+"he": "כשמגיע תהליך קצר יותר"
+},
+{
+"en": "When it starts an I/O burst",
+"he": "כשהוא מתחיל פרץ קלט/פלט"
+},
+{
+"en": "Never, it is non-preemptive",
+"he": "אף פעם, הוא לא נשלף"
+}
+],
+"ans": 0,
+"why": {
+"en": "RR cuts a process off only when its quantum is used up.",
+"he": "RR מפסיק תהליך רק כשהקוונטום שלו נוצל."
+},
+"recap": {
+"en": "RR preempts on quantum expiry.",
+"he": "RR מפסיק בתום הקוונטום."
+},
+"exam": "2024B-4"
+}
+]
+}
+]
+},
+"paging": {
+"id": "paging",
+"icon": "🧮",
+"title": {
+"en": "Paging and address translation",
+"he": "דפדוף ותרגום כתובות"
+},
+"intro": {
+"en": "Memory is the topic with the most computation after scheduling: splitting addresses, counting pages and frames, translating through a page table, multilevel tables and the TLB. The course starts from one address and ends at the exam's table and timing questions. Every level is open; 80% passes.",
+"he": "זיכרון הוא הנושא עם הכי הרבה חישובים אחרי תזמון: פיצול כתובות, ספירת דפים ומסגרות, תרגום דרך טבלת דפים, טבלאות רב-שלביות ו-TLB. הקורס מתחיל מכתובת אחת ומסתיים בשאלות הטבלאות והתזמון של המבחן. כל השלבים פתוחים; 80% עובר."
+},
+"section": "memory",
+"levels": [
+{
+"id": "paging-1",
+"order": 1,
+"icon": "🧩",
+"boss": false,
+"title": {
+"en": "Pages, frames and the address split",
+"he": "דפים, מסגרות ופיצול הכתובת"
+},
+"goal": {
+"en": "Cut an address into page number and offset.",
+"he": "לחתוך כתובת למספר דף והיסט."
+},
+"lesson": {
+"en": "\n<p>Virtual memory is cut into equal blocks called <b>pages</b>; physical memory (RAM) is cut into blocks of the same size called <b>frames</b>. A virtual address has two parts: the <b>page number</b> and the <b>offset</b> inside the page.</p>\n<pre>virtual address = [ page number | offset ]\npage size = 2^k bytes  ->  offset = k bits\npage number bits = address bits - k</pre>\n<table>\n<tr><th>Page size</th><th>k</th></tr>\n<tr><td>1 KB</td><td>10</td></tr>\n<tr><td>4 KB</td><td>12</td></tr>\n<tr><td>1 MB</td><td>20</td></tr>\n</table>\n<p>Counting is just powers of two: with <code>v</code> virtual bits there are 2^(v&minus;k) pages, and with <code>p</code> physical bits there are 2^(p&minus;k) frames. A single-level page table has one entry per page.</p>\n<p>To split a decimal address: <b>page = address div page size</b>, <b>offset = address mod page size</b>.</p>\n",
+"he": "\n<p>הזיכרון הווירטואלי מחולק לבלוקים שווים שנקראים <b>דפים (pages)</b>; הזיכרון הפיזי (RAM) מחולק לבלוקים באותו גודל שנקראים <b>מסגרות (frames)</b>. לכתובת וירטואלית שני חלקים: <b>מספר הדף</b> וה<b>היסט (offset)</b> בתוך הדף.</p>\n<pre>virtual address = [ page number | offset ]\npage size = 2^k bytes  ->  offset = k bits\npage number bits = address bits - k</pre>\n<table>\n<tr><th>גודל דף</th><th>k</th></tr>\n<tr><td>1 KB</td><td>10</td></tr>\n<tr><td>4 KB</td><td>12</td></tr>\n<tr><td>1 MB</td><td>20</td></tr>\n</table>\n<p>הספירה היא רק חזקות של 2: עם <code>v</code> ביטים וירטואליים יש 2^(v&minus;k) דפים, ועם <code>p</code> ביטים פיזיים יש 2^(p&minus;k) מסגרות. בטבלת דפים חד-שלבית יש כניסה אחת לכל דף.</p>\n<p>כדי לפצל כתובת עשרונית: <b>דף = כתובת div גודל דף</b>, <b>היסט = כתובת mod גודל דף</b>.</p>\n"
+},
+"questions": [
+{
+"id": "paging-1-1",
+"q": {
+"en": "Pages are 4 KB. How many bits does the **offset** use?",
+"he": "הדפים בגודל 4 KB. כמה ביטים תופס ה**היסט**?"
+},
+"opts": [
+{
+"en": "20",
+"he": "20"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "12",
+"he": "12"
+}
+],
+"ans": 3,
+"why": {
+"en": "4 KB = 2^12 bytes, so 12 bits address a byte inside a page.",
+"he": "4 KB = 2^12 בתים, לכן 12 ביטים מכתיבים בית בתוך דף."
+},
+"recap": {
+"en": "4 KB page = 12 offset bits.",
+"he": "דף של 4 KB = 12 ביטי היסט."
+}
+},
+{
+"id": "paging-1-2",
+"q": {
+"en": "A virtual address has 32 bits and pages are 4 KB. How many bits are the **page number**?",
+"he": "לכתובת וירטואלית 32 ביטים והדפים בגודל 4 KB. כמה ביטים הם **מספר הדף**?"
+},
+"opts": [
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "20",
+"he": "20"
+},
+{
+"en": "32",
+"he": "32"
+},
+{
+"en": "10",
+"he": "10"
+}
+],
+"ans": 1,
+"why": {
+"en": "32 − 12 = 20 bits for the page number.",
+"he": "32 − 12 = 20 ביטים למספר הדף."
+},
+"recap": {
+"en": "Page bits = address bits − offset bits.",
+"he": "ביטי דף = ביטי כתובת − ביטי היסט."
+}
+},
+{
+"id": "paging-1-3",
+"q": {
+"en": "A 36-bit virtual address and 4 KB pages. How many entries does a single-level page table have?",
+"he": "כתובת וירטואלית של 36 ביטים ודפים של 4 KB. כמה כניסות יש בטבלת דפים חד-שלבית?"
+},
+"opts": [
+{
+"en": "2^36",
+"he": "2^36"
+},
+{
+"en": "2^12",
+"he": "2^12"
+},
+{
+"en": "2^48",
+"he": "2^48"
+},
+{
+"en": "2^24",
+"he": "2^24"
+}
+],
+"ans": 3,
+"why": {
+"en": "One entry per page: 2^(36−12) = 2^24.",
+"he": "כניסה אחת לכל דף: 2^(36−12) = 2^24."
+},
+"recap": {
+"en": "Entries = 2^(virtual bits − offset bits).",
+"he": "כניסות = 2^(ביטים וירטואליים − ביטי היסט)."
+}
+},
+{
+"id": "paging-1-4",
+"q": {
+"en": "A 42-bit virtual address, page size 1 MB. How many potential frames?",
+"he": "כתובת וירטואלית של 42 ביטים, גודל דף 1 MB. כמה מסגרות פוטנציאליות?"
+},
+"opts": [
+{
+"en": "2^22",
+"he": "2^22"
+},
+{
+"en": "2^42",
+"he": "2^42"
+},
+{
+"en": "2^20",
+"he": "2^20"
+},
+{
+"en": "2^21",
+"he": "2^21"
+}
+],
+"ans": 0,
+"why": {
+"en": "1 MB = 2^20, so 42 − 20 = 22 bits: 2^22.",
+"he": "1 MB = 2^20, לכן 42 − 20 = 22 ביטים: 2^22."
+},
+"recap": {
+"en": "Count = 2^(address bits − log2 page size).",
+"he": "מספר = 2^(ביטי כתובת − log2 גודל דף)."
+},
+"exam": "2024A-7"
+},
+{
+"id": "paging-1-5",
+"q": {
+"en": "Pages are 4096 bytes. In which page and at which offset is virtual address 13000?",
+"he": "הדפים בגודל 4096 בתים. באיזה דף ובאיזה היסט נמצאת הכתובת הווירטואלית 13000?"
+},
+"opts": [
+{
+"en": "Page 3, offset 4096",
+"he": "Page 3, offset 4096"
+},
+{
+"en": "Page 13, offset 0",
+"he": "Page 13, offset 0"
+},
+{
+"en": "Page 3, offset 712",
+"he": "Page 3, offset 712"
+},
+{
+"en": "Page 4, offset 712",
+"he": "Page 4, offset 712"
+}
+],
+"ans": 2,
+"why": {
+"en": "13000 div 4096 = 3 and 13000 mod 4096 = 13000 − 12288 = 712.",
+"he": "13000 div 4096 = 3 ו-13000 mod 4096 = 13000 − 12288 = 712."
+},
+"recap": {
+"en": "page = div, offset = mod.",
+"he": "דף = div, היסט = mod."
+}
+}
+]
+},
+{
+"id": "paging-2",
+"order": 2,
+"icon": "🔀",
+"boss": false,
+"title": {
+"en": "Translating an address with a page table",
+"he": "תרגום כתובת בעזרת טבלת דפים"
+},
+"goal": {
+"en": "Page number to frame number, offset unchanged.",
+"he": "ממספר דף למספר מסגרת, וההיסט נשאר."
+},
+"lesson": {
+"en": "\n<p>The page table maps each page number to a frame number. Translation changes only the page part; the <b>offset never changes</b>.</p>\n<pre>physical address = frame * page size + offset\n\npage size 1024, page 2 -> frame 7, virtual address 2100\npage   = 2100 div 1024 = 2\noffset = 2100 mod 1024 = 52\nphysical = 7 * 1024 + 52 = 7220</pre>\n<p>Every page-table entry has a <b>valid-invalid bit</b>. If it says invalid (the page is not in RAM), the MMU raises a <b>page fault</b> instead of producing an address, and the OS must bring the page in.</p>\n",
+"he": "\n<p>טבלת הדפים ממפה כל מספר דף למספר מסגרת. התרגום משנה רק את חלק הדף; ה<b>היסט אף פעם לא משתנה</b>.</p>\n<pre>physical address = frame * page size + offset\n\npage size 1024, page 2 -> frame 7, virtual address 2100\npage   = 2100 div 1024 = 2\noffset = 2100 mod 1024 = 52\nphysical = 7 * 1024 + 52 = 7220</pre>\n<p>בכל כניסה בטבלת הדפים יש <b>ביט תקף-לא תקף (valid-invalid)</b>. אם הוא מציין לא תקף (הדף לא נמצא ב-RAM), ה-MMU מעלה <b>שגיאת דף (page fault)</b> במקום להפיק כתובת, והמערכת צריכה להביא את הדף.</p>\n"
+},
+"questions": [
+{
+"id": "paging-2-1",
+"q": {
+"en": "Page size 1024. What physical address does virtual address 2100 map to?",
+"he": "גודל דף 1024. לאיזו כתובת פיזית ממופה הכתובת הווירטואלית 2100?"
+},
+"opts": [
+{
+"en": "2100",
+"he": "2100"
+},
+{
+"en": "5172",
+"he": "5172"
+},
+{
+"en": "7220",
+"he": "7220"
+},
+{
+"en": "7168",
+"he": "7168"
+}
+],
+"ans": 2,
+"why": {
+"en": "Page 2, offset 52. Page 2 sits in frame 7: 7 × 1024 + 52 = 7220.",
+"he": "דף 2, היסט 52. דף 2 נמצא במסגרת 7: 7 × 1024 + 52 = 7220."
+},
+"recap": {
+"en": "physical = frame × size + offset.",
+"he": "פיזית = מסגרת × גודל + היסט."
+},
+"code": "Page  Frame\n0     5\n1     2\n2     7\n3     -  (invalid)"
+},
+{
+"id": "paging-2-2",
+"q": {
+"en": "Same table, page size 1024. What physical address does virtual address 1030 map to?",
+"he": "אותה טבלה, גודל דף 1024. לאיזו כתובת פיזית ממופה 1030?"
+},
+"opts": [
+{
+"en": "2054",
+"he": "2054"
+},
+{
+"en": "5126",
+"he": "5126"
+},
+{
+"en": "1030",
+"he": "1030"
+},
+{
+"en": "2048",
+"he": "2048"
+}
+],
+"ans": 0,
+"why": {
+"en": "Page 1, offset 6, frame 2: 2 × 1024 + 6 = 2054.",
+"he": "דף 1, היסט 6, מסגרת 2: 2 × 1024 + 6 = 2054."
+},
+"recap": {
+"en": "Look up the frame of the page, keep the offset.",
+"he": "מחפשים את המסגרת של הדף ושומרים את ההיסט."
+},
+"code": "Page  Frame\n0     5\n1     2\n2     7\n3     -  (invalid)"
+},
+{
+"id": "paging-2-3",
+"q": {
+"en": "Same table, page size 1024. The CPU accesses virtual address 3500. What happens?",
+"he": "אותה טבלה, גודל דף 1024. המעבד ניגש לכתובת 3500. מה קורה?"
+},
+"opts": [
+{
+"en": "The address 3500 is used directly",
+"he": "הכתובת 3500 משמשת ישירות"
+},
+{
+"en": "Frame 3 is used",
+"he": "משתמשים במסגרת 3"
+},
+{
+"en": "A page fault: page 3 is invalid",
+"he": "שגיאת דף: דף 3 לא תקף"
+},
+{
+"en": "The process is terminated at once",
+"he": "התהליך מסתיים מיד"
+}
+],
+"ans": 2,
+"why": {
+"en": "3500 div 1024 = 3, and page 3 is marked invalid, so the MMU traps to the OS with a page fault.",
+"he": "3500 div 1024 = 3, ודף 3 מסומן לא תקף, ולכן ה-MMU קורא למערכת ההפעלה עם שגיאת דף."
+},
+"recap": {
+"en": "Invalid page = page fault.",
+"he": "דף לא תקף = שגיאת דף."
+},
+"code": "Page  Frame\n0     5\n1     2\n2     7\n3     -  (invalid)"
+},
+{
+"id": "paging-2-4",
+"q": {
+"en": "Virtual address 2100 is translated to frame 7. What is the offset inside the physical frame?",
+"he": "הכתובת הווירטואלית 2100 מתורגמת למסגרת 7. מהו ההיסט בתוך המסגרת הפיזית?"
+},
+"opts": [
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "52",
+"he": "52"
+},
+{
+"en": "2100",
+"he": "2100"
+},
+{
+"en": "0",
+"he": "0"
+}
+],
+"ans": 1,
+"why": {
+"en": "The offset is copied unchanged: 2100 mod 1024 = 52.",
+"he": "ההיסט מועתק ללא שינוי: 2100 mod 1024 = 52."
+},
+"recap": {
+"en": "The offset never changes.",
+"he": "ההיסט אף פעם לא משתנה."
+}
+},
+{
+"id": "paging-2-5",
+"q": {
+"en": "What is the page-table-entry bit that tells whether an access causes a page fault called?",
+"he": "איך נקרא הביט בכניסה לטבלת הדפים שקובע אם גישה תגרום לשגיאת דף?"
+},
+"opts": [
+{
+"en": "Dirty bit",
+"he": "ביט מלוכלך (dirty)"
+},
+{
+"en": "Reference bit",
+"he": "ביט התייחסות"
+},
+{
+"en": "Present-in-TLB bit",
+"he": "ביט נמצא-ב-TLB"
+},
+{
+"en": "Valid-invalid bit",
+"he": "ביט תקף-לא תקף"
+}
+],
+"ans": 3,
+"why": {
+"en": "The valid-invalid bit marks whether the page is in RAM.",
+"he": "ביט תקף-לא תקף מציין אם הדף נמצא ב-RAM."
+},
+"recap": {
+"en": "Valid-invalid bit decides page faults.",
+"he": "ביט תקף-לא תקף מכריע על שגיאות דף."
+},
+"exam": "2017B-8"
+}
+]
+},
+{
+"id": "paging-3",
+"order": 3,
+"icon": "🧱",
+"boss": false,
+"title": {
+"en": "Whole pages and internal fragmentation",
+"he": "דפים שלמים ופיצול פנימי"
+},
+"goal": {
+"en": "Memory comes in whole pages, so the last page is partly wasted.",
+"he": "הזיכרון ניתן בדפים שלמים, לכן הדף האחרון מבוזבז חלקית."
+},
+"lesson": {
+"en": "\n<p>The OS gives memory only in whole pages. If a process needs 10,000 bytes and pages are 4096 bytes, it gets 3 pages (12,288 bytes) and 2,288 bytes of the last page are unused. This waste <b>inside an allocated block</b> is <b>internal fragmentation</b>.</p>\n<pre>pages = ceil(size / page size)\nwaste = pages * page size - size\nmaximum waste = page size - 1   (4095 for 4 KB pages)</pre>\n<p>Three facts that come up in the exam. A shared memory region is always a <b>multiple of the page size</b>; <code>shmget</code> of a single <code>int</code> still takes <b>4096 bytes</b> (one page). And the unused part of a page still belongs to the process, so writing there causes <b>no fault</b>.</p>\n",
+"he": "\n<p>מערכת ההפעלה נותנת זיכרון רק בדפים שלמים. אם תהליך צריך 10,000 בתים והדפים הם 4096 בתים, הוא מקבל 3 דפים (12,288 בתים) ו-2,288 בתים בדף האחרון לא בשימוש. הבזבוז הזה <b>בתוך בלוק שהוקצה</b> נקרא <b>פיצול פנימי (internal fragmentation)</b>.</p>\n<pre>pages = ceil(size / page size)\nwaste = pages * page size - size\nmaximum waste = page size - 1   (4095 for 4 KB pages)</pre>\n<p>שלוש עובדות שחוזרות במבחן. אזור זיכרון משותף הוא תמיד <b>כפולה של גודל הדף</b>; <code>shmget</code> של <code>int</code> בודד עדיין תופס <b>4096 בתים</b> (דף אחד). והחלק הלא מנוצל של הדף עדיין שייך לתהליך, ולכן כתיבה אליו <b>לא גורמת לשגיאה</b>.</p>\n"
+},
+"questions": [
+{
+"id": "paging-3-1",
+"q": {
+"en": "A process needs 10,000 bytes and pages are 4096 bytes. How many bytes of internal fragmentation?",
+"he": "תהליך צריך 10,000 בתים והדפים הם 4096 בתים. כמה בתים של פיצול פנימי?"
+},
+"opts": [
+{
+"en": "4095",
+"he": "4095"
+},
+{
+"en": "2288",
+"he": "2288"
+},
+{
+"en": "1808",
+"he": "1808"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 1,
+"why": {
+"en": "It needs 3 pages = 12,288 bytes; 12,288 − 10,000 = 2288.",
+"he": "הוא צריך 3 דפים = 12,288 בתים; 12,288 − 10,000 = 2288."
+},
+"recap": {
+"en": "waste = pages × size − requested.",
+"he": "בזבוז = דפים × גודל − מבוקש."
+}
+},
+{
+"id": "paging-3-2",
+"q": {
+"en": "What is the maximum internal fragmentation in one page when the page size is 4096 bytes?",
+"he": "מהו הפיצול הפנימי המרבי בדף אחד כשגודל הדף 4096 בתים?"
+},
+"opts": [
+{
+"en": "4096",
+"he": "4096"
+},
+{
+"en": "2048",
+"he": "2048"
+},
+{
+"en": "0",
+"he": "0"
+},
+{
+"en": "4095",
+"he": "4095"
+}
+],
+"ans": 3,
+"why": {
+"en": "At worst a single byte of the last page is used: 4096 − 1 = 4095.",
+"he": "במקרה הגרוע משתמשים בבית אחד של הדף האחרון: 4096 − 1 = 4095."
+},
+"recap": {
+"en": "Max waste = page size − 1.",
+"he": "בזבוז מרבי = גודל דף − 1."
+},
+"exam": "2021A-8"
+},
+{
+"id": "paging-3-3",
+"q": {
+"en": "A 6K request is given an 8K allocation. What is the wasted space called?",
+"he": "בקשה של 6K קיבלה הקצאה של 8K. איך נקרא המקום המבוזבז?"
+},
+"opts": [
+{
+"en": "External fragmentation",
+"he": "פיצול חיצוני"
+},
+{
+"en": "Internal fragmentation",
+"he": "פיצול פנימי"
+},
+{
+"en": "Thrashing",
+"he": "תזזית (thrashing)"
+},
+{
+"en": "Swapping",
+"he": "החלפה (swapping)"
+}
+],
+"ans": 1,
+"why": {
+"en": "The waste is inside the allocated block: internal fragmentation.",
+"he": "הבזבוז נמצא בתוך הבלוק שהוקצה: פיצול פנימי."
+},
+"recap": {
+"en": "Waste inside an allocation = internal.",
+"he": "בזבוז בתוך הקצאה = פנימי."
+},
+"exam": "2014B-6"
+},
+{
+"id": "paging-3-4",
+"q": {
+"en": "How many bytes does Linux/Pentium allocate for `shmget(IPC_PRIVATE, sizeof(int), 0600)`?",
+"he": "כמה בתים מקצה Linux/Pentium עבור `shmget(IPC_PRIVATE, sizeof(int), 0600)`?"
+},
+"opts": [
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "4096",
+"he": "4096"
+},
+{
+"en": "1024",
+"he": "1024"
+}
+],
+"ans": 2,
+"why": {
+"en": "Shared memory comes in whole pages: one 4096-byte page.",
+"he": "זיכרון משותף ניתן בדפים שלמים: דף אחד של 4096 בתים."
+},
+"recap": {
+"en": "Shared memory = whole pages.",
+"he": "זיכרון משותף = דפים שלמים."
+},
+"exam": "2015A-10"
+},
+{
+"id": "paging-3-5",
+"q": {
+"en": "A process writes into the unused part of its last page (internal fragmentation). What happens?",
+"he": "תהליך כותב לחלק הלא מנוצל של הדף האחרון שלו (פיצול פנימי). מה קורה?"
+},
+"opts": [
+{
+"en": "The value is written, no fault",
+"he": "הערך נכתב, בלי שגיאה"
+},
+{
+"en": "Segmentation fault",
+"he": "שגיאת סגמנטציה"
+},
+{
+"en": "A page fault brings a new page",
+"he": "שגיאת דף מביאה דף חדש"
+},
+{
+"en": "The OS kills the process",
+"he": "המערכת הורגת את התהליך"
+}
+],
+"ans": 0,
+"why": {
+"en": "The whole page belongs to the process, so the write succeeds silently.",
+"he": "כל הדף שייך לתהליך, ולכן הכתיבה מצליחה בשקט."
+},
+"recap": {
+"en": "Inside its own page = no fault.",
+"he": "בתוך הדף שלו = בלי שגיאה."
+},
+"exam": "2022B-7"
+},
+{
+"id": "paging-3-6",
+"q": {
+"en": "The size of a shared-memory region must be a multiple of what?",
+"he": "גודל אזור זיכרון משותף חייב להיות כפולה של מה?"
+},
+"opts": [
+{
+"en": "The word size",
+"he": "גודל המילה"
+},
+{
+"en": "The sector size",
+"he": "גודל הסקטור"
+},
+{
+"en": "The page size",
+"he": "גודל הדף"
+},
+{
+"en": "The cache line",
+"he": "שורת המטמון"
+}
+],
+"ans": 2,
+"why": {
+"en": "Memory is shared by mapping pages, so the size is a multiple of the page size.",
+"he": "הזיכרון משותף על ידי מיפוי דפים, ולכן הגודל כפולה של גודל הדף."
+},
+"recap": {
+"en": "Shared region = multiple of page size.",
+"he": "אזור משותף = כפולה של גודל הדף."
+},
+"exam": "2020B-9"
+}
+]
+},
+{
+"id": "paging-4",
+"order": 4,
+"icon": "🪜",
+"boss": false,
+"title": {
+"en": "Multilevel page tables",
+"he": "טבלאות דפים רב-שלביות"
+},
+"goal": {
+"en": "Several lookups, several levels, a huge address space.",
+"he": "כמה חיפושים, כמה שלבים, מרחב כתובות עצום."
+},
+"lesson": {
+"en": "\n<p>A single-level table for a 32-bit space with 4 KB pages needs 2^20 entries, almost all unused. A <b>multilevel</b> table splits the page number into several indexes; only the parts of the tree that are in use are kept in memory.</p>\n<pre>32 bits, 4 KB pages, two levels:\n[ 10 bits | 10 bits | 12 bits offset ]\n outer      inner</pre>\n<p>The price: each level is one more memory access. On a <b>TLB miss</b> a translation costs <b>levels + 1</b> memory accesses (one per level, then the data itself).</p>\n<p>The reachable address space is (entries per table)^levels &times; frame size. Example: frame 1024 bytes, 4 levels, 128 entries per table: 1024 &times; 128^4 = 2^10 &times; 2^28 = 2^38 bytes.</p>\n",
+"he": "\n<p>טבלה חד-שלבית למרחב של 32 ביטים עם דפים של 4 KB צריכה 2^20 כניסות, כמעט כולן לא בשימוש. טבלה <b>רב-שלבית</b> מפצלת את מספר הדף לכמה אינדקסים; רק החלקים בעץ שבשימוש נשמרים בזיכרון.</p>\n<pre>32 bits, 4 KB pages, two levels:\n[ 10 bits | 10 bits | 12 bits offset ]\n outer      inner</pre>\n<p>המחיר: כל שלב הוא גישה נוספת לזיכרון. ב<b>החטאת TLB</b> תרגום עולה <b>שלבים + 1</b> גישות לזיכרון (אחת לכל שלב, ואז הנתון עצמו).</p>\n<p>מרחב הכתובות שאפשר להגיע אליו הוא (כניסות בטבלה)^שלבים &times; גודל מסגרת. דוגמה: מסגרת 1024 בתים, 4 שלבים, 128 כניסות בטבלה: 1024 &times; 128^4 = 2^10 &times; 2^28 = 2^38 בתים.</p>\n"
+},
+"questions": [
+{
+"id": "paging-4-1",
+"q": {
+"en": "3-level paging, TLB miss. How many memory accesses to read one value?",
+"he": "דפדוף ב-3 שלבים, החטאת TLB. כמה גישות לזיכרון לקריאת ערך אחד?"
+},
+"opts": [
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "6",
+"he": "6"
+}
+],
+"ans": 0,
+"why": {
+"en": "3 page-table levels + 1 access to the data = 4.",
+"he": "3 שלבי טבלה + גישה אחת לנתון = 4."
+},
+"recap": {
+"en": "TLB miss = levels + 1.",
+"he": "החטאת TLB = שלבים + 1."
+},
+"exam": "2024B-7"
+},
+{
+"id": "paging-4-2",
+"q": {
+"en": "4-level paging, TLB miss. How many memory accesses to read one value?",
+"he": "דפדוף ב-4 שלבים, החטאת TLB. כמה גישות לזיכרון לקריאת ערך אחד?"
+},
+"opts": [
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "1",
+"he": "1"
+}
+],
+"ans": 2,
+"why": {
+"en": "4 levels + 1 = 5.",
+"he": "4 שלבים + 1 = 5."
+},
+"recap": {
+"en": "TLB miss = levels + 1.",
+"he": "החטאת TLB = שלבים + 1."
+}
+},
+{
+"id": "paging-4-3",
+"q": {
+"en": "Frame size 1024 bytes, a 4-level page table, 128 entries per table at every level. What is the virtual address space?",
+"he": "גודל מסגרת 1024 בתים, טבלת דפים בת 4 שלבים, 128 כניסות בכל טבלה בכל שלב. מהו מרחב הכתובות הווירטואלי?"
+},
+"opts": [
+{
+"en": "2^38 bytes",
+"he": "2^38 bytes"
+},
+{
+"en": "2^28 bytes",
+"he": "2^28 bytes"
+},
+{
+"en": "2^45 bytes",
+"he": "2^45 bytes"
+},
+{
+"en": "2^17 bytes",
+"he": "2^17 bytes"
+}
+],
+"ans": 0,
+"why": {
+"en": "128^4 = 2^28 pages, each 2^10 bytes: 2^38 bytes.",
+"he": "128^4 = 2^28 דפים, כל אחד 2^10 בתים: 2^38 בתים."
+},
+"recap": {
+"en": "Space = entries^levels × page size.",
+"he": "מרחב = כניסות^שלבים × גודל דף."
+},
+"exam": "2017SA-8"
+},
+{
+"id": "paging-4-4",
+"q": {
+"en": "Pages are 4 KB and a page-table entry is 4 bytes. How many entries fit in one page-table page?",
+"he": "הדפים בגודל 4 KB וכניסה בטבלה היא 4 בתים. כמה כניסות נכנסות בדף טבלה אחד?"
+},
+"opts": [
+{
+"en": "4096",
+"he": "4096"
+},
+{
+"en": "512",
+"he": "512"
+},
+{
+"en": "16",
+"he": "16"
+},
+{
+"en": "1024",
+"he": "1024"
+}
+],
+"ans": 3,
+"why": {
+"en": "4096 / 4 = 1024 entries, which is why each level uses 10 bits.",
+"he": "4096 / 4 = 1024 כניסות, ולכן כל שלב משתמש ב-10 ביטים."
+},
+"recap": {
+"en": "Entries per table = page size / entry size.",
+"he": "כניסות בטבלה = גודל דף / גודל כניסה."
+}
+},
+{
+"id": "paging-4-5",
+"q": {
+"en": "Two-level paging, 1024 entries per table, 4 KB pages. How big is the virtual address space?",
+"he": "דפדוף דו-שלבי, 1024 כניסות בטבלה, דפים של 4 KB. מה גודל מרחב הכתובות הווירטואלי?"
+},
+"opts": [
+{
+"en": "2^22 bytes",
+"he": "2^22 bytes"
+},
+{
+"en": "2^32 bytes",
+"he": "2^32 bytes"
+},
+{
+"en": "2^42 bytes",
+"he": "2^42 bytes"
+},
+{
+"en": "2^20 bytes",
+"he": "2^20 bytes"
+}
+],
+"ans": 1,
+"why": {
+"en": "2^10 × 2^10 pages × 2^12 bytes = 2^32.",
+"he": "2^10 × 2^10 דפים × 2^12 בתים = 2^32."
+},
+"recap": {
+"en": "Multiply the index ranges and the page size.",
+"he": "מכפילים את טווחי האינדקסים ואת גודל הדף."
+}
+},
+{
+"id": "paging-4-6",
+"q": {
+"en": "What is the main benefit of a multilevel page table over a single-level one?",
+"he": "מהו היתרון העיקרי של טבלת דפים רב-שלבית על פני חד-שלבית?"
+},
+"opts": [
+{
+"en": "It makes translation need fewer memory accesses",
+"he": "היא גורמת לתרגום להזדקק לפחות גישות לזיכרון"
+},
+{
+"en": "It removes the need for a TLB",
+"he": "היא מבטלת את הצורך ב-TLB"
+},
+{
+"en": "It removes internal fragmentation",
+"he": "היא מבטלת פיצול פנימי"
+},
+{
+"en": "It keeps memory for page tables only where the address space is used",
+"he": "היא שומרת זיכרון לטבלאות רק היכן שמרחב הכתובות בשימוש"
+}
+],
+"ans": 3,
+"why": {
+"en": "It saves table memory; it actually costs extra accesses on a TLB miss.",
+"he": "היא חוסכת זיכרון לטבלאות; בפועל היא מוסיפה גישות בהחטאת TLB."
+},
+"recap": {
+"en": "Multilevel saves table memory, not time.",
+"he": "רב-שלבית חוסכת זיכרון, לא זמן."
+}
+}
+]
+},
+{
+"id": "paging-5",
+"order": 5,
+"icon": "⚡",
+"boss": false,
+"title": {
+"en": "The TLB and effective access time",
+"he": "ה-TLB וזמן הגישה האפקטיבי"
+},
+"goal": {
+"en": "Average cost of a memory access with a TLB.",
+"he": "העלות הממוצעת של גישה לזיכרון עם TLB."
+},
+"lesson": {
+"en": "\n<p>The <b>TLB</b> (Translation Lookaside Buffer) is a small cache of the page table inside the CPU. On a <b>hit</b> the translation is free and only the data access remains; on a <b>miss</b> the page-table levels must be read from RAM first. The TLB saves the page-table accesses in RAM.</p>\n<pre>hit  = 1 memory access\nmiss = levels + 1 memory accesses\nEAT  = h * hit + (1 - h) * miss      (add the TLB lookup time to both if it is not negligible)\n\nh = 80%, two levels, memory 10 ns:\nEAT = 0.8 * 10 + 0.2 * (3 * 10) = 8 + 6 = 14 ns</pre>\n",
+"he": "\n<p>ה-<b>TLB</b> (Translation Lookaside Buffer) הוא מטמון קטן של טבלת הדפים בתוך המעבד. ב<b>פגיעה</b> התרגום חינמי ונשארת רק גישת הנתון; ב<b>החטאה</b> צריך קודם לקרוא את שלבי הטבלה מה-RAM. ה-TLB חוסך את הגישות לטבלת הדפים ב-RAM.</p>\n<pre>hit  = 1 memory access\nmiss = levels + 1 memory accesses\nEAT  = h * hit + (1 - h) * miss      (add the TLB lookup time to both if it is not negligible)\n\nh = 80%, two levels, memory 10 ns:\nEAT = 0.8 * 10 + 0.2 * (3 * 10) = 8 + 6 = 14 ns</pre>\n"
+},
+"questions": [
+{
+"id": "paging-5-1",
+"q": {
+"en": "TLB hit rate 80%, two-level page table, negligible TLB time, memory access 10 ns. What is the average memory access time?",
+"he": "שיעור פגיעות TLB 80%, טבלת דפים דו-שלבית, זמן TLB זניח, גישה לזיכרון 10 ננו-שניות. מהו זמן הגישה הממוצע?"
+},
+"opts": [
+{
+"en": "10 ns",
+"he": "10 ns"
+},
+{
+"en": "16 ns",
+"he": "16 ns"
+},
+{
+"en": "30 ns",
+"he": "30 ns"
+},
+{
+"en": "14 ns",
+"he": "14 ns"
+}
+],
+"ans": 3,
+"why": {
+"en": "0.8 × 10 + 0.2 × 30 = 14 ns.",
+"he": "0.8 × 10 + 0.2 × 30 = 14 ננו-שניות."
+},
+"recap": {
+"en": "EAT = h·hit + (1−h)·miss.",
+"he": "EAT = h·פגיעה + (1−h)·החטאה."
+},
+"exam": "2026A-8"
+},
+{
+"id": "paging-5-2",
+"q": {
+"en": "Single-level page table, hit rate 90%, memory 100 ns, negligible TLB time. Average access time?",
+"he": "טבלת דפים חד-שלבית, שיעור פגיעות 90%, זיכרון 100 ננו-שניות, זמן TLB זניח. מהו זמן הגישה הממוצע?"
+},
+"opts": [
+{
+"en": "100 ns",
+"he": "100 ns"
+},
+{
+"en": "110 ns",
+"he": "110 ns"
+},
+{
+"en": "190 ns",
+"he": "190 ns"
+},
+{
+"en": "120 ns",
+"he": "120 ns"
+}
+],
+"ans": 1,
+"why": {
+"en": "Hit 100, miss 2 × 100 = 200: 0.9 × 100 + 0.1 × 200 = 110 ns.",
+"he": "פגיעה 100, החטאה 2 × 100 = 200: 0.9 × 100 + 0.1 × 200 = 110 ננו-שניות."
+},
+"recap": {
+"en": "Miss costs levels + 1 accesses.",
+"he": "החטאה עולה שלבים + 1 גישות."
+}
+},
+{
+"id": "paging-5-3",
+"q": {
+"en": "Three-level page table, hit rate 50%, memory 20 ns, negligible TLB time. Average access time?",
+"he": "טבלת דפים תלת-שלבית, שיעור פגיעות 50%, זיכרון 20 ננו-שניות, זמן TLB זניח. מהו זמן הגישה הממוצע?"
+},
+"opts": [
+{
+"en": "80 ns",
+"he": "80 ns"
+},
+{
+"en": "20 ns",
+"he": "20 ns"
+},
+{
+"en": "40 ns",
+"he": "40 ns"
+},
+{
+"en": "50 ns",
+"he": "50 ns"
+}
+],
+"ans": 3,
+"why": {
+"en": "Hit 20, miss 4 × 20 = 80: 0.5 × 20 + 0.5 × 80 = 50 ns.",
+"he": "פגיעה 20, החטאה 4 × 20 = 80: 0.5 × 20 + 0.5 × 80 = 50 ננו-שניות."
+},
+"recap": {
+"en": "Weight hit and miss by their probabilities.",
+"he": "שוקלים פגיעה והחטאה לפי ההסתברויות."
+}
+},
+{
+"id": "paging-5-4",
+"q": {
+"en": "Two-level table, hit rate 80%, memory 100 ns, and every access also pays a 5 ns TLB lookup. Average access time?",
+"he": "טבלה דו-שלבית, שיעור פגיעות 80%, זיכרון 100 ננו-שניות, וכל גישה משלמת גם 5 ננו-שניות חיפוש ב-TLB. מהו זמן הגישה הממוצע?"
+},
+"opts": [
+{
+"en": "145 ns",
+"he": "145 ns"
+},
+{
+"en": "140 ns",
+"he": "140 ns"
+},
+{
+"en": "125 ns",
+"he": "125 ns"
+},
+{
+"en": "305 ns",
+"he": "305 ns"
+}
+],
+"ans": 0,
+"why": {
+"en": "Hit 5 + 100 = 105; miss 5 + 300 = 305; 0.8 × 105 + 0.2 × 305 = 145 ns.",
+"he": "פגיעה 5 + 100 = 105; החטאה 5 + 300 = 305; 0.8 × 105 + 0.2 × 305 = 145 ננו-שניות."
+},
+"recap": {
+"en": "Add the TLB time to both cases.",
+"he": "מוסיפים את זמן ה-TLB לשני המקרים."
+}
+},
+{
+"id": "paging-5-5",
+"q": {
+"en": "What access time does the TLB save?",
+"he": "איזה זמן גישה חוסך ה-TLB?"
+},
+"opts": [
+{
+"en": "Accessing the disk",
+"he": "הגישה לדיסק"
+},
+{
+"en": "The context switch",
+"he": "החלפת ההקשר"
+},
+{
+"en": "Accessing the page table in RAM",
+"he": "הגישה לטבלת הדפים ב-RAM"
+},
+{
+"en": "The page-fault handler",
+"he": "טיפול בשגיאת דף"
+}
+],
+"ans": 2,
+"why": {
+"en": "On a hit the page-table reads in RAM are skipped.",
+"he": "בפגיעה מדלגים על קריאות טבלת הדפים ב-RAM."
+},
+"recap": {
+"en": "TLB saves page-table accesses in RAM.",
+"he": "ה-TLB חוסך גישות לטבלת הדפים ב-RAM."
+},
+"exam": "2021B-8"
+}
+]
+},
+{
+"id": "paging-6",
+"order": 6,
+"icon": "🧠",
+"boss": false,
+"title": {
+"en": "Who does what: MMU, TLB, PTBR, PCB",
+"he": "מי עושה מה: MMU, TLB, PTBR, PCB"
+},
+"goal": {
+"en": "The hardware and kernel pieces of address translation.",
+"he": "רכיבי החומרה והליבה בתרגום כתובות."
+},
+"lesson": {
+"en": "\n<table>\n<tr><th>Piece</th><th>Job</th></tr>\n<tr><td>MMU</td><td>hardware that translates virtual to physical on <b>every</b> access. It is done in hardware because trapping to the OS each time would be far slower.</td></tr>\n<tr><td>TLB</td><td>cache of the page table; it can translate without accessing memory.</td></tr>\n<tr><td>PTBR</td><td>register that points to the running process's page table. <b>One per CPU core</b>; it changes on a <b>context switch</b>.</td></tr>\n<tr><td>PCB</td><td>kernel structure that keeps a process's page-table address while it is not running.</td></tr>\n<tr><td>Valid bit off</td><td>the MMU traps to the OS: a page fault.</td></tr>\n</table>\n",
+"he": "\n<table>\n<tr><th>רכיב</th><th>תפקיד</th></tr>\n<tr><td>MMU</td><td>חומרה שמתרגמת וירטואלי לפיזי ב<b>כל</b> גישה. זה נעשה בחומרה כי קריאה למערכת ההפעלה בכל פעם הייתה איטית בהרבה.</td></tr>\n<tr><td>TLB</td><td>מטמון של טבלת הדפים; הוא יכול לתרגם בלי לגשת לזיכרון.</td></tr>\n<tr><td>PTBR</td><td>אוגר שמצביע על טבלת הדפים של התהליך הרץ. <b>אחד לכל ליבת מעבד</b>; הוא משתנה ב<b>החלפת הקשר</b>.</td></tr>\n<tr><td>PCB</td><td>מבנה בליבה ששומר את כתובת טבלת הדפים של תהליך כשהוא לא רץ.</td></tr>\n<tr><td>ביט תקף כבוי</td><td>ה-MMU קורא למערכת ההפעלה: שגיאת דף.</td></tr>\n</table>\n"
+},
+"questions": [
+{
+"id": "paging-6-1",
+"q": {
+"en": "What is the role of the MMU?",
+"he": "מהו תפקידו של ה-MMU?"
+},
+"opts": [
+{
+"en": "Schedule processes",
+"he": "לתזמן תהליכים"
+},
+{
+"en": "Cache disk blocks",
+"he": "לשמור בלוקי דיסק במטמון"
+},
+{
+"en": "Translate virtual addresses to physical addresses",
+"he": "לתרגם כתובות וירטואליות לפיזיות"
+},
+{
+"en": "Allocate frames to processes",
+"he": "להקצות מסגרות לתהליכים"
+}
+],
+"ans": 2,
+"why": {
+"en": "The MMU is the translation hardware.",
+"he": "ה-MMU הוא חומרת התרגום."
+},
+"recap": {
+"en": "MMU = translation hardware.",
+"he": "MMU = חומרת התרגום."
+},
+"exam": "2019A-6"
+},
+{
+"id": "paging-6-2",
+"q": {
+"en": "When does the value of the page-table base register (PTBR) change?",
+"he": "מתי ערך אוגר בסיס טבלת הדפים (PTBR) משתנה?"
+},
+"opts": [
+{
+"en": "On a context switch",
+"he": "בהחלפת הקשר"
+},
+{
+"en": "On every memory access",
+"he": "בכל גישה לזיכרון"
+},
+{
+"en": "On every page fault",
+"he": "בכל שגיאת דף"
+},
+{
+"en": "Never",
+"he": "אף פעם"
+}
+],
+"ans": 0,
+"why": {
+"en": "Each process has its own page table, so a context switch loads the new one.",
+"he": "לכל תהליך טבלת דפים משלו, ולכן החלפת הקשר טוענת את החדשה."
+},
+"recap": {
+"en": "PTBR changes on a context switch.",
+"he": "PTBR משתנה בהחלפת הקשר."
+},
+"exam": "2017SB-1"
+},
+{
+"id": "paging-6-3",
+"q": {
+"en": "What is the maximum number of PTBR registers per CPU core?",
+"he": "מהו המספר המרבי של אוגרי PTBR בכל ליבת מעבד?"
+},
+"opts": [
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "One per process",
+"he": "One per process"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "One per page",
+"he": "One per page"
+}
+],
+"ans": 2,
+"why": {
+"en": "A core runs one process at a time, so it needs exactly one PTBR.",
+"he": "ליבה מריצה תהליך אחד בכל רגע, ולכן היא צריכה PTBR אחד."
+},
+"recap": {
+"en": "One PTBR per core.",
+"he": "PTBR אחד לכל ליבה."
+},
+"exam": "2021A-9"
+},
+{
+"id": "paging-6-4",
+"q": {
+"en": "In which kernel structure is a process's page-table address stored while it is not running?",
+"he": "באיזה מבנה בליבה נשמרת כתובת טבלת הדפים של תהליך כשהוא לא רץ?"
+},
+"opts": [
+{
+"en": "TLB",
+"he": "TLB"
+},
+{
+"en": "PCB",
+"he": "PCB"
+},
+{
+"en": "MMU",
+"he": "MMU"
+},
+{
+"en": "The swap partition",
+"he": "The swap partition"
+}
+],
+"ans": 1,
+"why": {
+"en": "The PCB keeps everything needed to resume the process, including its page-table address.",
+"he": "ה-PCB שומר כל מה שנדרש לחידוש התהליך, כולל כתובת טבלת הדפים."
+},
+"recap": {
+"en": "Not running: page-table address in the PCB.",
+"he": "לא רץ: כתובת הטבלה ב-PCB."
+},
+"exam": "2019B-2"
+},
+{
+"id": "paging-6-5",
+"q": {
+"en": "The MMU translates an address and the valid/invalid bit is off. What does it do?",
+"he": "ה-MMU מתרגם כתובת וביט תקף/לא תקף כבוי. מה הוא עושה?"
+},
+"opts": [
+{
+"en": "Uses frame 0",
+"he": "משתמש במסגרת 0"
+},
+{
+"en": "Reads the disk itself",
+"he": "קורא את הדיסק בעצמו"
+},
+{
+"en": "Ignores the access",
+"he": "מתעלם מהגישה"
+},
+{
+"en": "Traps to the OS: a page fault",
+"he": "קורא למערכת ההפעלה: שגיאת דף"
+}
+],
+"ans": 3,
+"why": {
+"en": "The MMU cannot fetch the page itself; it raises a page-fault trap.",
+"he": "ה-MMU לא יכול להביא את הדף בעצמו; הוא מעלה פסיקת שגיאת דף."
+},
+"recap": {
+"en": "Valid bit off = page fault trap.",
+"he": "ביט תקף כבוי = פסיקת שגיאת דף."
+},
+"exam": "2023A-7"
+},
+{
+"id": "paging-6-6",
+"q": {
+"en": "Which CPU component sometimes translates a virtual address to a physical one without accessing memory?",
+"he": "איזה רכיב במעבד מתרגם לפעמים כתובת וירטואלית לפיזית בלי לגשת לזיכרון?"
+},
+"opts": [
+{
+"en": "The PTBR",
+"he": "The PTBR"
+},
+{
+"en": "The TLB",
+"he": "The TLB"
+},
+{
+"en": "The PCB",
+"he": "The PCB"
+},
+{
+"en": "The swap area",
+"he": "The swap area"
+}
+],
+"ans": 1,
+"why": {
+"en": "On a TLB hit the translation comes from the cache, with no memory access.",
+"he": "בפגיעת TLB התרגום מגיע מהמטמון, בלי גישה לזיכרון."
+},
+"recap": {
+"en": "TLB hit = translation without memory.",
+"he": "פגיעת TLB = תרגום בלי זיכרון."
+},
+"exam": "2017SB-7"
+}
+]
+},
+{
+"id": "paging-7",
+"order": 7,
+"icon": "🏆",
+"boss": true,
+"title": {
+"en": "Boss: memory exam",
+"he": "בוס: מבחן זיכרון"
+},
+"goal": {
+"en": "Real exam items on paging and translation.",
+"he": "שאלות מהמבחנים על דפדוף ותרגום."
+},
+"lesson": {
+"en": "\n<p>Exam level: every question is a past-exam item. Reminders: powers of two for counting, <code>physical = frame * size + offset</code>, a TLB miss costs <b>levels + 1</b> accesses, EAT is a weighted average. 80% passes.</p>\n",
+"he": "\n<p>שלב המבחן: כל שאלה היא פריט ממבחן קודם. תזכורות: חזקות של 2 לספירה, <code>physical = frame * size + offset</code>, החטאת TLB עולה <b>שלבים + 1</b> גישות, ו-EAT הוא ממוצע משוקלל. 80% עובר.</p>\n"
+},
+"questions": [
+{
+"id": "paging-7-1",
+"q": {
+"en": "How many potential frames does a 42-bit virtual address give with 1 MB pages?",
+"he": "כמה מסגרות פוטנציאליות נותנת כתובת וירטואלית של 42 ביטים עם דפים של 1 MB?"
+},
+"opts": [
+{
+"en": "2^42",
+"he": "2^42"
+},
+{
+"en": "2^22",
+"he": "2^22"
+},
+{
+"en": "2^20",
+"he": "2^20"
+},
+{
+"en": "2^32",
+"he": "2^32"
+}
+],
+"ans": 1,
+"why": {
+"en": "1 MB = 2^20, so 42 − 20 = 22 bits.",
+"he": "1 MB = 2^20, לכן 42 − 20 = 22 ביטים."
+},
+"recap": {
+"en": "Frames = 2^(42−20).",
+"he": "מסגרות = 2^(42−20)."
+},
+"exam": "2024A-7"
+},
+{
+"id": "paging-7-2",
+"q": {
+"en": "A process uses 3-level multilevel paging. After a TLB miss, how many memory accesses does one load take?",
+"he": "תהליך משתמש בדפדוף רב-שלבי עם 3 שלבים. אחרי החטאת TLB, כמה גישות לזיכרון דורשת טעינה אחת?"
+},
+"opts": [
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 3,
+"why": {
+"en": "3 levels + the page itself = 4.",
+"he": "3 שלבים + הדף עצמו = 4."
+},
+"recap": {
+"en": "Levels + 1.",
+"he": "שלבים + 1."
+},
+"exam": "2024B-7"
+},
+{
+"id": "paging-7-3",
+"q": {
+"en": "The TLB hits 80% of the time, the page table has two levels, a memory access takes 10 ns and the TLB itself is free. Average access time?",
+"he": "ה-TLB פוגע ב-80% מהמקרים, לטבלה שני שלבים, גישה לזיכרון לוקחת 10 ננו-שניות וה-TLB עצמו חינמי. זמן גישה ממוצע?"
+},
+"opts": [
+{
+"en": "12 ns",
+"he": "12 ns"
+},
+{
+"en": "14 ns",
+"he": "14 ns"
+},
+{
+"en": "18 ns",
+"he": "18 ns"
+},
+{
+"en": "10 ns",
+"he": "10 ns"
+}
+],
+"ans": 1,
+"why": {
+"en": "0.8 × 10 + 0.2 × 30 = 14 ns.",
+"he": "0.8 × 10 + 0.2 × 30 = 14 ננו-שניות."
+},
+"recap": {
+"en": "Weighted average of hit and miss.",
+"he": "ממוצע משוקלל של פגיעה והחטאה."
+},
+"exam": "2026A-8"
+},
+{
+"id": "paging-7-4",
+"q": {
+"en": "Frame size 1024 bytes, a 4-level page table, 128 entries per table. Size of the virtual address space?",
+"he": "גודל מסגרת 1024 בתים, טבלה בת 4 שלבים, 128 כניסות בטבלה. גודל מרחב הכתובות הווירטואלי?"
+},
+"opts": [
+{
+"en": "2^32 bytes",
+"he": "2^32 bytes"
+},
+{
+"en": "2^28 bytes",
+"he": "2^28 bytes"
+},
+{
+"en": "2^38 bytes",
+"he": "2^38 bytes"
+},
+{
+"en": "2^40 bytes",
+"he": "2^40 bytes"
+}
+],
+"ans": 2,
+"why": {
+"en": "1024 × 128^4 = 2^10 × 2^28 = 2^38 bytes.",
+"he": "1024 × 128^4 = 2^10 × 2^28 = 2^38 בתים."
+},
+"recap": {
+"en": "entries^levels × frame size.",
+"he": "כניסות^שלבים × גודל מסגרת."
+},
+"exam": "2017SA-8"
+},
+{
+"id": "paging-7-5",
+"q": {
+"en": "Pages are 4096 bytes. At most how many bytes of one page can internal fragmentation waste?",
+"he": "הדפים בגודל 4096 בתים. לכל היותר כמה בתים של דף אחד יכול פיצול פנימי לבזבז?"
+},
+"opts": [
+{
+"en": "4095 bytes",
+"he": "4095 bytes"
+},
+{
+"en": "4096 bytes",
+"he": "4096 bytes"
+},
+{
+"en": "2047 bytes",
+"he": "2047 bytes"
+},
+{
+"en": "1 byte",
+"he": "1 byte"
+}
+],
+"ans": 0,
+"why": {
+"en": "Page size minus one byte.",
+"he": "גודל דף פחות בית אחד."
+},
+"recap": {
+"en": "Max waste = page size − 1.",
+"he": "בזבוז מרבי = גודל דף − 1."
+},
+"exam": "2021A-8"
+},
+{
+"id": "paging-7-6",
+"q": {
+"en": "What does the MMU do when translating a virtual address whose valid/invalid bit is off?",
+"he": "מה עושה ה-MMU בתרגום כתובת וירטואלית שביט תקף/לא תקף שלה כבוי?"
+},
+"opts": [
+{
+"en": "Loads the page from disk by itself",
+"he": "טוען את הדף מהדיסק בעצמו"
+},
+{
+"en": "Flushes the TLB",
+"he": "מרוקן את ה-TLB"
+},
+{
+"en": "Traps to the OS with a page fault",
+"he": "קורא למערכת ההפעלה עם שגיאת דף"
+},
+{
+"en": "Changes the PTBR",
+"he": "משנה את ה-PTBR"
+}
+],
+"ans": 2,
+"why": {
+"en": "The OS, not the hardware, brings the page in.",
+"he": "מערכת ההפעלה, לא החומרה, מביאה את הדף."
+},
+"recap": {
+"en": "Invalid = trap to OS.",
+"he": "לא תקף = קריאה למערכת ההפעלה."
+},
+"exam": "2023A-7"
+}
+]
+}
+]
+},
+"vmem": {
+"id": "vmem",
+"icon": "💾",
+"title": {
+"en": "Demand paging and page replacement",
+"he": "דפדוף לפי דרישה והחלפת דפים"
+},
+"intro": {
+"en": "When RAM is full the OS must pick a victim. This course starts from what a page fault is, then simulates FIFO, LRU and the optimal algorithm on reference strings, explains Belady's anomaly, and ends with Clock, local allocation and thrashing. Every level is open; 80% passes.",
+"he": "כשה-RAM מלא מערכת ההפעלה חייבת לבחור קורבן. הקורס מתחיל ממה זו שגיאת דף, ממשיך לסימולציות של FIFO, LRU והאלגוריתם האופטימלי על מחרוזות הפניות, מסביר את האנומליה של Belady ומסיים ב-Clock, הקצאה מקומית ותזזית. כל השלבים פתוחים; 80% עובר."
+},
+"section": "replacement",
+"levels": [
+{
+"id": "vmem-1",
+"order": 1,
+"icon": "📥",
+"boss": false,
+"title": {
+"en": "Demand paging and page faults",
+"he": "דפדוף לפי דרישה ושגיאות דף"
+},
+"goal": {
+"en": "Pages come into RAM only when they are touched.",
+"he": "דפים נכנסים ל-RAM רק כשניגשים אליהם."
+},
+"lesson": {
+"en": "\n<p>With <b>demand paging</b> a program is not loaded whole. A page is brought from disk only when it is first <b>needed</b>. A newly scheduled process therefore starts with an <b>empty</b> page table: every entry is invalid.</p>\n<ol>\n<li>The program touches a page whose valid bit is off; the MMU raises a <b>page fault</b>.</li>\n<li>The OS finds a free frame (or evicts a victim, see the next levels) and reads the page from disk into RAM. Pages evicted from RAM live in the <b>swap partition</b> on Linux.</li>\n<li>The OS marks the entry valid and the process <b>restarts the instruction that faulted</b>.</li>\n</ol>\n<p>Each page also has a <b>dirty bit</b>: it says the page was changed since it was loaded from disk (so it must be written back before eviction). <b>Copy-on-Write</b> lets a child share the parent's pages until one of them writes, and only then is the page copied.</p>\n",
+"he": "\n<p>ב<b>דפדוף לפי דרישה (demand paging)</b> התוכנית לא נטענת כולה. דף מובא מהדיסק רק כשהוא <b>נדרש</b> לראשונה. לכן תהליך חדש שמתוזמן מתחיל עם טבלת דפים <b>ריקה</b>: כל הכניסות לא תקפות.</p>\n<ol>\n<li>התוכנית ניגשת לדף שביט התקף שלו כבוי; ה-MMU מעלה <b>שגיאת דף (page fault)</b>.</li>\n<li>מערכת ההפעלה מוצאת מסגרת פנויה (או מפנה קורבן, בשלבים הבאים) וקוראת את הדף מהדיסק ל-RAM. דפים שפונו מה-RAM נשמרים ב-<b>swap partition</b> ב-Linux.</li>\n<li>המערכת מסמנת את הכניסה כתקפה והתהליך <b>מריץ מחדש את ההוראה שגרמה לשגיאה</b>.</li>\n</ol>\n<p>לכל דף יש גם <b>ביט מלוכלך (dirty)</b>: הוא מציין שהדף השתנה מאז שנטען מהדיסק (ולכן צריך לכתוב אותו חזרה לפני פינוי). <b>Copy-on-Write</b> מאפשר לבן לחלוק את דפי האב עד שאחד מהם כותב, ורק אז הדף מועתק.</p>\n"
+},
+"questions": [
+{
+"id": "vmem-1-1",
+"q": {
+"en": "A part of a program that is never used is not loaded into RAM thanks to which mechanism?",
+"he": "חלק מתוכנית שלא נעשה בו שימוש לא נטען ל-RAM בזכות איזה מנגנון?"
+},
+"opts": [
+{
+"en": "Copy-on-Write",
+"he": "Copy-on-Write"
+},
+{
+"en": "Thrashing",
+"he": "תזזית"
+},
+{
+"en": "Segmentation fault",
+"he": "שגיאת סגמנטציה"
+},
+{
+"en": "Demand paging",
+"he": "דפדוף לפי דרישה"
+}
+],
+"ans": 3,
+"why": {
+"en": "Demand paging loads a page only when it is touched.",
+"he": "דפדוף לפי דרישה טוען דף רק כשניגשים אליו."
+},
+"recap": {
+"en": "Demand paging = load on first use.",
+"he": "דפדוף לפי דרישה = טעינה בשימוש ראשון."
+},
+"exam": "2016B-7"
+},
+{
+"id": "vmem-1-2",
+"q": {
+"en": "Under demand paging, what does the page table of a newly scheduled process contain?",
+"he": "בדפדוף לפי דרישה, מה מכילה טבלת הדפים של תהליך חדש שהתחיל לרוץ?"
+},
+"opts": [
+{
+"en": "All pages of the program",
+"he": "את כל דפי התוכנית"
+},
+{
+"en": "An empty table: no valid pages",
+"he": "טבלה ריקה: אין דפים תקפים"
+},
+{
+"en": "Only the code pages",
+"he": "רק את דפי הקוד"
+},
+{
+"en": "The pages of its parent",
+"he": "את דפי האב"
+}
+],
+"ans": 1,
+"why": {
+"en": "Nothing is loaded yet, so every entry is invalid and the first accesses fault.",
+"he": "עוד לא נטען דבר, ולכן כל הכניסות לא תקפות והגישות הראשונות גורמות לשגיאות."
+},
+"recap": {
+"en": "New process = empty page table.",
+"he": "תהליך חדש = טבלת דפים ריקה."
+},
+"exam": "2019B-7"
+},
+{
+"id": "vmem-1-3",
+"q": {
+"en": "After a legitimate page fault, to which instruction does the process return?",
+"he": "אחרי שגיאת דף לגיטימית, לאיזו הוראה התהליך חוזר?"
+},
+"opts": [
+{
+"en": "The next instruction",
+"he": "ההוראה הבאה"
+},
+{
+"en": "The first instruction of the program",
+"he": "ההוראה הראשונה בתוכנית"
+},
+{
+"en": "The previous function call",
+"he": "הקריאה הקודמת לפונקציה"
+},
+{
+"en": "The instruction that faulted",
+"he": "ההוראה שגרמה לשגיאה"
+}
+],
+"ans": 3,
+"why": {
+"en": "The access did not complete, so the same instruction is executed again, now with the page present.",
+"he": "הגישה לא הושלמה, ולכן אותה הוראה מורצת שוב, עכשיו כשהדף קיים."
+},
+"recap": {
+"en": "Page fault = retry the same instruction.",
+"he": "שגיאת דף = מנסים שוב את אותה הוראה."
+},
+"exam": "2019B-6"
+},
+{
+"id": "vmem-1-4",
+"q": {
+"en": "Where on disk are pages evicted from RAM stored in Linux?",
+"he": "היכן בדיסק נשמרים ב-Linux דפים שפונו מה-RAM?"
+},
+"opts": [
+{
+"en": "swap partition",
+"he": "swap partition"
+},
+{
+"en": "The boot sector",
+"he": "מגזר האתחול"
+},
+{
+"en": "The PCB",
+"he": "ה-PCB"
+},
+{
+"en": "The TLB",
+"he": "ה-TLB"
+}
+],
+"ans": 0,
+"why": {
+"en": "Evicted pages go to the swap area.",
+"he": "דפים שפונו נכתבים לאזור ה-swap."
+},
+"recap": {
+"en": "Evicted pages live in swap.",
+"he": "דפים מפונים נמצאים ב-swap."
+},
+"exam": "2016A-8"
+},
+{
+"id": "vmem-1-5",
+"q": {
+"en": "What is the per-page bit that shows the page changed since it was brought in from disk?",
+"he": "איך נקרא הביט לכל דף שמראה שהדף השתנה מאז שהובא מהדיסק?"
+},
+"opts": [
+{
+"en": "Valid bit",
+"he": "ביט תקף"
+},
+{
+"en": "Reference bit",
+"he": "ביט התייחסות"
+},
+{
+"en": "Dirty bit",
+"he": "ביט מלוכלך (dirty)"
+},
+{
+"en": "Lock bit",
+"he": "ביט נעילה"
+}
+],
+"ans": 2,
+"why": {
+"en": "The dirty (modify) bit marks a changed page.",
+"he": "ביט ה-dirty (modify) מסמן דף ששונה."
+},
+"recap": {
+"en": "Changed since loaded = dirty bit.",
+"he": "שונה מאז הטעינה = ביט dirty."
+},
+"exam": "2015A-7"
+},
+{
+"id": "vmem-1-6",
+"q": {
+"en": "Which OS mechanism lets a child share the parent's pages until a write forces a copy?",
+"he": "איזה מנגנון מאפשר לבן לחלוק את דפי האב עד שכתיבה מחייבת העתקה?"
+},
+"opts": [
+{
+"en": "Copy-on-Write",
+"he": "Copy-on-Write"
+},
+{
+"en": "Demand paging",
+"he": "Demand paging"
+},
+{
+"en": "Swapping",
+"he": "Swapping"
+},
+{
+"en": "Clock",
+"he": "Clock"
+}
+],
+"ans": 0,
+"why": {
+"en": "Copy-on-Write copies a page only at the first write.",
+"he": "Copy-on-Write מעתיק דף רק בכתיבה הראשונה."
+},
+"recap": {
+"en": "Share until written = Copy-on-Write.",
+"he": "שיתוף עד כתיבה = Copy-on-Write."
+},
+"exam": "2020A-10"
+}
+]
+},
+{
+"id": "vmem-2",
+"order": 2,
+"icon": "📬",
+"boss": false,
+"title": {
+"en": "FIFO replacement",
+"he": "החלפת דפים FIFO"
+},
+"goal": {
+"en": "Evict the page that has been in RAM the longest.",
+"he": "מפנים את הדף שנמצא ב-RAM הכי הרבה זמן."
+},
+"lesson": {
+"en": "\n<p>When RAM has no free frame, the OS must pick a <b>victim</b>. A <b>reference string</b> is the sequence of pages the program touches; a reference to a page already in a frame is a <b>hit</b>, otherwise it is a <b>fault</b> (and, if the frames are full, one page is evicted).</p>\n<p><b>FIFO</b> evicts the page that was <b>loaded</b> the longest ago, even if it was just used. A hit changes nothing in the order.</p>\n<pre>3 frames, references 1 2 3 1 4 2\n1 fault [1]\n2 fault [1 2]\n3 fault [1 2 3]\n1 hit   [1 2 3]\n4 fault [2 3 4]   evict 1 (oldest)\n2 hit   [2 3 4]\n-> 4 faults, 2 hits</pre>\n<p>Method: keep the frames as a queue, oldest on the left. Count faults; hits + faults = number of references.</p>\n",
+"he": "\n<p>כשב-RAM אין מסגרת פנויה, המערכת צריכה לבחור <b>קורבן</b>. <b>מחרוזת הפניות (reference string)</b> היא רצף הדפים שהתוכנית ניגשת אליהם; הפניה לדף שכבר נמצא במסגרת היא <b>פגיעה (hit)</b>, אחרת היא <b>שגיאה (fault)</b> (ואם המסגרות מלאות, מפנים דף אחד).</p>\n<p><b>FIFO</b> מפנה את הדף ש<b>נטען</b> לפני הכי הרבה זמן, גם אם השתמשו בו הרגע. פגיעה לא משנה את הסדר.</p>\n<pre>3 frames, references 1 2 3 1 4 2\n1 fault [1]\n2 fault [1 2]\n3 fault [1 2 3]\n1 hit   [1 2 3]\n4 fault [2 3 4]   evict 1 (oldest)\n2 hit   [2 3 4]\n-> 4 faults, 2 hits</pre>\n<p>שיטה: שומרים את המסגרות כתור, הוותיק משמאל. סופרים שגיאות; פגיעות + שגיאות = מספר ההפניות.</p>\n"
+},
+"questions": [
+{
+"id": "vmem-2-1",
+"q": {
+"en": "Count the page faults under FIFO.",
+"he": "ספרו את שגיאות הדף ב-FIFO."
+},
+"opts": [
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 2,
+"why": {
+"en": "Faults on 1, 2, 3, 4; the references 1 and 2 hit. Total 4.",
+"he": "שגיאות על 1, 2, 3, 4; ההפניות 1 ו-2 פוגעות. סך הכול 4."
+},
+"recap": {
+"en": "Count the faults one reference at a time.",
+"he": "סופרים שגיאות הפניה אחר הפניה."
+},
+"code": "frames: 3\nreferences: 1 2 3 1 4 2"
+},
+{
+"id": "vmem-2-2",
+"q": {
+"en": "Same string under FIFO. Which page is evicted when page 4 is referenced?",
+"he": "אותה מחרוזת ב-FIFO. איזה דף מפונה כשפונים להפניה 4?"
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "No page: there is a free frame",
+"he": "No page: there is a free frame"
+}
+],
+"ans": 0,
+"why": {
+"en": "Page 1 was loaded first. Using it again at the fourth reference did not move it.",
+"he": "דף 1 נטען ראשון. השימוש החוזר בו בהפניה הרביעית לא הזיז אותו."
+},
+"recap": {
+"en": "FIFO ignores recent use.",
+"he": "FIFO מתעלם משימוש אחרון."
+},
+"code": "frames: 3\nreferences: 1 2 3 1 4 2"
+},
+{
+"id": "vmem-2-3",
+"q": {
+"en": "Count the page faults under FIFO with 3 frames.",
+"he": "ספרו את שגיאות הדף ב-FIFO עם 3 מסגרות."
+},
+"opts": [
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "15",
+"he": "15"
+},
+{
+"en": "14",
+"he": "14"
+}
+],
+"ans": 2,
+"why": {
+"en": "Working through all 20 references gives 15 faults (LRU would give 12, the optimal 9).",
+"he": "מעבר על כל 20 ההפניות נותן 15 שגיאות (LRU היה נותן 12, האופטימלי 9)."
+},
+"recap": {
+"en": "FIFO on the classic string: 15 faults.",
+"he": "FIFO על המחרוזת הקלאסית: 15 שגיאות."
+},
+"code": "frames: 3\nreferences: 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1"
+},
+{
+"id": "vmem-2-4",
+"q": {
+"en": "Which page does FIFO choose as the victim?",
+"he": "איזה דף FIFO בוחר כקורבן?"
+},
+"opts": [
+{
+"en": "The page unused for the longest time",
+"he": "הדף שלא נעשה בו שימוש הכי הרבה זמן"
+},
+{
+"en": "The page that has been in memory the longest",
+"he": "הדף שנמצא בזיכרון הכי הרבה זמן"
+},
+{
+"en": "The page used farthest in the future",
+"he": "הדף שישמש הכי מאוחר בעתיד"
+},
+{
+"en": "The largest page",
+"he": "הדף הגדול ביותר"
+}
+],
+"ans": 1,
+"why": {
+"en": "FIFO looks at load time only.",
+"he": "FIFO מסתכל רק על זמן הטעינה."
+},
+"recap": {
+"en": "FIFO = oldest loaded.",
+"he": "FIFO = הכי ותיק בזיכרון."
+}
+},
+{
+"id": "vmem-2-5",
+"q": {
+"en": "How many references are hits under FIFO?",
+"he": "כמה מההפניות הן פגיעות ב-FIFO?"
+},
+"opts": [
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 3,
+"why": {
+"en": "There are 12 references and 9 faults under FIFO, so 3 hits.",
+"he": "יש 12 הפניות ו-9 שגיאות ב-FIFO, ולכן 3 פגיעות."
+},
+"recap": {
+"en": "Hits = references − faults.",
+"he": "פגיעות = הפניות − שגיאות."
+},
+"code": "frames: 3\nreferences: 2 3 2 1 5 2 4 5 3 2 5 2"
+}
+]
+},
+{
+"id": "vmem-3",
+"order": 3,
+"icon": "🕰️",
+"boss": false,
+"title": {
+"en": "LRU replacement",
+"he": "החלפת דפים LRU"
+},
+"goal": {
+"en": "Evict the page not used for the longest time.",
+"he": "מפנים את הדף שלא השתמשו בו הכי הרבה זמן."
+},
+"lesson": {
+"en": "\n<p><b>LRU</b> (Least Recently Used) looks at the <b>past</b>: it evicts the page whose last use is the oldest. Unlike FIFO, <b>a hit refreshes the page</b>, moving it to the \"most recent\" end.</p>\n<pre>3 frames, references 1 2 3 1 4 2   (oldest use on the left)\n1 fault [1]      2 fault [1 2]     3 fault [1 2 3]\n1 hit   [2 3 1]  (1 is now the most recent)\n4 fault [3 1 4]  evict 2\n2 fault [1 4 2]  evict 3\n-> 5 faults</pre>\n<p>LRU usually beats FIFO because pages used recently tend to be used again. Exact LRU needs an update on <b>every</b> memory reference, which is too expensive in practice, so real systems approximate it with a reference bit (the Clock algorithm, level 6).</p>\n",
+"he": "\n<p><b>LRU</b> (Least Recently Used) מסתכל על ה<b>עבר</b>: הוא מפנה את הדף שהשימוש האחרון בו הוא הוותיק ביותר. בניגוד ל-FIFO, <b>פגיעה מרעננת את הדף</b> ומעבירה אותו לצד ה\"אחרון בשימוש\".</p>\n<pre>3 frames, references 1 2 3 1 4 2   (oldest use on the left)\n1 fault [1]      2 fault [1 2]     3 fault [1 2 3]\n1 hit   [2 3 1]  (1 is now the most recent)\n4 fault [3 1 4]  evict 2\n2 fault [1 4 2]  evict 3\n-> 5 faults</pre>\n<p>LRU בדרך כלל טוב מ-FIFO כי דפים ששימשו לאחרונה נוטים לשמש שוב. LRU מדויק דורש עדכון ב<b>כל</b> הפניה לזיכרון, וזה יקר מדי בפועל, ולכן מערכות אמיתיות מקרבות אותו בעזרת ביט התייחסות (אלגוריתם Clock, שלב 6).</p>\n"
+},
+"questions": [
+{
+"id": "vmem-3-1",
+"q": {
+"en": "Count the page faults under LRU.",
+"he": "ספרו את שגיאות הדף ב-LRU."
+},
+"opts": [
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 1,
+"why": {
+"en": "A hit on 1 protects it, so 2 is evicted for page 4 and then page 2 faults again: 5 faults.",
+"he": "פגיעה ב-1 מגנה עליו, ולכן 2 מפונה בשביל 4 ואז 2 גורם שוב לשגיאה: 5 שגיאות."
+},
+"recap": {
+"en": "A hit refreshes recency under LRU.",
+"he": "ב-LRU פגיעה מרעננת את הדף."
+},
+"code": "frames: 3\nreferences: 1 2 3 1 4 2"
+},
+{
+"id": "vmem-3-2",
+"q": {
+"en": "Same string under LRU. Which page is evicted when page 4 is referenced?",
+"he": "אותה מחרוזת ב-LRU. איזה דף מפונה כשפונים להפניה 4?"
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "2",
+"he": "2"
+}
+],
+"ans": 3,
+"why": {
+"en": "The recency order is 2, 3, 1 (oldest first); page 2 was used least recently.",
+"he": "סדר השימוש הוא 2, 3, 1 (הוותיק ראשון); דף 2 שימש הכי מזמן."
+},
+"recap": {
+"en": "Evict the oldest last use.",
+"he": "מפנים את השימוש האחרון הוותיק ביותר."
+},
+"code": "frames: 3\nreferences: 1 2 3 1 4 2"
+},
+{
+"id": "vmem-3-3",
+"q": {
+"en": "Count the page faults under LRU with 3 frames.",
+"he": "ספרו את שגיאות הדף ב-LRU עם 3 מסגרות."
+},
+"opts": [
+{
+"en": "15",
+"he": "15"
+},
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "10",
+"he": "10"
+}
+],
+"ans": 1,
+"why": {
+"en": "LRU gives 12 faults here: FIFO needs 15 and the optimal algorithm 9.",
+"he": "LRU נותן כאן 12 שגיאות: FIFO צריך 15 והאלגוריתם האופטימלי 9."
+},
+"recap": {
+"en": "LRU on the classic string: 12.",
+"he": "LRU על המחרוזת הקלאסית: 12."
+},
+"code": "frames: 3\nreferences: 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1"
+},
+{
+"id": "vmem-3-4",
+"q": {
+"en": "Count the page faults under LRU.",
+"he": "ספרו את שגיאות הדף ב-LRU."
+},
+"opts": [
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "8",
+"he": "8"
+}
+],
+"ans": 2,
+"why": {
+"en": "Repeated use of page 2 keeps it in memory, giving 7 faults (FIFO gives 9).",
+"he": "שימוש חוזר בדף 2 שומר אותו בזיכרון, ונותן 7 שגיאות (FIFO נותן 9)."
+},
+"recap": {
+"en": "Refresh the page on every hit.",
+"he": "מרעננים את הדף בכל פגיעה."
+},
+"code": "frames: 3\nreferences: 2 3 2 1 5 2 4 5 3 2 5 2"
+},
+{
+"id": "vmem-3-5",
+"q": {
+"en": "Why is exact LRU rarely implemented in hardware?",
+"he": "מדוע LRU מדויק כמעט לא ממומש בחומרה?"
+},
+"opts": [
+{
+"en": "It must be updated on every memory reference",
+"he": "צריך לעדכן אותו בכל הפניה לזיכרון"
+},
+{
+"en": "It needs to know the future",
+"he": "הוא צריך לדעת את העתיד"
+},
+{
+"en": "It suffers from Belady's anomaly",
+"he": "הוא סובל מאנומליית Belady"
+},
+{
+"en": "It cannot evict dirty pages",
+"he": "הוא לא יכול לפנות דפים מלוכלכים"
+}
+],
+"ans": 0,
+"why": {
+"en": "Tracking the exact order costs work on every access; knowing the future is what OPT needs, and LRU is immune to Belady.",
+"he": "מעקב אחר הסדר המדויק עולה עבודה בכל גישה; ידיעת העתיד היא מה ש-OPT צריך, ו-LRU חסין ל-Belady."
+},
+"recap": {
+"en": "Exact LRU is updated on every reference.",
+"he": "LRU מדויק מתעדכן בכל הפניה."
+}
+}
+]
+},
+{
+"id": "vmem-4",
+"order": 4,
+"icon": "🔮",
+"boss": false,
+"title": {
+"en": "The optimal algorithm",
+"he": "האלגוריתם האופטימלי"
+},
+"goal": {
+"en": "Evict the page needed farthest in the future.",
+"he": "מפנים את הדף שיידרש הכי מאוחר בעתיד."
+},
+"lesson": {
+"en": "\n<p>The <b>optimal</b> algorithm (OPT) evicts the page that will be used <b>farthest in the future</b> (or never again). It gives the fewest faults possible, but it needs the future, so it cannot be built. It is the yardstick the others are measured against.</p>\n<pre>3 frames, references 3 2 1 3 4 1 2\n3 f  2 f  1 f  [3 2 1]\n3 hit\n4 fault: the rest is \"1 2\". Page 3 is never used again -> evict 3   [2 1 4]\n1 hit\n2 hit\n-> 4 faults</pre>\n<p>Method: at each fault, look <b>right</b> along the reference string; the victim is the resident page whose next use is the latest, or that never appears again.</p>\n",
+"he": "\n<p>האלגוריתם ה<b>אופטימלי</b> (OPT) מפנה את הדף שישמש <b>הכי מאוחר בעתיד</b> (או אף פעם). הוא נותן את מספר השגיאות הקטן ביותר האפשרי, אבל הוא צריך את העתיד ולכן אי אפשר לבנות אותו. הוא קנה המידה שמודדים אליו את האחרים.</p>\n<pre>3 frames, references 3 2 1 3 4 1 2\n3 f  2 f  1 f  [3 2 1]\n3 hit\n4 fault: the rest is \"1 2\". Page 3 is never used again -> evict 3   [2 1 4]\n1 hit\n2 hit\n-> 4 faults</pre>\n<p>שיטה: בכל שגיאה מסתכלים <b>ימינה</b> במחרוזת ההפניות; הקורבן הוא הדף שנמצא בזיכרון והשימוש הבא בו מאוחר ביותר, או שלא מופיע יותר.</p>\n"
+},
+"questions": [
+{
+"id": "vmem-4-1",
+"q": {
+"en": "Count the page faults under the optimal algorithm.",
+"he": "ספרו את שגיאות הדף באלגוריתם האופטימלי."
+},
+"opts": [
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "15",
+"he": "15"
+},
+{
+"en": "8",
+"he": "8"
+}
+],
+"ans": 0,
+"why": {
+"en": "Always evicting the page needed farthest ahead gives 9 faults.",
+"he": "פינוי תמידי של הדף שנדרש הכי רחוק קדימה נותן 9 שגיאות."
+},
+"recap": {
+"en": "OPT on the classic string: 9.",
+"he": "OPT על המחרוזת הקלאסית: 9."
+},
+"code": "frames: 3\nreferences: 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1"
+},
+{
+"id": "vmem-4-2",
+"q": {
+"en": "Under OPT, which page is evicted when page 4 is referenced?",
+"he": "ב-OPT, איזה דף מפונה כשפונים להפניה 4?"
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 2,
+"why": {
+"en": "The remaining references are 1, 2; page 3 is never used again.",
+"he": "ההפניות שנותרו הן 1, 2; דף 3 לא ישמש עוד."
+},
+"recap": {
+"en": "Look to the right for the latest next use.",
+"he": "מסתכלים ימינה על השימוש הבא המאוחר ביותר."
+},
+"code": "frames: 3\nreferences: 3 2 1 3 4 1 2"
+},
+{
+"id": "vmem-4-3",
+"q": {
+"en": "Which page does the optimal page-replacement algorithm choose as victim?",
+"he": "איזה דף בוחר אלגוריתם ההחלפה האופטימלי כקורבן?"
+},
+"opts": [
+{
+"en": "The page used farthest in the future",
+"he": "הדף שישמש הכי מאוחר בעתיד"
+},
+{
+"en": "The page used least recently",
+"he": "הדף ששימש הכי מזמן"
+},
+{
+"en": "The oldest loaded page",
+"he": "הדף הוותיק ביותר בזיכרון"
+},
+{
+"en": "A random page",
+"he": "דף אקראי"
+}
+],
+"ans": 0,
+"why": {
+"en": "OPT looks forward, not backward.",
+"he": "OPT מסתכל קדימה, לא אחורה."
+},
+"recap": {
+"en": "OPT = farthest in the future.",
+"he": "OPT = הכי רחוק בעתיד."
+},
+"exam": "2019B-8"
+},
+{
+"id": "vmem-4-4",
+"q": {
+"en": "Why can the optimal algorithm not be implemented in a real OS?",
+"he": "מדוע אי אפשר לממש את האלגוריתם האופטימלי במערכת הפעלה אמיתית?"
+},
+"opts": [
+{
+"en": "It needs a special disk",
+"he": "הוא צריך דיסק מיוחד"
+},
+{
+"en": "It always thrashes",
+"he": "הוא תמיד גורם לתזזית"
+},
+{
+"en": "It only works with one frame",
+"he": "הוא עובד רק עם מסגרת אחת"
+},
+{
+"en": "It needs to know future references",
+"he": "הוא צריך לדעת הפניות עתידיות"
+}
+],
+"ans": 3,
+"why": {
+"en": "The OS cannot know which pages the program will touch next.",
+"he": "המערכת לא יודעת לאילו דפים התוכנית תיגש בהמשך."
+},
+"recap": {
+"en": "OPT needs the future, so it is only a benchmark.",
+"he": "OPT צריך את העתיד, ולכן הוא רק קנה מידה."
+}
+},
+{
+"id": "vmem-4-5",
+"q": {
+"en": "Count the page faults under the optimal algorithm.",
+"he": "ספרו את שגיאות הדף באלגוריתם האופטימלי."
+},
+"opts": [
+{
+"en": "6",
+"he": "6"
+},
+{
+"en": "4",
+"he": "4"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "3",
+"he": "3"
+}
+],
+"ans": 1,
+"why": {
+"en": "1, 2, 3 and 4 fault; evicting 3 (never used again) lets the later 1 and 2 hit. FIFO needs 6 here.",
+"he": "1, 2, 3 ו-4 גורמים לשגיאה; פינוי 3 (שלא ישמש עוד) גורם לכך ש-1 ו-2 המאוחרים פוגעים. FIFO צריך כאן 6."
+},
+"recap": {
+"en": "OPT can never be worse than FIFO or LRU.",
+"he": "OPT לעולם לא גרוע מ-FIFO או LRU."
+},
+"code": "frames: 3\nreferences: 1 2 3 4 1 2"
+}
+]
+},
+{
+"id": "vmem-5",
+"order": 5,
+"icon": "📉",
+"boss": false,
+"title": {
+"en": "More frames, more faults? Belady's anomaly",
+"he": "יותר מסגרות, יותר שגיאות? האנומליה של Belady"
+},
+"goal": {
+"en": "Why only FIFO can get worse with more memory.",
+"he": "מדוע רק FIFO יכול להחמיר עם יותר זיכרון."
+},
+"lesson": {
+"en": "\n<p>Intuition says more frames means fewer or equal faults. <b>FIFO</b> can break this: on the string below, 3 frames give 9 faults but 4 frames give <b>10</b>. This is <b>Belady's anomaly</b>.</p>\n<pre>references 1 2 3 4 1 2 5 1 2 3 4 5\nFIFO  3 frames: 9 faults     4 frames: 10 faults   (anomaly)\nLRU   3 frames: 10 faults    4 frames: 8 faults\n</pre>\n<p>LRU and OPT are <b>stack algorithms</b>: the pages held with n frames are always a subset of those held with n+1 frames, so they are immune. The anomaly is a FIFO-only trap.</p>\n",
+"he": "\n<p>האינטואיציה אומרת שיותר מסגרות פירושו פחות שגיאות או שווה. <b>FIFO</b> יכול לשבור את זה: במחרוזת שלמטה 3 מסגרות נותנות 9 שגיאות אבל 4 מסגרות נותנות <b>10</b>. זו <b>האנומליה של Belady</b>.</p>\n<pre>references 1 2 3 4 1 2 5 1 2 3 4 5\nFIFO  3 frames: 9 faults     4 frames: 10 faults   (anomaly)\nLRU   3 frames: 10 faults    4 frames: 8 faults\n</pre>\n<p>LRU ו-OPT הם <b>אלגוריתמי מחסנית (stack algorithms)</b>: הדפים שמוחזקים עם n מסגרות הם תמיד תת-קבוצה של אלה שמוחזקים עם n+1 מסגרות, ולכן הם חסינים. האנומליה היא מלכודת של FIFO בלבד.</p>\n"
+},
+"questions": [
+{
+"id": "vmem-5-1",
+"q": {
+"en": "Count the page faults under FIFO with 3 frames.",
+"he": "ספרו את שגיאות הדף ב-FIFO עם 3 מסגרות."
+},
+"opts": [
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "12",
+"he": "12"
+},
+{
+"en": "7",
+"he": "7"
+},
+{
+"en": "9",
+"he": "9"
+}
+],
+"ans": 3,
+"why": {
+"en": "Faults on 1 2 3 4 1 2 5 3 4: nine.",
+"he": "שגיאות על 1 2 3 4 1 2 5 3 4: תשע."
+},
+"recap": {
+"en": "Count carefully, the oldest page leaves first.",
+"he": "סופרים בזהירות, הוותיק יוצא ראשון."
+},
+"code": "frames: 3\nreferences: 1 2 3 4 1 2 5 1 2 3 4 5"
+},
+{
+"id": "vmem-5-2",
+"q": {
+"en": "Same string, FIFO with **4** frames. How many page faults?",
+"he": "אותה מחרוזת, FIFO עם **4** מסגרות. כמה שגיאות דף?"
+},
+"opts": [
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "6",
+"he": "6"
+}
+],
+"ans": 1,
+"why": {
+"en": "With 4 frames FIFO faults 10 times, more than with 3.",
+"he": "עם 4 מסגרות FIFO גורם ל-10 שגיאות, יותר מאשר עם 3."
+},
+"recap": {
+"en": "More frames can mean more FIFO faults.",
+"he": "יותר מסגרות יכולות להביא יותר שגיאות ב-FIFO."
+},
+"code": "frames: 4\nreferences: 1 2 3 4 1 2 5 1 2 3 4 5"
+},
+{
+"id": "vmem-5-3",
+"q": {
+"en": "FIFO gives 9 faults with 3 frames and 10 faults with 4 frames on the same string. What is this called?",
+"he": "FIFO נותן 9 שגיאות עם 3 מסגרות ו-10 שגיאות עם 4 מסגרות על אותה מחרוזת. איך קוראים לזה?"
+},
+"opts": [
+{
+"en": "Thrashing",
+"he": "תזזית"
+},
+{
+"en": "The convoy effect",
+"he": "אפקט השיירה"
+},
+{
+"en": "Internal fragmentation",
+"he": "פיצול פנימי"
+},
+{
+"en": "Belady's anomaly",
+"he": "האנומליה של Belady"
+}
+],
+"ans": 3,
+"why": {
+"en": "More memory causing more faults is Belady's anomaly.",
+"he": "יותר זיכרון שגורם ליותר שגיאות הוא האנומליה של Belady."
+},
+"recap": {
+"en": "More frames, more faults = Belady.",
+"he": "יותר מסגרות, יותר שגיאות = Belady."
+}
+},
+{
+"id": "vmem-5-4",
+"q": {
+"en": "Same string, LRU with 4 frames. How many page faults?",
+"he": "אותה מחרוזת, LRU עם 4 מסגרות. כמה שגיאות דף?"
+},
+"opts": [
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "12",
+"he": "12"
+}
+],
+"ans": 0,
+"why": {
+"en": "LRU improves from 10 faults (3 frames) to 8 (4 frames): it has no anomaly.",
+"he": "LRU משתפר מ-10 שגיאות (3 מסגרות) ל-8 (4 מסגרות): אין לו אנומליה."
+},
+"recap": {
+"en": "Stack algorithms never get worse with more frames.",
+"he": "אלגוריתמי מחסנית לא מחמירים עם יותר מסגרות."
+},
+"code": "frames: 4\nreferences: 1 2 3 4 1 2 5 1 2 3 4 5"
+},
+{
+"id": "vmem-5-5",
+"q": {
+"en": "Which page-replacement algorithm can suffer Belady's anomaly, where more frames cause more page faults?",
+"he": "איזה אלגוריתם החלפת דפים עלול לסבול מהאנומליה של Belady, שבה יותר מסגרות גורמות ליותר שגיאות?"
+},
+"opts": [
+{
+"en": "LRU",
+"he": "LRU"
+},
+{
+"en": "Optimal",
+"he": "Optimal"
+},
+{
+"en": "FIFO",
+"he": "FIFO"
+},
+{
+"en": "None of them",
+"he": "None of them"
+}
+],
+"ans": 2,
+"why": {
+"en": "Only FIFO; LRU and OPT are stack algorithms.",
+"he": "רק FIFO; LRU ו-OPT הם אלגוריתמי מחסנית."
+},
+"recap": {
+"en": "Belady = FIFO only.",
+"he": "Belady = רק FIFO."
+},
+"exam": "2023A-8"
+}
+]
+},
+{
+"id": "vmem-6",
+"order": 6,
+"icon": "🕐",
+"boss": false,
+"title": {
+"en": "Clock, reference bits, local allocation, thrashing",
+"he": "Clock, ביטי התייחסות, הקצאה מקומית ותזזית"
+},
+"goal": {
+"en": "The practical algorithm and what goes wrong.",
+"he": "האלגוריתם המעשי ומה משתבש."
+},
+"lesson": {
+"en": "\n<p><b>Clock</b> (second chance) approximates LRU with a <b>reference bit</b> per frame. Frames form a circle with a hand:</p>\n<pre>hand at A: R=1 -> second chance: clear R to 0, move on\nhand at B: R=1 -> clear R to 0, move on\nhand at C: R=0 -> VICTIM\nworst case the hand passes all N frames: O(N)</pre>\n<p>Who touches the bit: the <b>MMU (hardware) sets</b> the reference bit (and the dirty bit) on an access; the <b>OS clears</b> the reference bit while sweeping.</p>\n<p><b>Local allocation</b>: a process may evict only its own pages, so a fault of process X evicts a page of X. Global allocation may evict anyone's page.</p>\n<p><b>Thrashing</b>: processes need more frames than exist, so the system spends most of its time swapping pages instead of running. At process exit, its frames are simply freed (even dirty pages are not written back).</p>\n",
+"he": "\n<p><b>Clock</b> (הזדמנות שנייה) מקרב את LRU בעזרת <b>ביט התייחסות</b> לכל מסגרת. המסגרות מסודרות במעגל עם מחוג:</p>\n<pre>hand at A: R=1 -> second chance: clear R to 0, move on\nhand at B: R=1 -> clear R to 0, move on\nhand at C: R=0 -> VICTIM\nworst case the hand passes all N frames: O(N)</pre>\n<p>מי נוגע בביט: ה-<b>MMU (חומרה) קובע</b> את ביט ההתייחסות (ואת ביט ה-dirty) בגישה; ה-<b>OS מאפס</b> את ביט ההתייחסות בזמן הסריקה.</p>\n<p><b>הקצאה מקומית (local)</b>: תהליך יכול לפנות רק דפים משלו, ולכן שגיאה של תהליך X מפנה דף של X. הקצאה גלובלית יכולה לפנות דף של כל אחד.</p>\n<p><b>תזזית (thrashing)</b>: התהליכים צריכים יותר מסגרות ממה שקיים, ולכן המערכת מבלה את רוב הזמן בהחלפת דפים במקום בריצה. כשתהליך מסתיים, המסגרות שלו פשוט משוחררות (גם דפים מלוכלכים לא נכתבים חזרה).</p>\n"
+},
+"questions": [
+{
+"id": "vmem-6-1",
+"q": {
+"en": "What is the worst-case time complexity of finding a victim in Clock with N frames?",
+"he": "מהי סיבוכיות הזמן במקרה הגרוע למציאת קורבן ב-Clock עם N מסגרות?"
+},
+"opts": [
+{
+"en": "O(1)",
+"he": "O(1)"
+},
+{
+"en": "O(log N)",
+"he": "O(log N)"
+},
+{
+"en": "O(N)",
+"he": "O(N)"
+},
+{
+"en": "O(N²)",
+"he": "O(N²)"
+}
+],
+"ans": 2,
+"why": {
+"en": "The hand may have to pass every frame once.",
+"he": "ייתכן שהמחוג יצטרך לעבור על כל מסגרת פעם אחת."
+},
+"recap": {
+"en": "Clock victim search = O(N).",
+"he": "חיפוש קורבן ב-Clock = O(N)."
+},
+"exam": "2019A-8"
+},
+{
+"id": "vmem-6-2",
+"q": {
+"en": "In the Clock algorithm, who writes 0 to the reference bit?",
+"he": "באלגוריתם Clock, מי כותב 0 לביט ההתייחסות?"
+},
+"opts": [
+{
+"en": "The operating system",
+"he": "מערכת ההפעלה"
+},
+{
+"en": "The MMU hardware",
+"he": "חומרת ה-MMU"
+},
+{
+"en": "The user program",
+"he": "תוכנית המשתמש"
+},
+{
+"en": "The disk controller",
+"he": "בקר הדיסק"
+}
+],
+"ans": 0,
+"why": {
+"en": "The OS clears it while sweeping; the hardware only sets it.",
+"he": "ה-OS מאפס אותו בסריקה; החומרה רק קובעת אותו."
+},
+"recap": {
+"en": "OS clears, hardware sets.",
+"he": "ה-OS מאפס, החומרה קובעת."
+},
+"exam": "2019B-5"
+},
+{
+"id": "vmem-6-3",
+"q": {
+"en": "When the accessed (reference) bit needs to be set, who sets it?",
+"he": "כשצריך לקבוע את ביט הגישה (ההתייחסות), מי קובע אותו?"
+},
+"opts": [
+{
+"en": "The operating system",
+"he": "מערכת ההפעלה"
+},
+{
+"en": "The user process",
+"he": "תהליך המשתמש"
+},
+{
+"en": "The MMU (hardware)",
+"he": "ה-MMU (חומרה)"
+},
+{
+"en": "The swap daemon",
+"he": "תהליך ה-swap"
+}
+],
+"ans": 2,
+"why": {
+"en": "Setting it on each access must be automatic, so the MMU does it.",
+"he": "קביעה בכל גישה חייבת להיות אוטומטית, ולכן ה-MMU עושה זאת."
+},
+"recap": {
+"en": "MMU sets the reference and dirty bits.",
+"he": "ה-MMU קובע את ביטי ההתייחסות וה-dirty."
+},
+"exam": "2017SB-6"
+},
+{
+"id": "vmem-6-4",
+"q": {
+"en": "What does Clock do to a frame whose reference bit is set?",
+"he": "מה Clock עושה למסגרת שביט ההתייחסות שלה דלוק?"
+},
+"opts": [
+{
+"en": "Evicts it immediately",
+"he": "מפנה אותה מיד"
+},
+{
+"en": "Clears the bit and moves on (second chance)",
+"he": "מאפס את הביט וממשיך (הזדמנות שנייה)"
+},
+{
+"en": "Writes it to disk",
+"he": "כותב אותה לדיסק"
+},
+{
+"en": "Sets the dirty bit",
+"he": "קובע את ביט ה-dirty"
+}
+],
+"ans": 1,
+"why": {
+"en": "A referenced page gets a second chance.",
+"he": "דף שהתייחסו אליו מקבל הזדמנות שנייה."
+},
+"recap": {
+"en": "Bit set: clear it and skip.",
+"he": "ביט דלוק: מאפסים ומדלגים."
+},
+"exam": "2021B-10"
+},
+{
+"id": "vmem-6-5",
+"q": {
+"en": "Each process must evict others' pages to reload its own, so the system spends most of its time swapping. What is this state?",
+"he": "כל תהליך צריך לפנות דפים של אחרים כדי לטעון את שלו, והמערכת מבלה את רוב הזמן בהחלפות. איזה מצב זה?"
+},
+"opts": [
+{
+"en": "Starvation",
+"he": "הרעבה"
+},
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Convoy effect",
+"he": "אפקט השיירה"
+},
+{
+"en": "Thrashing",
+"he": "תזזית (thrashing)"
+}
+],
+"ans": 3,
+"why": {
+"en": "Too little memory for the demand: thrashing.",
+"he": "מעט מדי זיכרון ביחס לביקוש: תזזית."
+},
+"recap": {
+"en": "Constant swapping = thrashing.",
+"he": "החלפות בלתי פוסקות = תזזית."
+},
+"exam": "2017A-8"
+},
+{
+"id": "vmem-6-6",
+"q": {
+"en": "Under local allocation, whose page is evicted when a page must be brought in for process X?",
+"he": "בהקצאה מקומית, דף של מי מפונה כשצריך להביא דף עבור תהליך X?"
+},
+"opts": [
+{
+"en": "A page of any process",
+"he": "דף של כל תהליך"
+},
+{
+"en": "A page of process X",
+"he": "דף של תהליך X"
+},
+{
+"en": "The oldest process's page",
+"he": "דף של התהליך הוותיק"
+},
+{
+"en": "A kernel page",
+"he": "דף של הליבה"
+}
+],
+"ans": 1,
+"why": {
+"en": "Local allocation confines eviction to the faulting process.",
+"he": "הקצאה מקומית מגבילה את הפינוי לתהליך שגרם לשגיאה."
+},
+"recap": {
+"en": "Local = evict own page.",
+"he": "מקומי = מפנים דף משלו."
+},
+"exam": "2021A-10"
+}
+]
+},
+{
+"id": "vmem-7",
+"order": 7,
+"icon": "🏆",
+"boss": true,
+"title": {
+"en": "Boss: page replacement exam",
+"he": "בוס: מבחן החלפת דפים"
+},
+"goal": {
+"en": "Past-exam items and a full simulation.",
+"he": "שאלות ממבחנים קודמים וסימולציה מלאה."
+},
+"lesson": {
+"en": "\n<p>Exam level. Keep three images in mind: OPT looks right (future), LRU looks left (past), FIFO looks at load time. Only FIFO has Belady's anomaly. Clock: hardware sets, OS clears, O(N). 80% passes.</p>\n",
+"he": "\n<p>שלב המבחן. שלוש תמונות לזכור: OPT מסתכל ימינה (עתיד), LRU מסתכל שמאלה (עבר), FIFO מסתכל על זמן הטעינה. רק ל-FIFO יש את האנומליה של Belady. Clock: חומרה קובעת, OS מאפס, O(N). 80% עובר.</p>\n"
+},
+"questions": [
+{
+"id": "vmem-7-1",
+"q": {
+"en": "Which algorithm can have **more** page faults when given **more** frames?",
+"he": "איזה אלגוריתם יכול לגרום ל**יותר** שגיאות כשנותנים לו **יותר** מסגרות?"
+},
+"opts": [
+{
+"en": "LRU",
+"he": "LRU"
+},
+{
+"en": "FIFO",
+"he": "FIFO"
+},
+{
+"en": "Optimal",
+"he": "Optimal"
+},
+{
+"en": "Clock with a reference bit only",
+"he": "Clock with a reference bit only"
+}
+],
+"ans": 1,
+"why": {
+"en": "FIFO suffers Belady's anomaly.",
+"he": "FIFO סובל מהאנומליה של Belady."
+},
+"recap": {
+"en": "Belady = FIFO.",
+"he": "Belady = רק FIFO."
+},
+"exam": "2023A-8"
+},
+{
+"id": "vmem-7-2",
+"q": {
+"en": "Which page does the optimal algorithm evict?",
+"he": "איזה דף האלגוריתם האופטימלי מפנה?"
+},
+"opts": [
+{
+"en": "The one used longest ago",
+"he": "זה ששימש הכי מזמן"
+},
+{
+"en": "The one loaded first",
+"he": "זה שנטען ראשון"
+},
+{
+"en": "The one with the dirty bit set",
+"he": "זה שביט ה-dirty שלו דלוק"
+},
+{
+"en": "The one used farthest in the future",
+"he": "זה שישמש הכי רחוק בעתיד"
+}
+],
+"ans": 3,
+"why": {
+"en": "OPT is defined by the future.",
+"he": "OPT מוגדר לפי העתיד."
+},
+"recap": {
+"en": "OPT = farthest next use.",
+"he": "OPT = השימוש הבא הרחוק ביותר."
+},
+"exam": "2019B-8"
+},
+{
+"id": "vmem-7-3",
+"q": {
+"en": "The OS spends most of its time swapping pages instead of running processes. What is this state called?",
+"he": "מערכת ההפעלה מבלה את רוב זמנה בהחלפת דפים במקום בהרצת תהליכים. איך נקרא המצב?"
+},
+"opts": [
+{
+"en": "Starvation",
+"he": "Starvation"
+},
+{
+"en": "Thrashing",
+"he": "Thrashing"
+},
+{
+"en": "Aging",
+"he": "Aging"
+},
+{
+"en": "Convoy",
+"he": "Convoy"
+}
+],
+"ans": 1,
+"why": {
+"en": "Thrashing.",
+"he": "תזזית (thrashing)."
+},
+"recap": {
+"en": "Swapping all the time = thrashing.",
+"he": "החלפות כל הזמן = תזזית."
+},
+"exam": "2024A-8"
+},
+{
+"id": "vmem-7-4",
+"q": {
+"en": "What is the worst-case complexity of finding a victim in Clock with n frames?",
+"he": "מהי הסיבוכיות במקרה הגרוע של מציאת קורבן ב-Clock עם n מסגרות?"
+},
+"opts": [
+{
+"en": "O(1)",
+"he": "O(1)"
+},
+{
+"en": "O(n log n)",
+"he": "O(n log n)"
+},
+{
+"en": "O(n)",
+"he": "O(n)"
+},
+{
+"en": "O(2^n)",
+"he": "O(2^n)"
+}
+],
+"ans": 2,
+"why": {
+"en": "One full sweep of the hand.",
+"he": "סריקה מלאה אחת של המחוג."
+},
+"recap": {
+"en": "Clock = O(n).",
+"he": "Clock = סריקה אחת, O(n)."
+},
+"exam": "2024B-8"
+},
+{
+"id": "vmem-7-5",
+"q": {
+"en": "Count the page faults under LRU.",
+"he": "ספרו את שגיאות הדף ב-LRU."
+},
+"opts": [
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "9",
+"he": "9"
+},
+{
+"en": "7",
+"he": "7"
+}
+],
+"ans": 0,
+"why": {
+"en": "Simulating LRU with 4 frames gives 8 faults.",
+"he": "סימולציית LRU עם 4 מסגרות נותנת 8 שגיאות."
+},
+"recap": {
+"en": "Refresh on a hit, evict the oldest use.",
+"he": "מרעננים בפגיעה, מפנים את השימוש הוותיק."
+},
+"code": "frames: 4\nreferences: 1 2 3 4 1 2 5 1 2 3 4 5"
+},
+{
+"id": "vmem-7-6",
+"q": {
+"en": "Count the page faults under FIFO.",
+"he": "ספרו את שגיאות הדף ב-FIFO."
+},
+"opts": [
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "8",
+"he": "8"
+},
+{
+"en": "14",
+"he": "14"
+},
+{
+"en": "12",
+"he": "12"
+}
+],
+"ans": 2,
+"why": {
+"en": "FIFO makes 14 faults here; LRU 10 and OPT 8.",
+"he": "FIFO עושה כאן 14 שגיאות; LRU 10 ו-OPT 8."
+},
+"recap": {
+"en": "Queue order never changes on a hit.",
+"he": "סדר התור לא משתנה בפגיעה."
+},
+"code": "frames: 4\nreferences: 1 2 3 4 2 1 5 6 2 1 2 3 7 6 3 2 1 2 3 6"
+}
+]
+}
+]
+},
+"sync": {
+"id": "sync",
+"icon": "🔒",
+"title": {
+"en": "Synchronization: semaphores and deadlock",
+"he": "סנכרון: סמפורים וקיפאון"
+},
+"intro": {
+"en": "Synchronization is the biggest topic in the question bank, and most of its questions are exact one-line answers. This course builds them up: race conditions and the three conditions, what a semaphore value means, the Linux system calls, producer-consumer and readers-writers, deadlock and the philosophers, and the software solutions. Every level is open; 80% passes.",
+"he": "סנכרון הוא הנושא הגדול ביותר בבנק השאלות, ורוב שאלותיו הן תשובות מדויקות של שורה אחת. הקורס בונה אותן שלב אחר שלב: מצבי תחרות ושלושת התנאים, מה אומר ערך של סמפור, קריאות המערכת של Linux, יצרן-צרכן וקוראים-כותבים, קיפאון והפילוסופים, והפתרונות בתוכנה. כל השלבים פתוחים; 80% עובר."
+},
+"section": "sync",
+"levels": [
+{
+"id": "sync-1",
+"order": 1,
+"icon": "🚧",
+"boss": false,
+"title": {
+"en": "Race conditions and the critical section",
+"he": "מצבי תחרות וקטע קריטי"
+},
+"goal": {
+"en": "The three conditions every solution must meet.",
+"he": "שלושת התנאים שכל פתרון חייב לעמוד בהם."
+},
+"lesson": {
+"en": "\n<p>When several processes read and write shared data and the result depends on who runs first, that is a <b>race condition</b>. The code that touches the shared data is the <b>critical section</b>. A correct solution must give three things:</p>\n<table>\n<tr><th>Condition</th><th>Meaning</th></tr>\n<tr><td>Mutual exclusion</td><td>only one process is inside at a time</td></tr>\n<tr><td>Progress</td><td>if nobody is inside, someone who wants to enter gets in: no deadlock</td></tr>\n<tr><td>Bounded waiting</td><td>a limit on how many others enter before a waiting process does; without it, <b>starvation</b> is possible</td></tr>\n</table>\n<p>Related words: <b>busy waiting</b> is when a process burns CPU time repeatedly checking whether it may enter; <b>starvation</b> is when a process is passed over again and again and never enters (the consequence of missing bounded waiting); <b>deadlock</b> is when no process manages to enter at all.</p>\n",
+"he": "\n<p>כשכמה תהליכים קוראים וכותבים נתונים משותפים והתוצאה תלויה במי רץ ראשון, זה <b>מצב תחרות (race condition)</b>. הקוד שנוגע בנתונים המשותפים הוא ה<b>קטע הקריטי</b>. פתרון נכון חייב לספק שלושה דברים:</p>\n<table>\n<tr><th>תנאי</th><th>משמעות</th></tr>\n<tr><td>הדדיות (Mutual exclusion)</td><td>רק תהליך אחד בפנים בכל רגע</td></tr>\n<tr><td>התקדמות (Progress)</td><td>אם אף אחד לא בפנים, מי שרוצה להיכנס נכנס: אין קיפאון</td></tr>\n<tr><td>המתנה חסומה (Bounded waiting)</td><td>חסם על כמה אחרים נכנסים לפני תהליך ממתין; בלעדיו אפשרית <b>הרעבה</b></td></tr>\n</table>\n<p>מושגים קשורים: <b>המתנה פעילה (busy waiting)</b> היא כשתהליך שורף זמן מעבד ובודק שוב ושוב אם מותר לו להיכנס; <b>הרעבה (starvation)</b> היא כשתהליך נדחה שוב ושוב ולעולם לא נכנס (תוצאה של היעדר המתנה חסומה); <b>קיפאון (deadlock)</b> הוא כשאף תהליך לא מצליח להיכנס בכלל.</p>\n"
+},
+"questions": [
+{
+"id": "sync-1-1",
+"q": {
+"en": "Concurrent access to a shared resource gives results that depend on the order of execution. What is this state called?",
+"he": "גישה במקביל למשאב משותף נותנת תוצאות שתלויות בסדר הריצה. איך נקרא המצב?"
+},
+"opts": [
+{
+"en": "Race condition",
+"he": "מצב תחרות (race condition)"
+},
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Thrashing",
+"he": "תזזית"
+},
+{
+"en": "Aging",
+"he": "הזדקנות"
+}
+],
+"ans": 0,
+"why": {
+"en": "An order-dependent result is a race condition.",
+"he": "תוצאה שתלויה בסדר היא מצב תחרות."
+},
+"recap": {
+"en": "Order-dependent result = race condition.",
+"he": "תוצאה תלוית סדר = מצב תחרות."
+},
+"exam": "2024B-5"
+},
+{
+"id": "sync-1-2",
+"q": {
+"en": "Which critical-section condition requires exclusive access while one process writes shared memory?",
+"he": "איזה תנאי של הקטע הקריטי דורש גישה בלעדית בזמן שתהליך אחד כותב לזיכרון משותף?"
+},
+"opts": [
+{
+"en": "Progress",
+"he": "התקדמות"
+},
+{
+"en": "Bounded waiting",
+"he": "המתנה חסומה"
+},
+{
+"en": "Mutual exclusion",
+"he": "הדדיות"
+},
+{
+"en": "Fairness",
+"he": "הוגנות"
+}
+],
+"ans": 2,
+"why": {
+"en": "Exclusive access is exactly mutual exclusion.",
+"he": "גישה בלעדית היא בדיוק הדדיות."
+},
+"recap": {
+"en": "Only one inside = mutual exclusion.",
+"he": "רק אחד בפנים = הדדיות."
+},
+"exam": "2021A-6"
+},
+{
+"id": "sync-1-3",
+"q": {
+"en": "Which condition bounds how many processes may enter before a given waiting process?",
+"he": "איזה תנאי חוסם כמה תהליכים נכנסים לפני תהליך ממתין מסוים?"
+},
+"opts": [
+{
+"en": "Bounded waiting",
+"he": "המתנה חסומה"
+},
+{
+"en": "Mutual exclusion",
+"he": "הדדיות"
+},
+{
+"en": "Progress",
+"he": "התקדמות"
+},
+{
+"en": "Atomicity",
+"he": "אטומיות"
+}
+],
+"ans": 0,
+"why": {
+"en": "Bounded waiting limits the overtaking.",
+"he": "המתנה חסומה מגבילה את העקיפות."
+},
+"recap": {
+"en": "Limit on overtaking = bounded waiting.",
+"he": "הגבלת עקיפות = המתנה חסומה."
+},
+"exam": "2020A-8"
+},
+{
+"id": "sync-1-4",
+"q": {
+"en": "Which critical-section condition guarantees that no deadlock occurs?",
+"he": "איזה תנאי של הקטע הקריטי מבטיח שלא יתרחש קיפאון?"
+},
+"opts": [
+{
+"en": "Mutual exclusion",
+"he": "הדדיות"
+},
+{
+"en": "Bounded waiting",
+"he": "המתנה חסומה"
+},
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Progress",
+"he": "התקדמות"
+}
+],
+"ans": 3,
+"why": {
+"en": "Progress: if the section is free, someone who wants in gets in.",
+"he": "התקדמות: אם הקטע פנוי, מי שרוצה להיכנס נכנס."
+},
+"recap": {
+"en": "No deadlock = progress.",
+"he": "אין קיפאון = התקדמות."
+},
+"exam": "2021B-6"
+},
+{
+"id": "sync-1-5",
+"q": {
+"en": "Process A cannot progress because B is in the critical section, so A wastes CPU time repeatedly checking whether it may enter. What is this called?",
+"he": "תהליך A לא יכול להתקדם כי B בקטע הקריטי, ולכן A מבזבז זמן מעבד בבדיקות חוזרות אם מותר לו להיכנס. איך זה נקרא?"
+},
+"opts": [
+{
+"en": "Starvation",
+"he": "הרעבה"
+},
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Context switching",
+"he": "החלפת הקשר"
+}
+],
+"ans": 1,
+"why": {
+"en": "Spinning on a check burns CPU: busy waiting.",
+"he": "ספינינג על בדיקה שורף מעבד: המתנה פעילה."
+},
+"recap": {
+"en": "Checking in a loop = busy waiting.",
+"he": "בדיקה בלולאה = המתנה פעילה."
+},
+"exam": "2015A-3"
+},
+{
+"id": "sync-1-6",
+"q": {
+"en": "One process, or a group, is continually passed over by others entering the critical section and never enters. What is this called?",
+"he": "תהליך אחד, או קבוצה, נדחה שוב ושוב על ידי אחרים שנכנסים לקטע הקריטי ולעולם לא נכנס. איך זה נקרא?"
+},
+"opts": [
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Race condition",
+"he": "מצב תחרות"
+},
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Starvation",
+"he": "הרעבה"
+}
+],
+"ans": 3,
+"why": {
+"en": "Being passed over forever is starvation; a deadlock would block everyone.",
+"he": "דחייה לנצח היא הרעבה; קיפאון היה חוסם את כולם."
+},
+"recap": {
+"en": "Passed over forever = starvation.",
+"he": "נדחה לנצח = הרעבה."
+},
+"exam": "2015A-4"
+}
+]
+},
+{
+"id": "sync-2",
+"order": 2,
+"icon": "🚦",
+"boss": false,
+"title": {
+"en": "Semaphores: wait, signal and the value",
+"he": "סמפורים: wait, signal והערך"
+},
+"goal": {
+"en": "What the number inside a semaphore means.",
+"he": "מה המספר בתוך סמפור אומר."
+},
+"lesson": {
+"en": "\n<p>A <b>semaphore</b> in kernel memory holds an <b>integer</b> and a <b>queue</b> of waiting processes. Two atomic operations:</p>\n<ul>\n<li><b>wait</b> (P): subtract 1. If the value became <b>negative</b>, the process is added to the queue and sleeps.</li>\n<li><b>signal</b> (V): add 1. If the value is still <b>not positive</b>, one process is removed from the queue and made ready.</li>\n</ul>\n<p>So a negative value means \"|value| processes are waiting\". Starting values that matter:</p>\n<ul>\n<li><b>1</b> for mutual exclusion (one process allowed in; ten processes sharing a variable also use 1);</li>\n<li><b>0</b> for ordering: to make F of process A run before G of process B, B does wait before G, A does signal after F, and the semaphore starts at 0;</li>\n<li><b>N</b> for N identical resources (counting semaphore).</li>\n</ul>\n<pre>init 1:  P:A  -> 0 (A in)    P:B -> -1 (B waits)    P:C -> -2 (C waits)\n         V:D  -> -1 (one waiter wakes)</pre>\n",
+"he": "\n<p><b>סמפור (semaphore)</b> בזיכרון הליבה מחזיק <b>מספר שלם</b> ו<b>תור</b> של תהליכים ממתינים. שתי פעולות אטומיות:</p>\n<ul>\n<li><b>wait</b> (P): מחסירים 1. אם הערך נעשה <b>שלילי</b>, התהליך נכנס לתור והולך לישון.</li>\n<li><b>signal</b> (V): מוסיפים 1. אם הערך עדיין <b>לא חיובי</b>, תהליך אחד יוצא מהתור והופך למוכן.</li>\n</ul>\n<p>לכן ערך שלילי אומר \"|ערך| תהליכים ממתינים\". ערכי התחלה שחשובים:</p>\n<ul>\n<li><b>1</b> להדדיות (תהליך אחד נכנס; גם עשרה תהליכים שחולקים משתנה משתמשים ב-1);</li>\n<li><b>0</b> לסדר: כדי ש-F של תהליך A ירוץ לפני G של תהליך B, ‏B עושה wait לפני G, ‏A עושה signal אחרי F, והסמפור מתחיל ב-0;</li>\n<li><b>N</b> ל-N משאבים זהים (סמפור סופר).</li>\n</ul>\n<pre>init 1:  P:A  -> 0 (A in)    P:B -> -1 (B waits)    P:C -> -2 (C waits)\n         V:D  -> -1 (one waiter wakes)</pre>\n"
+},
+"questions": [
+{
+"id": "sync-2-1",
+"q": {
+"en": "To what value is a semaphore initialised when it solves the critical-section problem (ten processes must not modify shared memory together)?",
+"he": "לאיזה ערך מאתחלים סמפור שפותר את בעיית הקטע הקריטי (עשרה תהליכים לא צריכים לשנות זיכרון משותף יחד)?"
+},
+"opts": [
+{
+"en": "0",
+"he": "0"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "-1",
+"he": "-1"
+}
+],
+"ans": 1,
+"why": {
+"en": "1 lets exactly one process in.",
+"he": "הערך 1 מכניס בדיוק תהליך אחד."
+},
+"recap": {
+"en": "Mutual exclusion semaphore starts at 1.",
+"he": "סמפור להדדיות מתחיל ב-1."
+},
+"exam": "2017SB-9"
+},
+{
+"id": "sync-2-2",
+"q": {
+"en": "To make function F of process A run before function G of process B, you use a semaphore initialised to ____.",
+"he": "כדי לגרום לפונקציה F של תהליך A לרוץ לפני פונקציה G של תהליך B משתמשים בסמפור שמאותחל ל-____."
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "-1",
+"he": "-1"
+},
+{
+"en": "0",
+"he": "0"
+}
+],
+"ans": 3,
+"why": {
+"en": "B's wait blocks until A signals after F, so it must start at 0.",
+"he": "ה-wait של B חוסם עד ש-A עושה signal אחרי F, ולכן הוא חייב להתחיל ב-0."
+},
+"recap": {
+"en": "Ordering semaphore starts at 0.",
+"he": "סמפור לסדר מתחיל ב-0."
+},
+"exam": "2017SA-10"
+},
+{
+"id": "sync-2-3",
+"q": {
+"en": "A semaphore starts at 1 and three processes A, B, C each do wait. What are the value and the number of sleeping processes?",
+"he": "סמפור מתחיל ב-1 ושלושה תהליכים A, B, C עושים כל אחד wait. מהם הערך ומספר התהליכים הישנים?"
+},
+"opts": [
+{
+"en": "Value -3, three sleeping",
+"he": "ערך -3, שלושה ישנים"
+},
+{
+"en": "Value -2, two sleeping",
+"he": "ערך -2, שני תהליכים ישנים"
+},
+{
+"en": "Value 2, none sleeping",
+"he": "ערך 2, אף אחד לא ישן"
+},
+{
+"en": "Value -1, one sleeping",
+"he": "ערך -1, אחד ישן"
+}
+],
+"ans": 1,
+"why": {
+"en": "1 → 0 (A enters) → −1 (B sleeps) → −2 (C sleeps).",
+"he": "1 ← 0 (A נכנס) ← ‎-1 (B ישן) ← ‎-2 (C ישן)."
+},
+"recap": {
+"en": "Negative value = number of sleepers.",
+"he": "ערך שלילי = מספר הישנים."
+}
+},
+{
+"id": "sync-2-4",
+"q": {
+"en": "A semaphore starts at 1. Three processes do wait and then a fourth does signal. What is the value?",
+"he": "סמפור מתחיל ב-1. שלושה תהליכים עושים wait ואז רביעי עושה signal. מהו הערך?"
+},
+"opts": [
+{
+"en": "-2",
+"he": "-2"
+},
+{
+"en": "0",
+"he": "0"
+},
+{
+"en": "-1",
+"he": "-1"
+},
+{
+"en": "1",
+"he": "1"
+}
+],
+"ans": 2,
+"why": {
+"en": "After three waits the value is −2; the signal adds 1 and wakes one sleeper: −1.",
+"he": "אחרי שלושה wait הערך ‎-2; ה-signal מוסיף 1 ומעיר ישן אחד: ‎-1."
+},
+"recap": {
+"en": "signal adds 1.",
+"he": "signal מוסיף 1."
+}
+},
+{
+"id": "sync-2-5",
+"q": {
+"en": "A semaphore's kernel allocation holds an integer and, in addition, what?",
+"he": "ההקצאה של סמפור בליבה מחזיקה מספר שלם ובנוסף מה?"
+},
+"opts": [
+{
+"en": "A queue of waiting processes",
+"he": "תור של תהליכים ממתינים"
+},
+{
+"en": "A copy of the shared data",
+"he": "עותק של הנתונים המשותפים"
+},
+{
+"en": "The owner's PID only",
+"he": "רק את ה-PID של הבעלים"
+},
+{
+"en": "A timer",
+"he": "טיימר"
+}
+],
+"ans": 0,
+"why": {
+"en": "The queue is how a sleeping process is found and woken, which also prevents starvation.",
+"he": "התור הוא הדרך למצוא ולהעיר תהליך ישן, והוא גם מונע הרעבה."
+},
+"recap": {
+"en": "Semaphore = integer + queue.",
+"he": "סמפור = מספר שלם + תור."
+},
+"exam": "2015A-5"
+},
+{
+"id": "sync-2-6",
+"q": {
+"en": "A wait makes the semaphore value negative. What does the kernel additionally do?",
+"he": "פעולת wait הופכת את ערך הסמפור לשלילי. מה הליבה עושה בנוסף?"
+},
+"opts": [
+{
+"en": "Terminates the process",
+"he": "מסיימת את התהליך"
+},
+{
+"en": "Resets the value to 0",
+"he": "מאפסת את הערך ל-0"
+},
+{
+"en": "Adds the process to the semaphore's wait queue",
+"he": "מוסיפה את התהליך לתור ההמתנה של הסמפור"
+},
+{
+"en": "Busy-waits for it",
+"he": "ממתינה בהמתנה פעילה"
+}
+],
+"ans": 2,
+"why": {
+"en": "The process sleeps in the queue until a signal.",
+"he": "התהליך ישן בתור עד signal."
+},
+"recap": {
+"en": "Negative: enqueue and sleep.",
+"he": "שלילי: להיכנס לתור ולישון."
+},
+"exam": "2017A-6"
+}
+]
+},
+{
+"id": "sync-3",
+"order": 3,
+"icon": "🐧",
+"boss": false,
+"title": {
+"en": "Linux semaphores: semget, semop, semctl",
+"he": "סמפורים ב-Linux: semget, semop, semctl"
+},
+"goal": {
+"en": "The three system calls and what they really do.",
+"he": "שלוש קריאות המערכת ומה הן באמת עושות."
+},
+"lesson": {
+"en": "\n<table>\n<tr><th>Call</th><th>What it does</th></tr>\n<tr><td><code>semget(key, n, flags)</code></td><td>creates an <b>array of n semaphores</b>; <code>semget(IPC_PRIVATE, 123, 0600)</code> gives 123 semaphores. The call decides the size of the array.</td></tr>\n<tr><td><code>semop(sops, nsops)</code></td><td>does the wait and signal operations. One call can carry <b>many operations</b>, and they are done <b>atomically</b>.</td></tr>\n<tr><td><code>semctl</code></td><td>initialises the values and also removes the semaphores (depending on its parameters).</td></tr>\n</table>\n<p>In <code>struct sembuf</code>, <code>sem_op = -1</code> is one wait, <code>sem_op = -10</code> is ten waits, <code>sem_op = +1</code> is a signal. Filling in <code>sem_op</code> does nothing until <code>semop()</code> is called. A wait on a semaphore whose value is 0 makes the process <b>sleep</b>. After the semaphores were removed with <code>semctl</code>, <code>semop</code> returns <b>-1</b>. A semaphore not removed explicitly stays until the computer reboots or crashes; the shell command <code>ipcrm -s 666</code> removes the set with id 666.</p>\n<pre>wait on 5 semaphores and signal on 5 others, atomically:\none semop call with nsops = 10</pre>\n",
+"he": "\n<table>\n<tr><th>קריאה</th><th>מה היא עושה</th></tr>\n<tr><td><code>semget(key, n, flags)</code></td><td>יוצרת <b>מערך של n סמפורים</b>; ‏<code>semget(IPC_PRIVATE, 123, 0600)</code> נותנת 123 סמפורים. הקריאה קובעת את גודל המערך.</td></tr>\n<tr><td><code>semop(sops, nsops)</code></td><td>מבצעת את פעולות ה-wait וה-signal. קריאה אחת יכולה לשאת <b>הרבה פעולות</b>, והן מתבצעות <b>אטומית</b>.</td></tr>\n<tr><td><code>semctl</code></td><td>מאתחלת את הערכים וגם מוחקת את הסמפורים (לפי הפרמטרים).</td></tr>\n</table>\n<p>ב-<code>struct sembuf</code>, הערך <code>sem_op = -1</code> הוא wait אחד, ‏<code>sem_op = -10</code> הם עשרה wait, ו-<code>sem_op = +1</code> הוא signal. מילוי <code>sem_op</code> לא עושה דבר עד שקוראים ל-<code>semop()</code>. wait על סמפור שערכו 0 גורם לתהליך <b>לישון</b>. אחרי שהסמפורים נמחקו ב-<code>semctl</code>, הקריאה <code>semop</code> מחזירה <b>-1</b>. סמפור שלא נמחק במפורש נשאר עד שהמחשב עושה אתחול או קורס; פקודת הקונסולה <code>ipcrm -s 666</code> מוחקת את הקבוצה שמספרה 666.</p>\n<pre>wait on 5 semaphores and signal on 5 others, atomically:\none semop call with nsops = 10</pre>\n"
+},
+"questions": [
+{
+"id": "sync-3-1",
+"q": {
+"en": "In Linux, which system call performs both the semaphore wait and the signal, depending on the values passed?",
+"he": "ב-Linux, איזו קריאת מערכת מבצעת גם wait וגם signal על סמפור, לפי הערכים שמועברים?"
+},
+"opts": [
+{
+"en": "semget()",
+"he": "semget()"
+},
+{
+"en": "semctl()",
+"he": "semctl()"
+},
+{
+"en": "semop()",
+"he": "semop()"
+},
+{
+"en": "shmat()",
+"he": "shmat()"
+}
+],
+"ans": 2,
+"why": {
+"en": "semop carries the operations; the sign of sem_op chooses wait or signal.",
+"he": "semop נושאת את הפעולות; סימן sem_op בוחר בין wait ל-signal."
+},
+"recap": {
+"en": "semop = wait and signal.",
+"he": "semop = wait ו-signal."
+},
+"exam": "2026A-10"
+},
+{
+"id": "sync-3-2",
+"q": {
+"en": "In struct sembuf, what value should sem_op have to perform 10 wait operations on a semaphore?",
+"he": "ב-struct sembuf, איזה ערך צריך להיות ל-sem_op כדי לבצע 10 פעולות wait על סמפור?"
+},
+"opts": [
+{
+"en": "-10",
+"he": "-10"
+},
+{
+"en": "10",
+"he": "10"
+},
+{
+"en": "-1 (ten times)",
+"he": "-1 (ten times)"
+},
+{
+"en": "0",
+"he": "0"
+}
+],
+"ans": 0,
+"why": {
+"en": "A negative sem_op subtracts: −10 is ten waits.",
+"he": "sem_op שלילי מחסיר: ‎-10 הם עשרה wait."
+},
+"recap": {
+"en": "Wait = negative sem_op.",
+"he": "wait = sem_op שלילי."
+},
+"exam": "2015A-9"
+},
+{
+"id": "sync-3-3",
+"q": {
+"en": "What is allocated in the Linux kernel after `semget(IPC_PRIVATE, 123, 0600)`?",
+"he": "מה מוקצה בליבה של Linux אחרי `semget(IPC_PRIVATE, 123, 0600)`?"
+},
+"opts": [
+{
+"en": "One semaphore with value 123",
+"he": "סמפור אחד עם ערך 123"
+},
+{
+"en": "123 bytes of shared memory",
+"he": "123 בתים של זיכרון משותף"
+},
+{
+"en": "An array of 123 semaphores",
+"he": "מערך של 123 סמפורים"
+},
+{
+"en": "A semaphore for process 123",
+"he": "סמפור לתהליך 123"
+}
+],
+"ans": 2,
+"why": {
+"en": "The second argument is the number of semaphores in the array.",
+"he": "הארגומנט השני הוא מספר הסמפורים במערך."
+},
+"recap": {
+"en": "semget n = array size.",
+"he": "n ב-semget = גודל המערך."
+},
+"exam": "2022A-10"
+},
+{
+"id": "sync-3-4",
+"q": {
+"en": "`sem_op = -1` is performed on a semaphore whose value is 0. What happens to the process?",
+"he": "מבוצע `sem_op = -1` על סמפור שערכו 0. מה קורה לתהליך?"
+},
+"opts": [
+{
+"en": "semop returns an error at once",
+"he": "semop מחזירה שגיאה מיד"
+},
+{
+"en": "It sleeps (blocks)",
+"he": "הוא ישן (נחסם)"
+},
+{
+"en": "The value becomes 1",
+"he": "הערך נעשה 1"
+},
+{
+"en": "The process is killed",
+"he": "התהליך נהרג"
+}
+],
+"ans": 1,
+"why": {
+"en": "A wait on 0 cannot proceed, so the process sleeps in the queue.",
+"he": "wait על 0 לא יכול להמשיך, ולכן התהליך ישן בתור."
+},
+"recap": {
+"en": "Wait on 0 = sleep.",
+"he": "wait על 0 = שינה."
+},
+"exam": "2024B-10"
+},
+{
+"id": "sync-3-5",
+"q": {
+"en": "What happens in Linux if semop is called on a semaphore after it was deleted with semctl?",
+"he": "מה קורה ב-Linux אם קוראים ל-semop על סמפור אחרי שנמחק ב-semctl?"
+},
+"opts": [
+{
+"en": "It recreates the semaphore",
+"he": "היא יוצרת מחדש את הסמפור"
+},
+{
+"en": "It blocks forever",
+"he": "היא נחסמת לנצח"
+},
+{
+"en": "It succeeds as usual",
+"he": "היא מצליחה כרגיל"
+},
+{
+"en": "semop returns -1",
+"he": "semop מחזירה ‎-1"
+}
+],
+"ans": 3,
+"why": {
+"en": "The semaphore no longer exists, so the call fails with −1.",
+"he": "הסמפור כבר לא קיים, ולכן הקריאה נכשלת עם ‎-1."
+},
+"recap": {
+"en": "Deleted semaphore: semop = −1.",
+"he": "סמפור שנמחק: semop = ‎-1."
+},
+"exam": "2022B-10"
+},
+{
+"id": "sync-3-6",
+"q": {
+"en": "Besides deleting semaphores, what other operation does the semctl system call perform?",
+"he": "מלבד מחיקת סמפורים, איזו פעולה נוספת מבצעת קריאת המערכת semctl?"
+},
+"opts": [
+{
+"en": "Waiting on a semaphore",
+"he": "ביצוע wait על סמפור"
+},
+{
+"en": "Initialising the semaphore values",
+"he": "אתחול ערכי הסמפורים"
+},
+{
+"en": "Creating the semaphore array",
+"he": "יצירת מערך הסמפורים"
+},
+{
+"en": "Attaching shared memory",
+"he": "חיבור זיכרון משותף"
+}
+],
+"ans": 1,
+"why": {
+"en": "semctl sets the initial values; semget creates and semop waits/signals.",
+"he": "semctl קובעת ערכי התחלה; semget יוצרת ו-semop עושה wait/signal."
+},
+"recap": {
+"en": "semctl = initialise + remove.",
+"he": "semctl = אתחול + מחיקה."
+},
+"exam": "2023B-10"
+}
+]
+},
+{
+"id": "sync-4",
+"order": 4,
+"icon": "🏭",
+"boss": false,
+"title": {
+"en": "Producer-consumer and readers-writers",
+"he": "יצרן-צרכן וקוראים-כותבים"
+},
+"goal": {
+"en": "Reading the value of a semaphore as a story.",
+"he": "קריאת ערך הסמפור כסיפור."
+},
+"lesson": {
+"en": "\n<p><b>Bounded buffer</b> (producer-consumer) uses three semaphores: <code>mutex = 1</code>, <code>empty = N</code> (free slots), <code>full = 0</code> (filled slots). The producer waits on <code>empty</code>, the consumer waits on <code>full</code>.</p>\n<ul>\n<li>A positive <code>empty</code> is the <b>number of empty slots</b>.</li>\n<li>A negative <code>full</code> is the <b>number of consumers waiting</b> (the buffer is empty and they sleep).</li>\n<li>A consumer starting on an empty buffer blocks, because <code>full</code> starts at 0.</li>\n</ul>\n<p><b>Readers-writers</b>: many readers may share the data, a writer needs it alone. While a writer is inside, <b>0 readers</b> may be inside. A reader leaving signals the writer only when <b>no readers remain</b>. The simple classroom solution can <b>starve</b> writers, so it violates bounded waiting.</p>\n",
+"he": "\n<p><b>חוצץ חסום (bounded buffer)</b> (יצרן-צרכן) משתמש בשלושה סמפורים: ‏<code>mutex = 1</code>, ‏<code>empty = N</code> (מקומות פנויים), ‏<code>full = 0</code> (מקומות מלאים). היצרן עושה wait על <code>empty</code>, הצרכן עושה wait על <code>full</code>.</p>\n<ul>\n<li>ערך חיובי של <code>empty</code> הוא <b>מספר המקומות הפנויים</b>.</li>\n<li>ערך שלילי של <code>full</code> הוא <b>מספר הצרכנים הממתינים</b> (החוצץ ריק והם ישנים).</li>\n<li>צרכן שמתחיל על חוצץ ריק נחסם, כי <code>full</code> מתחיל ב-0.</li>\n</ul>\n<p><b>קוראים-כותבים</b>: קוראים רבים יכולים לחלוק את הנתונים, וכותב צריך אותם לבד. כשכותב בפנים, <b>0 קוראים</b> יכולים להיות בפנים. קורא שיוצא מעיר כותב רק כש<b>לא נשארו קוראים</b>. הפתרון הפשוט מהכיתה יכול <b>להרעיב</b> כותבים, ולכן הוא מפר המתנה חסומה.</p>\n"
+},
+"questions": [
+{
+"id": "sync-4-1",
+"q": {
+"en": "In the bounded-buffer solution, a consumer starts on an empty buffer with `full = 0`. What happens when it does wait(full)?",
+"he": "בפתרון החוצץ החסום, צרכן מתחיל על חוצץ ריק עם `full = 0`. מה קורה כשהוא עושה wait(full)?"
+},
+"opts": [
+{
+"en": "It takes an item",
+"he": "הוא לוקח פריט"
+},
+{
+"en": "full becomes 1",
+"he": "full הופך ל-1"
+},
+{
+"en": "It deadlocks the producer",
+"he": "הוא גורם לקיפאון ליצרן"
+},
+{
+"en": "It blocks",
+"he": "הוא נחסם"
+}
+],
+"ans": 3,
+"why": {
+"en": "full is 0, so the wait makes it −1 and the consumer sleeps.",
+"he": "full הוא 0, ולכן ה-wait מביא אותו ל-‎-1 והצרכן ישן."
+},
+"recap": {
+"en": "Empty buffer: the consumer sleeps.",
+"he": "חוצץ ריק: הצרכן ישן."
+}
+},
+{
+"id": "sync-4-2",
+"q": {
+"en": "In the bounded-buffer solution, what does a positive value of the `empty` semaphore represent?",
+"he": "בפתרון החוצץ החסום, מה מייצג ערך חיובי של הסמפור `empty`?"
+},
+"opts": [
+{
+"en": "The number of consumers waiting",
+"he": "מספר הצרכנים הממתינים"
+},
+{
+"en": "The number of empty buffer slots",
+"he": "מספר המקומות הפנויים בחוצץ"
+},
+{
+"en": "The number of filled slots",
+"he": "מספר המקומות המלאים"
+},
+{
+"en": "The number of producers",
+"he": "מספר היצרנים"
+}
+],
+"ans": 1,
+"why": {
+"en": "empty counts free slots.",
+"he": "empty סופר מקומות פנויים."
+},
+"recap": {
+"en": "empty = free slots.",
+"he": "empty = מקומות פנויים."
+},
+"exam": "2019A-5"
+},
+{
+"id": "sync-4-3",
+"q": {
+"en": "Three consumers wait on `full` while the buffer is empty (`full` started at 0). What is its value, and what does the negative number mean?",
+"he": "שלושה צרכנים עושים wait על `full` כשהחוצץ ריק (`full` התחיל ב-0). מהו הערך ומה משמעות המספר השלילי?"
+},
+"opts": [
+{
+"en": "-3: three items are missing in the producer",
+"he": "‎-3: חסרים שלושה פריטים ביצרן"
+},
+{
+"en": "3: three full slots",
+"he": "3: שלושה מקומות מלאים"
+},
+{
+"en": "0: nobody waits",
+"he": "0: אף אחד לא ממתין"
+},
+{
+"en": "-3: three consumers are waiting",
+"he": "‎-3: שלושה צרכנים ממתינים"
+}
+],
+"ans": 3,
+"why": {
+"en": "0 − 3 = −3, and |−3| is the number of sleeping consumers.",
+"he": "0 − 3 = ‎-3, ו-|‎-3| הוא מספר הצרכנים הישנים."
+},
+"recap": {
+"en": "Negative full = waiting consumers.",
+"he": "full שלילי = צרכנים ממתינים."
+},
+"exam": "2019B-4"
+},
+{
+"id": "sync-4-4",
+"q": {
+"en": "In readers-writers, what is the maximum number of readers allowed in the critical section while a writer is inside?",
+"he": "בקוראים-כותבים, מהו המספר המרבי של קוראים המותרים בקטע הקריטי בזמן שכותב בפנים?"
+},
+"opts": [
+{
+"en": "0",
+"he": "0"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "As many as want",
+"he": "As many as want"
+},
+{
+"en": "Exactly one reader",
+"he": "Exactly one reader"
+}
+],
+"ans": 0,
+"why": {
+"en": "A writer needs exclusive access, so zero readers.",
+"he": "כותב צריך גישה בלעדית, ולכן אפס קוראים."
+},
+"recap": {
+"en": "Writer inside = no readers.",
+"he": "כותב בפנים = אין קוראים."
+},
+"exam": "2021B-7"
+},
+{
+"id": "sync-4-5",
+"q": {
+"en": "The classroom readers-writers semaphore solution suffers from which problem?",
+"he": "פתרון הסמפורים לקוראים-כותבים מהכיתה סובל מאיזו בעיה?"
+},
+"opts": [
+{
+"en": "Race conditions",
+"he": "מצבי תחרות"
+},
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Starvation",
+"he": "הרעבה"
+},
+{
+"en": "Lost mutual exclusion",
+"he": "אובדן הדדיות"
+}
+],
+"ans": 2,
+"why": {
+"en": "Steady readers can keep a writer out forever.",
+"he": "קוראים רצופים יכולים להשאיר כותב בחוץ לנצח."
+},
+"recap": {
+"en": "Readers-writers starves writers.",
+"he": "קוראים-כותבים מרעיב כותבים."
+},
+"exam": "2015B-5"
+},
+{
+"id": "sync-4-6",
+"q": {
+"en": "In readers-writers, when does an exiting reader signal a writer to enter?",
+"he": "בקוראים-כותבים, מתי קורא שיוצא מאותת לכותב להיכנס?"
+},
+"opts": [
+{
+"en": "When no readers remain inside",
+"he": "כשלא נשארו קוראים בפנים"
+},
+{
+"en": "Always on exit",
+"he": "תמיד ביציאה"
+},
+{
+"en": "When the buffer is full",
+"he": "כשהחוצץ מלא"
+},
+{
+"en": "When it is the first reader",
+"he": "כשהוא הקורא הראשון"
+}
+],
+"ans": 0,
+"why": {
+"en": "Only the last reader out lets the writer in.",
+"he": "רק הקורא האחרון שיוצא מכניס את הכותב."
+},
+"recap": {
+"en": "Last reader out signals the writer.",
+"he": "הקורא האחרון שיוצא מאותת לכותב."
+},
+"exam": "2022B-6"
+}
+]
+},
+{
+"id": "sync-5",
+"order": 5,
+"icon": "🍝",
+"boss": false,
+"title": {
+"en": "Deadlock and the dining philosophers",
+"he": "קיפאון והפילוסופים הסועדים"
+},
+"goal": {
+"en": "When everybody waits for somebody else.",
+"he": "כשכולם מחכים למישהו אחר."
+},
+"lesson": {
+"en": "\n<p>A <b>deadlock</b> is a state where no process manages to make progress, each one waiting for something another holds. The classic recipe: two binary semaphores taken in <b>opposite order</b>.</p>\n<pre>P1: wait(A); wait(B)        P2: wait(B); wait(A)\nP1 takes A, P2 takes B, then each waits for the other forever.\nSame order in both (A then B)  ->  no deadlock.</pre>\n<p>So the smallest number of binary semaphores that can cause a deadlock is <b>2</b>; one semaphore alone cannot.</p>\n<p><b>Dining philosophers</b>: each philosopher takes the left chopstick, then the right. If all take the left one and wait for the right, that is a deadlock. The smallest number of philosophers for a possible deadlock is <b>2</b>. Fixes: take both chopsticks <b>atomically</b> (Linux semop can wait on two semaphores in one all-or-nothing call), or number the chopsticks and always take the lower number first.</p>\n",
+"he": "\n<p><b>קיפאון (deadlock)</b> הוא מצב שבו אף תהליך לא מצליח להתקדם, וכל אחד מחכה למשהו שאחר מחזיק. המתכון הקלאסי: שני סמפורים בינאריים שנלקחים ב<b>סדר הפוך</b>.</p>\n<pre>P1: wait(A); wait(B)        P2: wait(B); wait(A)\nP1 takes A, P2 takes B, then each waits for the other forever.\nSame order in both (A then B)  ->  no deadlock.</pre>\n<p>לכן המספר הקטן ביותר של סמפורים בינאריים שיכול לגרום לקיפאון הוא <b>2</b>; סמפור אחד לבדו לא יכול.</p>\n<p><b>הפילוסופים הסועדים</b>: כל פילוסוף לוקח את המקל השמאלי ואחר כך את הימני. אם כולם לקחו שמאלי וממתינים לימני, זה קיפאון. המספר הקטן ביותר של פילוסופים לקיפאון אפשרי הוא <b>2</b>. פתרונות: לקחת את שני המקלות <b>אטומית</b> (‏semop ב-Linux יכולה לחכות על שני סמפורים בקריאה אחת של הכול-או-כלום), או למספר את המקלות ולקחת תמיד קודם את המספר הנמוך.</p>\n"
+},
+"questions": [
+{
+"id": "sync-5-1",
+"q": {
+"en": "In the dining-philosophers problem each philosopher holds the left chopstick and waits for the right one. What is this situation called?",
+"he": "בבעיית הפילוסופים הסועדים כל פילוסוף מחזיק את המקל השמאלי וממתין לימני. איך נקרא המצב?"
+},
+"opts": [
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Starvation",
+"he": "הרעבה"
+},
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Thrashing",
+"he": "תזזית"
+}
+],
+"ans": 0,
+"why": {
+"en": "Everybody waits for a resource another holds: deadlock.",
+"he": "כולם מחכים למשאב שאחר מחזיק: קיפאון."
+},
+"recap": {
+"en": "Circular wait = deadlock.",
+"he": "המתנה מעגלית = קיפאון."
+},
+"exam": "2022A-6"
+},
+{
+"id": "sync-5-2",
+"q": {
+"en": "What is the minimum number of binary semaphores that can cause a deadlock?",
+"he": "מהו המספר המינימלי של סמפורים בינאריים שיכול לגרום לקיפאון?"
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "4",
+"he": "4"
+}
+],
+"ans": 2,
+"why": {
+"en": "Two processes taking A and B in opposite order deadlock; with one semaphore a process always eventually releases it.",
+"he": "שני תהליכים שלוקחים A ו-B בסדר הפוך נכנסים לקיפאון; עם סמפור אחד תהליך תמיד משחרר אותו בסוף."
+},
+"recap": {
+"en": "Deadlock needs at least two semaphores.",
+"he": "קיפאון דורש לפחות שני סמפורים."
+},
+"exam": "2023A-6"
+},
+{
+"id": "sync-5-3",
+"q": {
+"en": "In the dining-philosophers model, what is the smallest number of philosophers that can cause a possible deadlock?",
+"he": "במודל הפילוסופים הסועדים, מהו המספר הקטן ביותר של פילוסופים שיכול לגרום לקיפאון אפשרי?"
+},
+"opts": [
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "5",
+"he": "5"
+}
+],
+"ans": 0,
+"why": {
+"en": "With 2 philosophers and 2 chopsticks each can grab one and wait for the other.",
+"he": "עם 2 פילוסופים ו-2 מקלות כל אחד יכול לתפוס מקל אחד ולחכות לשני."
+},
+"recap": {
+"en": "Smallest deadlock: 2 philosophers.",
+"he": "הקיפאון הקטן ביותר: 2 פילוסופים."
+},
+"exam": "2017SB-8"
+},
+{
+"id": "sync-5-4",
+"q": {
+"en": "P1 does wait(A) then wait(B). P2 does wait(A) then wait(B) too. Can these two processes deadlock?",
+"he": "P1 עושה wait(A) ואז wait(B). גם P2 עושה wait(A) ואז wait(B). האם שני התהליכים יכולים להיכנס לקיפאון?"
+},
+"opts": [
+{
+"en": "Yes: always",
+"he": "כן: תמיד"
+},
+{
+"en": "Yes: if P2 starts first",
+"he": "כן: אם P2 מתחיל ראשון"
+},
+{
+"en": "Only with three processes",
+"he": "רק עם שלושה תהליכים"
+},
+{
+"en": "No: both take the semaphores in the same order",
+"he": "לא: שניהם לוקחים את הסמפורים באותו סדר"
+}
+],
+"ans": 3,
+"why": {
+"en": "Whoever gets A first also gets B; the other one waits at A. No circular wait.",
+"he": "מי שמקבל את A ראשון מקבל גם את B; השני ממתין ב-A. אין המתנה מעגלית."
+},
+"recap": {
+"en": "Same order = no deadlock.",
+"he": "אותו סדר = אין קיפאון."
+}
+},
+{
+"id": "sync-5-5",
+"q": {
+"en": "How can Linux's semop solve the dining-philosophers deadlock when a philosopher needs two semaphores?",
+"he": "איך semop של Linux יכולה לפתור את הקיפאון של הפילוסופים הסועדים כשפילוסוף צריך שני סמפורים?"
+},
+"opts": [
+{
+"en": "It makes the second wait faster",
+"he": "היא מזרזת את ה-wait השני"
+},
+{
+"en": "It performs the wait on both atomically (all or nothing)",
+"he": "היא מבצעת wait על שניהם אטומית (הכול או כלום)"
+},
+{
+"en": "It removes one chopstick",
+"he": "היא מסירה מקל אחד"
+},
+{
+"en": "It cannot help",
+"he": "היא לא יכולה לעזור"
+}
+],
+"ans": 1,
+"why": {
+"en": "One semop call can carry both waits; either both are granted or the process sleeps holding neither.",
+"he": "קריאת semop אחת יכולה לשאת את שני ה-wait; או ששניהם ניתנים או שהתהליך ישן בלי להחזיק אף אחד."
+},
+"recap": {
+"en": "Atomic double wait removes hold-and-wait.",
+"he": "wait כפול אטומי מבטל החזקה-והמתנה."
+},
+"exam": "2017SA-9"
+},
+{
+"id": "sync-5-6",
+"q": {
+"en": "Three philosophers number their chopsticks 0, 1, 2. Which rule removes the deadlock?",
+"he": "שלושה פילוסופים ממספרים את המקלות שלהם 0, 1, 2. איזה כלל מבטל את הקיפאון?"
+},
+"opts": [
+{
+"en": "Always take the left chopstick first",
+"he": "תמיד לוקחים קודם את המקל השמאלי"
+},
+{
+"en": "Take the right chopstick first, but only if it is free",
+"he": "לוקחים קודם את הימני, אבל רק אם הוא פנוי"
+},
+{
+"en": "Add a fourth philosopher",
+"he": "מוסיפים פילוסוף רביעי"
+},
+{
+"en": "Always take the lower-numbered chopstick first",
+"he": "תמיד לוקחים קודם את המקל עם המספר הנמוך"
+}
+],
+"ans": 3,
+"why": {
+"en": "A fixed global order breaks the circular wait. Left-first for everyone still deadlocks.",
+"he": "סדר גלובלי קבוע שובר את ההמתנה המעגלית. שמאלי-קודם לכולם עדיין מתקע."
+},
+"recap": {
+"en": "Ordered resources = no circular wait.",
+"he": "משאבים ממוספרים = אין המתנה מעגלית."
+}
+}
+]
+},
+{
+"id": "sync-6",
+"order": 6,
+"icon": "🥖",
+"boss": false,
+"title": {
+"en": "Bakery, TestAndSet and the kernel",
+"he": "מאפייה, TestAndSet והליבה"
+},
+"goal": {
+"en": "Critical sections without the OS, and why the kernel is special.",
+"he": "קטעים קריטיים בלי מערכת ההפעלה, ולמה הליבה מיוחדת."
+},
+"lesson": {
+"en": "\n<p>The <b>Bakery algorithm</b> solves the critical section for any number of processes with <b>no OS calls</b>. Each process takes a number (like a bakery ticket) and the smallest number enters first. If two numbers are <b>equal</b>, the process with the <b>smaller PID</b> goes first. The <code>choosing</code> array protects the moment a process picks its number; without it <b>mutual exclusion</b> breaks.</p>\n<pre>tickets: PID 4 -> 2, PID 2 -> 2, PID 7 -> 1\norder: PID 7 (ticket 1), PID 2 (tie, smaller PID), PID 4</pre>\n<p>Any solution that does not call the OS cannot put a process to sleep, so it inevitably uses <b>busy waiting</b>. The entry code has two jobs: announce the intent to enter, then check that nobody else is inside.</p>\n<p>Inside the kernel Linux uses a <b>TestAndSet</b> style lock (spin-lock). The kernel cannot use semaphores to coordinate cores, because kernel code <b>cannot go to sleep</b>. Binary and counting semaphores can each be built from the other.</p>\n",
+"he": "\n<p>אלגוריתם ה<b>מאפייה (Bakery)</b> פותר את הקטע הקריטי לכל מספר תהליכים <b>בלי קריאות למערכת ההפעלה</b>. כל תהליך לוקח מספר (כמו מספר בתור במאפייה) והמספר הקטן ביותר נכנס ראשון. אם שני מספרים <b>שווים</b>, נכנס התהליך עם ה-<b>PID הקטן יותר</b>. מערך ה-<code>choosing</code> מגן על הרגע שבו תהליך בוחר את המספר שלו; בלעדיו <b>ההדדיות</b> נשברת.</p>\n<pre>tickets: PID 4 -> 2, PID 2 -> 2, PID 7 -> 1\norder: PID 7 (ticket 1), PID 2 (tie, smaller PID), PID 4</pre>\n<p>כל פתרון שלא קורא למערכת ההפעלה לא יכול להרדים תהליך, ולכן הוא בהכרח משתמש ב<b>המתנה פעילה</b>. לקוד הכניסה שני תפקידים: להכריז על כוונה להיכנס, ואז לבדוק שאף אחד אחר לא בפנים.</p>\n<p>בתוך הליבה Linux משתמשת בנעילה מסוג <b>TestAndSet</b> (‏spin-lock). הליבה לא יכולה להשתמש בסמפורים כדי לתאם בין ליבות מעבד, כי קוד ליבה <b>לא יכול ללכת לישון</b>. סמפור בינארי וסמפור סופר אפשר לבנות זה מזה.</p>\n"
+},
+"questions": [
+{
+"id": "sync-6-1",
+"q": {
+"en": "Bakery algorithm: PID 4 holds ticket 2, PID 2 holds ticket 2, PID 7 holds ticket 1. In what order do they enter?",
+"he": "אלגוריתם המאפייה: ל-PID 4 כרטיס 2, ל-PID 2 כרטיס 2, ל-PID 7 כרטיס 1. באיזה סדר הם נכנסים?"
+},
+"opts": [
+{
+"en": "PID 7, PID 4, PID 2",
+"he": "PID 7, PID 4, PID 2"
+},
+{
+"en": "PID 7, PID 2, PID 4",
+"he": "PID 7, PID 2, PID 4"
+},
+{
+"en": "PID 2, PID 4, PID 7",
+"he": "PID 2, PID 4, PID 7"
+},
+{
+"en": "PID 4, PID 2, PID 7",
+"he": "PID 4, PID 2, PID 7"
+}
+],
+"ans": 1,
+"why": {
+"en": "The smallest ticket first, and on equal tickets the smaller PID: 7, then 2, then 4.",
+"he": "הכרטיס הקטן קודם, ובשוויון ה-PID הקטן: 7, אחר כך 2, אחר כך 4."
+},
+"recap": {
+"en": "Order by (ticket, PID).",
+"he": "סדר לפי (כרטיס, PID)."
+},
+"exam": "2016B-6"
+},
+{
+"id": "sync-6-2",
+"q": {
+"en": "Which critical-section solution needs no OS calls and works for any number of processes?",
+"he": "איזה פתרון לקטע הקריטי לא צריך קריאות מערכת הפעלה ועובד לכל מספר תהליכים?"
+},
+"opts": [
+{
+"en": "A semaphore",
+"he": "סמפור"
+},
+{
+"en": "The semop call",
+"he": "קריאת semop"
+},
+{
+"en": "A monitor in the kernel",
+"he": "מוניטור בליבה"
+},
+{
+"en": "The Bakery algorithm",
+"he": "אלגוריתם המאפייה"
+}
+],
+"ans": 3,
+"why": {
+"en": "The Bakery algorithm is pure software.",
+"he": "אלגוריתם המאפייה הוא תוכנה בלבד."
+},
+"recap": {
+"en": "Software solution for n processes = Bakery.",
+"he": "פתרון תוכנה ל-n תהליכים = מאפייה."
+},
+"exam": "2021A-7"
+},
+{
+"id": "sync-6-3",
+"q": {
+"en": "A critical-section solution that does not call the OS cannot remove a process from running. What problem does that inevitably cause?",
+"he": "פתרון לקטע קריטי שלא קורא למערכת ההפעלה לא יכול להוריד תהליך מריצה. איזו בעיה זה גורם בהכרח?"
+},
+"opts": [
+{
+"en": "Deadlock",
+"he": "קיפאון"
+},
+{
+"en": "Busy waiting",
+"he": "המתנה פעילה"
+},
+{
+"en": "Thrashing",
+"he": "תזזית"
+},
+{
+"en": "Priority inversion only",
+"he": "היפוך עדיפויות בלבד"
+}
+],
+"ans": 1,
+"why": {
+"en": "Without sleeping, a waiting process can only spin.",
+"he": "בלי שינה, תהליך ממתין יכול רק לעשות ספינינג."
+},
+"recap": {
+"en": "No OS = spinning.",
+"he": "בלי OS = ספינינג."
+},
+"exam": "2020B-7"
+},
+{
+"id": "sync-6-4",
+"q": {
+"en": "Why can the OS not use semaphores to schedule between kernels running on multiple cores?",
+"he": "מדוע מערכת ההפעלה לא יכולה להשתמש בסמפורים כדי לתזמן בין ליבות שרצות על כמה ליבות מעבד?"
+},
+"opts": [
+{
+"en": "Semaphores are too slow to initialise",
+"he": "סמפורים איטיים מדי לאתחול"
+},
+{
+"en": "Semaphores only work for user threads",
+"he": "סמפורים עובדים רק עם תהליכונים של משתמש"
+},
+{
+"en": "Kernel code cannot go to sleep",
+"he": "קוד הליבה לא יכול ללכת לישון"
+},
+{
+"en": "There is no hardware for them",
+"he": "אין להם חומרה"
+}
+],
+"ans": 2,
+"why": {
+"en": "A semaphore wait puts the caller to sleep, which the kernel itself cannot do.",
+"he": "wait על סמפור מרדים את הקורא, וזה משהו שהליבה עצמה לא יכולה לעשות."
+},
+"recap": {
+"en": "Kernel cannot sleep, so it spins.",
+"he": "הליבה לא יכולה לישון, ולכן היא עושה ספינינג."
+},
+"exam": "2023B-5"
+},
+{
+"id": "sync-6-5",
+"q": {
+"en": "When does Linux use the shared-boolean + TestAndSet mechanism for a critical section?",
+"he": "מתי Linux משתמשת במנגנון של משתנה בוליאני משותף ו-TestAndSet לקטע קריטי?"
+},
+"opts": [
+{
+"en": "To implement critical sections inside the kernel",
+"he": "כדי לממש קטעים קריטיים בתוך הליבה"
+},
+{
+"en": "For user-program mutexes only",
+"he": "רק למנעולים של תוכניות משתמש"
+},
+{
+"en": "Never",
+"he": "אף פעם"
+},
+{
+"en": "Only on single-core machines",
+"he": "רק במחשבים עם ליבה אחת"
+}
+],
+"ans": 0,
+"why": {
+"en": "Kernel code cannot sleep, so it uses spinning locks.",
+"he": "קוד ליבה לא יכול לישון, ולכן הוא משתמש בנעילות ספינינג."
+},
+"recap": {
+"en": "TestAndSet is for kernel critical sections.",
+"he": "TestAndSet מיועד לקטעים קריטיים בליבה."
+},
+"exam": "2017SB-4"
+},
+{
+"id": "sync-6-6",
+"q": {
+"en": "In the Bakery algorithm with the `choosing` array removed, which critical-section condition no longer holds?",
+"he": "באלגוריתם המאפייה כשמסירים את מערך ה-`choosing`, איזה תנאי של הקטע הקריטי כבר לא מתקיים?"
+},
+"opts": [
+{
+"en": "Progress",
+"he": "התקדמות"
+},
+{
+"en": "Bounded waiting",
+"he": "המתנה חסומה"
+},
+{
+"en": "Mutual exclusion",
+"he": "הדדיות"
+},
+{
+"en": "None of them",
+"he": "אף אחד מהם"
+}
+],
+"ans": 2,
+"why": {
+"en": "Two processes can pick numbers at once and both think they are first, so both enter.",
+"he": "שני תהליכים יכולים לבחור מספרים בו-זמנית וכל אחד חושב שהוא ראשון, ושניהם נכנסים."
+},
+"recap": {
+"en": "No choosing array = mutual exclusion broken.",
+"he": "בלי choosing = הדדיות נשברת."
+},
+"exam": "2017SA-7"
+}
+]
+},
+{
+"id": "sync-7",
+"order": 7,
+"icon": "🏆",
+"boss": true,
+"title": {
+"en": "Boss: synchronization exam",
+"he": "בוס: מבחן סנכרון"
+},
+"goal": {
+"en": "Real exam items across the whole topic.",
+"he": "שאלות מהמבחנים מכל הנושא."
+},
+"lesson": {
+"en": "\n<p>Exam level. Quick reminders: semaphore for mutual exclusion starts at 1, for ordering at 0; negative value = sleepers; <code>semop</code> bundles operations atomically; bakery ties go to the smaller PID; the minimum deadlock needs 2 semaphores or 2 philosophers. 80% passes.</p>\n",
+"he": "\n<p>שלב המבחן. תזכורות מהירות: סמפור להדדיות מתחיל ב-1, לסדר ב-0; ערך שלילי = ישנים; ‏<code>semop</code> אוגדת פעולות אטומית; בשוויון במאפייה נכנס ה-PID הקטן; קיפאון מינימלי דורש 2 סמפורים או 2 פילוסופים. 80% עובר.</p>\n"
+},
+"questions": [
+{
+"id": "sync-7-1",
+"q": {
+"en": "What is the minimum number of semop calls needed to atomically wait on 5 semaphores and signal on 5 others?",
+"he": "מהו המספר המינימלי של קריאות semop שדרושות כדי לבצע אטומית wait על 5 סמפורים ו-signal על 5 אחרים?"
+},
+"opts": [
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "5",
+"he": "5"
+},
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "10",
+"he": "10"
+}
+],
+"ans": 2,
+"why": {
+"en": "One call with nsops = 10 carries all ten operations atomically.",
+"he": "קריאה אחת עם nsops = 10 נושאת את כל עשר הפעולות אטומית."
+},
+"recap": {
+"en": "One semop call can hold many operations.",
+"he": "קריאת semop אחת יכולה להכיל הרבה פעולות."
+},
+"exam": "2024A-10"
+},
+{
+"id": "sync-7-2",
+"q": {
+"en": "You set `sops->sem_op = -1` but never call semop(). What happens to the semaphore?",
+"he": "קבעת `sops->sem_op = -1` אך לא קראת ל-semop(). מה קורה לסמפור?"
+},
+"opts": [
+{
+"en": "No operation occurs",
+"he": "לא מתבצעת שום פעולה"
+},
+{
+"en": "A wait is performed",
+"he": "מתבצע wait"
+},
+{
+"en": "The process sleeps",
+"he": "התהליך ישן"
+},
+{
+"en": "The semaphore is deleted",
+"he": "הסמפור נמחק"
+}
+],
+"ans": 0,
+"why": {
+"en": "Filling the structure does nothing until semop is called.",
+"he": "מילוי המבנה לא עושה דבר עד שקוראים ל-semop."
+},
+"recap": {
+"en": "The operation happens only inside semop.",
+"he": "הפעולה מתרחשת רק בתוך semop."
+},
+"exam": "2023A-10"
+},
+{
+"id": "sync-7-3",
+"q": {
+"en": "In Linux, when are semaphores that were not explicitly removed with semctl finally deleted?",
+"he": "ב-Linux, מתי סמפורים שלא נמחקו במפורש ב-semctl נמחקים סופית?"
+},
+"opts": [
+{
+"en": "When the creating process exits",
+"he": "כשהתהליך שיצר אותם מסתיים"
+},
+{
+"en": "After one hour",
+"he": "אחרי שעה"
+},
+{
+"en": "When the computer crashes or reboots",
+"he": "כשהמחשב קורס או עושה אתחול"
+},
+{
+"en": "When the last waiter wakes",
+"he": "כשהממתין האחרון מתעורר"
+}
+],
+"ans": 2,
+"why": {
+"en": "They belong to the kernel, not to the process, so they outlive it until reboot.",
+"he": "הם שייכים לליבה ולא לתהליך, ולכן הם שורדים אותו עד אתחול."
+},
+"recap": {
+"en": "Leaked semaphores live until reboot.",
+"he": "סמפורים שדלפו חיים עד אתחול."
+},
+"exam": "2014B-9"
+},
+{
+"id": "sync-7-4",
+"q": {
+"en": "What does the shell command `ipcrm -s 666` do?",
+"he": "מה עושה פקודת הקונסולה `ipcrm -s 666`?"
+},
+"opts": [
+{
+"en": "Creates semaphore 666",
+"he": "יוצרת סמפור 666"
+},
+{
+"en": "Deletes semaphore set 666",
+"he": "מוחקת את קבוצת הסמפורים 666"
+},
+{
+"en": "Sets a semaphore to 666",
+"he": "קובעת סמפור ל-666"
+},
+{
+"en": "Kills process 666",
+"he": "הורגת את תהליך 666"
+}
+],
+"ans": 1,
+"why": {
+"en": "ipcrm removes an IPC object; -s selects semaphores.",
+"he": "ipcrm מסירה אובייקט IPC; ‏-s בוחר סמפורים."
+},
+"recap": {
+"en": "ipcrm -s = remove a semaphore set.",
+"he": "ipcrm -s = מחיקת קבוצת סמפורים."
+},
+"exam": "2017A-10"
+},
+{
+"id": "sync-7-5",
+"q": {
+"en": "Consumers wait on `full` (started at 0) and its value is −3. What does that mean?",
+"he": "צרכנים ממתינים על `full` (שהתחיל ב-0) וערכו ‎-3. מה זה אומר?"
+},
+"opts": [
+{
+"en": "Three slots are full",
+"he": "שלושה מקומות מלאים"
+},
+{
+"en": "An error",
+"he": "שגיאה"
+},
+{
+"en": "Three producers are waiting",
+"he": "שלושה יצרנים ממתינים"
+},
+{
+"en": "Three consumers are waiting",
+"he": "שלושה צרכנים ממתינים"
+}
+],
+"ans": 3,
+"why": {
+"en": "A negative value counts the sleepers.",
+"he": "ערך שלילי סופר את הישנים."
+},
+"recap": {
+"en": "Negative full = waiting consumers.",
+"he": "full שלילי = צרכנים ממתינים."
+},
+"exam": "2019B-4"
+},
+{
+"id": "sync-7-6",
+"q": {
+"en": "What is the fewest binary semaphores with which two processes can still deadlock?",
+"he": "מהו המספר הקטן ביותר של סמפורים בינאריים שבהם שני תהליכים עדיין יכולים להיכנס לקיפאון?"
+},
+"opts": [
+{
+"en": "1",
+"he": "1"
+},
+{
+"en": "2",
+"he": "2"
+},
+{
+"en": "3",
+"he": "3"
+},
+{
+"en": "It cannot happen",
+"he": "It cannot happen"
+}
+],
+"ans": 1,
+"why": {
+"en": "Two processes, two semaphores, opposite order.",
+"he": "שני תהליכים, שני סמפורים, סדר הפוך."
+},
+"recap": {
+"en": "Minimum: 2.",
+"he": "מינימום: 2."
+},
+"exam": "2023A-6"
+}
+]
+}
+]
 }
 },
 "questions": [

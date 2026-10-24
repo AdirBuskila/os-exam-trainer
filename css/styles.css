@@ -179,3 +179,63 @@ pre, code, .qcode{direction:ltr;text-align:left;unicode-bidi:isolate}
   .deck-link,.deck-link .deck-arrow{transition:none}
   .deck-link:hover,.deck-link:focus-visible{transform:none}
   .deck-link:hover .deck-arrow,.deck-link:focus-visible .deck-arrow{transform:none}}
+
+/* =======================================================================
+   "🧭 צריך עזרה?" guided courses (js/courses.js)
+   ======================================================================= */
+.hidden{display:none!important}
+.crs-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.crs-card{display:flex;gap:12px;align-items:flex-start;text-align:start;width:100%;font:inherit;color:var(--txt);
+  background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;transition:.15s}
+.crs-card:hover,.crs-card:focus-visible{border-color:var(--acc);transform:translateY(-1px)}
+.crs-ic{font-size:26px;line-height:1}
+.crs-ct{display:flex;flex-direction:column;gap:4px;flex:1}
+.crs-ct b{font-size:15px;line-height:1.35}
+.crs-cs{font-size:12.5px;color:var(--mut);line-height:1.4}
+.crs-home{border-color:var(--acc);background:linear-gradient(135deg,rgba(91,140,255,.10),rgba(124,91,255,.08)),var(--card)}
+.crs-intro{color:var(--mut);font-size:14px;line-height:1.6;margin:0 0 12px}
+.crs-overall{padding:14px 16px}
+.crs-map{display:flex;flex-direction:column;gap:9px}
+.crs-lvl{display:flex;flex-direction:column;gap:3px;text-align:start;width:100%;font:inherit;color:var(--txt);
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer}
+.crs-lvl:hover,.crs-lvl:focus-visible{border-color:var(--acc)}
+.crs-lvl .num{font-size:11.5px;color:var(--mut)}
+.crs-lvl .ttl{font-weight:700;font-size:15.5px}
+.crs-lvl .gl{font-size:13px;color:var(--mut);line-height:1.45}
+.crs-lvl .st{font-size:12px;color:var(--mut);margin-top:2px}
+.crs-lvl.next{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.crs-lvl.passed{border-color:var(--good)}
+.crs-lvl.passed .st{color:var(--good);font-weight:600}
+.crs-lvl.boss .ttl::after{content:""}
+.crs-head{margin-bottom:8px}
+.chip.soft{cursor:default;color:var(--mut)}
+.crs-goal{color:var(--mut);font-size:14px;margin:0 0 12px}
+.crs-lesson{padding:6px 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:14px;line-height:1.65}
+.crs-lesson h3{font-size:16px;margin:14px 0 4px}
+.crs-lesson p{margin:8px 0}
+.crs-lesson ul,.crs-lesson ol{padding-inline-start:22px;margin:8px 0}
+.crs-lesson li{margin:4px 0}
+.crs-lesson pre{white-space:pre;overflow-x:auto}
+.crs-lesson .tip{background:rgba(91,140,255,.10);border:1px solid var(--acc);border-radius:12px;padding:8px 14px;margin:10px 0}
+.crs-lesson .warn{background:rgba(255,207,91,.08);border:1px solid var(--warn);border-radius:12px;padding:8px 14px;margin:10px 0}
+.crs-actions{margin-bottom:6px}
+.crs-qcard{margin-top:10px}
+.crs-exam{display:inline-block;font-size:12px;color:var(--warn);border:1px solid var(--warn);border-radius:999px;padding:2px 10px;margin-bottom:10px}
+.crs-q{font-size:17px;line-height:1.6}
+.crs-opts{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+button.opt{display:block;width:100%;text-align:start;font:inherit;font-size:15.5px;line-height:1.5;color:var(--txt);
+  background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;transition:.12s}
+button.opt:hover:not(:disabled),button.opt:focus-visible{border-color:var(--acc)}
+button.opt:disabled{cursor:default;opacity:1}
+button.opt.right{border-color:var(--good);background:rgba(62,207,142,.16)}
+button.opt.wrong{border-color:var(--bad);background:rgba(255,107,107,.14)}
+.crs-fb{border-radius:12px;padding:10px 14px;font-size:14.5px;line-height:1.6;margin-top:6px}
+.crs-fb.ok{background:rgba(62,207,142,.12);border:1px solid var(--good)}
+.crs-fb.no{background:rgba(255,107,107,.10);border:1px solid var(--bad)}
+.crs-sum{padding:22px 16px}
+.crs-big{font-size:46px;font-weight:800;color:var(--acc);margin:10px 0 2px}
+.crs-msg{margin:12px 0}
+.crs-review{text-align:start;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0;font-size:14px;line-height:1.6}
+.crs-review-t{font-weight:700;margin-bottom:4px}
+.crs-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+@media(min-width:560px){.crs-btns{flex-direction:row;flex-wrap:wrap;justify-content:center}}

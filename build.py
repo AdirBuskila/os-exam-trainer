@@ -12,7 +12,7 @@ Output:
 OVERRIDES below are the *verified corrections / notes* applied at build time
 (blank-answer fills + the three official-key clarifications surfaced by audit).
 """
-import json, os, glob, re
+import json, os, glob, re, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(ROOT, "src", "data")
@@ -108,6 +108,12 @@ def load_i18n():
         out[lang] = json.load(open(fp, encoding="utf-8")) if os.path.exists(fp) else {}
     return out
 
+def load_courses():
+    """Guided courses ("צריך עזרה?"): src/courses/<id>.py -> DATA.courses (see src/courses/loader.py)."""
+    sys.path.insert(0, os.path.join(ROOT, "src", "courses"))
+    import loader
+    return loader.to_data(loader.load_sources())
+
 def load_scope():
     fp = os.path.join(DATA, "scope.json")
     if not os.path.exists(fp):
@@ -138,6 +144,7 @@ def main():
         },
         "lessons": load_lessons(),
         "i18n": load_i18n(),
+        "courses": load_courses(),
         "questions": questions,
     }
     payload = json.dumps(data, ensure_ascii=False, indent=0)
@@ -147,6 +154,7 @@ def main():
         f.write(header + "window.DATA = " + payload + ";\n")
     print(f"Wrote {OUT}")
     print(f"  {len(questions)} questions across {len(SECTIONS)} sections: {counts}")
+    print(f"  courses: {len(data['courses'])} ({sum(len(c['levels']) for c in data['courses'].values())} levels, {sum(len(L['questions']) for c in data['courses'].values() for L in c['levels'])} questions)")
     print(f"  focus: {n_off} question(s) marked off-exam ({scope.get('focus',{}).get('label','-') if scope.get('focus') else '-'})")
 
 if __name__ == "__main__":
