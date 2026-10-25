@@ -148,6 +148,9 @@ pre, code, .qcode{direction:ltr;text-align:left;unicode-bidi:isolate}
 .feedback-line{font-size:12.5px;line-height:1.5;margin:0 0 12px}
 .feedback-link,.reportlink{color:var(--mut);text-decoration:none;overflow-wrap:anywhere}
 .feedback-link{border-bottom:1px dotted currentColor}
+.coffee-link{display:inline-block;margin:.4rem .5rem 0;padding:.15rem .65rem;border:1px solid currentColor;border-radius:999px;color:var(--mut);text-decoration:none;white-space:nowrap}
+.coffee-link:hover,.coffee-link:focus-visible{color:#fbbf24}
+.coffee-link:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
 .feedback-link:hover,.feedback-link:focus-visible,.reportlink:hover,.reportlink:focus-visible{color:var(--txt)}
 .feedback-link:focus-visible,.reportlink:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:3px}
 .reportrow{margin:10px 0 2px;font-size:12px;text-align:end}

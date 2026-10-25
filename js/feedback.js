@@ -40,6 +40,13 @@ function mountFooter() {
   a.href = mailto(T('mail.footerSubject', { title: title() }));
   a.textContent = T('foot.feedback');
   box.appendChild(a);
+  var c = doc.createElement('a');
+  c.className = 'coffee-link';
+  c.href = 'https://buymeacoffee.com/adirbuskila';
+  c.target = '_blank';
+  c.rel = 'noopener';
+  c.textContent = T('foot.coffee');
+  box.appendChild(c);
 }
 
 root.Feedback = { mountFooter: mountFooter, reportRow: reportRow, reportHref: reportHref };

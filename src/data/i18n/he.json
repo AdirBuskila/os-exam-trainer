@@ -10,6 +10,7 @@
 
   "foot.deck": "<span class=\"deck-arrow\">↗</span> עוד כלי תרגול לקורסים אחרים",
   "foot.feedback": "מצאתם טעות? יצא מבחן חדש שלא מופיע כאן? 📩 כתבו לי ואוסיף",
+  "foot.coffee": "☕ עזר לכם? אפשר לקנות לי קפה",
   "report.link": "⚑ דווחו על טעות",
   "mail.footerSubject": "{title} — משוב",
   "mail.reportSubject": "{title} — טעות בשאלה {id}",
