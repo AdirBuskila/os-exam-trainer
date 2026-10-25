@@ -40,13 +40,24 @@ function mountFooter() {
   a.href = mailto(T('mail.footerSubject', { title: title() }));
   a.textContent = T('foot.feedback');
   box.appendChild(a);
-  var c = doc.createElement('a');
-  c.className = 'coffee-link';
-  c.href = 'https://buymeacoffee.com/adirbuskila';
-  c.target = '_blank';
-  c.rel = 'noopener';
+  mountCoffee(box.parentElement);
+}
+/* the coffee button: its own row at the top of the footer, created once, relabelled per language */
+function mountCoffee(foot) {
+  if (!foot) return;
+  var c = foot.querySelector('.coffee-link');
+  if (!c) {
+    var row = doc.createElement('div');
+    row.className = 'coffee-row';
+    c = doc.createElement('a');
+    c.className = 'coffee-link';
+    c.href = 'https://buymeacoffee.com/adirbuskila';
+    c.target = '_blank';
+    c.rel = 'noopener';
+    row.appendChild(c);
+    foot.insertBefore(row, foot.firstChild);
+  }
   c.textContent = T('foot.coffee');
-  box.appendChild(c);
 }
 
 root.Feedback = { mountFooter: mountFooter, reportRow: reportRow, reportHref: reportHref };
