@@ -7,3 +7,6 @@ desktop.ini
 .vscode/
 .idea/
 *.log
+
+# rendered videos, review frames, TTS cache (regenerable)
+videos/out/

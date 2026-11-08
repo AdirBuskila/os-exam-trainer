@@ -1,0 +1,99 @@
+/* vmem-course widgets (w_vmem.py); every class starts with vm- */
+.vm-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.vm-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.vm-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.vm-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.vm-row.mono{direction:ltr;font-family:Consolas,monospace}
+.vm-row.big{font-size:44px;font-weight:700}
+.vm-ok{color:var(--ok);font-weight:700}
+.vm-bad{color:var(--bad);font-weight:700}
+
+/* reference string x frames */
+.vm-tabw{display:flex;flex-direction:column;align-items:center;gap:12px;direction:ltr}
+.vm-cap{font-size:30px;font-weight:700;color:var(--brand);direction:rtl}
+.vm-tab{display:flex;direction:ltr;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:8px 10px}
+.vm-labs{display:flex;flex-direction:column;padding-right:8px;border-right:1px solid var(--line)}
+.vm-lab{height:58px;display:flex;align-items:center;justify-content:flex-start;font-size:22px;color:var(--muted);
+  white-space:nowrap;direction:rtl}
+.vm-lab.vm-lh{height:66px;font-weight:700}
+.vm-lab.vm-lm,.vm-lab.vm-lo,.vm-lab.vm-lq{height:44px}
+.vm-col{position:relative;display:flex;flex-direction:column;align-items:stretch}
+.vm-ref{position:relative;height:64px;display:flex;align-items:center;justify-content:center;font-family:Consolas,monospace;
+  font-size:36px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--line)}
+.vm-ring{position:absolute;left:6px;right:6px;top:6px;bottom:6px;border-radius:12px;border:4px solid var(--warn);
+  box-shadow:0 0 14px rgba(251,191,36,.6)}
+.vm-body{display:flex;flex-direction:column}
+.vm-cell{position:relative;height:50px;margin:4px 5px;display:flex;align-items:center;justify-content:center;
+  font-family:Consolas,monospace;font-size:32px;background:var(--card);border:1px solid var(--line);border-radius:9px}
+.vm-cell.emp{background:none;border-style:dashed}
+.vm-cell.new{background:rgba(251,113,133,.22);border-color:var(--bad);color:#fff;font-weight:700}
+.vm-cell.hit{background:rgba(52,211,153,.18);border-color:var(--ok)}
+.vm-vk{position:absolute;left:-5px;right:-5px;top:-5px;bottom:-5px;border-radius:11px;border:5px solid var(--bad);
+  box-shadow:0 0 16px rgba(251,113,133,.7)}
+.vm-mark{height:44px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700}
+.vm-mark.f{color:var(--bad)}
+.vm-mark.ok{color:var(--ok)}
+.vm-out{height:44px;display:flex;align-items:center;justify-content:center;font-family:Consolas,monospace;font-size:28px;
+  color:var(--bad);text-decoration:line-through}
+.vm-ord{height:44px;display:flex;align-items:center;justify-content:center;font-family:Consolas,monospace;font-size:20px;
+  color:var(--muted);white-space:nowrap}
+.vm-colhl{position:absolute;left:1px;right:1px;top:0;bottom:0;border-radius:10px;background:rgba(56,189,248,.10);
+  box-shadow:0 0 0 3px var(--brand2) inset}
+.vm-cnt{font-size:32px;direction:rtl;display:flex;align-items:center;gap:12px}
+.vm-nums{position:relative;display:inline-block;width:64px;height:46px}
+.vm-num{position:absolute;inset:0;text-align:center;font-size:40px;color:var(--warn);line-height:46px}
+
+/* Clock */
+svg.vm-clk{overflow:visible}
+svg.vm-clk .vm-cf{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.vm-clk .vm-cf.clr{stroke:#fbbf24;stroke-width:7}
+svg.vm-clk .vm-cf.lod{stroke:#34d399;stroke-width:7;fill:rgba(52,211,153,.16)}
+svg.vm-clk .vm-cf.hit{stroke:#38bdf8;stroke-width:7}
+svg.vm-clk .vm-cpg{font-family:Consolas,monospace;font-size:44px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.vm-clk .vm-cbit{font-family:Consolas,monospace;font-size:28px;text-anchor:middle}
+svg.vm-clk .vm-cbit.b1{fill:#fbbf24;font-weight:700}
+svg.vm-clk .vm-cbit.b0{fill:var(--muted)}
+svg.vm-clk .vm-cnm{font-family:"Segoe UI",sans-serif;font-size:22px;fill:var(--muted);text-anchor:middle}
+svg.vm-clk .vm-hand{stroke:#fbbf24;stroke-width:8;stroke-linecap:round}
+svg.vm-clk .vm-hub{fill:#fbbf24}
+
+/* V01: page table + RAM */
+.vm-ptw{display:flex;gap:60px;align-items:flex-start;direction:rtl}
+.vm-pt,.vm-ram{display:flex;flex-direction:column;gap:6px;background:var(--card2);border:1px solid var(--line);
+  border-radius:14px;padding:12px 18px}
+.vm-ptc{font-size:28px;font-weight:700;color:var(--brand);text-align:center;margin-bottom:4px}
+.vm-ptr{position:relative;display:flex;gap:6px}
+.vm-pth .vm-pc{color:var(--muted);font-size:24px;font-weight:600}
+.vm-pc{width:110px;height:52px;display:flex;align-items:center;justify-content:center;font-size:32px;
+  font-family:Consolas,monospace}
+.vm-pth .vm-pc{font-family:"Segoe UI",sans-serif}
+.vm-pv,.vm-pfr{position:relative;background:var(--card);border:1px solid var(--line);border-radius:9px}
+.vm-v0,.vm-v1,.vm-pf{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center}
+.vm-v0{color:var(--bad)}
+.vm-v1{color:var(--ok)}
+.vm-pf{color:var(--ink);font-weight:400}
+.vm-prh{position:absolute;left:-6px;right:-6px;top:-3px;bottom:-3px;border-radius:10px;background:rgba(251,191,36,.12);
+  box-shadow:0 0 0 3px var(--warn) inset}
+.vm-rf{position:relative;display:flex;gap:10px;align-items:center}
+.vm-rk{width:44px;font-size:26px;color:var(--muted);font-family:Consolas,monospace;text-align:center}
+.vm-rslot{position:relative;width:170px;height:52px;background:var(--card);border:1px dashed var(--line);border-radius:9px}
+.vm-rp{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;
+  font-size:28px;border-radius:9px;background:rgba(56,189,248,.18);border:1px solid var(--brand2)}
+.vm-rfh{position:absolute;left:-6px;right:-6px;top:-4px;bottom:-4px;border-radius:10px;box-shadow:0 0 0 3px var(--ok) inset}
+/* caption + counter on one line; compact tables (two on one stage) */
+.vm-head{display:flex;align-items:center;gap:48px;direction:rtl}
+.vm-tabw.sm{gap:6px}
+.vm-tabw.sm .vm-cap{font-size:28px}
+.vm-tabw.sm .vm-cnt{font-size:28px}
+.vm-tabw.sm .vm-tab{padding:4px 10px}
+.vm-tabw.sm .vm-lab{height:46px;font-size:21px}
+.vm-tabw.sm .vm-lab.vm-lh{height:50px}
+.vm-tabw.sm .vm-lab.vm-lm,.vm-tabw.sm .vm-lab.vm-lo{height:34px}
+.vm-tabw.sm .vm-ref{height:48px;font-size:30px}
+.vm-tabw.sm .vm-cell{height:40px;margin:3px 5px;font-size:27px}
+.vm-tabw.sm .vm-mark,.vm-tabw.sm .vm-out{height:34px;font-size:24px}
+/* left-to-right strip of separately isolated pieces (queue: oldest left) */
+.vm-flex{display:flex;direction:ltr;align-items:center;justify-content:center;gap:22px;font-size:40px}
+.vm-fp{unicode-bidi:plaintext}
+.vm-flex.q .vm-fp:first-child,.vm-flex.q .vm-fp:last-child{color:var(--muted);font-size:32px}
+.vm-qb{font-family:Consolas,monospace;font-size:46px;color:#fff}

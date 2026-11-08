@@ -1,0 +1,108 @@
+/* paging-course widgets (w_paging.py); every class starts with pg- */
+.pg-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.pg-big{font-size:46px;direction:ltr;text-align:center}
+.pg-big.sm{font-size:38px}
+.pg-big.xs{font-size:32px}
+.pg-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.pg-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.pg-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.pg-row.ltr{direction:ltr;font-family:Consolas,monospace}
+.pg-row.sm{font-size:29px}
+.pg-ok{color:var(--ok);font-weight:700}
+.pg-bad{color:var(--bad);font-weight:700}
+.pg-pg{color:#2dd4bf;font-weight:700}
+.pg-of{color:#fbbf24;font-weight:700}
+.pg-fr{color:#c084fc;font-weight:700}
+.pg-ou{color:#38bdf8;font-weight:700}
+.pg-in{color:#fb7185;font-weight:700}
+table.pg-tab{border-collapse:separate;border-spacing:0;font-size:30px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.pg-tab th,table.pg-tab td{padding:7px 22px;text-align:center;border-bottom:1px solid var(--line)}
+table.pg-tab thead th{color:var(--muted);font-weight:600}
+table.pg-tab tbody tr:last-child>*{border-bottom:none}
+
+/* bit strip */
+svg.pg-strip{overflow:visible}
+svg.pg-strip .pg-cell{fill:var(--card);stroke:rgba(201,205,240,.45);stroke-width:1.5}
+svg.pg-strip .pg-bit{font-family:Consolas,monospace;fill:var(--ink);text-anchor:middle}
+svg.pg-strip .pg-lab{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;text-anchor:middle}
+svg.pg-strip .pg-val{font-family:Consolas,monospace;font-size:34px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.pg-strip .pg-cap{font-family:"Segoe UI",sans-serif;font-size:28px;fill:var(--muted);text-anchor:middle}
+
+/* page table */
+.pg-pt{display:grid;row-gap:5px;direction:ltr;font-size:30px}
+.pg-pth{color:var(--muted);font-size:26px;text-align:center;padding:0 22px}
+.pg-ptr{position:relative;display:grid;grid-template-columns:subgrid;align-items:center;background:var(--card2);
+  border:1px solid var(--line);border-radius:10px;padding:2px 0}
+.pg-ptr>span{position:relative;text-align:center;padding:0 22px;font-family:Consolas,monospace}
+.pg-ptr.pg-inv>span{color:var(--muted)}
+.pg-hi{position:absolute;left:-3px;right:-3px;top:-3px;bottom:-3px;border-radius:11px;background:rgba(45,212,191,.22);
+  box-shadow:0 0 0 4px var(--brand) inset}
+.pg-hi.bad{background:rgba(251,113,133,.20);box-shadow:0 0 0 4px var(--bad) inset}
+
+/* TLB path */
+svg.pg-flow{overflow:visible}
+svg .pg-box{fill:var(--card);stroke:#c9cdf0;stroke-width:2.5}
+svg .pg-box.tl,svg .pg-box.tlb{stroke:#2dd4bf}
+svg .pg-box.pt{stroke:#c084fc}
+svg .pg-box.da{stroke:#fbbf24}
+svg .pg-box.mm{stroke:#38bdf8}
+svg .pg-box.pr{stroke:#fb7185}
+svg .pg-box.pc{stroke:#fbbf24}
+svg .pg-bt{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg .pg-bt.sm{font-size:27px}
+svg .pg-bt.xs{font-size:23px;font-weight:400;fill:var(--muted)}
+svg .pg-ram{fill:rgba(192,132,252,.07);stroke:rgba(192,132,252,.5);stroke-width:2;stroke-dasharray:9 6}
+svg .pg-ramt{font-family:"Segoe UI",sans-serif;font-size:26px;fill:#c084fc}
+svg .pg-ah{stroke:#2dd4bf;stroke-width:5;fill:none}
+svg .pg-am{stroke:#fbbf24;stroke-width:5;fill:none}
+svg .pg-ft{font-family:"Segoe UI",sans-serif;font-size:30px;font-weight:700;text-anchor:middle}
+svg .pg-ft.hit{fill:#2dd4bf}
+svg .pg-ft.miss{fill:#fbbf24}
+
+/* multilevel walk */
+.pg-chain{display:flex;align-items:center;gap:14px;direction:ltr}
+.pg-mt{display:flex;flex-direction:column;gap:4px;background:var(--card2);border:2px solid #38bdf8;border-radius:14px;padding:8px 10px}
+.pg-mt.inner{border-color:#fb7185}
+.pg-mt.frame{border-color:#c084fc}
+.pg-mtt{font-size:24px;color:var(--muted);text-align:center;padding-bottom:4px}
+.pg-mtr{position:relative;display:flex;gap:18px;justify-content:space-between;font-family:Consolas,monospace;font-size:28px;
+  padding:2px 12px;min-width:150px}
+.pg-mtr>span{position:relative}
+.pg-mtr .ix{color:var(--muted)}
+.pg-mtr.dots{justify-content:center;color:var(--muted);padding:0}
+.pg-arrow{display:flex;flex-direction:column;align-items:center;color:var(--brand);font-size:40px;line-height:1}
+.pg-arl{font-size:22px;color:var(--muted);font-family:"Segoe UI",sans-serif}
+.pg-boxh{background:var(--card2);border:2px solid #fb7185;border-radius:14px;padding:10px 16px;font-size:28px;text-align:center;
+  font-family:Consolas,monospace}
+.pg-boxh.fr{border-color:#c084fc}
+.pg-boxh.ok{border-color:var(--ok)}
+
+/* CPU / RAM / kernel */
+svg.pg-mach{overflow:visible}
+svg .pg-cpu{fill:rgba(56,189,248,.06);stroke:rgba(56,189,248,.6);stroke-width:2}
+svg .pg-core{fill:rgba(255,255,255,.04);stroke:rgba(201,205,240,.4);stroke-width:1.5}
+svg .pg-kern{fill:rgba(251,191,36,.06);stroke:rgba(251,191,36,.55);stroke-width:2;stroke-dasharray:9 6}
+svg .pg-mt2{font-family:"Segoe UI",sans-serif;font-size:28px;font-weight:700;fill:var(--muted)}
+svg .pg-mt3{font-family:"Segoe UI",sans-serif;font-size:22px;fill:var(--muted)}
+
+/* exam panel: a smaller stem when the question is long */
+.pg-qsm{font-size:30px}
+
+/* whole pages bar */
+svg.pg-bar{overflow:visible}
+svg.pg-bar .pg-used{fill:rgba(45,212,191,.45)}
+svg.pg-bar .pg-waste{fill:rgba(251,191,36,.45)}
+svg.pg-bar .pg-pgbox{fill:none;stroke:#c9cdf0;stroke-width:3}
+svg.pg-bar .pg-pgl{font-family:Consolas,monospace;font-size:24px;fill:var(--muted);text-anchor:middle}
+svg.pg-bar .pg-bl{font-family:Consolas,monospace;font-size:28px;font-weight:700;fill:#2dd4bf;text-anchor:middle}
+svg.pg-bar .pg-bl.end{fill:var(--muted);text-anchor:end}
+svg.pg-bar .pg-wl{font-family:Consolas,monospace;font-size:30px;font-weight:700;fill:#fff;text-anchor:middle}
+
+/* a process's segments, each a run of pages */
+.pg-segs{display:flex;flex-direction:column;gap:12px;direction:ltr;width:560px}
+.pg-seg{display:flex;align-items:center;gap:20px;border:3px solid;border-radius:14px;padding:10px 18px;background:var(--card2)}
+.pg-segn{font-family:Consolas,monospace;font-size:32px;font-weight:700;width:110px}
+.pg-segps{display:flex;gap:8px}
+.pg-segp{display:block;width:62px;height:46px;border:2px solid #c9cdf0;border-radius:6px}
+.pg-seggap{text-align:center;color:var(--muted);font-size:34px;line-height:1}

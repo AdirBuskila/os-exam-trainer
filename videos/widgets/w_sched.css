@@ -1,0 +1,74 @@
+/* sched-course widgets (w_sched.py); every class starts with sc- */
+.sc-stack{display:flex;flex-direction:column;align-items:center;width:100%}
+.sc-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.sc-big{font-size:46px;direction:ltr;text-align:center}
+.sc-big.sm{font-size:38px}
+.sc-line{font-size:33px;direction:rtl;text-align:center;line-height:1.4}
+.sc-line.mono{direction:ltr;font-family:Consolas,monospace}
+.sc-ok{color:var(--ok);font-weight:700}
+.sc-bad{color:var(--bad);font-weight:700}
+.sc-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+
+/* Gantt chart */
+svg.sc-gantt{overflow:visible}
+svg.sc-gantt .sc-ax{stroke:#c9cdf0;stroke-width:3}
+svg.sc-gantt .sc-tk{stroke:#c9cdf0;stroke-width:2;stroke-dasharray:4 4}
+svg.sc-gantt .sc-tt{font-family:Consolas,monospace;font-size:26px;fill:var(--ink);text-anchor:middle}
+svg.sc-gantt .sc-blk{fill-opacity:.82;stroke:#0a0c18;stroke-width:2}
+svg.sc-gantt .sc-bn{font-family:Consolas,monospace;font-weight:700;fill:#0a0c18;text-anchor:middle}
+svg.sc-gantt .sc-idle{fill:rgba(255,255,255,.06);stroke:#9aa0cf;stroke-width:2;stroke-dasharray:8 6}
+svg.sc-gantt .sc-it{font-family:"Segoe UI",sans-serif;font-size:24px;fill:var(--muted);text-anchor:middle}
+svg.sc-gantt .sc-hl{fill:none;stroke:#fff;stroke-width:5}
+svg.sc-gantt .sc-fin{font-family:Consolas,monospace;font-size:24px;font-weight:700;text-anchor:middle}
+svg.sc-gantt .sc-arr{font-family:Consolas,monospace;font-size:24px;font-weight:700;text-anchor:middle}
+
+/* process chips */
+.sc-chip{display:inline-block;font-family:Consolas,monospace;font-weight:700;font-size:.92em;color:#0a0c18;
+  background:var(--c);border-radius:9px;padding:0 10px;line-height:1.35;direction:ltr;border:3px solid transparent}
+.sc-chip.sc-new{box-shadow:0 0 0 4px #2dd4bf, 0 0 14px rgba(45,212,191,.8)}
+.sc-chip.sc-back{box-shadow:0 0 0 4px #fbbf24, 0 0 14px rgba(251,191,36,.8)}
+
+/* process table */
+table.sc-tab{border-collapse:separate;border-spacing:0;font-size:32px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.sc-tab th,table.sc-tab td{position:relative;padding:7px 24px;text-align:center;border-bottom:1px solid var(--line);
+  min-width:70px}
+table.sc-tab thead th{color:var(--muted);font-weight:600;font-size:28px}
+table.sc-tab tbody tr:last-child>*{border-bottom:none}
+table.sc-tab .sc-v{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}
+table.sc-tab.sm{font-size:28px}
+table.sc-tab.sm th,table.sc-tab.sm td{padding:5px 18px}
+.sc-rowhi{position:absolute;left:3px;right:3px;top:3px;bottom:3px;border-radius:9px;box-shadow:0 0 0 3px #fff inset}
+.sc-avg{font-size:34px;direction:rtl;background:rgba(52,211,153,.10);border:1px solid var(--ok);border-radius:12px;
+  padding:6px 22px}
+
+/* Round Robin queue strip */
+.sc-q{display:flex;flex-direction:column;gap:8px;direction:ltr;font-size:30px}
+.sc-qh,.sc-qr{display:grid;grid-template-columns:150px 150px 360px;align-items:center;column-gap:16px}
+.sc-qh{color:var(--muted);font-size:24px;padding:0 15px}
+.sc-qh span{text-align:center}
+.sc-qr{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:4px 14px}
+.sc-qt{font-family:Consolas,monospace;text-align:center}
+.sc-qw{text-align:center}
+.sc-qq{display:flex;gap:12px;align-items:center}
+.sc-done{color:var(--ok)}
+.sc-idl,.sc-empty{color:var(--muted);font-size:26px}
+svg.sc-gantt .sc-bw{fill:#fbbf24}
+svg.sc-gantt .sc-bt{fill:#2dd4bf}
+.sc-calc{display:block;direction:ltr;text-align:right;font-family:Consolas,monospace;color:var(--brand)}
+.sc-line.sc-gapt{margin-top:26px}
+.sc-evs{font-size:30px;display:flex;flex-direction:column;gap:2px}
+/* process states and burst strip (S06) */
+svg.sc-st{overflow:visible}
+svg.sc-st .sc-sbox{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.sc-st .sc-stt{font-family:"Segoe UI",sans-serif;font-size:34px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.sc-st .sc-shl{fill:none;stroke:var(--brand);stroke-width:6}
+svg.sc-st .sc-sar{stroke:#c9cdf0;stroke-width:4;fill:none}
+svg.sc-st .sc-sar.w{stroke:#fbbf24;stroke-width:6}
+svg.sc-st .sc-sl{font-family:"Segoe UI",sans-serif;font-size:28px;fill:var(--muted);text-anchor:middle}
+svg.sc-st .sc-sl.w{fill:#fbbf24;font-weight:700}
+.sc-bstrip{display:flex;gap:4px;direction:ltr}
+.sc-bp{height:84px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:Consolas,monospace;
+  font-size:28px;font-weight:700;color:#0a0c18}
+.sc-bp.cpu{background:#2dd4bf}
+.sc-bp.io{background:rgba(255,255,255,.10);color:var(--muted);border:2px dashed #9aa0cf}

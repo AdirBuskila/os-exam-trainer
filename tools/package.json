@@ -1,0 +1,5 @@
+{
+  "name": "os-exam-trainer-tools",
+  "private": true,
+  "description": "Video engine node deps (installed by CI with --no-save): hyperframes, katex, gsap, puppeteer-core"
+}

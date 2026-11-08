@@ -1,0 +1,77 @@
+/* sync-course widgets (w_sync.py); every class starts with sy- */
+.sy-ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.sy-mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+.sy-mut{color:var(--muted)}
+.sy-ok{color:var(--ok);font-weight:700}
+.sy-bad{color:var(--bad);font-weight:700}
+.sy-v{font-weight:700;font-size:1.08em}
+.sy-v.neg{color:var(--bad)}
+.sy-stack{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%}
+.sy-row{font-size:34px;direction:rtl;text-align:center;line-height:1.4}
+.sy-big{font-size:46px;direction:ltr;text-align:center;font-family:Consolas,monospace}
+
+/* tables */
+table.sy-tab{border-collapse:separate;border-spacing:0;font-size:29px;direction:rtl;background:var(--card2);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table.sy-tab th,table.sy-tab td{padding:6px 16px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+table.sy-tab thead th{color:var(--muted);font-weight:600}
+table.sy-tab tbody tr:last-child>*{border-bottom:none}
+table.sy-tab.sm{font-size:26px}
+table.sy-tab.sm th,table.sy-tab.sm td{padding:5px 13px}
+table.sy-tab.lg{font-size:32px}
+table.sy-tab.lg th,table.sy-tab.lg td{padding:9px 22px}
+table.sy-tab td.sy-l{text-align:right}
+
+/* code */
+pre.sy-code2{font-family:Consolas,monospace;font-size:27px;line-height:1.38;direction:ltr;text-align:left;margin:0;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 20px;white-space:pre}
+pre.sy-code2 .c{color:var(--muted)}
+pre.sy-code2 .k{color:#38bdf8}
+pre.sy-code2 .x{color:#fbbf24}
+.sy-pair{display:flex;gap:26px;direction:ltr;align-items:flex-start}
+.sy-pair .sy-ph{font-family:"Segoe UI",sans-serif;font-size:28px;color:var(--brand);font-weight:700;direction:rtl;
+  text-align:center;margin-bottom:6px}
+
+/* two threads interleaved */
+.sy-il{display:flex;gap:30px;direction:ltr;align-items:center}
+.sy-col{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.sy-ct{font-size:30px;font-weight:700;color:var(--brand);text-align:center;direction:rtl}
+.sy-code{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;
+  flex-direction:column;gap:4px}
+.sy-ln{position:relative;font-family:Consolas,monospace;font-size:28px;padding:6px 12px;white-space:pre}
+.sy-lt{position:relative}
+.sy-hl{position:absolute;top:0;bottom:0;left:-4px;right:-4px;border-radius:8px;background:rgba(45,212,191,.22);
+  box-shadow:0 0 0 3px var(--brand) inset}
+.sy-reg{font-size:30px;text-align:center;display:flex;justify-content:center;align-items:center;gap:10px}
+.sy-lay{position:relative;display:inline-block;width:64px;height:44px;vertical-align:middle}
+.sy-ly{position:absolute;left:0;right:0;top:0;text-align:center;font-family:Consolas,monospace;font-weight:700;font-size:32px;
+  color:#fbbf24;line-height:44px}
+.sy-shared{display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(56,189,248,.10);
+  border:2px solid #38bdf8;border-radius:16px;padding:14px 22px}
+.sy-sn{font-size:28px;color:var(--muted)}
+.sy-sv .sy-lay{width:90px;height:70px}
+.sy-sv .sy-ly{font-size:56px;line-height:70px;color:var(--ink)}
+.sy-sl{font-size:24px;color:var(--muted)}
+
+/* resource graph */
+svg.sy-g{overflow:visible}
+svg.sy-g .sy-np{fill:var(--card);stroke:#c9cdf0;stroke-width:3}
+svg.sy-g .sy-nr{fill:rgba(192,132,252,.18);stroke:#c084fc;stroke-width:3}
+svg.sy-g .sy-nl{font-family:Consolas,monospace;font-size:32px;font-weight:700;fill:var(--ink);text-anchor:middle}
+svg.sy-g .sy-nl.r{font-size:30px}
+svg.sy-g .sy-e{stroke-width:5;fill:none}
+svg.sy-g .sy-e.hold{stroke:#2dd4bf}
+svg.sy-g .sy-e.wait{stroke:#fbbf24;stroke-dasharray:12 8}
+svg.sy-g .sy-e.cy{stroke:#fb7185;stroke-width:7}
+.sy-leg{display:flex;gap:34px;font-size:27px;color:var(--muted);direction:rtl}
+.sy-leg span{display:flex;align-items:center;gap:10px}
+.sy-li{display:inline-block;width:46px;height:0;border-top:5px solid #2dd4bf}
+.sy-li.wait{border-top:5px dashed #fbbf24}
+
+/* bakery tickets */
+.sy-tix{display:flex;gap:22px;direction:ltr}
+.sy-tk{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);border:2px solid var(--line);
+  border-radius:14px;padding:10px 20px;min-width:120px}
+.sy-tk .p{font-family:Consolas,monospace;font-size:26px;color:var(--muted)}
+.sy-tk .n{font-family:Consolas,monospace;font-size:52px;font-weight:700;color:#fbbf24}
+.sy-ord{font-size:34px;direction:rtl}

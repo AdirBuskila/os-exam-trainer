@@ -1,0 +1,11 @@
+/* shared video widgets of os-exam-trainer (appended to tools/video/video.css by vid.py, with every w_<course>.css) */
+.bigmath{font-size:52px;direction:ltr;text-align:center}
+.stack{display:flex;flex-direction:column;align-items:center;gap:26px;width:100%}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.mono{font-family:Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+/* a short-answer exam question: the stem (.qstem, .qid from video.css) and its answer box */
+.qans{font-size:34px;line-height:1.45;direction:rtl;background:rgba(52,211,153,.10);border:1px solid var(--ok);
+  border-radius:14px;padding:12px 22px;width:100%;box-sizing:border-box}
+.qans .k{color:var(--ok);font-weight:700}
+pre.qcode{font-family:Consolas,monospace;font-size:26px;line-height:1.35;direction:ltr;text-align:left;margin:0;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px;white-space:pre}
