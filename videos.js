@@ -11,43 +11,50 @@ window.VIDEO_COURSE = {
      "id": "S01",
      "level": "sched-1",
      "title": "הגעה, פרץ ושלושת המדדים",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "nxM5abm9RYs"
     },
     {
      "id": "S02",
      "level": "sched-2",
      "title": "FCFS ואפקט השיירה",
-     "minutes": 6
+     "minutes": 6,
+     "youtube": "-allQaIsCpY"
     },
     {
      "id": "S03",
      "level": "sched-3",
      "title": "SJF: העבודה הקצרה ראשונה",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "BcuWtwlyiq8"
     },
     {
      "id": "S04",
      "level": "sched-4",
      "title": "SRTF: מפסיקים כשמישהו קצר יותר",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "EbDbaA7AYx0"
     },
     {
      "id": "S05",
      "level": "sched-5",
      "title": "Round Robin וכלל התור",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "9I3w4XD3ixw"
     },
     {
      "id": "S06",
      "level": "sched-6",
      "title": "מילות התאוריה",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "bim-J8e-gz4"
     },
     {
      "id": "S07",
      "level": "sched-7",
      "title": "בוס: מבחן תזמון",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "45B6fYn9liI"
     }
    ]
   },
@@ -60,43 +67,50 @@ window.VIDEO_COURSE = {
      "id": "P01",
      "level": "paging-1",
      "title": "דפים, מסגרות ופיצול הכתובת",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "6XNa4XvP3M4"
     },
     {
      "id": "P02",
      "level": "paging-2",
      "title": "תרגום כתובת בעזרת טבלת דפים",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "60aBPSyH-LU"
     },
     {
      "id": "P03",
      "level": "paging-3",
      "title": "דפים שלמים ופיצול פנימי",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "XUx4PLPwPjw"
     },
     {
      "id": "P04",
      "level": "paging-4",
      "title": "טבלאות דפים רב-שלביות",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "Su9NXlQMesQ"
     },
     {
      "id": "P05",
      "level": "paging-5",
      "title": "ה-TLB וזמן הגישה האפקטיבי",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "ln6C9OH36MA"
     },
     {
      "id": "P06",
      "level": "paging-6",
      "title": "מי עושה מה: MMU, TLB, PTBR, PCB",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "aZMURGZOzEY"
     },
     {
      "id": "P07",
      "level": "paging-7",
      "title": "בוס: מבחן זיכרון",
-     "minutes": 4
+     "minutes": 4,
+     "youtube": "DSaOSjxw6_o"
     }
    ]
   },
@@ -109,7 +123,8 @@ window.VIDEO_COURSE = {
      "id": "V01",
      "level": "vmem-1",
      "title": "דפדוף לפי דרישה ושגיאות דף",
-     "minutes": 6
+     "minutes": 6,
+     "youtube": "Iu7nPdSdG-A"
     },
     {
      "id": "V02",
@@ -145,7 +160,8 @@ window.VIDEO_COURSE = {
      "id": "V07",
      "level": "vmem-7",
      "title": "בוס: מבחן החלפת דפים",
-     "minutes": 4
+     "minutes": 4,
+     "youtube": "Uhf3ey40HAo"
     }
    ]
   },

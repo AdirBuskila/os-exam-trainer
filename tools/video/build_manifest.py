@@ -25,7 +25,11 @@ sys.path.insert(0, str(VIDEOS))
 import app_config  # noqa: E402
 
 COURSES = app_config.COURSES      # same order and names as course-ui.js
-_STR = r'''(?:"([^"]+)"|'([^']+)')'''           # a "double" or 'single' quoted literal (titles may hold a ")
+_STR = r'''(?:"((?:[^"\\]|\\.)+)"|'((?:[^'\\]|\\.)+)')'''   # a "double" or 'single' quoted literal, escapes allowed
+
+
+def _unescape(s):
+    return re.sub(r"\\(.)", r"\1", s)
 DECL = re.compile(r'^VIDEO\s*=\s*(?:[\w.]+\(\s*)?Video\(\s*' + _STR + r'\s*,\s*' + _STR + r'\s*,\s*' + _STR, re.M)
 ID_RE = re.compile(r"^([A-Z])(\d+)([a-z]?)$")
 YT_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
@@ -64,7 +68,7 @@ def main():
                 errors.append(f"{script.relative_to(ROOT)}: no VIDEO = Video(\"ID\", \"course\", \"title\", ...) line")
                 continue
             g = m.groups()
-            vid, course, vtitle = (g[i] if g[i] is not None else g[i + 1] for i in (0, 2, 4))
+            vid, course, vtitle = (_unescape(g[i] if g[i] is not None else g[i + 1]) for i in (0, 2, 4))
             if vid != script.stem or course != cid:
                 errors.append(f"{script.relative_to(ROOT)}: declares {vid}/{course}, expected {script.stem}/{cid}")
                 continue
