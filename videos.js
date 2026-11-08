@@ -130,31 +130,36 @@ window.VIDEO_COURSE = {
      "id": "V02",
      "level": "vmem-2",
      "title": "החלפת דפים FIFO",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "NgfberNGFq0"
     },
     {
      "id": "V03",
      "level": "vmem-3",
      "title": "החלפת דפים LRU",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "4VVZN4Osw7A"
     },
     {
      "id": "V04",
      "level": "vmem-4",
      "title": "האלגוריתם האופטימלי",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "RHTYa1wQ4vg"
     },
     {
      "id": "V05",
      "level": "vmem-5",
      "title": "יותר מסגרות, יותר שגיאות? האנומליה של Belady",
-     "minutes": 4
+     "minutes": 4,
+     "youtube": "kq8PwLNdcgY"
     },
     {
      "id": "V06",
      "level": "vmem-6",
      "title": "Clock, ביטי התייחסות, הקצאה מקומית ותזזית",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "WlUCrguTef0"
     },
     {
      "id": "V07",
@@ -174,43 +179,50 @@ window.VIDEO_COURSE = {
      "id": "Y01",
      "level": "sync-1",
      "title": "מצבי תחרות וקטע קריטי",
-     "minutes": 6
+     "minutes": 6,
+     "youtube": "mF5Olk0N2_4"
     },
     {
      "id": "Y02",
      "level": "sync-2",
      "title": "סמפורים: wait, signal והערך",
-     "minutes": 6
+     "minutes": 6,
+     "youtube": "KW5MlxzF5gI"
     },
     {
      "id": "Y03",
      "level": "sync-3",
      "title": "סמפורים ב-Linux: semget, semop, semctl",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "NlgOo5P25TE"
     },
     {
      "id": "Y04",
      "level": "sync-4",
      "title": "יצרן-צרכן וקוראים-כותבים",
-     "minutes": 5
+     "minutes": 5,
+     "youtube": "3fFOhgmtjVA"
     },
     {
      "id": "Y05",
      "level": "sync-5",
      "title": "קיפאון והפילוסופים הסועדים",
-     "minutes": 6
+     "minutes": 6,
+     "youtube": "oEdBD5Th478"
     },
     {
      "id": "Y06",
      "level": "sync-6",
      "title": "מאפייה, TestAndSet והליבה",
-     "minutes": 4
+     "minutes": 4,
+     "youtube": "JwNJX1HdJfo"
     },
     {
      "id": "Y07",
      "level": "sync-7",
      "title": "בוס: מבחן סנכרון",
-     "minutes": 4
+     "minutes": 4,
+     "youtube": "-iSThqscA5M"
     }
    ]
   }
