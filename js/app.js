@@ -101,6 +101,8 @@ function render(){
   if(v==='sec') return renderSection(arg,view);
   if(v==='weak') return renderDeck(scopedQ().filter(q=>isWeak(q.id)),t('weak.title'),t('weak.sub'),view);
   if(v==='help') return COURSE_UI.route(view);
+  if(v==='videos' && window.VIDEO_UI) return VIDEO_UI.list(view);
+  if(v==='video' && window.VIDEO_UI) return VIDEO_UI.play(arg,view);
   if(v==='years') return renderYears(view);
   if(v==='year') return renderYear(arg,view);
   return renderHome(view);
@@ -132,6 +134,7 @@ function renderHome(view){
   h+=focusBanner();
   h+='<details class="lesson" open><summary>'+t('home.howToTitle')+'</summary><div class="lessonbody">'+t('home.howToBody')+'</div></details>';
   h+=COURSE_UI.homeCard();
+  if(window.VIDEO_UI) h+=VIDEO_UI.homeCard();
   h+='<div class="grid">';
   SEC.forEach(s=>{
     const list=secList(s.id); const hidden=(bySec[s.id]||[]).length-list.length;

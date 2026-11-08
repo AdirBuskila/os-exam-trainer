@@ -244,3 +244,54 @@ button.opt.wrong{border-color:var(--bad);background:rgba(255,107,107,.14)}
 .crs-review-t{font-weight:700;margin-bottom:4px}
 .crs-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
 @media(min-width:560px){.crs-btns{flex-direction:row;flex-wrap:wrap;justify-content:center}}
+
+/* ---------------- video course ("🎬 Video course", js/video-ui.js; ported from networks-quiz) ---------------- */
+.vid-home{display:flex;align-items:center;gap:12px;cursor:pointer;border-color:var(--acc2);
+  background:linear-gradient(135deg,rgba(124,91,255,.12),rgba(91,140,255,.06)),var(--card);transition:.15s}
+.vid-home:hover,.vid-home:focus-visible{border-color:var(--acc);outline:none;transform:translateY(-1px)}
+.vid-home-ic{font-size:28px;line-height:1}
+.vid-home-t{display:flex;flex-direction:column;gap:4px;flex:1}
+.vid-home-t b{font-size:16px}
+.vid-home-go{font-size:13.5px;font-weight:700;color:var(--acc);white-space:nowrap}
+.vid-henote{font-size:13px;color:var(--warn);margin:4px 0 8px}
+.vid-overall{font-size:14px;color:var(--mut);margin-top:6px}
+.vid-courses{display:grid;gap:12px}
+.vid-course-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;font-size:16px}
+.vid-count{font-size:12px;font-weight:800;color:var(--mut);background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:1px 9px;flex:none}
+.vid-list{display:grid;gap:7px}
+.vid-row{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:11px;width:100%;text-align:start;font:inherit;color:var(--txt);
+  cursor:pointer;border:1.5px solid var(--line);background:var(--card2);border-radius:12px;padding:10px 13px;transition:border-color .15s,transform .15s}
+.vid-row:hover,.vid-row:focus-visible{border-color:var(--acc);transform:translateY(-1px);outline:none}
+.vid-num{font-size:12px;font-weight:800;color:var(--mut);font-family:ui-monospace,Consolas,monospace}
+.vid-ttl{font-weight:700;font-size:14.5px;line-height:1.4;min-width:0;overflow-wrap:anywhere}
+.vid-meta{font-size:12px;color:var(--mut);white-space:nowrap}
+.vid-check{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:900;color:var(--mut);border:1.5px solid var(--line)}
+.vid-row.watched{border-color:rgba(62,207,142,.5);background:rgba(62,207,142,.07)}
+.vid-row.watched .vid-check{color:#fff;background:var(--good);border-color:var(--good)}
+.vid-tag{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:var(--acc);border-radius:999px;padding:1px 7px;vertical-align:middle}
+.vid-tag.he{background:var(--acc2)}
+.vid-tag.soon{color:var(--mut);background:var(--card);border:1px solid var(--line)}
+.vid-row.soon .vid-ttl{opacity:.85}
+.vid-player{margin-bottom:12px}
+.vid-title{margin:4px 0 12px;font-size:19px;line-height:1.4}
+.vid-frame{direction:ltr;position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--line)}
+.vid-frame iframe,.vid-frame video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;background:#000}
+.vid-frame.missing{background:var(--card2);display:grid;place-items:center}
+.vid-missing{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:16px;line-height:1.6}
+.vid-missing span{color:var(--mut);font-size:13.5px;max-width:30rem}
+.vid-missing-ico{font-size:32px}
+.vid-ytlink{font-size:12.5px;margin-top:7px;text-align:end}
+.vid-ytlink a{color:var(--mut);text-decoration:underline;text-underline-offset:2px}
+.vid-ytlink a:hover{color:var(--txt)}
+.vid-nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.vid-nav .btn{flex:1 1 auto}
+.vid-watch.on{color:var(--good);border-color:var(--good)}
+.vid-lesson-btns{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.vid-lesson-btns .btn{flex:1 1 auto;white-space:normal;text-align:center}
+@media(max-width:560px){
+  .vid-row{gap:8px;padding:9px 10px}
+  .vid-row .vid-meta{font-size:11px}
+  .vid-title{font-size:17px}
+  .vid-home-go{display:none}
+  .vid-nav .btn{padding-inline:10px}
+}

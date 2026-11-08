@@ -179,6 +179,7 @@ function openLesson(L, quiet) {
     '<span class="chip soft">' + T('crs.qCount', { n: L.questions.length }) + (nReal ? ' · ' + T('crs.fromExams', { n: nReal }) : '') + '</span></div>' +
     '<h2 class="sec" style="margin-top:12px">' + L.icon + ' <span' + (he() ? ' dir="rtl"' : '') + '>' + iso(loc(L.title)) + '</span></h2>' +
     '<p class="crs-goal">' + iso(loc(L.goal)) + '</p>' +
+    (root.VIDEO_UI ? root.VIDEO_UI.lessonButtons(L.id) : '') +   // video-ui.js: "▶ watch this level's video"
     '<div class="lesson lessonbody crs-lesson">' + lessonHtml(loc(L.lesson)) + '</div>' +
     '<div class="row crs-actions"><button class="btn" id="crsLessonGo" onclick="COURSE_UI.startCurrent()">' + T('crs.start') + '</button>' +
     '<button class="btn ghost" id="crsLessonBack" onclick="COURSE_UI.openMap(\'' + cid + '\')">' + T('crs.toMap') + '</button></div>';
