@@ -82,7 +82,8 @@ function nextLevel(c) { for (var i = 0; i < c.levels.length; i++) if (!passed(c.
 function nPassed(c) { return c.levels.filter(function (L) { return passed(c.id, L); }).length; }
 
 /* ---------------- routing ---------------- */
-function setHash(h) { try { history.replaceState(null, '', '#' + h); } catch (e) { root.location.hash = h; } }
+// one history entry per screen, so back/forward step map ↔ lesson ↔ quiz (pushState fires no hashchange: no re-render)
+function setHash(h) { if (root.location.hash === '#' + h) return; try { history.pushState(null, '', '#' + h); } catch (e) { root.location.hash = h; } }
 function ensure(view) {
   view = view || doc.getElementById('view');
   var s = doc.getElementById('screen-course');
@@ -98,14 +99,15 @@ function show(id) {
 }
 function levelOf(cid, n) { var c = C[cid]; return c && c.levels[n - 1]; }
 
-/* called by app.js render() for #help[/cid[/n]] */
+/* called by app.js render() for #help[/cid[/n[/play]]] */
 function route(view) {
   var seg = root.location.hash.replace(/^#/, '').split('/');
   var cid = seg[1], n = parseInt(seg[2], 10);
   if (!cid || !C[cid]) return hub(view);
-  var L = levelOf(cid, n);
-  if (L && st.cid === cid && st.L === L && st.view === 'quiz') { ensure(view); return drawQuiz(); }
-  if (L && st.cid === cid && st.L === L && st.view === 'sum') { ensure(view); return drawSum(); }
+  var L = levelOf(cid, n), play = seg[3] === 'play', here = L && st.cid === cid && st.L === L;
+  if (play && here && st.view === 'quiz') { ensure(view); return drawQuiz(); }
+  if (play && here && st.view === 'sum') { ensure(view); return drawSum(); }
+  if (play && L) { ensure(view); return startLevel(L); }
   ensure(view);
   if (L) return openLesson(L, true);
   return openMap(cid, true);
@@ -192,7 +194,7 @@ function openLesson(L, quiet) {
 function startLevel(L) {
   st.cid = L.id.split('-')[0]; st.L = L; st.view = 'quiz'; st.qi = 0; st.picked = [];
   ensure();
-  setHash('help/' + st.cid + '/' + L.order);
+  setHash('help/' + st.cid + '/' + L.order + '/play');
   drawQuiz();
   root.scrollTo(0, 0);
 }
